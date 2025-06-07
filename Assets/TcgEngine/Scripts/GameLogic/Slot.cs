@@ -15,9 +15,11 @@ namespace TcgEngine
         public int x; //From 1 to 5
         public int y; //Not in use, could be used to add more rows or different locations on the board
         public int p; //0 or 1, represent player ID
+        //해야할것: p가 -1인 경우 중립지역으로 하게 바꾸기
+        //하나의 지역이 하나의 좌표를 공유하도록 하기(x,y가 같은데 p가 다르다고 좌표가 따로 존재하지 않도록 하기)
 
         public static int x_min = 1; //Dont change this, should start at 1  (0,0,0 represent invalid slot)
-        public static int x_max = 5; //Number of slots in a row/zone
+        public static int x_max = 3; //Number of slots in a row/zone
 
         public static int y_min = 1; //Dont change this, should start at 1  (0,0,0 represent invalid slot)
         public static int y_max = 1; //Set this to the number of rows/locations you want to have

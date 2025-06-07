@@ -16,6 +16,9 @@ namespace TcgEngine.Client
 
     public class BoardCard : MonoBehaviour
     {
+        //보드 카드가 속한 슬롯
+        public BSlot parent_slot;//추가
+
         public SpriteRenderer card_sprite;
         public SpriteRenderer card_glow;
         public SpriteRenderer card_shadow;
@@ -205,6 +208,7 @@ namespace TcgEngine.Client
                 return back_to_hand_target;
 
             BSlot slot = BSlot.Get(card.slot);
+            parent_slot = slot;//추가
             if (slot != null)
             {
                 Vector3 targ_pos = slot.GetPosition(card.slot);

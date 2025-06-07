@@ -798,7 +798,7 @@ namespace TcgEngine.AI
             if (target != null)
                 txt += " target " + target.card_id;
             if (slot != Slot.None)
-                txt += " slot " + slot.x + "-" + slot.p;
+                txt += " slot " + slot.x + "-" + slot.y + "-" + slot.p;
             if (ability_id != null)
                 txt += " ability " + ability_id;
             if (value > 0)
