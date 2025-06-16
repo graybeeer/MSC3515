@@ -178,9 +178,9 @@ namespace TcgEngine.Client
                 return new Slot(x, py, p);
             }
 
-            if (type == BoardSlotType.PlayerSelf)
+            if (type == BoardSlotType.Player1)
                 p = GameClient.Get().GetPlayerID();
-            if(type == BoardSlotType.PlayerOpponent)
+            if(type == BoardSlotType.Player2)
                 p = GameClient.Get().GetOpponentPlayerID();
            
             return new Slot(x, y, p);

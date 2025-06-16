@@ -124,8 +124,8 @@ namespace TcgEngine.Client
     public enum BoardSlotType
     {
         Fixed = 0,              //x,y,p = slot
-        PlayerSelf = 5,         //p = client player id
-        PlayerOpponent = 7,     //p = client's opponent player id
+        Player1 = 5,         //p = client player id
+        Player2 = 7,     //p = client's opponent player id
         FlipX = 10,              //p=0,   x=unchanged for first player,  x=reversed for second player
         FlipY = 11,              //p=0,   y=unchanged for first player,  y=reversed for second player
     }

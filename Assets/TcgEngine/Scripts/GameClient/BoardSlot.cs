@@ -56,7 +56,7 @@ namespace TcgEngine.Client
             collide.enabled = slot_card == null; //Disable collider when a card is here
 
             //Find target opacity value
-            target_alpha = 0f;
+            target_alpha = 0.5f;
             if (your_turn && dcard != null && dcard.CardData.IsBoardCard() && gdata.CanPlayCard(dcard, slot))
             {
                 target_alpha = 1f; //hightlight when dragging a character or artifact
@@ -110,9 +110,9 @@ namespace TcgEngine.Client
                 return new Slot(x, py, p);
             }
 
-            if (type == BoardSlotType.PlayerSelf)
+            if (type == BoardSlotType.Player1)
                 p = GameClient.Get().GetPlayerID();
-            if(type == BoardSlotType.PlayerOpponent)
+            if(type == BoardSlotType.Player2)
                 p = GameClient.Get().GetOpponentPlayerID();
            
             return new Slot(x, y, p);

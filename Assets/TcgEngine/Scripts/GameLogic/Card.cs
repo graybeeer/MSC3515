@@ -18,6 +18,9 @@ namespace TcgEngine
         public bool exhausted;
         public int damage = 0;
 
+        //카드 방향표
+        public bool[] card_arrow = new bool[9];
+
         public int mana = 0;
         public int attack = 0;
         public int hp = 0;

@@ -35,6 +35,7 @@ namespace TcgEngine
         public int mana;
         public int attack;
         public int hp;
+        public bool[] card_arrow = new bool[9];
 
         [Header("Traits")]
         public TraitData[] traits;

@@ -18,6 +18,7 @@ namespace TcgEngine.Client
     {
         //보드 카드가 속한 슬롯
         public BSlot parent_slot;//추가
+        public int player_id;
 
         public SpriteRenderer card_sprite;
         public SpriteRenderer card_glow;
@@ -100,6 +101,8 @@ namespace TcgEngine.Client
             Player player = GameClient.Get().GetPlayer();
             Card card = data.GetCard(card_uid);
 
+            //카드주인 플레이어 id 가져오기
+            player_id = card.player_id;
             if (!destroyed)
             {
                 card_ui.SetCard(card);
