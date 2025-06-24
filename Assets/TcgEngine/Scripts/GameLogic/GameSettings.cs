@@ -136,7 +136,7 @@ namespace TcgEngine
                 settings.game_type = GameType.Solo;
                 settings.game_mode = GameMode.Casual;
                 settings.nb_players = 2;
-                settings.scene = "Game";
+                settings.scene = "Game3D";
                 settings.level = "";
                 return settings;
             }

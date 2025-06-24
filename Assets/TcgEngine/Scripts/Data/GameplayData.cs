@@ -56,7 +56,7 @@ namespace TcgEngine
         {
             if (arena_list.Length > 0)
                 return arena_list[Random.Range(0, arena_list.Length)];
-            return "Game";
+            return "Game3D";
         }
 
         public string GetRandomAIDeck()

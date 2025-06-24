@@ -76,7 +76,16 @@ namespace TcgEngine.Client
                 if (ability != null && slot_card != null && ability.CanTarget(gdata, caster, slot_card))
                     target_alpha = 1f; //Highlight when selecting a target and cards are valid
             }
-
+            //추가- 슬롯 주인에 따라 색깔변환
+            if (type == BoardSlotType.Player1)
+            {
+                render.color = new Color(0.5f, 0.5f, 1f, current_alpha);
+            }
+            else if (type == BoardSlotType.Player2)
+            {
+                render.color = new Color(1f, 0.5f, 0.5f, current_alpha);
+            }
+            //
             Card select_card = bcard_selected?.GetCard();
             bool can_do_move = your_turn && select_card != null && slot_card == null && gdata.CanMoveCard(select_card, slot);
             bool can_do_attack = your_turn && select_card != null && slot_card != null && gdata.CanAttackTarget(select_card, slot_card);

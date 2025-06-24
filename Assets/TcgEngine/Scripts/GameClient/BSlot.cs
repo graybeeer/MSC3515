@@ -38,6 +38,8 @@ namespace TcgEngine.Client
         {
             current_alpha = Mathf.MoveTowards(current_alpha, target_alpha * start_alpha, 2f * Time.deltaTime);
             render.color = new Color(render.color.r, render.color.g, render.color.b, current_alpha);
+            //추가- 슬롯 주인에 따라 색깔변환
+            
         }
 
         public virtual Slot GetSlot()
@@ -124,8 +126,9 @@ namespace TcgEngine.Client
     public enum BoardSlotType
     {
         Fixed = 0,              //x,y,p = slot
-        Player1 = 5,         //p = client player id
-        Player2 = 7,     //p = client's opponent player id
+        PlayerNot = 1,      //p = -1 중립지역
+        Player1 = 5,         //p = client player id / 1번 플레이어 지역으로 바꿀예정
+        Player2 = 7,     //p = client's opponent player id / 2번 ㅇㅇ
         FlipX = 10,              //p=0,   x=unchanged for first player,  x=reversed for second player
         FlipY = 11,              //p=0,   y=unchanged for first player,  y=reversed for second player
     }
