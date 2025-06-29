@@ -7,11 +7,13 @@ using UnityEngine;
 public class BoardRotation : MonoBehaviour
 {
     // Start is called before the first frame update
-    public Transform boardmap;
-
+    public Transform CameraParent;
+    bool rotateConfirmed = false;
     // Update is called once per frame
     void Update()
     {
+        if (rotateConfirmed == true)
+            return;
         //해야할것-나중에 게임 시작하면 설정되도록 변경하기
         if (!GameClient.Get().IsReady())
             return;
@@ -19,13 +21,16 @@ public class BoardRotation : MonoBehaviour
         Player player = GameClient.Get().GetPlayer();
         if (player.player_id == 0)
         {
-
+            rotateConfirmed = true;
         }
         else if (player.player_id == 1)
         {
-            boardmap.localRotation = Quaternion.Euler(0f, 0f, 180f);
-            //boardmap.localPosition = new Vector3(0, -2f, 0f);
+            //CameraParent.eulerAngles = new Vector3(0f, 180f, 0f);
+            CameraParent.localRotation = Quaternion.Euler(0, 180, 0);
+            //CameraParent.position = new Vector3(0, -2f, 0f);
+            rotateConfirmed = true;
         }
         return;
+        
     }
 }

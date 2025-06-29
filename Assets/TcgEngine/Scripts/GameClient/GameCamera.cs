@@ -19,11 +19,12 @@ namespace TcgEngine.Client
         private Vector3 start_pos;
 
         private static GameCamera instance;
+        //public BoardRotation cameraParent;
 
         void Awake()
         {
             instance = this;
-            start_pos = transform.position;
+            start_pos = transform.localPosition;
             cam = GetComponent<Camera>();
         }
 
@@ -34,11 +35,11 @@ namespace TcgEngine.Client
             {
                 shake_timer -= Time.deltaTime;
                 shake_vector = new Vector3(Mathf.Cos(shake_timer * Mathf.PI * 16f) * 0.02f, Mathf.Sin(shake_timer * Mathf.PI * 12f) * 0.01f, 0f);
-                transform.position = start_pos + shake_vector * shake_intensity;
+                transform.localPosition = start_pos + shake_vector * shake_intensity;
             }
             else
             {
-                transform.position = start_pos;
+                transform.localPosition = start_pos;
             }
         }
 
