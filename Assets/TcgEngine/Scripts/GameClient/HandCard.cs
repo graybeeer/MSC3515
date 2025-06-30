@@ -82,7 +82,7 @@ namespace TcgEngine.Client
             {
                 target_position = GetTargetPosition();
                 target_size = start_scale * 0.75f;
-                Vector3 dir = card_transform.position - prev_pos;
+                Vector3 dir = card_transform.localPosition - prev_pos;
                 Vector3 addrot = new Vector3(dir.y * 90f, -dir.x * 90f, 0f);
                 target_rotate += addrot * move_rotate_speed * Time.deltaTime;
                 target_rotate = new Vector3(Mathf.Clamp(target_rotate.x, -move_max_rotate, move_max_rotate), Mathf.Clamp(target_rotate.y, -move_max_rotate, move_max_rotate), 0f);
@@ -100,7 +100,7 @@ namespace TcgEngine.Client
 
             card_ui.SetCard(card);
             card_glow.enabled = IsFocus() || IsDrag();
-            prev_pos = Vector3.Lerp(prev_pos, card_transform.position, 1f * Time.deltaTime);
+            prev_pos = Vector3.Lerp(prev_pos, card_transform.localPosition, 1f * Time.deltaTime);
 
             //Unselect
             if (!drag && selected && Input.GetMouseButtonDown(0))

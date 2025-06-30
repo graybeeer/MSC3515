@@ -107,7 +107,7 @@ namespace TcgEngine.Client
 
         private int SortFunc(HandCard a, HandCard b)
         {
-            return a.transform.position.x.CompareTo(b.transform.position.x);
+            return a.transform.localPosition.x.CompareTo(b.transform.localPosition.x);
         }
 
         public bool HasCard(string card_uid)
