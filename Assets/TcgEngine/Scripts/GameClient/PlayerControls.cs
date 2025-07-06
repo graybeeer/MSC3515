@@ -96,7 +96,10 @@ namespace TcgEngine.Client
                 }
                 else if (tslot != null && tslot is BoardSlot)
                 {
-                    GameClient.Get().Move(card, tslot.GetSlot());
+                    if (card.exhausted)
+                        WarningText.ShowExhausted();
+                    else
+                        GameClient.Get().Move(card, tslot.GetSlot());
                 }
             }
 

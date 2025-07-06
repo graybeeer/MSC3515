@@ -22,6 +22,7 @@ MonoBehaviour:
   mana: 4
   attack: 4
   hp: 4
+  card_arrow: 000000000001010100
   traits: []
   stats: []
   abilities:

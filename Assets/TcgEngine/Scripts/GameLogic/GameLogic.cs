@@ -467,13 +467,14 @@ namespace TcgEngine.Gameplay
         {
             if (game_data.CanMoveCard(card, slot, skip_cost))
             {
+                Player player = game_data.GetPlayer(card.player_id);
                 card.slot = slot;
 
                 //Moving doesn't really have any effect in demo so can be done indefinitely
-                //if(!skip_cost)
-                //card.exhausted = true;
-                //card.RemoveStatus(StatusEffect.Stealth);
-                //player.AddHistory(GameAction.Move, card);
+                if(!skip_cost)
+                    card.exhausted = true;
+                //card.RemoveStatus(StatusType.Stealth);
+                player.AddHistory(GameAction.Move, card);
 
                 //Also move the equipment
                 Card equip = game_data.GetEquipCard(card.equipped_uid);

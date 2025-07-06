@@ -74,6 +74,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parent_slot: {fileID: 0}
+  player_id: 0
   card_sprite: {fileID: 4561419592773535510}
   card_glow: {fileID: 4561419593299913256}
   card_shadow: {fileID: 2627115110601193755}
@@ -123,6 +124,16 @@ MonoBehaviour:
   attack: {fileID: 1095425094801124750}
   hp: {fileID: 2630487396038922837}
   cost: {fileID: 0}
+  card_arrow_icon:
+  - {fileID: 3127905518461873887}
+  - {fileID: 7280701937668189690}
+  - {fileID: 6517207401859360436}
+  - {fileID: 2851718259509231770}
+  - {fileID: 6610359881476393169}
+  - {fileID: 6610359881476393169}
+  - {fileID: 7357961670457216992}
+  - {fileID: 8237062851281062775}
+  - {fileID: 7960222676845761326}
   card_title: {fileID: 3046232166395948562}
   card_text: {fileID: 0}
   stats: []

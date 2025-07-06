@@ -22,6 +22,7 @@ MonoBehaviour:
   mana: 7
   attack: 8
   hp: 8
+  card_arrow: 000000000001010100
   traits:
   - {fileID: 11400000, guid: 9124c4a8561cfd14d812a55b3e885662, type: 2}
   stats: []
