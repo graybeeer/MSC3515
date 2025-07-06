@@ -657,6 +657,16 @@ namespace TcgEngine.Client
             return GetPlayerID() == 0 ? 1 : 0;
         }
 
+        //내가 추가한것
+        public int GetPlayer1ID()
+        {
+            return 0;
+        }
+        public int GetPlayer2ID()
+        {
+            return 1;
+        }
+        
         public virtual bool IsYourTurn()
         {
             Game game_data = GetGameData();

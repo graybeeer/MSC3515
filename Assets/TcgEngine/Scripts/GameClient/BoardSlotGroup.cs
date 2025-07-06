@@ -180,9 +180,12 @@ namespace TcgEngine.Client
 
             if (type == BoardSlotType.Player1)
                 p = GameClient.Get().GetPlayerID();
-            if(type == BoardSlotType.Player2)
+            if (type == BoardSlotType.Player2)
                 p = GameClient.Get().GetOpponentPlayerID();
-           
+
+            if (type == BoardSlotType.PlayerNot)
+                p = -1;
+            
             return new Slot(x, y, p);
         }
 

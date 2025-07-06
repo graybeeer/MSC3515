@@ -118,12 +118,18 @@ namespace TcgEngine.Client
                     py = Slot.y_max - y + Slot.y_min; //Flip Y coordinate if not the first player
                 return new Slot(x, py, p);
             }
-
+            /*
             if (type == BoardSlotType.Player1)
                 p = GameClient.Get().GetPlayerID();
             if(type == BoardSlotType.Player2)
                 p = GameClient.Get().GetOpponentPlayerID();
-           
+           */
+            if (type == BoardSlotType.PlayerNot)//중립지역이면
+                p = -1;
+            if (type == BoardSlotType.Player1)
+                p = GameClient.Get().GetPlayer1ID();
+            if (type == BoardSlotType.Player2)
+                p = GameClient.Get().GetPlayer2ID();
             return new Slot(x, y, p);
         }
 

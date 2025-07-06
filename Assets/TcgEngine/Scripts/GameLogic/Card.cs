@@ -20,6 +20,7 @@ namespace TcgEngine
 
         //카드 방향표
         public bool[] card_arrow = new bool[9];
+        public int can_move_count = 0; //이동할수있는횟수
 
         public int mana = 0;
         public int attack = 0;
@@ -71,6 +72,7 @@ namespace TcgEngine
             attack = icard.attack;
             hp = icard.hp;
             mana = icard.mana;
+            card_arrow = icard.card_arrow;
             SetTraits(icard);
             SetAbilities(icard);
         }
@@ -458,6 +460,8 @@ namespace TcgEngine
             //In demo we can move freely, since it has no effect
             //if (HasStatusEffect(StatusEffect.Paralysed))
             //   return false;
+            if (HasStatus(StatusType.Paralysed))
+                return false;
             //if (!skip_cost && exhausted)
             //    return false; //no more action
             return true; 
@@ -552,6 +556,7 @@ namespace TcgEngine
             dest.attack = source.attack;
             dest.hp = source.hp;
             dest.mana = source.mana;
+            dest.card_arrow = source.card_arrow;
 
             dest.mana_ongoing = source.mana_ongoing;
             dest.attack_ongoing = source.attack_ongoing;
