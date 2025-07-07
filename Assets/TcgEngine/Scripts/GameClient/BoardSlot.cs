@@ -94,6 +94,7 @@ namespace TcgEngine.Client
             {
                 target_alpha = 1f;
             }
+            
         }
 
         //Find the actual slot coordinates of this board slot
@@ -125,7 +126,7 @@ namespace TcgEngine.Client
                 p = GameClient.Get().GetOpponentPlayerID();
            */
             if (type == BoardSlotType.PlayerNot)//중립지역이면
-                p = -1;
+                p = GameClient.Get().GetPlayerNotID();
             if (type == BoardSlotType.Player1)
                 p = GameClient.Get().GetPlayer1ID();
             if (type == BoardSlotType.Player2)

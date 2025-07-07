@@ -658,6 +658,10 @@ namespace TcgEngine.Client
         }
 
         //내가 추가한것
+        public int GetPlayerNotID()
+        {
+            return -1;
+        }
         public int GetPlayer1ID()
         {
             return 0;

@@ -83,7 +83,7 @@ namespace TcgEngine.Client
         {
             //Random slight rotation
             Vector3 board_rot = GameBoard.Get().GetAngles();
-            transform.rotation = Quaternion.Euler(board_rot.x, board_rot.y, board_rot.z + Random.Range(-1f, 1f));
+            transform.rotation = Quaternion.Euler(board_rot.x, board_rot.y, board_rot.z + Random.Range(-1f, 1f));          
         }
 
         void Update()
@@ -142,6 +142,13 @@ namespace TcgEngine.Client
             Sprite sprite = card.CardData.GetBoardArt(card.VariantData);
             if (sprite != card_sprite.sprite)
                 card_sprite.sprite = sprite;
+
+            //추가- 2p 보드카드일경우 180도 돌리기
+            if (card.player_id == 1)
+            {
+                Vector3 board_rot = GameBoard.Get().GetAngles();
+                transform.localRotation = Quaternion.Euler(board_rot.x, board_rot.y, board_rot.z + 180);
+            }
 
             //Update frame image
             Sprite frame = card.VariantData.frame_board;

@@ -108,11 +108,12 @@ namespace TcgEngine
             if (player.is_ai && card.CardData.IsDynamicManaCost() && player.mana == 0)
                 return false; // AI cant play X-cost card at 0 cost
 
-            if (card.CardData.IsBoardCard())
+            //보드카드 소환할때
+            if (card.CardData.IsBoardCard()) 
             {
                 if (!slot.IsValid() || IsCardOnSlot(slot))
                     return false;   //Slot already occupied
-                if (Slot.GetP(card.player_id) != slot.p)
+                if (Slot.GetP(card.player_id) != slot.p && (slot.p != -1)) //수정(중립지역이여도 소환가능하게)
                     return false; //Cant play on opponent side
                 return true;
             }
@@ -149,10 +150,10 @@ namespace TcgEngine
 
             if (!card.CanMove(skip_cost))
                 return false; //Card cant move
-
+            /*
             if (Slot.GetP(card.player_id) != slot.p)
                 return false; //Card played wrong side
-
+            */
             if (card.slot == slot)
                 return false; //Cant move to same slot
 

@@ -6,7 +6,7 @@ using TcgEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using TcgEngine.Client;
-using static UnityEditor.Experimental.GraphView.Port;
+//using static UnityEditor.Experimental.GraphView.Port;
 
 namespace TcgEngine.UI
 {

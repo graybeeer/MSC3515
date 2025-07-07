@@ -24,7 +24,7 @@ namespace TcgEngine
         public static int y_min = 1; //Dont change this, should start at 1  (0,0,0 represent invalid slot)
         public static int y_max = 5; //Set this to the number of rows/locations you want to have
 
-        public static bool ignore_p = true; //Set to true if you dont want to use P value
+        public static bool ignore_p = false; //Set to true if you dont want to use P value
 
         private static Dictionary<int, List<Slot>> player_slots = new Dictionary<int, List<Slot>>();
         private static List<Slot> all_slots = new List<Slot>();
@@ -89,7 +89,7 @@ namespace TcgEngine
         //Check if the slot is valid one (or if out of board)
         public bool IsValid()
         {
-            return x >= x_min && x <= x_max && y >= y_min && y <= y_max && p >= 0;
+            return x >= x_min && x <= x_max && y >= y_min && y <= y_max && p >= -1;
         }
 
         public static int MaxP
