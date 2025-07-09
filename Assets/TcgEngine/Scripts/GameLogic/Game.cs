@@ -44,7 +44,7 @@ namespace TcgEngine
         public HashSet<string> cards_attacked = new HashSet<string>();
 
         public Game() { }
-        
+
         public Game(string uid, int nb_players)
         {
             this.game_uid = uid;
@@ -84,16 +84,16 @@ namespace TcgEngine
 
         public virtual bool IsPlayerActionTurn(Player player)
         {
-            return player != null && current_player == player.player_id 
+            return player != null && current_player == player.player_id
                 && state == GameState.Play && selector == SelectorType.None;
         }
 
         public virtual bool IsPlayerSelectorTurn(Player player)
         {
-            return player != null && selector_player_id == player.player_id 
+            return player != null && selector_player_id == player.player_id
                 && state == GameState.Play && selector != SelectorType.None;
         }
-        
+
         //Check if a card is allowed to be played on slot
         public virtual bool CanPlayCard(Card card, Slot slot, bool skip_cost = false)
         {
@@ -109,7 +109,7 @@ namespace TcgEngine
                 return false; // AI cant play X-cost card at 0 cost
 
             //보드카드 소환할때
-            if (card.CardData.IsBoardCard()) 
+            if (card.CardData.IsBoardCard())
             {
                 if (!slot.IsValid() || IsCardOnSlot(slot))
                     return false;   //Slot already occupied
@@ -157,13 +157,37 @@ namespace TcgEngine
             if (card.slot == slot)
                 return false; //Cant move to same slot
 
+            if (!CanMoveArrow(card,slot)) //화살표로 이동가능한 위치인지
+                return false;
+
             Card slot_card = GetSlotCard(slot);
             if (slot_card != null)
                 return false; //Already a card there
 
             return true;
         }
+        //보드카드가 해당 슬롯에 이동 가능한 방향에 있는지 보드카드의 화살표로 계산
+        public bool CanMoveArrow(Card card, Slot slot)
+        {
+            if (card.slot.x - slot.x < -1 || card.slot.x - slot.x > 1) return false;
+            if (card.slot.y - slot.y < -1 || card.slot.y - slot.y > 1) return false;
+            int distance_x = slot.x - card.slot.x;
+            int distance_y = slot.y - card.slot.y;
+            int distance_arrow = 4 + distance_x * 1 + distance_y * 3;
+            if (card.player_id == 0)
+            {
+                if (!card.card_arrow[distance_arrow])
+                    return false;
+            }
+            else if (card.player_id == 1)
+            {
+                if (!card.card_arrow[9 - distance_arrow])
+                    return false;
+            }
+            else Debug.LogError("플레이어 id 안맞음");
 
+            return true;
+        }
         //Check if a card is allowed to attack a player
         public virtual bool CanAttackTarget(Card attacker, Player target, bool skip_cost = false)
         {
