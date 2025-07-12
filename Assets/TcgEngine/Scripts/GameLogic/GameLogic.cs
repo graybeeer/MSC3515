@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using TcgEngine.Client;
+using TcgEngine.UI;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Profiling;
@@ -115,6 +117,11 @@ namespace TcgEngine.Gameplay
                 player.hp = player.hp_max;
                 player.mana_max = pdeck != null ? pdeck.start_mana : GameplayData.Get().mana_start;
                 player.mana = player.mana_max;
+
+                //추가해야함 - 플레이어 영웅카드 필드에 소환
+                SummonCard(player, CardData.Get("bear"), VariantData.GetDefault(), Slot.Get(2, player.player_id * 4 + 1));
+                //SummonCard(player, player.hero.CardData, VariantData.GetDefault(), Slot.Get(2, player.player_id * 4 + 1));
+
 
                 //Draw starting cards
                 int dcards = pdeck != null ? pdeck.start_cards : GameplayData.Get().cards_start;
@@ -291,7 +298,7 @@ namespace TcgEngine.Gameplay
                     count_alive++;
                 }
             }
-
+            //추가예정 - 해당 코드를 왕 보드카드 죽으면 체크하는것으로 변경
             if (count_alive == 0)
             {
                 EndGame(-1); //Everyone is dead, Draw
@@ -336,6 +343,7 @@ namespace TcgEngine.Gameplay
                 player.hero = Card.Create(deck.hero, variant, player);
             }
 
+
             foreach (CardData card in deck.cards)
             {
                 if (card != null)
@@ -378,6 +386,7 @@ namespace TcgEngine.Gameplay
                 if (hdata != null && hvariant != null)
                     player.hero = Card.Create(hdata, hvariant, player);
             }
+
 
             foreach (UserCardData card in deck.cards)
             {
@@ -735,7 +744,6 @@ namespace TcgEngine.Gameplay
 
             if (game_data.GetSlotCard(slot) != null)
                 return null;
-
             Card acard = SummonCardHand(player, card, variant);
             PlayCard(acard, slot, true);
 

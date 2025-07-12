@@ -10,12 +10,16 @@ namespace TcgEngine.Client
 
     public class BSlot : MonoBehaviour
     {
+        public int owner_p; //추가 - 이 슬롯의 주인이 누구인지
+        public bool deep; //추가 - 적이 한턴버티면 승리하는 슬롯인지
+
         protected SpriteRenderer render;
         protected Collider collide;
         protected Bounds bounds;
         protected float start_alpha = 0f;
         protected float current_alpha = 0f;
         protected float target_alpha = 0f;
+        
 
         private static List<BSlot> slot_list = new List<BSlot>();
 
@@ -125,11 +129,11 @@ namespace TcgEngine.Client
 
     public enum BoardSlotType
     {
-        Fixed = 0,              //x,y,p = slot
+        //Fixed = 0,              //x,y,p = slot
         PlayerNot = 1,      //p = -1 중립지역
         Player1 = 5,         //p = client player id / 1번 플레이어 지역으로 바꿀예정
         Player2 = 7,     //p = client's opponent player id / 2번 ㅇㅇ
-        FlipX = 10,              //p=0,   x=unchanged for first player,  x=reversed for second player
-        FlipY = 11,              //p=0,   y=unchanged for first player,  y=reversed for second player
+        //FlipX = 10,              //p=0,   x=unchanged for first player,  x=reversed for second player
+        //FlipY = 11,              //p=0,   y=unchanged for first player,  y=reversed for second player
     }
 }

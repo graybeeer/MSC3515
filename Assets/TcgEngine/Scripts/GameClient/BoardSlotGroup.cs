@@ -158,8 +158,9 @@ namespace TcgEngine.Client
         //Find the actual slot coordinates of this board slot
         public Slot GetSlot(int x, int y)
         {
+            /*
             int p = 0;
-
+            
             if (type == BoardSlotType.FlipX)
             {
                 int pid = GameClient.Get().GetPlayerID();
@@ -177,16 +178,15 @@ namespace TcgEngine.Client
                     py = Slot.y_max - y + Slot.y_min; //Flip Y coordinate if not the first player
                 return new Slot(x, py, p);
             }
-
+            */
             if (type == BoardSlotType.Player1)
-                p = GameClient.Get().GetPlayerID();
+                owner_p = GameClient.Get().GetPlayer1ID();
             if (type == BoardSlotType.Player2)
-                p = GameClient.Get().GetOpponentPlayerID();
-
+                owner_p = GameClient.Get().GetPlayer2ID();
             if (type == BoardSlotType.PlayerNot)
-                p = -1;
+                owner_p = GameClient.Get().GetPlayerNotID();
             
-            return new Slot(x, y, p);
+            return new Slot(x, y);
         }
 
         public override Slot GetSlot(Vector3 wpos)

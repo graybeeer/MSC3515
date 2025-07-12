@@ -13,7 +13,7 @@ namespace TcgEngine.Client
     
     public class BoardDeck : MonoBehaviour
     {
-        public bool opponent;
+        public bool player2;
         public UIPanel hover_panel;
         public SpriteRenderer deck_render;
         public Text deck_value;
@@ -39,7 +39,8 @@ namespace TcgEngine.Client
             if (!GameClient.Get().IsReady())
                 return;
 
-            Player player = opponent ? GameClient.Get().GetOpponentPlayer() : GameClient.Get().GetPlayer();
+            //Player player = player2 ? GameClient.Get().GetOpponentPlayer() : GameClient.Get().GetPlayer();
+            Player player = player2 ? GameClient.Get().GetPlayer2() : GameClient.Get().GetPlayer1();
             if (player == null)
                 return;
 
@@ -61,7 +62,7 @@ namespace TcgEngine.Client
 
         public void ShowDiscardCards()
         {
-            Player player = opponent ? GameClient.Get().GetOpponentPlayer() : GameClient.Get().GetPlayer();
+            Player player = player2 ? GameClient.Get().GetPlayer2() : GameClient.Get().GetPlayer1();
             CardSelector.Get().Show(player.cards_discard, "DISCARD");
         }
 
@@ -89,10 +90,19 @@ namespace TcgEngine.Client
             hover = false;
             ShowHover(hover);
         }
-
+        //추가-내 덱인지 표시하는 bool함수
+        private bool isMine()
+        {
+            int playernum = player2 ? GameClient.Get().GetPlayer2ID() : GameClient.Get().GetPlayer1ID();
+            if (playernum == GameClient.Get().GetPlayerID())
+            {
+                return true;
+            }
+            else return false;
+        }
         private void OnMouseOver()
         {
-            if (!opponent && Input.GetMouseButtonDown(0))
+            if (isMine() && Input.GetMouseButtonDown(0))
                 ShowDeckCards(); //Cannot see opponent deck
             else if(Input.GetMouseButtonDown(1))
                 ShowDiscardCards(); //Cant see both player discard

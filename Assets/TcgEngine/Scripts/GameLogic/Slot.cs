@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
+using TcgEngine.Client;
 
 namespace TcgEngine
 {
@@ -24,7 +25,7 @@ namespace TcgEngine
         public static int y_min = 1; //Dont change this, should start at 1  (0,0,0 represent invalid slot)
         public static int y_max = 5; //Set this to the number of rows/locations you want to have
 
-        public static bool ignore_p = false; //Set to true if you dont want to use P value
+        public static bool ignore_p = true; //Set to true if you dont want to use P value
 
         private static Dictionary<int, List<Slot>> player_slots = new Dictionary<int, List<Slot>>();
         private static List<Slot> all_slots = new List<Slot>();
@@ -34,6 +35,12 @@ namespace TcgEngine
             this.x = 0;
             this.y = 0;
             this.p = pid;
+        }
+        public Slot(int x,int y)
+        {
+            this.x = x;
+            this.y = y;
+            this.p = 0;
         }
 
         public Slot(int x, int y, int pid)
@@ -130,7 +137,18 @@ namespace TcgEngine
             }
             return new Slot(x, y, p);
         }
-
+        public static Slot Get(int x, int y)
+        {
+            List<Slot> slots = GetAll();
+            foreach (Slot slot in slots)
+            {
+                if (slot.x == x && slot.y == y)
+                {
+                    return slot;
+                }
+            }
+            return new Slot(x, y);
+        }
         //Get all slots on player side
         public static List<Slot> GetAll(int pid)
         {

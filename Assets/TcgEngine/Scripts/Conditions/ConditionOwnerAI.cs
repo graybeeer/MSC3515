@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TcgEngine.Client;
 using UnityEngine;
 
 namespace TcgEngine
@@ -38,7 +39,7 @@ namespace TcgEngine
             if (!IsAIPlayer(data, caster))
                 return true; //Condition always true for human players
 
-            bool same_owner = Slot.GetP(caster.player_id) == target.p;
+            bool same_owner = caster.player_id == BSlot.Get(target).owner_p;
             return CompareBool(same_owner, oper);
         }
 

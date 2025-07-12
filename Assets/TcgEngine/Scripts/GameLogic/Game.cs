@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TcgEngine.Client;
 using UnityEngine;
 
 namespace TcgEngine
@@ -113,7 +114,7 @@ namespace TcgEngine
             {
                 if (!slot.IsValid() || IsCardOnSlot(slot))
                     return false;   //Slot already occupied
-                if (Slot.GetP(card.player_id) != slot.p && (slot.p != -1)) //수정(중립지역이여도 소환가능하게)
+                if (card.player_id != BSlot.Get(slot).owner_p && (BSlot.Get(slot).owner_p != -1)) //수정(중립지역이여도 소환가능하게)
                     return false; //Cant play on opponent side
                 return true;
             }

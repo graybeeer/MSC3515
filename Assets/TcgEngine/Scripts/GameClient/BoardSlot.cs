@@ -16,6 +16,7 @@ namespace TcgEngine.Client
         public BoardSlotType type;
         public int x;
         public int y;
+        
 
         private static List<BoardSlot> slot_list = new List<BoardSlot>();
 
@@ -100,6 +101,7 @@ namespace TcgEngine.Client
         //Find the actual slot coordinates of this board slot
         public override Slot GetSlot()
         {
+            /*
             int p = 0;
 
             if (type == BoardSlotType.FlipX)
@@ -119,19 +121,19 @@ namespace TcgEngine.Client
                     py = Slot.y_max - y + Slot.y_min; //Flip Y coordinate if not the first player
                 return new Slot(x, py, p);
             }
-            /*
+            
             if (type == BoardSlotType.Player1)
                 p = GameClient.Get().GetPlayerID();
             if(type == BoardSlotType.Player2)
                 p = GameClient.Get().GetOpponentPlayerID();
            */
             if (type == BoardSlotType.PlayerNot)//중립지역이면
-                p = GameClient.Get().GetPlayerNotID();
+                owner_p = GameClient.Get().GetPlayerNotID();
             if (type == BoardSlotType.Player1)
-                p = GameClient.Get().GetPlayer1ID();
+                owner_p = GameClient.Get().GetPlayer1ID();
             if (type == BoardSlotType.Player2)
-                p = GameClient.Get().GetPlayer2ID();
-            return new Slot(x, y, p);
+                owner_p = GameClient.Get().GetPlayer2ID();
+            return new Slot(x, y);
         }
 
         //When clicking on the slot

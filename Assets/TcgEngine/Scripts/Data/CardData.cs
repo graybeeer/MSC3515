@@ -58,6 +58,7 @@ namespace TcgEngine
         public GameObject attack_fx;
         public GameObject damage_fx;
         public GameObject idle_fx;
+        public GameObject move_fx; //추가
         public AudioClip spawn_audio;
         public AudioClip death_audio;
         public AudioClip attack_audio;

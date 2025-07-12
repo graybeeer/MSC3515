@@ -12,7 +12,6 @@ namespace TcgEngine.Client
 
     public class BoardSlotPlayer : BSlot
     {
-        public bool opponent;
 
         public float range_x = 3f;
         public float range_y = 1f;
@@ -26,10 +25,14 @@ namespace TcgEngine.Client
         {
             base.Awake();
             zone_list.Add(this);
-            if (opponent)
-                instance_other = this;
-            else
-                instance_self = this;
+        }
+        private bool isMine()
+        {
+            if (owner_p == GameClient.Get().GetPlayerID())
+            {
+                return true;
+            }
+            else return false;
         }
 
         protected override void OnDestroy()
@@ -40,6 +43,11 @@ namespace TcgEngine.Client
 
         private void Start()
         {
+            if (isMine())
+                instance_self = this;
+            else
+                instance_other = this;
+
             GameClient.Get().onAbilityStart += OnAbilityStart;
             GameClient.Get().onAbilityTargetPlayer += OnAbilityEffect;
 
@@ -52,7 +60,7 @@ namespace TcgEngine.Client
             if (!GameClient.Get().IsReady())
                 return;
 
-            if (!opponent)
+            if (isMine())
                 return;
 
             //int player_id = opponent ? GameClient.Get().GetOpponentPlayerID() : GameClient.Get().GetPlayerID();
@@ -96,7 +104,7 @@ namespace TcgEngine.Client
         {
             if (iability != null && caster != null)
             {
-                int player_id = opponent ? GameClient.Get().GetOpponentPlayerID() : GameClient.Get().GetPlayerID();
+                int player_id = isMine() ? GameClient.Get().GetPlayerID() : GameClient.Get().GetOpponentPlayerID();
                 if (caster.CardData.type == CardType.Spell && caster.player_id == player_id)
                 {
                     FXTool.DoFX(iability.caster_fx, transform.position);
@@ -109,7 +117,7 @@ namespace TcgEngine.Client
         {
             if (iability != null && caster != null && target != null)
             {
-                int player_id = opponent ? GameClient.Get().GetOpponentPlayerID() : GameClient.Get().GetPlayerID();
+                int player_id = isMine() ? GameClient.Get().GetPlayerID() : GameClient.Get().GetOpponentPlayerID();
                 if (target.player_id == player_id)
                 {
                     FXTool.DoFX(iability.target_fx, transform.position);
@@ -151,12 +159,12 @@ namespace TcgEngine.Client
 
         public int GetPlayerID()
         {
-            return opponent ? GameClient.Get().GetOpponentPlayerID() : GameClient.Get().GetPlayerID();
+            return isMine() ? GameClient.Get().GetPlayerID() : GameClient.Get().GetOpponentPlayerID();
         }
 
         public override Player GetPlayer()
         {
-            return opponent ? GameClient.Get().GetOpponentPlayer() : GameClient.Get().GetPlayer();
+            return isMine() ? GameClient.Get().GetPlayer() : GameClient.Get().GetOpponentPlayer();
         }
 
         public override Slot GetSlot()

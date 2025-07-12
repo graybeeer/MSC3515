@@ -644,7 +644,16 @@ namespace TcgEngine.Client
             Game gdata = GetGameData();
             return gdata.GetPlayer(GetOpponentPlayerID());
         }
-
+        public Player GetPlayer1()
+        {
+            Game gdata = GetGameData();
+            return gdata.GetPlayer(GetPlayer1ID());
+        }
+        public Player GetPlayer2()
+        {
+            Game gdata = GetGameData();
+            return gdata.GetPlayer(GetPlayer2ID());
+        }
         public int GetPlayerID()
         {
             if (observe_mode)
