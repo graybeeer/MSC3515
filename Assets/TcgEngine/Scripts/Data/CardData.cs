@@ -7,6 +7,7 @@ namespace TcgEngine
     {
         None = 0,
         Hero = 5,
+        Heerroo = 6,
         Character = 10,
         Spell = 20,
         Artifact = 30,
@@ -22,6 +23,7 @@ namespace TcgEngine
     public class CardData : ScriptableObject
     {
         public string id;
+        public int dbfid;
 
         [Header("Display")]
         public string title;
@@ -112,6 +114,8 @@ namespace TcgEngine
         {
             if (type == CardType.Hero)
                 return "hero";
+            if (type == CardType.Heerroo)
+                return "heerroo";
             if (type == CardType.Character)
                 return "character";
             if (type == CardType.Artifact)
@@ -138,7 +142,7 @@ namespace TcgEngine
 
         public bool IsCharacter()
         {
-            return type == CardType.Character;
+            return type == CardType.Character || type == CardType.Hero;
         }
 
         public bool IsSecret()
@@ -148,7 +152,7 @@ namespace TcgEngine
 
         public bool IsBoardCard()
         {
-            return type == CardType.Character || type == CardType.Artifact;
+            return type == CardType.Character || type == CardType.Artifact || type == CardType.Hero;
         }
 
         public bool IsRequireTarget()
@@ -287,7 +291,18 @@ namespace TcgEngine
                 return card;
             return null;
         }
-
+        //dbfid 버전도 만들기
+        /*
+        public static CardData Get(int dbfid) 
+        {
+            if (dbfid == null)
+                return null;
+            bool success = card_dict.TryGetValue(dbfid, out CardData card);
+            if (success)
+                return card;
+            return null;
+        }
+        */
         public static List<CardData> GetAllDeckbuilding()
         {
             List<CardData> multi_list = new List<CardData>();

@@ -182,7 +182,7 @@ namespace TcgEngine
             }
             else if (card.player_id == 1)
             {
-                if (!card.card_arrow[9 - distance_arrow])
+                if (!card.card_arrow[8 - distance_arrow])
                     return false;
             }
             else Debug.LogError("플레이어 id 안맞음");
@@ -207,6 +207,7 @@ namespace TcgEngine
             if (target.HasStatus(StatusType.Protected) && !attacker.HasStatus(StatusType.Flying))
                 return false; //Protected by taunt
 
+            //추가해야함-공격방식 이동해서 잡는것으로 변경
             return true;
         }
 

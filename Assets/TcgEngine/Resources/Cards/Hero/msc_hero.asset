@@ -10,25 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 843a21f7f6f205741a0a7341aec8e84d, type: 3}
-  m_Name: spell_armageddon
+  m_Name: msc_hero
   m_EditorClassIdentifier: 
-  id: spell_armageddon
+  id: msc_hero
   dbfid: 0
-  title: Armageddon
-  art_full: {fileID: 21300000, guid: a2c9cd7048d0e2940abbeb619f8fc491, type: 3}
-  art_board: {fileID: 0}
-  type: 20
+  title: msc_hero
+  art_full: {fileID: 21300000, guid: 7699cccd52686144db4e7915c70e7a67, type: 3}
+  art_board: {fileID: 21300000, guid: 683a50fcd851d6d45ac0a67c123f2a04, type: 3}
+  type: 5
   team: {fileID: 11400000, guid: 6bbb96863ece0314fb318c0fce569afc, type: 2}
-  rarity: {fileID: 11400000, guid: 15eaa2a0fbd97f149b3aa87387c160d1, type: 2}
-  mana: 5
-  attack: 0
-  hp: 0
-  card_arrow: 000101000000000000
+  rarity: {fileID: 11400000, guid: 13b592f40b7cd424c966f5d7eef425aa, type: 2}
+  mana: 0
+  attack: 1
+  hp: 10
+  card_arrow: 010101010101010101
   traits: []
   stats: []
-  abilities:
-  - {fileID: 11400000, guid: dcc0676dad374d249a3827d7c27a89dc, type: 2}
-  text: Destroy all creatures on the board
+  abilities: []
+  text: 
   desc: 
   spawn_fx: {fileID: 0}
   death_fx: {fileID: 0}
@@ -40,8 +39,6 @@ MonoBehaviour:
   death_audio: {fileID: 0}
   attack_audio: {fileID: 0}
   damage_audio: {fileID: 0}
-  deckbuilding: 1
+  deckbuilding: 0
   cost: 100
-  packs:
-  - {fileID: 11400000, guid: bafca3757bf537c43b1d2ba696456e2c, type: 2}
-  - {fileID: 11400000, guid: 2db0d9f08bdfa57419101c08b8598c1a, type: 2}
+  packs: []

@@ -460,13 +460,15 @@ namespace TcgEngine
             //In demo we can move freely, since it has no effect
             //if (HasStatusEffect(StatusEffect.Paralysed))
             //   return false;
-            
+
+            //추가-공격성공해도 exhaus 어쩌구 탈진 되서 잡아도 이동 못하므로 잡으면 이동할수있게 변경
+            /*
             if (HasStatus(StatusType.Paralysed))
                 return false;
             
             if (!skip_cost && exhausted)
                 return false; //no more action
-            
+            */
             return true; 
         }
 

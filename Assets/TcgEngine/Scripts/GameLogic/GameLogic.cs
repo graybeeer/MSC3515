@@ -119,9 +119,9 @@ namespace TcgEngine.Gameplay
                 player.mana = player.mana_max;
 
                 //추가해야함 - 플레이어 영웅카드 필드에 소환
-                SummonCard(player, CardData.Get("bear"), VariantData.GetDefault(), Slot.Get(2, player.player_id * 4 + 1));
-                //SummonCard(player, player.hero.CardData, VariantData.GetDefault(), Slot.Get(2, player.player_id * 4 + 1));
-
+                //SummonCard(player, CardData.Get("bear"), VariantData.GetDefault(), Slot.Get(2, player.player_id * 4 + 1));
+                //SummonCard(player, CardData.Get("msc_hero"), VariantData.GetDefault(), Slot.Get(2, player.player_id * 4 + 1));
+                SummonCard(player, player.hero.CardData, VariantData.GetDefault(), Slot.Get(2, player.player_id * 4 + 1));
 
                 //Draw starting cards
                 int dcards = pdeck != null ? pdeck.start_cards : GameplayData.Get().cards_start;
@@ -584,6 +584,8 @@ namespace TcgEngine.Gameplay
             CheckForWinner();
 
             resolve_queue.ResolveAll(0.2f);
+            //추가
+            MoveCard(attacker, target.slot, false);
         }
 
         public virtual void AttackPlayer(Card attacker, Player target, bool skip_cost = false)

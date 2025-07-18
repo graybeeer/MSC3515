@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/TcgEngine/Scenes/Tool/TestP2P.unity
+    guid: 6f9ac14d723692947a10179c5a9df34b
+  - enabled: 1
     path: Assets/TcgEngine/Scenes/Menu/LoginMenu.unity
     guid: 35845f83f169a8249ba97386e43cc114
   - enabled: 1
