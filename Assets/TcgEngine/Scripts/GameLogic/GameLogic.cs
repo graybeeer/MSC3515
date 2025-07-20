@@ -118,10 +118,11 @@ namespace TcgEngine.Gameplay
                 player.mana_max = pdeck != null ? pdeck.start_mana : GameplayData.Get().mana_start;
                 player.mana = player.mana_max;
 
-                //추가해야함 - 플레이어 영웅카드 필드에 소환
+                //추가 - 플레이어 영웅카드 필드에 소환
                 //SummonCard(player, CardData.Get("bear"), VariantData.GetDefault(), Slot.Get(2, player.player_id * 4 + 1));
                 //SummonCard(player, CardData.Get("msc_hero"), VariantData.GetDefault(), Slot.Get(2, player.player_id * 4 + 1));
-                SummonCard(player, player.hero.CardData, VariantData.GetDefault(), Slot.Get(2, player.player_id * 4 + 1));
+                player.hero = SummonCard(player, player.hero_data.CardData, VariantData.GetDefault(), Slot.Get(2, player.player_id * 4 + 1));
+                SummonCard(player, CardData.Get("bear"), VariantData.GetDefault(), Slot.Get(player.player_id*1+1, 3));
 
                 //Draw starting cards
                 int dcards = pdeck != null ? pdeck.start_cards : GameplayData.Get().cards_start;
@@ -174,8 +175,8 @@ namespace TcgEngine.Gameplay
             if (player.HasStatus(StatusType.Poisoned))
                 player.hp -= player.GetStatusValue(StatusType.Poisoned);
 
-            if (player.hero != null)
-                player.hero.Refresh();
+            if (player.hero_data != null)
+                player.hero_data.Refresh();
 
             //Refresh Cards and Status Effects
             for (int i = player.cards_board.Count - 1; i >= 0; i--)
@@ -298,7 +299,7 @@ namespace TcgEngine.Gameplay
                     count_alive++;
                 }
             }
-            //추가예정 - 해당 코드를 왕 보드카드 죽으면 체크하는것으로 변경
+            
             if (count_alive == 0)
             {
                 EndGame(-1); //Everyone is dead, Draw
@@ -306,6 +307,28 @@ namespace TcgEngine.Gameplay
             else if (count_alive == 1)
             {
                 EndGame(alive.player_id); //Player win
+            }
+
+            //추가예정 - 해당 코드를 왕 보드카드 죽으면 체크하는것으로 변경
+            int count_alive2 = 0;
+            Player alive2 = null;
+            foreach (Player player in game_data.players)
+            {
+                if (!game_data.IsInDiscard(player.hero))
+                {
+                    alive2 = player;
+                    count_alive2++;
+                    
+                }
+            }
+            //추가예정 - 해당 코드를 왕 보드카드 죽으면 체크하는것으로 변경
+            if (count_alive2 == 0)
+            {
+                EndGame(-1); //Everyone is dead, Draw
+            }
+            else if (count_alive2 == 1)
+            {
+                EndGame(alive2.player_id); //Player win
             }
         }
 
@@ -335,12 +358,12 @@ namespace TcgEngine.Gameplay
             player.cards_all.Clear();
             player.cards_deck.Clear();
             player.deck = deck.id;
-            player.hero = null;
+            player.hero_data = null;
 
             VariantData variant = VariantData.GetDefault();
             if (deck.hero != null)
             {
-                player.hero = Card.Create(deck.hero, variant, player);
+                player.hero_data = Card.Create(deck.hero, variant, player);
             }
 
 
@@ -377,14 +400,16 @@ namespace TcgEngine.Gameplay
             player.cards_all.Clear();
             player.cards_deck.Clear();
             player.deck = deck.tid;
-            player.hero = null;
+            player.hero_data = null;
 
             if (deck.hero != null)
             {
                 CardData hdata = CardData.Get(deck.hero.tid);
                 VariantData hvariant = VariantData.Get(deck.hero.variant);
+                
                 if (hdata != null && hvariant != null)
-                    player.hero = Card.Create(hdata, hvariant, player);
+                    player.hero_data = Card.Create(hdata, hvariant, player);
+                
             }
 
 
@@ -585,7 +610,7 @@ namespace TcgEngine.Gameplay
 
             resolve_queue.ResolveAll(0.2f);
             //추가
-            MoveCard(attacker, target.slot, false);
+            MoveCard(attacker, target.slot, true);
         }
 
         public virtual void AttackPlayer(Card attacker, Player target, bool skip_cost = false)
@@ -1030,8 +1055,8 @@ namespace TcgEngine.Gameplay
         {
             foreach (Player oplayer in game_data.players)
             {
-                if (oplayer.hero != null)
-                    TriggerCardAbilityType(type, oplayer.hero, triggerer);
+                if (oplayer.hero_data != null)
+                    TriggerCardAbilityType(type, oplayer.hero_data, triggerer);
 
                 foreach (Card card in oplayer.cards_board)
                     TriggerCardAbilityType(type, card, triggerer);
@@ -1040,8 +1065,8 @@ namespace TcgEngine.Gameplay
 
         public virtual void TriggerPlayerCardsAbilityType(Player player, AbilityTrigger type)
         {
-            if (player.hero != null)
-                TriggerCardAbilityType(type, player.hero, player.hero);
+            if (player.hero_data != null)
+                TriggerCardAbilityType(type, player.hero_data, player.hero_data);
 
             foreach (Card card in player.cards_board)
                 TriggerCardAbilityType(type, card, card);
@@ -1297,7 +1322,7 @@ namespace TcgEngine.Gameplay
             for (int p = 0; p < game_data.players.Length; p++)
             {
                 Player player = game_data.players[p];
-                UpdateOngoingAbilities(player, player.hero);  //Remove this line if hero is on the board
+                UpdateOngoingAbilities(player, player.hero_data);  //Remove this line if hero is on the board
 
                 for (int c = 0; c < player.cards_board.Count; c++)
                 {

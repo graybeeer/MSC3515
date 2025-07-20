@@ -63,7 +63,6 @@ namespace TcgEngine
         public virtual int GetHP(int offset) { return Mathf.Max(hp + hp_ongoing - damage + offset, 0); }
         public virtual int GetHPMax() { return Mathf.Max(hp + hp_ongoing, 0); }
         public virtual int GetMana() { return Mathf.Max(mana + mana_ongoing, 0); }
-        //public virtual bool[9] GetCardArrow() { return }
         public virtual void SetCard(CardData icard, VariantData cvariant)
         {
             data = icard;
@@ -462,13 +461,13 @@ namespace TcgEngine
             //   return false;
 
             //추가-공격성공해도 exhaus 어쩌구 탈진 되서 잡아도 이동 못하므로 잡으면 이동할수있게 변경
-            /*
+            
             if (HasStatus(StatusType.Paralysed))
                 return false;
             
             if (!skip_cost && exhausted)
                 return false; //no more action
-            */
+            
             return true; 
         }
 

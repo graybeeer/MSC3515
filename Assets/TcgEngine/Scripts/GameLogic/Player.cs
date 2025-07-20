@@ -28,6 +28,7 @@ namespace TcgEngine
         public int kill_count = 0;
 
         public Dictionary<string, Card> cards_all = new Dictionary<string, Card>(); //Dictionnary for quick access to any card by UID
+        public Card hero_data = null;
         public Card hero = null;
 
         public List<Card> cards_deck = new List<Card>();    //Cards in the player's deck
@@ -585,7 +586,7 @@ namespace TcgEngine
             dest.mana_max = source.mana_max;
             dest.kill_count = source.kill_count;
 
-            Card.CloneNull(source.hero, ref dest.hero);
+            Card.CloneNull(source.hero_data, ref dest.hero_data);
             Card.CloneDict(source.cards_all, dest.cards_all);
             Card.CloneListRef(dest.cards_all, source.cards_board, dest.cards_board);  
             Card.CloneListRef(dest.cards_all, source.cards_equip, dest.cards_equip);  

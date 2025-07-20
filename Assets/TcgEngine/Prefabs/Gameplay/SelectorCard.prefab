@@ -27,10 +27,10 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6018687764359829272}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -50,33 +50,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   card_ui: {fileID: 3309926857874379425}
-  card_index: 0
-  display_index: 0
-  target_pos: {x: 0, y: 0}
-  target_scale: {x: 0, y: 0, z: 0}
-  card:
-    card_id: 
-    uid: 
-    player_id: 0
-    variant: 0
-    slot:
-      x: 0
-      p: 0
-    exhausted: 0
-    attack: 0
-    hp: 0
-    attack_bonus: 0
-    hp_bonus: 0
-    attack_ongoing_bonus: 0
-    hp_ongoing_bonus: 0
-    ongoing_status: []
-    status_effects: []
-    cdata: {fileID: 0}
 --- !u!1001 &7361199535806895569
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 4014361302221341153}
     m_Modifications:
     - target: {fileID: 3868195550748869321, guid: 90f1aa482afcc9c4f87470c4d4557bc4,
@@ -88,11 +67,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3868195550748869321, guid: 90f1aa482afcc9c4f87470c4d4557bc4,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3868195550748869321, guid: 90f1aa482afcc9c4f87470c4d4557bc4,
         type: 3}
@@ -123,16 +97,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 680
-      objectReference: {fileID: 0}
-    - target: {fileID: 3868195550748869321, guid: 90f1aa482afcc9c4f87470c4d4557bc4,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.75
-      objectReference: {fileID: 0}
-    - target: {fileID: 3868195550748869321, guid: 90f1aa482afcc9c4f87470c4d4557bc4,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 3868195550748869321, guid: 90f1aa482afcc9c4f87470c4d4557bc4,
         type: 3}
@@ -200,13 +164,10 @@ PrefabInstance:
       value: CardUI
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 90f1aa482afcc9c4f87470c4d4557bc4, type: 3}
---- !u!224 &6018687764359829272 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 3868195550748869321, guid: 90f1aa482afcc9c4f87470c4d4557bc4,
-    type: 3}
-  m_PrefabInstance: {fileID: 7361199535806895569}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &3309926857874379425 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5460336411350321008, guid: 90f1aa482afcc9c4f87470c4d4557bc4,
@@ -219,3 +180,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 943be08264f3555448cac48ac16c1e8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!224 &6018687764359829272 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 3868195550748869321, guid: 90f1aa482afcc9c4f87470c4d4557bc4,
+    type: 3}
+  m_PrefabInstance: {fileID: 7361199535806895569}
+  m_PrefabAsset: {fileID: 0}

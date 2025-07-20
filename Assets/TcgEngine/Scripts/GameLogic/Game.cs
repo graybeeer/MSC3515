@@ -235,6 +235,9 @@ namespace TcgEngine
             if (target.HasStatus(StatusType.Protected) && !attacker.HasStatus(StatusType.Flying))
                 return false; //Protected by adjacent card
 
+            if (!CanMoveArrow(attacker, target.slot)) //화살표로 이동가능한 위치인지
+                return false;
+
             return true;
         }
 

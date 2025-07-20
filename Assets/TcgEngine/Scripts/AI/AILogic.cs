@@ -147,8 +147,8 @@ namespace TcgEngine.AI
                         //AddActions(action_list, data, node, GameAction.Move, card);        //Uncomment to consider move actions
                     }
 
-                    if (player.hero != null)
-                        AddActions(action_list, data, node, GameAction.CastAbility, player.hero);
+                    if (player.hero_data != null)
+                        AddActions(action_list, data, node, GameAction.CastAbility, player.hero_data);
                 }
                 else
                 {

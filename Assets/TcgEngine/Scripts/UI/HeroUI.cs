@@ -58,7 +58,7 @@ namespace TcgEngine.UI
 
             Game gdata = GameClient.Get().GetGameData();
             Player player = GetPlayer();
-            Card hero = player.hero;
+            Card hero = player.hero_data;
             if (hero == null)
                 return;
 
@@ -82,7 +82,7 @@ namespace TcgEngine.UI
         {
             Game gdata = GameClient.Get().GetGameData();
             Player player = GameClient.Get().GetPlayer();
-            Card hero = player.hero;
+            Card hero = player.hero_data;
             AbilityData ability = hero?.GetAbility(AbilityTrigger.Activate);
             if (ability != null && !opponent)
             {
@@ -134,7 +134,7 @@ namespace TcgEngine.UI
         public Card GetCard()
         {
             Player player = GetPlayer();
-            return player.hero;
+            return player.hero_data;
         }
 
         public static HeroUI GetFocus()
