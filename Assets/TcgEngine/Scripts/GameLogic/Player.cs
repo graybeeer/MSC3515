@@ -30,6 +30,7 @@ namespace TcgEngine
         public Dictionary<string, Card> cards_all = new Dictionary<string, Card>(); //Dictionnary for quick access to any card by UID
         public Card hero_data = null;
         public Card hero = null;
+        public int hero_invade_turn = 0;
 
         public List<Card> cards_deck = new List<Card>();    //Cards in the player's deck
         public List<Card> cards_hand = new List<Card>();    //Cards in the player's hand

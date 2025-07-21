@@ -679,7 +679,10 @@ namespace TcgEngine.Client
         {
             return 1;
         }
-        
+        public int GetOpponentID(int i)
+        {
+            return i == 0 ? 1 : 0;
+        }
         public virtual bool IsYourTurn()
         {
             Game game_data = GetGameData();

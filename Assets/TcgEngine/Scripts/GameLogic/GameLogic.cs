@@ -178,6 +178,22 @@ namespace TcgEngine.Gameplay
             if (player.hero_data != null)
                 player.hero_data.Refresh();
 
+            //추가 - 상대 깊은 진영에서 1턴이상 버티면 승리
+            foreach (Player invader_player in game_data.players)
+            {
+                if (invader_player.hero != null)
+                {
+                    BSlot hero_slot = BSlot.Get(invader_player.hero.slot);
+                    if (hero_slot.owner_p_id == GameClient.Get().GetOpponentID(invader_player.player_id) && hero_slot.deep)
+                    {
+                        invader_player.hero_invade_turn++;
+                    }
+                    else invader_player.hero_invade_turn = 0; //아니라면 0으로 초기화
+
+                    if (invader_player.hero_invade_turn > 1)
+                        EndGame(invader_player.player_id); //Player win
+                }
+            }
             //Refresh Cards and Status Effects
             for (int i = player.cards_board.Count - 1; i >= 0; i--)
             {

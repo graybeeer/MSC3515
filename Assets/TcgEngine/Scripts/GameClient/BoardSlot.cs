@@ -17,7 +17,6 @@ namespace TcgEngine.Client
         public int x;
         public int y;
         
-
         private static List<BoardSlot> slot_list = new List<BoardSlot>();
 
         protected override void Awake()
@@ -97,7 +96,15 @@ namespace TcgEngine.Client
             }
             
         }
-
+        public static BoardSlot GetBoardSlot(Slot slot)
+        {
+            foreach (BoardSlot bslot in GetAll())
+            {
+                if (bslot.HasSlot(slot))
+                    return bslot;
+            }
+            return null;
+        }
         //Find the actual slot coordinates of this board slot
         public override Slot GetSlot()
         {
@@ -128,11 +135,11 @@ namespace TcgEngine.Client
                 p = GameClient.Get().GetOpponentPlayerID();
            */
             if (type == BoardSlotType.PlayerNot)//중립지역이면
-                owner_p = GameClient.Get().GetPlayerNotID();
+                owner_p_id = GameClient.Get().GetPlayerNotID();
             if (type == BoardSlotType.Player1)
-                owner_p = GameClient.Get().GetPlayer1ID();
+                owner_p_id = GameClient.Get().GetPlayer1ID();
             if (type == BoardSlotType.Player2)
-                owner_p = GameClient.Get().GetPlayer2ID();
+                owner_p_id = GameClient.Get().GetPlayer2ID();
             return new Slot(x, y);
         }
 

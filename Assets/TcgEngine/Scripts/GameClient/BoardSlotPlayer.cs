@@ -28,7 +28,7 @@ namespace TcgEngine.Client
         }
         private bool isMine()
         {
-            if (owner_p == GameClient.Get().GetPlayerID())
+            if (owner_p_id == GameClient.Get().GetPlayerID())
             {
                 return true;
             }

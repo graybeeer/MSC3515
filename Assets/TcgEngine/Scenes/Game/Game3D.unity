@@ -290,6 +290,11 @@ PrefabInstance:
       propertyPath: owner_p
       value: -1
       objectReference: {fileID: 0}
+    - target: {fileID: 7426997187891162908, guid: 683a057051c59804eb32a44954f69029,
+        type: 3}
+      propertyPath: owner_p_id
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 7426997187891162978, guid: 683a057051c59804eb32a44954f69029,
         type: 3}
       propertyPath: m_Name
@@ -2103,6 +2108,11 @@ PrefabInstance:
       propertyPath: opponent
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7426997187891162908, guid: 683a057051c59804eb32a44954f69029,
+        type: 3}
+      propertyPath: owner_p_id
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7426997187891162978, guid: 683a057051c59804eb32a44954f69029,
         type: 3}
       propertyPath: m_Name
@@ -2205,6 +2215,11 @@ PrefabInstance:
     - target: {fileID: 7426997187891162908, guid: 683a057051c59804eb32a44954f69029,
         type: 3}
       propertyPath: owner_p
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7426997187891162908, guid: 683a057051c59804eb32a44954f69029,
+        type: 3}
+      propertyPath: owner_p_id
       value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 7426997187891162978, guid: 683a057051c59804eb32a44954f69029,
@@ -2947,6 +2962,11 @@ PrefabInstance:
       propertyPath: owner_p
       value: -1
       objectReference: {fileID: 0}
+    - target: {fileID: 7426997187891162908, guid: 683a057051c59804eb32a44954f69029,
+        type: 3}
+      propertyPath: owner_p_id
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 7426997187891162978, guid: 683a057051c59804eb32a44954f69029,
         type: 3}
       propertyPath: m_Name
@@ -3064,6 +3084,11 @@ PrefabInstance:
     - target: {fileID: 7426997187891162908, guid: 683a057051c59804eb32a44954f69029,
         type: 3}
       propertyPath: opponent
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7426997187891162908, guid: 683a057051c59804eb32a44954f69029,
+        type: 3}
+      propertyPath: owner_p_id
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7426997187891162978, guid: 683a057051c59804eb32a44954f69029,
@@ -3593,6 +3618,11 @@ PrefabInstance:
       propertyPath: opponent
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7426997187891162908, guid: 683a057051c59804eb32a44954f69029,
+        type: 3}
+      propertyPath: owner_p_id
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7426997187891162978, guid: 683a057051c59804eb32a44954f69029,
         type: 3}
       propertyPath: m_Name
@@ -4109,6 +4139,11 @@ PrefabInstance:
       propertyPath: opponent
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7426997187891162908, guid: 683a057051c59804eb32a44954f69029,
+        type: 3}
+      propertyPath: owner_p_id
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7426997187891162978, guid: 683a057051c59804eb32a44954f69029,
         type: 3}
       propertyPath: m_Name
@@ -4567,6 +4602,11 @@ PrefabInstance:
       propertyPath: opponent
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7426997187891162908, guid: 683a057051c59804eb32a44954f69029,
+        type: 3}
+      propertyPath: owner_p_id
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7426997187891162978, guid: 683a057051c59804eb32a44954f69029,
         type: 3}
       propertyPath: m_Name
@@ -4679,6 +4719,11 @@ PrefabInstance:
     - target: {fileID: 7426997187891162908, guid: 683a057051c59804eb32a44954f69029,
         type: 3}
       propertyPath: opponent
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7426997187891162908, guid: 683a057051c59804eb32a44954f69029,
+        type: 3}
+      propertyPath: owner_p_id
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7426997187891162978, guid: 683a057051c59804eb32a44954f69029,
@@ -4917,6 +4962,11 @@ PrefabInstance:
     - target: {fileID: 1242784130044925630, guid: 0238b0974c923864aa29b71669692c93,
         type: 3}
       propertyPath: opponent
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1242784130044925630, guid: 0238b0974c923864aa29b71669692c93,
+        type: 3}
+      propertyPath: owner_p_id
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

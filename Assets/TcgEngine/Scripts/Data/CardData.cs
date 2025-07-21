@@ -149,7 +149,10 @@ namespace TcgEngine
         {
             return type == CardType.Secret;
         }
-
+        public bool ISHero()
+        {
+            return type == CardType.Hero;
+        }
         public bool IsBoardCard()
         {
             return type == CardType.Character || type == CardType.Artifact || type == CardType.Hero;

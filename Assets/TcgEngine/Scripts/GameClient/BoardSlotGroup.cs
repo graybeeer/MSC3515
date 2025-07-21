@@ -180,11 +180,11 @@ namespace TcgEngine.Client
             }
             */
             if (type == BoardSlotType.Player1)
-                owner_p = GameClient.Get().GetPlayer1ID();
+                owner_p_id = GameClient.Get().GetPlayer1ID();
             if (type == BoardSlotType.Player2)
-                owner_p = GameClient.Get().GetPlayer2ID();
+                owner_p_id = GameClient.Get().GetPlayer2ID();
             if (type == BoardSlotType.PlayerNot)
-                owner_p = GameClient.Get().GetPlayerNotID();
+                owner_p_id = GameClient.Get().GetPlayerNotID();
             
             return new Slot(x, y);
         }

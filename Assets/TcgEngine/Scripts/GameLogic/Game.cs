@@ -114,7 +114,7 @@ namespace TcgEngine
             {
                 if (!slot.IsValid() || IsCardOnSlot(slot))
                     return false;   //Slot already occupied
-                if (card.player_id != BSlot.Get(slot).owner_p && (BSlot.Get(slot).owner_p != -1)) //수정(중립지역이여도 소환가능하게)
+                if (card.player_id != BSlot.Get(slot).owner_p_id && (BSlot.Get(slot).owner_p_id != -1)) //수정(중립지역이여도 소환가능하게)
                     return false; //Cant play on opponent side
                 return true;
             }
@@ -235,9 +235,20 @@ namespace TcgEngine
             if (target.HasStatus(StatusType.Protected) && !attacker.HasStatus(StatusType.Flying))
                 return false; //Protected by adjacent card
 
+            //추가
             if (!CanMoveArrow(attacker, target.slot)) //화살표로 이동가능한 위치인지
                 return false;
 
+            if (attacker.CardData.ISHero() && target.CardData.ISHero()) //둘다 히어로카드면 서로 공격불가
+            {
+                Player attacker_p = GetPlayer(attacker.player_id);
+                Player target_p = GetPlayer(target.player_id);
+                //추가 - 상대 히어로가 침입상태일땐 공격가능하게
+                if (target_p.hero_invade_turn > 0)
+                    return true;
+                else return false;
+            }
+            
             return true;
         }
 

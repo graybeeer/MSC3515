@@ -39,7 +39,7 @@ namespace TcgEngine
             if (!IsAIPlayer(data, caster))
                 return true; //Condition always true for human players
 
-            bool same_owner = caster.player_id == BSlot.Get(target).owner_p;
+            bool same_owner = caster.player_id == BSlot.Get(target).owner_p_id;
             return CompareBool(same_owner, oper);
         }
 
