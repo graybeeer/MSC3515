@@ -193,7 +193,11 @@ namespace TcgEngine.AI
                     gameplay.AttackTarget(random, rtarget);
             }
         }
-
+        public void Move()
+        {
+            if (!CanPlay())
+                return;
+        }
         public void AttackPlayer()
         {
             if (!CanPlay())
