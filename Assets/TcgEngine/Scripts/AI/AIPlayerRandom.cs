@@ -88,6 +88,14 @@ namespace TcgEngine.AI
 
             yield return new WaitForSeconds(0.5f);
 
+            Move();
+
+            yield return new WaitForSeconds(0.5f);
+
+            Move();
+
+            yield return new WaitForSeconds(0.5f);
+
             Attack();
 
             yield return new WaitForSeconds(0.5f);
@@ -197,6 +205,14 @@ namespace TcgEngine.AI
         {
             if (!CanPlay())
                 return;
+
+            Game game_data = gameplay.GetGameData();
+            Player player = game_data.GetPlayer(player_id);
+            if (player.cards_board.Count > 0 && game_data.IsPlayerActionTurn(player))
+            {
+                Card random = player.GetRandomCard(player.cards_board, rand);
+            }
+            
         }
         public void AttackPlayer()
         {

@@ -591,15 +591,21 @@ namespace TcgEngine.Gameplay
         protected virtual void ResolveAttackHit(Card attacker, Card target, bool skip_cost)
         {
             //Count attack damage
-            int datt1 = attacker.GetAttack();
-            int datt2 = target.GetAttack();
+            //추가 - 한번에 죽게
+            //int datt1 = attacker.GetAttack();
+            //int datt2 = target.GetAttack();
+            int datt1 = target.GetHPMax();
+            int datt2 = attacker.GetHPMax();
 
             //Damage Cards
             DamageCard(attacker, target, datt1);
 
             //Counter Damage
+            //추가 - 공격하는쪽은 데미지 안받게
+            /*
             if (!attacker.HasStatus(StatusType.Intimidate))
                 DamageCard(target, attacker, datt2);
+            */
 
             //Save attack and exhaust
             if (!skip_cost)
