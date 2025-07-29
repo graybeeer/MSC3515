@@ -35,8 +35,8 @@ namespace TcgEngine
         public TeamData team;
         public RarityData rarity;
         public int mana;
-        public int attack;
-        public int hp;
+        public int attack = 1;
+        public int hp = 1;
         public bool[] card_arrow = new bool[9];
 
         [Header("Traits")]

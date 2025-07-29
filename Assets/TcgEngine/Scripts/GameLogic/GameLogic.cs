@@ -305,6 +305,7 @@ namespace TcgEngine.Gameplay
         //Change or edit this function for a new win condition
         protected virtual void CheckForWinner()
         {
+            /*
             int count_alive = 0;
             Player alive = null;
             foreach (Player player in game_data.players)
@@ -324,7 +325,7 @@ namespace TcgEngine.Gameplay
             {
                 EndGame(alive.player_id); //Player win
             }
-
+            */
             //추가예정 - 해당 코드를 왕 보드카드 죽으면 체크하는것으로 변경
             int count_alive2 = 0;
             Player alive2 = null;
@@ -337,7 +338,6 @@ namespace TcgEngine.Gameplay
                     
                 }
             }
-            //추가예정 - 해당 코드를 왕 보드카드 죽으면 체크하는것으로 변경
             if (count_alive2 == 0)
             {
                 EndGame(-1); //Everyone is dead, Draw
