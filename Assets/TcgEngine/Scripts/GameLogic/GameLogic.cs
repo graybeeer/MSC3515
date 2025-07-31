@@ -793,6 +793,7 @@ namespace TcgEngine.Gameplay
 
             if (game_data.GetSlotCard(slot) != null)
                 return null;
+
             Card acard = SummonCardHand(player, card, variant);
             PlayCard(acard, slot, true);
 

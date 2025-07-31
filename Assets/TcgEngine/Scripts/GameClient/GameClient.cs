@@ -654,6 +654,11 @@ namespace TcgEngine.Client
             Game gdata = GetGameData();
             return gdata.GetPlayer(GetPlayer2ID());
         }
+        public Player GetPlayerNeutral()
+        {
+            Game gdata = GetGameData();
+            return gdata.GetPlayer(GetPlayerNeutralID());
+        }
         public int GetPlayerID()
         {
             if (observe_mode)
@@ -679,6 +684,10 @@ namespace TcgEngine.Client
         {
             return 1;
         }
+        public int GetPlayerNeutralID()
+        {
+            return -1;
+        }    
         public int GetOpponentID(int i)
         {
             return i == 0 ? 1 : 0;

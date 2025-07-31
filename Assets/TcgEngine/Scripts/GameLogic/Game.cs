@@ -24,6 +24,7 @@ namespace TcgEngine
 
         //Players
         public Player[] players;
+        public Player neutral_player; //추가 - 중립 지역, 유닛용
 
         //Selector
         public SelectorType selector = SelectorType.None;
@@ -361,6 +362,8 @@ namespace TcgEngine
 
         public Player GetPlayer(int id)
         {
+            if (id == -1)
+                return neutral_player; //-1은 중립플레이어 소속
             if (id >= 0 && id < players.Length)
                 return players[id];
             return null;

@@ -184,7 +184,7 @@ namespace TcgEngine.Client
             if (type == BoardSlotType.Player2)
                 owner_p_id = GameClient.Get().GetPlayer2ID();
             if (type == BoardSlotType.PlayerNot)
-                owner_p_id = GameClient.Get().GetPlayerNotID();
+                owner_p_id = GameClient.Get().GetPlayerNeutralID();
             
             return new Slot(x, y);
         }

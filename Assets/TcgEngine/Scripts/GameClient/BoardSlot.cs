@@ -135,7 +135,7 @@ namespace TcgEngine.Client
                 p = GameClient.Get().GetOpponentPlayerID();
            */
             if (type == BoardSlotType.PlayerNot)//중립지역이면
-                owner_p_id = GameClient.Get().GetPlayerNotID();
+                owner_p_id = GameClient.Get().GetPlayerNeutralID();
             if (type == BoardSlotType.Player1)
                 owner_p_id = GameClient.Get().GetPlayer1ID();
             if (type == BoardSlotType.Player2)

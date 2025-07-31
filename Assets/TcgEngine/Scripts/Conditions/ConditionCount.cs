@@ -9,6 +9,8 @@ namespace TcgEngine
         Self = 0,
         Opponent = 1,
         Both = 2,
+        Netural = 3, //아무 소속에도 안속함
+        Anything = 4 //적이나 나나 중립이든 다 상관없
     }
 
     /// <summary>
