@@ -10,7 +10,7 @@ namespace TcgEngine
     public class Card
     {
         public string card_id;
-        public string uid;
+        public string uid; //게임상 모든 카드 객체가 다르게 가지는 id값
         public int player_id;
         public string variant_id;
 

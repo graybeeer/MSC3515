@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55e41d6c5fb036a40bc0a37bfe1f52ac, type: 3}
-  m_Name: neutral
+  m_Script: {fileID: 11500000, guid: d028860b966ab8f44908a62e25280a39, type: 3}
+  m_Name: is_hero
   m_EditorClassIdentifier: 
-  id: neutralTeam
-  title: NeutralTeam
-  icon: {fileID: 0}
-  color: {r: 0.5471698, g: 0.5471698, b: 0.5471698, a: 1}
+  has_type: 5
+  has_team: {fileID: 0}
+  has_trait: {fileID: 0}
+  oper: 0

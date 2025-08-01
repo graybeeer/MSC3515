@@ -115,7 +115,7 @@ namespace TcgEngine
             {
                 if (!slot.IsValid() || IsCardOnSlot(slot))
                     return false;   //Slot already occupied
-                if (card.player_id != BSlot.Get(slot).owner_p_id && (BSlot.Get(slot).owner_p_id != -1)) //수정(중립지역이여도 소환가능하게)
+                if (card.player_id != BSlot.Get(slot).owner_p_id && (BSlot.Get(slot).owner_p_id != GameClient.Get().GetPlayerNeutralID())) //수정(중립지역이여도 소환가능하게)
                     return false; //Cant play on opponent side
                 return true;
             }
@@ -202,7 +202,7 @@ namespace TcgEngine
             if (attacker.player_id == target.player_id)
                 return false; //Cant attack same player
 
-            if (!IsOnBoard(attacker) || !attacker.CardData.IsCharacter())
+            if (!IsOnBoard(attacker) || !attacker.CardData.IsMoveableCard())
                 return false; //Cards not on board
 
             if (target.HasStatus(StatusType.Protected) && !attacker.HasStatus(StatusType.Flying))
@@ -227,7 +227,7 @@ namespace TcgEngine
             if (!IsOnBoard(attacker) || !IsOnBoard(target))
                 return false; //Cards not on board
 
-            if (!attacker.CardData.IsCharacter() || !target.CardData.IsBoardCard())
+            if (!attacker.CardData.IsMoveableCard() || !target.CardData.IsBoardCard())
                 return false; //Only character can attack
 
             if (target.HasStatus(StatusType.Stealth))
@@ -240,7 +240,7 @@ namespace TcgEngine
             if (!CanMoveArrow(attacker, target.slot)) //화살표로 이동가능한 위치인지
                 return false;
 
-            if (attacker.CardData.ISHero() && target.CardData.ISHero()) //둘다 히어로카드면 서로 공격불가
+            if (attacker.CardData.IsHero() && target.CardData.IsHero()) //둘다 히어로카드면 서로 공격불가
             {
                 Player attacker_p = GetPlayer(attacker.player_id);
                 Player target_p = GetPlayer(target.player_id);
@@ -249,7 +249,8 @@ namespace TcgEngine
                     return true;
                 else return false;
             }
-            
+            if (attacker.HasStatus(StatusType.Mercy) && target.CardData.IsHero()) //공격자가 자비 상태면 영웅 공격불가
+                return false;
             return true;
         }
 
@@ -379,7 +380,10 @@ namespace TcgEngine
             int oid = id == 0 ? 1 : 0;
             return GetPlayer(oid);
         }
-
+        public Player GetNeutralPlayer()
+        {
+            return GetPlayer(-1);
+        }
         public Card GetCard(string card_uid)
         {
             foreach (Player player in players)

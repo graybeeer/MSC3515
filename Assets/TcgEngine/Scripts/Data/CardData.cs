@@ -7,7 +7,6 @@ namespace TcgEngine
     {
         None = 0,
         Hero = 5,
-        Heerroo = 6,
         Character = 10,
         Spell = 20,
         Artifact = 30,
@@ -67,7 +66,7 @@ namespace TcgEngine
         public AudioClip damage_audio;
 
         [Header("Availability")]
-        public bool deckbuilding = false;
+        public bool deckbuilding = false; //덱에 넣을수 있는 카드인지
         public int cost = 100;
         public PackData[] packs;
 
@@ -114,8 +113,6 @@ namespace TcgEngine
         {
             if (type == CardType.Hero)
                 return "hero";
-            if (type == CardType.Heerroo)
-                return "heerroo";
             if (type == CardType.Character)
                 return "character";
             if (type == CardType.Artifact)
@@ -140,24 +137,32 @@ namespace TcgEngine
             return txt;
         }
 
-        public bool IsCharacter()
+        public bool IsMoveableCard()
         {
             return type == CardType.Character || type == CardType.Hero;
         }
-
+        public bool IsCharacter()
+        {
+            return type == CardType.Character;
+        }
+        public bool IsHero()
+        {
+            return type == CardType.Hero;
+        }
         public bool IsSecret()
         {
             return type == CardType.Secret;
         }
-        public bool ISHero()
+        public bool IsArtifact()
         {
-            return type == CardType.Hero;
+            return type == CardType.Artifact;
         }
+
         public bool IsBoardCard()
         {
             return type == CardType.Character || type == CardType.Artifact || type == CardType.Hero;
         }
-
+        
         public bool IsRequireTarget()
         {
             return type == CardType.Equipment || IsRequireTargetSpell();

@@ -512,7 +512,11 @@ namespace TcgEngine.Gameplay
                 resolve_queue.ResolveAll(0.3f);
             }
         }
+        //추가 - 해당 위치로 공격 혹은 이동하는 함수
+        public virtual void MoveOrAttackCard(Card card, Slot slot, bool skip_cost = false)
+        {
 
+        }
         public virtual void MoveCard(Card card, Slot slot, bool skip_cost = false)
         {
             if (game_data.CanMoveCard(card, slot, skip_cost))

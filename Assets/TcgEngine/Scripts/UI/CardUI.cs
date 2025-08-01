@@ -96,13 +96,20 @@ namespace TcgEngine.UI
                 card_text.text = card.GetText();
 
             if (attack_icon != null)
-                attack_icon.enabled = card.IsCharacter();
+                attack_icon.enabled = false;
             if (attack != null)
-                attack.enabled = card.IsCharacter();
+                attack.enabled = false;
+            if (card_arrow_icon != null)
+            {
+                foreach (Image arrow in card_arrow_icon)
+                {
+                    arrow.enabled = card.IsMoveableCard();
+                }
+            }
             if (hp_icon != null)
-                hp_icon.enabled = card.IsBoardCard() || card.IsEquipment();
+                hp_icon.enabled = card.IsArtifact() || card.IsEquipment();
             if (hp != null)
-                hp.enabled = card.IsBoardCard() || card.IsEquipment();
+                hp.enabled = card.IsArtifact() || card.IsEquipment();
             if (cost_icon != null)
                 cost_icon.enabled = card.type != CardType.Hero;
             if (cost != null)

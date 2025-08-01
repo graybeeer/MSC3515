@@ -9,7 +9,7 @@ namespace TcgEngine
         Self = 0,
         Opponent = 1,
         Both = 2,
-        Netural = 3, //아무 소속에도 안속함
+        Netural = 3, //아무 소속에도 안속하는 중립소속인지
         Anything = 4 //적이나 나나 중립이든 다 상관없
     }
 
@@ -35,14 +35,19 @@ namespace TcgEngine
         public override bool IsTriggerConditionMet(Game data, AbilityData ability, Card caster)
         {
             int count = 0;
-            if (target == ConditionPlayerType.Self || target == ConditionPlayerType.Both)
+            if (target == ConditionPlayerType.Self || target == ConditionPlayerType.Both || target == ConditionPlayerType.Anything)
             {
                 Player player =  data.GetPlayer(caster.player_id);
                 count += CountPile(player, pile);
             }
-            if (target == ConditionPlayerType.Opponent || target == ConditionPlayerType.Both)
+            if (target == ConditionPlayerType.Opponent || target == ConditionPlayerType.Both || target == ConditionPlayerType.Anything)
             {
                 Player player = data.GetOpponentPlayer(caster.player_id);
+                count += CountPile(player, pile);
+            }
+            if (target == ConditionPlayerType.Netural || target == ConditionPlayerType.Anything)
+            {
+                Player player = data.GetNeutralPlayer();
                 count += CountPile(player, pile);
             }
             return CompareInt(count, oper, value);

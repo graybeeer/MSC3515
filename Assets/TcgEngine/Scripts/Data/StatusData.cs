@@ -33,7 +33,7 @@ namespace TcgEngine
         Poisoned = 34,     //Lose hp each start of turn
         Sleep = 36,         //Doesnt untap at the start of turn
 
-
+        Mercy = 40,         //자비 - 상대 영웅을 공격할 수 없음
     }
 
     /// <summary>

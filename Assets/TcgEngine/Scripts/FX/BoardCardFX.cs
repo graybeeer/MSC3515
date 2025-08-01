@@ -227,7 +227,7 @@ namespace TcgEngine.FX
 
             if (card.uid == target.uid)
             {
-                if (target.CardData.IsCharacter() || card == target)
+                if (target.CardData.IsMoveableCard() || card == target)
                 {
                     //Show Damage Number FX on self
                     DamageFX(attacker, target, transform);
