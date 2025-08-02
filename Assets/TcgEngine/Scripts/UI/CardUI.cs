@@ -61,17 +61,14 @@ namespace TcgEngine.UI
             if (hp != null)
                 hp.text = card.GetHP().ToString();
             //내가 추가한 이동방향 ui
-            if (card_arrow_icon != null && card.card_arrow != null)
+            if (card_arrow_icon != null)
             {
                 for (int i = 0; i < card_arrow_icon.Length; i++)
                 {
-                    if (card_arrow_icon[i] != null)
-                    {
-                        if (card.card_arrow[i])
-                            card_arrow_icon[i].color = new Color(0f, 1f, 0f, 1f);
-                        else
-                            card_arrow_icon[i].color = new Color(0f, 0f, 0f, 0f);
-                    }
+                    if (card.card_arrow[i])
+                        card_arrow_icon[i].color = new Color(1f, 1f, 1f, 1f);
+                    else
+                        card_arrow_icon[i].color = new Color(1f, 1f, 1f, 0f);
                 }
             }
             foreach (TraitUI stat in stats)
@@ -125,17 +122,14 @@ namespace TcgEngine.UI
                 hp.text = card.hp.ToString();
             //내가 추가한 이동방향 ui
             
-            if (card_arrow_icon != null&& card.card_arrow != null)
+            if (card_arrow_icon != null)
             {
                 for (int i = 0; i < card_arrow_icon.Length; i++)
                 {
-                    if (card_arrow_icon[i] != null)
-                    {
-                        if (card.card_arrow[i])
-                            card_arrow_icon[i].color = new Color(0f, 1f, 0f, 1f);
-                        else
-                            card_arrow_icon[i].color = new Color(1f, 1f, 1f, 0f);
-                    }
+                    if (card.card_arrow[i])
+                        card_arrow_icon[i].color = new Color(1f, 1f, 1f, 1f);
+                    else
+                        card_arrow_icon[i].color = new Color(1f, 1f, 1f, 0f);
                 }
             }
             if (team_icon != null)
