@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87ecef176d27eb040a9770e0eefea2ec, type: 3}
   m_Name: test_deck 1
   m_EditorClassIdentifier: 
-  id: test_deck
+  id: test_deck2
   title: Test Deck
   hero: {fileID: 11400000, guid: cf170aea7ffb041428f37608f1561058, type: 2}
   cards:
