@@ -117,6 +117,8 @@ namespace TcgEngine
                     return false;   //Slot already occupied
                 if (card.player_id != BSlot.Get(slot).owner_p_id && (BSlot.Get(slot).owner_p_id != GameClient.Get().GetPlayerNeutralID())) //수정(중립지역이여도 소환가능하게)
                     return false; //Cant play on opponent side
+                if (GetPlayer(card.player_id).max_boardcard_num <= GetPlayer(card.player_id).cards_board.Count)
+                    return false;
                 return true;
             }
             if (card.CardData.IsEquipment())
