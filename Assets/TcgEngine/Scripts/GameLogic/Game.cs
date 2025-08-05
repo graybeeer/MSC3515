@@ -105,8 +105,10 @@ namespace TcgEngine
             Player player = GetPlayer(card.player_id);
             if (!skip_cost && !player.CanPayMana(card))
                 return false; //Cant pay mana
+            /*
             if (!player.HasCard(player.cards_hand, card))
                 return false; // Card not in hand
+            */
             if (player.is_ai && card.CardData.IsDynamicManaCost() && player.mana == 0)
                 return false; // AI cant play X-cost card at 0 cost
 
@@ -136,7 +138,7 @@ namespace TcgEngine
             {
                 return IsPlayTargetValid(card, slot); //Check play target on slot
             }
-            if (card.CardData.type == CardType.Spell)
+            if (card.CardData.IsSpell())
             {
                 return CanAnyPlayAbilityTrigger(card); //Check if spell will have abilities
             }

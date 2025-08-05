@@ -157,7 +157,10 @@ namespace TcgEngine
         {
             return type == CardType.Artifact;
         }
-
+        public bool IsSpell()
+        {
+            return type == CardType.Spell;
+        }
         public bool IsBoardCard()
         {
             return type == CardType.Character || type == CardType.Artifact || type == CardType.Hero;
