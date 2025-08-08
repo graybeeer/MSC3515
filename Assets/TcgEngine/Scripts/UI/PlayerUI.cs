@@ -74,8 +74,8 @@ namespace TcgEngine.UI
                 mana_bar.max_value = player.mana_max;
                 hp_txt.text = prev_hp.ToString();
                 hp_max_txt.text = "/" + player.hp_max.ToString();
-                board_card_count_txt.text = Mathf.Max(0, player.cards_board.Count).ToString();
-                board_card_count_max_txt.text = "/" + Mathf.Max(0, player.max_boardcard_num-1).ToString();
+                board_card_count_txt.text = Mathf.Max(0, player.cards_board.Count - 1).ToString();
+                board_card_count_max_txt.text = "/" + Mathf.Max(0, player.max_boardcard_num - 1).ToString();
 
                 AvatarData adata = AvatarData.Get(player.avatar);
                 if (avatar != null && adata != null && !killed)

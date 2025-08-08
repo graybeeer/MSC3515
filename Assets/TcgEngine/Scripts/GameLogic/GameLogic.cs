@@ -213,6 +213,14 @@ namespace TcgEngine.Gameplay
             TriggerPlayerCardsAbilityType(player, AbilityTrigger.StartOfTurn);
             TriggerPlayerSecrets(player, AbilityTrigger.StartOfTurn);
 
+            for (int i = player.cards_board.Count - 1; i >= 0; i--)
+            {
+                Card card = player.cards_board[i];
+                //추가 - 건물카드는 자기 턴 시작시 데미지 입음
+                if (card.CardData.IsArtifact())
+                    DamageCard(card, 1);
+            }
+
             resolve_queue.AddCallback(StartMainPhase);
             resolve_queue.ResolveAll(0.2f);
         }
