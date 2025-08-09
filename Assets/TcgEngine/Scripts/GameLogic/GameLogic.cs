@@ -25,6 +25,7 @@ namespace TcgEngine.Gameplay
         public UnityAction<Card, Slot> onCardSummoned;
         public UnityAction<Card, Slot> onCardMoved;
         public UnityAction<Card> onCardTransformed;
+        public UnityAction<Card> onCardTransformedOwner; //추가 - 카드 주인이 바뀔때
         public UnityAction<Card> onCardDiscarded;
         public UnityAction<int> onCardDrawn;
         public UnityAction<int> onRollValue;
@@ -808,9 +809,9 @@ namespace TcgEngine.Gameplay
 
             Card acard = Card.Create(card, variant, player);
             PlayCard(acard, slot, true);
-
+            
             onCardSummoned?.Invoke(acard, slot);
-
+            game_data.last_summoned = acard.uid;
             return acard;
         }
 
@@ -822,7 +823,33 @@ namespace TcgEngine.Gameplay
             game_data.last_summoned = acard.uid;
             return acard;
         }
+        //추가 - 해당 카드의 소유자를 다른 플레이어로 변경(일단 필드 카드만 되게)
+        public virtual Card TransformCardOwner(Player player, Card card)
+        {
+            List<Card> tempList = game_data.GetPlayer(card.player_id).WhereCardInList(card);
 
+            if (tempList != null)
+            {
+                /*
+                game_data.GetPlayer(card.player_id).RemoveCard(tempList, card);
+                player.AddCard(tempList, card);
+                card.SetCardOwner(player.player_id);
+                
+                */
+                game_data.GetPlayer(card.player_id).RemoveCardFromAllGroups(card);
+                game_data.GetPlayer(card.player_id).cards_all.Remove(card.uid);
+                player.cards_all[card.uid] = card;
+                player.cards_board.Add(card);
+                card.SetCardOwner(player.player_id);
+                //card.exhausted = true; //Cant attack first turn
+                return card;
+            }
+            else Debug.LogError("존재위치가 없는 카드 ");
+
+            return null;
+            
+            
+        }
         //Transform card into another one
         public virtual Card TransformCard(Card card, CardData transform_to)
         {

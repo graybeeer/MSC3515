@@ -100,7 +100,24 @@ namespace TcgEngine
         {
             return card_list.Contains(card);
         }
-
+        public virtual List<Card> WhereCardInList(Card card)
+        {
+            if (HasCard(cards_deck, card))
+                return cards_deck;
+            else if (HasCard(cards_hand, card))
+                return cards_hand;
+            else if (HasCard(cards_board, card))
+                return cards_board;
+            else if (HasCard(cards_equip,card))
+                return cards_equip;
+            else if (HasCard(cards_discard, card))
+                return cards_discard;
+            else if (HasCard(cards_secret, card))
+                return cards_secret;
+            else if (HasCard(cards_temp, card))
+                return cards_temp;
+            else return null;
+        }
         public Card GetHandCard(string uid)
         {
             foreach (Card card in cards_hand)

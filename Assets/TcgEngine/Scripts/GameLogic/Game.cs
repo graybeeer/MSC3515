@@ -148,28 +148,31 @@ namespace TcgEngine
         //Check if a card is allowed to move to slot
         public virtual bool CanMoveCard(Card card, Slot slot, bool skip_cost = false)
         {
+            
             if (card == null || !slot.IsValid())
                 return false;
 
-            if (!IsOnBoard(card))
-                return false; //Only cards in play can move
+            if (!IsOnBoard(card)) //Only cards in play can move
+                return false;
 
-            if (!card.CanMove(skip_cost))
-                return false; //Card cant move
+            if (!card.CanMove(skip_cost)) //Card cant move
+                return false;
+
             /*
             if (Slot.GetP(card.player_id) != slot.p)
                 return false; //Card played wrong side
             */
-            if (card.slot == slot)
-                return false; //Cant move to same slot
-
+            
+            if (card.slot == slot) //Cant move to same slot
+                return false;
+            
             if (!CanMoveArrow(card,slot)) //화살표로 이동가능한 위치인지
                 return false;
-
+            
             Card slot_card = GetSlotCard(slot);
-            if (slot_card != null)
-                return false; //Already a card there
-
+            if (slot_card != null) //Already a card there
+                return false;
+            
             return true;
         }
         //보드카드가 해당 슬롯에 이동 가능한 방향에 있는지 보드카드의 화살표로 계산

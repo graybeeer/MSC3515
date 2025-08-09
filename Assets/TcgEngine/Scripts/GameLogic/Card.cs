@@ -75,7 +75,10 @@ namespace TcgEngine
             SetTraits(icard);
             SetAbilities(icard);
         }
-
+        public virtual void SetCardOwner(int new_player_id)
+        {
+            player_id = new_player_id;
+        }
         public void SetTraits(CardData icard)
         {
             traits.Clear();

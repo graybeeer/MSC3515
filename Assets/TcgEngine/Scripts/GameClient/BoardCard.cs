@@ -149,6 +149,11 @@ namespace TcgEngine.Client
                 Vector3 board_rot = GameBoard.Get().GetAngles();
                 transform.localRotation = Quaternion.Euler(board_rot.x, board_rot.y, board_rot.z + 180);
             }
+            else
+            {
+                Vector3 board_rot = GameBoard.Get().GetAngles();
+                transform.localRotation = Quaternion.Euler(board_rot.x, board_rot.y, board_rot.z);
+            }
 
             //Update frame image
             Sprite frame = card.VariantData.frame_board;
