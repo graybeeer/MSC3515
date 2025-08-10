@@ -34,6 +34,7 @@ namespace TcgEngine
         Sleep = 36,         //Doesnt untap at the start of turn
 
         Mercy = 40,         //자비 - 상대 영웅을 공격할 수 없음
+        curse =41,          //저주 - 이동 화살표 중 일부 사용 못하게 됨(중첩가능), 모든 이동화살표 이동 불가능해지면 사망
     }
 
     /// <summary>

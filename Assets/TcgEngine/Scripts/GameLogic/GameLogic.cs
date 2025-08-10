@@ -524,7 +524,18 @@ namespace TcgEngine.Gameplay
         //추가 - 해당 위치로 공격 혹은 이동하는 함수
         public virtual void MoveOrAttackCard(Card card, Slot slot, bool skip_cost = false)
         {
+            if(game_data.CanAttackTarget(card,game_data.GetSlotCard(slot), skip_cost))
+            {
+                AttackTarget(card, game_data.GetSlotCard(slot), skip_cost);
+            }
+            else if (game_data.CanMoveCard(card, slot, skip_cost))
+            {
+                MoveCard(card, slot, skip_cost);
+            }
+            else
+            {
 
+            }
         }
         public virtual void MoveCard(Card card, Slot slot, bool skip_cost = false)
         {
@@ -824,7 +835,7 @@ namespace TcgEngine.Gameplay
             return acard;
         }
         //추가 - 해당 카드의 소유자를 다른 플레이어로 변경(일단 필드 카드만 되게)
-        public virtual Card TransformCardOwner(Player player, Card card)
+        public virtual Card TransformBoardCardOwner(Player player, Card card)
         {
             List<Card> tempList = game_data.GetPlayer(card.player_id).WhereCardInList(card);
 
@@ -840,15 +851,26 @@ namespace TcgEngine.Gameplay
                 game_data.GetPlayer(card.player_id).cards_all.Remove(card.uid);
                 player.cards_all[card.uid] = card;
                 player.cards_board.Add(card);
+                //player.AddCard(tempList, card);
                 card.SetCardOwner(player.player_id);
                 //card.exhausted = true; //Cant attack first turn
+                //만약 플레이어 최대 보드카드 수를 넘기면
+                if (player.max_boardcard_num < player.cards_board.Count)
+                    DiscardCard(card);
                 return card;
             }
             else Debug.LogError("존재위치가 없는 카드 ");
 
             return null;
-            
-            
+        }
+        public virtual Card TransformHandCardOwner(Player player, Card card)
+        {
+            List<Card> tempList = game_data.GetPlayer(card.player_id).WhereCardInList(card);
+            if (tempList != null)
+            {
+            }
+            else Debug.LogError("존재위치가 없는 카드 ");
+            return null;
         }
         //Transform card into another one
         public virtual Card TransformCard(Card card, CardData transform_to)
@@ -859,7 +881,25 @@ namespace TcgEngine.Gameplay
 
             return card;
         }
-
+        //Change owner of a card 레거시?
+        public virtual void ChangeOwner(Card card, Player owner)
+        {
+            if (card.player_id != owner.player_id)
+            {
+                Player powner = game_data.GetPlayer(card.player_id);
+                powner.RemoveCardFromAllGroups(card);
+                powner.cards_all.Remove(card.uid);
+                owner.cards_all[card.uid] = card;
+                card.player_id = owner.player_id;
+            }
+        }
+        public virtual void DeactivateCardArrow(Card card,int arrow_num)
+        {
+            if (card.CardData.IsMoveableCard()) //움직일수 있는 카드인지
+            {
+                card.card_arrow[arrow_num] = false;
+            }
+        }
         public virtual void EquipCard(Card card, Card equipment)
         {
             if (card != null && equipment != null && card.player_id == equipment.player_id)
@@ -891,18 +931,7 @@ namespace TcgEngine.Gameplay
             }
         }
 
-        //Change owner of a card
-        public virtual void ChangeOwner(Card card, Player owner)
-        {
-            if (card.player_id != owner.player_id)
-            {
-                Player powner = game_data.GetPlayer(card.player_id);
-                powner.RemoveCardFromAllGroups(card);
-                powner.cards_all.Remove(card.uid);
-                owner.cards_all[card.uid] = card;
-                card.player_id = owner.player_id;
-            }
-        }
+       
 
         //Damage a player
         public virtual void DamagePlayer(Card attacker, Player target, int value)
