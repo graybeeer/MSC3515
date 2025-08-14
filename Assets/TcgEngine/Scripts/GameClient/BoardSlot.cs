@@ -85,8 +85,11 @@ namespace TcgEngine.Client
             {
                 render.color = new Color(1f, 0.5f, 0.5f, current_alpha);
             }
-            //
+
+            //추가 - 필드에 어떤 카드가 선택되었을때 그때만 한번 확인하도록 변경예정
+            
             Card select_card = bcard_selected?.GetCard();
+            
             bool can_do_move = your_turn && select_card != null && slot_card == null && gdata.CanMoveCard(select_card, slot);
             bool can_do_attack = your_turn && select_card != null && slot_card != null && gdata.CanAttackTarget(select_card, slot_card);
 

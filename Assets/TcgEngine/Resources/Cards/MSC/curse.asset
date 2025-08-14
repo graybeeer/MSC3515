@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: curse
   dbfid: 5
-  title: 
+  title: "\uC800\uC5B4\uC5B4\uC8FC"
   art_full: {fileID: 0}
   art_board: {fileID: 0}
   type: 0
-  team: {fileID: 0}
-  rarity: {fileID: 0}
+  team: {fileID: 11400000, guid: 44accef98e769754d9edb8fe6051443a, type: 2}
+  rarity: {fileID: 11400000, guid: fab1a52f5a36cc942985dea95be18ac9, type: 2}
   mana: 0
   attack: 1
   hp: 1

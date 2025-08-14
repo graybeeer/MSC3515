@@ -28,13 +28,14 @@ namespace TcgEngine
         Trample = 26,         //Extra damage is assigned to player
         LifeSteal = 28,      //Heal player when fighting
 
-        Silenced = 30,      //All abilities canceled
-        Paralysed = 32,     //Cant do any actions for X turns
+        Silenced = 30,      //All abilities canceled 모든 종류의 능력 봉인됨
+        Paralysed = 32,     //Cant do any actions for X turns / 마비됨 - 아무 행동(이동, 공격, 액티브 능력사용)도 못함
+        cursed = 33,          //저주 - 이동 화살표 중 일부 사용 못하게 됨(중첩가능), 모든 이동화살표 이동 불가능해지면 사망
         Poisoned = 34,     //Lose hp each start of turn
         Sleep = 36,         //Doesnt untap at the start of turn
 
         Mercy = 40,         //자비 - 상대 영웅을 공격할 수 없음
-        curse =41,          //저주 - 이동 화살표 중 일부 사용 못하게 됨(중첩가능), 모든 이동화살표 이동 불가능해지면 사망
+        
     }
 
     /// <summary>
