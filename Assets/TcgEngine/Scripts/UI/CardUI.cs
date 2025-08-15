@@ -28,6 +28,8 @@ namespace TcgEngine.UI
         public Text hp;
         public Text cost;
         public Image[] card_arrow_icon = new Image[9];
+        public Sprite[] full_card_arrow_icon = new Sprite[9];
+        public Sprite[] empty_card_arrow_icon = new Sprite[9];
 
         public Text card_title;
         public Text card_text;
@@ -63,12 +65,17 @@ namespace TcgEngine.UI
             //내가 추가한 이동방향 ui
             if (card_arrow_icon != null)
             {
+                bool[] temp_check_curse = EffectCurse.CheckCursed(card);
                 for (int i = 0; i < card_arrow_icon.Length; i++)
                 {
                     if (card.card_arrow[i])
                         card_arrow_icon[i].color = new Color(1f, 1f, 1f, 1f);
                     else
                         card_arrow_icon[i].color = new Color(1f, 1f, 1f, 0f);
+
+                    if (!temp_check_curse[i])
+                        card_arrow_icon[i].sprite = full_card_arrow_icon[i];
+                    else card_arrow_icon[i].sprite = empty_card_arrow_icon[i];
                 }
             }
             foreach (TraitUI stat in stats)

@@ -17,7 +17,7 @@ MonoBehaviour:
   title: "\uC800\uC5B4\uC5B4\uC8FC"
   art_full: {fileID: 0}
   art_board: {fileID: 0}
-  type: 0
+  type: 20
   team: {fileID: 11400000, guid: 44accef98e769754d9edb8fe6051443a, type: 2}
   rarity: {fileID: 11400000, guid: fab1a52f5a36cc942985dea95be18ac9, type: 2}
   mana: 0
@@ -26,7 +26,8 @@ MonoBehaviour:
   card_arrow: 000000000000000000
   traits: []
   stats: []
-  abilities: []
+  abilities:
+  - {fileID: 11400000, guid: 89db4a1cdf98c0e42b454c0e735beed5, type: 2}
   text: "\uC801 \uD558\uC218\uC778 \uD558\uB098\uB97C \uC800\uC8FC\uD574\uC11C \uD638\uAD6C\uB85C
     \uB9CC\uB4ED\uB2C8\uB2E4."
   desc: 

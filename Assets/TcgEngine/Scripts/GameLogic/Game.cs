@@ -189,7 +189,7 @@ namespace TcgEngine
 
             if (card.HasStatus(StatusType.cursed)) //만약 저주 상태 이상을 가지고 있을경우
             {
-                int curse_value = card.GetStatusValue(StatusType.cursed); ;
+                int curse_value = card.GetStatusValue(StatusType.cursed);
 
                 for (int i = 8; i >= 0; i--)
                 {
