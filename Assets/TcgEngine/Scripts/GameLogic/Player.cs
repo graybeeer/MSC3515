@@ -219,7 +219,6 @@ namespace TcgEngine
                 return valid[rand.Next(0, valid.Count)];
             return Slot.None;
         }
-
         public virtual Slot GetRandomOccupiedSlot(System.Random rand, List<Slot> list_mem = null)
         {
             List<Slot> valid = GetOccupiedSlots(list_mem);

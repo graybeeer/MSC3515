@@ -562,7 +562,31 @@ namespace TcgEngine.Gameplay
                 resolve_queue.ResolveAll(0.2f);
             }
         }
+        public virtual void ForcedMoveCard(Card card, Slot slot, bool skip_cost = false)
+        {
+            if(game_data.CanForcedMoveCard(card, slot, skip_cost))
+            {
+                Player player = game_data.GetPlayer(card.player_id);
+                card.slot = slot;
 
+                //Moving doesn't really have any effect in demo so can be done indefinitely
+                if (!skip_cost)
+                    card.exhausted = true;
+                //card.RemoveStatus(StatusType.Stealth);
+                player.AddHistory(GameAction.Move, card);
+
+                //Also move the equipment
+                Card equip = game_data.GetEquipCard(card.equipped_uid);
+                if (equip != null)
+                    equip.slot = slot;
+
+                UpdateOngoing();
+                RefreshData();
+
+                onCardMoved?.Invoke(card, slot);
+                resolve_queue.ResolveAll(0.2f);
+            }
+        }
         public virtual void CastAbility(Card card, AbilityData iability)
         {
             if (game_data.CanCastAbility(card, iability))

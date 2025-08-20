@@ -314,7 +314,7 @@ namespace TcgEngine
             return null;
         }
         */
-        public static List<CardData> GetAllDeckbuilding()
+        public static List<CardData> GetAllDeckbuilding() //덱에 넣을 수 있는 모든 카드
         {
             List<CardData> multi_list = new List<CardData>();
             foreach (CardData acard in GetAll())
@@ -339,6 +339,16 @@ namespace TcgEngine
         public static List<CardData> GetAll()
         {
             return card_list;
+        }
+
+        public static CardData GetRandomCard(System.Predicate<CardData> filter) //해당 카드 조건으로 랜덤카드 데이터 (예시 c=>c.mana==1 이면 비용이 1인 카드만)
+        {
+            //var FirstFilterd = GetAll().FindAll(c => c.deckbuilding); //카드 발견은 덱에 넣을 수 있는 카드중에서
+            var filtered = GetAllDeckbuilding().FindAll(filter);
+            if (filtered.Count == 0)
+                return null;
+            int randomIndex = Random.Range(0, filtered.Count);
+            return filtered[randomIndex];
         }
     }
 }

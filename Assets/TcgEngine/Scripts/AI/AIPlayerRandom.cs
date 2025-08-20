@@ -173,7 +173,7 @@ namespace TcgEngine.AI
             if (player.cards_hand.Count > 0 && game_data.IsPlayerActionTurn(player))
             {
                 Card random = player.GetRandomCard(player.cards_hand, rand);
-                Slot slot = player.GetRandomEmptySlot(rand);
+                Slot slot = player.GetRandomEmptySlot(rand); 
 
                 if (random != null && random.CardData.IsRequireTargetSpell())
                     slot = game_data.GetRandomSlot(rand); //Spell can target any slot, not just your side
@@ -211,8 +211,16 @@ namespace TcgEngine.AI
             if (player.cards_board.Count > 0 && game_data.IsPlayerActionTurn(player))
             {
                 Card random = player.GetRandomCard(player.cards_board, rand);
+                List<Slot> rtargets = game_data.GetCardMoveableSlot(random);
+                if (rtargets == null)
+                {
+                    return;
+                }
+                Slot rtarget = rtargets[rand.Next(0, rtargets.Count)];
+                if (random != null && rtarget != null)
+                    gameplay.MoveCard(random, rtarget);
             }
-            
+
         }
         public void AttackPlayer()
         {

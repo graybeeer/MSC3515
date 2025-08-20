@@ -176,6 +176,7 @@ namespace TcgEngine
             
             return true;
         }
+        
         //보드카드가 해당 슬롯에 이동 가능한 방향에 있는지 보드카드의 화살표로 계산
         public bool CanMoveArrow(Card card, Slot slot)
         {
@@ -185,22 +186,7 @@ namespace TcgEngine
             int distance_y = slot.y - card.slot.y;
             int distance_arrow = 4 + distance_x * 1 + distance_y * 3;
             int distance_arrow_p2 = 4 - distance_x * 1 - distance_y * 3; //180도 돌려진 P2기준의 위치, (8 - distance_arrow)
-            bool[] temp_curse_arrow = new bool[9];
-
-            if (card.HasStatus(StatusType.cursed)) //만약 저주 상태 이상을 가지고 있을경우
-            {
-                int curse_value = card.GetStatusValue(StatusType.cursed);
-
-                for (int i = 8; i >= 0; i--)
-                {
-                    if ((curse_value - (int)Mathf.Pow(2, i)) >= 0)
-                    {
-                        temp_curse_arrow[i] = true;
-                        curse_value -= (int)Mathf.Pow(2, i);
-                    }
-                    else temp_curse_arrow[i] = false;
-                }
-            }
+            bool[] temp_curse_arrow = EffectCurse.CheckCursed(card);
 
             if (card.player_id == 0)
             {
@@ -209,6 +195,7 @@ namespace TcgEngine
                 if (temp_curse_arrow[distance_arrow])
                     return false; 
             }
+
             else if (card.player_id == 1)
             {
                 if (!card.card_arrow[distance_arrow_p2])
@@ -220,6 +207,24 @@ namespace TcgEngine
 
             return true;
         }
+        public virtual bool CanForcedMoveCard(Card card, Slot slot, bool skip_cost = true) //강제이동 가능한지
+        {
+            if (card == null || !slot.IsValid())
+                return false;
+
+            if (!IsOnBoard(card))
+                return false;
+
+            if (card.slot == slot) //Cant move to same slot
+                return false;
+
+            Card slot_card = GetSlotCard(slot);
+            if (slot_card != null)
+                return false;
+
+            return true;
+        }
+
         //Check if a card is allowed to attack a player
         public virtual bool CanAttackTarget(Card attacker, Player target, bool skip_cost = false)
         {
@@ -283,7 +288,10 @@ namespace TcgEngine
                 return false;
             return true;
         }
-
+        public virtual bool CanMoveOrAttack()
+        {
+            return false;
+        }
         public virtual bool CanCastAbility(Card card, AbilityData ability)
         {
             if (ability == null || card == null || !card.CanDoActivatedAbilities())
@@ -546,7 +554,19 @@ namespace TcgEngine
             Player player = GetRandomPlayer(rand);
             return player.GetRandomSlot(rand);
         }
-
+        //추가 해당 카드가 이동할 수 있는 위치의 리스트
+        public virtual List<Slot> GetCardMoveableSlot(Card card)
+        {
+            List<Slot> slots = new List<Slot>();
+            foreach (Slot moveable in Slot.GetAll())
+            {
+                if (CanMoveCard(card, moveable))
+                    slots.Add(moveable);
+            }
+            if (slots.Count > 0)
+                return slots;
+            return null;
+        }
         public bool IsInHand(Card card)
         {
             return card != null && GetHandCard(card.uid) != null;
