@@ -102,9 +102,9 @@ namespace TcgEngine.AI
 
             Attack();
 
-            yield return new WaitForSeconds(0.5f);
+            //yield return new WaitForSeconds(0.5f);
 
-            AttackPlayer();
+            //AttackPlayer();
 
             yield return new WaitForSeconds(0.5f);
 
@@ -220,6 +220,14 @@ namespace TcgEngine.AI
                 if (random != null && rtarget != null)
                     gameplay.MoveCard(random, rtarget);
             }
+        }
+        public void MoveOrAttack()
+        {
+            if (!CanPlay())
+                return;
+
+            Game game_data = gameplay.GetGameData();
+            Player player = game_data.GetPlayer(player_id);
 
         }
         public void AttackPlayer()

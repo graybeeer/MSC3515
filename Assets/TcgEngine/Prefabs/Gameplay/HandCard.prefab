@@ -840,6 +840,26 @@ MonoBehaviour:
   - {fileID: 4758433280509310588}
   - {fileID: 7901011486835485875}
   - {fileID: 5210267143575223659}
+  full_card_arrow_icon:
+  - {fileID: 21300000, guid: 03f963328b3b5bc49be282ef443839a9, type: 3}
+  - {fileID: 21300000, guid: cf14c7ed123091b4b9aa81f163fc6f3d, type: 3}
+  - {fileID: 21300000, guid: 251cd1089ec64f241aab870bb5a689a9, type: 3}
+  - {fileID: 21300000, guid: 4421a3718995cb54a8620fbbf01983bb, type: 3}
+  - {fileID: 21300000, guid: 8f92e827d3928ee4d9cae3432d2ad12b, type: 3}
+  - {fileID: 21300000, guid: 8f92e827d3928ee4d9cae3432d2ad12b, type: 3}
+  - {fileID: 21300000, guid: 4398ca16be6915a46bea7f2b2b0f743e, type: 3}
+  - {fileID: 21300000, guid: 5aa6a7392976d6c4582d73b65fdfd51d, type: 3}
+  - {fileID: 21300000, guid: 108ab8e230eec3a4cbbd7d4d00e49a9c, type: 3}
+  empty_card_arrow_icon:
+  - {fileID: 21300000, guid: 430346167c3d7b545a744c0497de66b6, type: 3}
+  - {fileID: 21300000, guid: 3c139910eba3e254987ec852d59321c2, type: 3}
+  - {fileID: 21300000, guid: 0af4db9a5fd308049bee6cf3ca8f0c12, type: 3}
+  - {fileID: 21300000, guid: 2ab6b0f6e624bba43a1761b1417f5601, type: 3}
+  - {fileID: 21300000, guid: 13ea0416682103e4fbd7d7d35b6cf643, type: 3}
+  - {fileID: 21300000, guid: 13ea0416682103e4fbd7d7d35b6cf643, type: 3}
+  - {fileID: 21300000, guid: 4a3121460f521a840b73348ba739f2a7, type: 3}
+  - {fileID: 21300000, guid: 9e67f4359a724bf4d939c60c7f55b5ed, type: 3}
+  - {fileID: 21300000, guid: 8865b21eb780fbf4b87beea78ccc56db, type: 3}
   card_title: {fileID: 4306964292686539908}
   card_text: {fileID: 8169617557773355375}
   stats: []

@@ -42,7 +42,7 @@ namespace TcgEngine
 
             for (int i = 0; i < 9; i++)
             {
-                if (target.card_arrow[i] && !target_cursed_arrow[i])
+                if (target.card_arrow[i] && !target_cursed_arrow[i] && i != 4) //키패드 5번, 정가운데는 애초에 이동불가능한 잉여 화살표이므로 제외
                 {
                     can_curse_arrow.Add(i);
                 }
