@@ -674,11 +674,11 @@ namespace TcgEngine
         AllSlots = 15,
         AllCardData = 17,       //For card Create effects only
 
-        PlayTarget = 20,        //The target selected at the same time the spell was played (spell only)      
+        PlayTarget = 20,        //The target selected at the same time the spell was played (spell only)  패에서 주문카드로 드래그 하는것처럼
         AbilityTriggerer = 25,   //The card that triggered the trap
         EquippedCard = 27,       //If equipment, the bearer, if character, the item equipped
 
-        SelectTarget = 30,        //Select a card, player or slot on board
+        SelectTarget = 30,        //Select a card, player or slot on board 하스스톤 전함 하수인처럼
         CardSelector = 40,          //Card selector menu
         ChoiceSelector = 50,        //Choice selector menu
 

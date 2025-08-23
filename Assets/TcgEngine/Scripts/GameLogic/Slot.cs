@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
 using TcgEngine.Client;
+using TcgEngine.UI;
 
 namespace TcgEngine
 {
@@ -197,7 +198,35 @@ namespace TcgEngine
         {
             return slot1.x != slot2.x || slot1.y != slot2.y || slot1.p != slot2.p;
         }
+        public static Slot GetArrowPointsSlot(Slot slot,int arrowNum, int playernum)
+        {
+            if (arrowNum > 9 || arrowNum < 1)
+            {
+                Debug.LogError("arrowNum 범위 벗어남");
+                return None;
+            }
 
+            int arrow_x = ((arrowNum - 1) % 3) - 1;
+            int arrow_y = ((arrowNum - 1) / 3) - 1;
+            int move_x = 0;
+            int move_y = 0;
+
+            if(playernum == 0) //1p라면
+            {
+                move_x = arrow_x;
+                move_y = arrow_y;
+            }
+            else if(playernum == 1) //2p라면 1p랑 방향이 180도 돌려짐
+            {
+                move_x = -arrow_x;
+                move_y = -arrow_y;
+            }
+            return new Slot(slot.x + move_x, slot.y + move_y);
+        }
+        public static Slot GetArrowPointsSlot(Slot slot, int arrowNum, Player player)
+        {
+            return GetArrowPointsSlot(slot, arrowNum, player.player_id);
+        }
         public override bool Equals(object o)
         {
             return base.Equals(o);
