@@ -16,10 +16,10 @@ namespace TcgEngine
         Stealth = 10,       //Cant be attacked until do action
         Invincibility = 12, //Cant be attacked for X turns
         Shell = 13,         //Receives no damage the first time
-        Protection = 14,    //Taunt, gives Protected to other cards
-        Protected = 15,     //Cards that are protected by taunt
-        Armor = 16,         //Receives less damage
-        SpellImmunity = 18, //Cant be targeted/damaged by spells
+        Protection = 14,    //Taunt, gives SuperProtected to other cards
+
+        Armor = 18,         //Receives less damage
+        SpellImmunity = 19, //Cant be targeted/damaged by spells
 
         Deathtouch = 20,    //Kills when attacking a character
         Fury = 22,          //Can attack twice per turn
@@ -35,7 +35,8 @@ namespace TcgEngine
         Sleep = 36,         //Doesnt untap at the start of turn
 
         Mercy = 40,         //자비 - 상대 영웅을 공격할 수 없음
-        
+        Protected = 43, //적 캐릭터(영웅제외)에게 공격받지 않는다
+        SuperProtected = 44,     //Cards that are protected by taunt / 적 유닛에게 공격받지 않는다
     }
 
     /// <summary>

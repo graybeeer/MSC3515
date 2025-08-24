@@ -10,11 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7edf116efdfa73646a6de43812f81a4a, type: 3}
-  m_Name: armor
+  m_Name: shield
   m_EditorClassIdentifier: 
-  effect: 18
-  title: 
+  effect: 43
+  title: Shield
   icon: {fileID: 0}
-  desc: 
-  status_fx: {fileID: 0}
+  desc: "\uC774 \uC720\uB2DB\uC740 \uBAA8\uB4E0 \uD558\uC218\uC778\uC5D0\uAC8C \uACF5\uACA9\uBC1B\uC9C0
+    \uC54A\uC2B5\uB2C8\uB2E4."
+  status_fx: {fileID: 8041625327064058042, guid: 364d6092a8e082740990d503ddee9024,
+    type: 3}
   hvalue: 1

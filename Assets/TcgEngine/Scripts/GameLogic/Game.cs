@@ -226,6 +226,7 @@ namespace TcgEngine
         }
 
         //Check if a card is allowed to attack a player
+        //추가 - 사용안하는 레거시 함수
         public virtual bool CanAttackTarget(Card attacker, Player target, bool skip_cost = false)
         {
             if(attacker == null || target == null)
@@ -240,8 +241,8 @@ namespace TcgEngine
             if (!IsOnBoard(attacker) || !attacker.CardData.IsMoveableCard())
                 return false; //Cards not on board
 
-            if (target.HasStatus(StatusType.Protected) && !attacker.HasStatus(StatusType.Flying))
-                return false; //Protected by taunt
+            if (target.HasStatus(StatusType.SuperProtected) && !attacker.HasStatus(StatusType.Flying))
+                return false; //SuperProtected by taunt
 
             //추가해야함-공격방식 이동해서 잡는것으로 변경
             return true;
@@ -268,8 +269,11 @@ namespace TcgEngine
             if (target.HasStatus(StatusType.Stealth))
                 return false; //Stealth cant be attacked
 
-            if (target.HasStatus(StatusType.Protected) && !attacker.HasStatus(StatusType.Flying))
-                return false; //Protected by adjacent card
+            if (target.HasStatus(StatusType.SuperProtected) && !attacker.HasStatus(StatusType.Flying))
+                return false; //SuperProtected by 컥 하수인 + 영웅 카드
+
+            if (target.HasStatus(StatusType.Protected) && !attacker.CardData.IsHero() && !attacker.HasStatus(StatusType.Flying))
+                return false; //Protected by 적 하수인 카드
 
             //추가
             if (!CanMoveArrow(attacker, target.slot)) //화살표로 이동가능한 위치인지

@@ -123,7 +123,7 @@ namespace TcgEngine.Gameplay
                 //SummonCard(player, CardData.Get("bear"), VariantData.GetDefault(), Slot.Get(2, player.player_id * 4 + 1));
                 //SummonCard(player, CardData.Get("msc_hero"), VariantData.GetDefault(), Slot.Get(2, player.player_id * 4 + 1));
                 player.hero = SummonCard(player, player.hero_data.CardData, VariantData.GetDefault(), Slot.Get(2, player.player_id * 4 + 1));
-                SummonCard(player, CardData.Get("bear"), VariantData.GetDefault(), Slot.Get(player.player_id*1+1, 3));
+                SummonCard(player, CardData.Get("bic_wall"), VariantData.GetDefault(), Slot.Get(player.player_id*1+1, 3));
 
                 //Draw starting cards
                 int dcards = pdeck != null ? pdeck.start_cards : GameplayData.Get().cards_start;
@@ -1019,7 +1019,7 @@ namespace TcgEngine.Gameplay
             if (target.HasStatus(StatusType.Invincibility))
                 return; //Invincible
 
-            if (target.HasStatus(StatusType.SpellImmunity) && attacker.CardData.type != CardType.Character)
+            if (target.HasStatus(StatusType.SpellImmunity) && attacker.CardData.IsBoardCard())
                 return; //Spell immunity
 
             //Shell
@@ -1459,22 +1459,22 @@ namespace TcgEngine.Gameplay
                 for (int c = 0; c < player.cards_board.Count; c++)
                 {
                     Card card = player.cards_board[c];
-
+                    /*
                     //Taunt effect
                     if (card.HasStatus(StatusType.Protection) && !card.HasStatus(StatusType.Stealth))
                     {
-                        player.AddOngoingStatus(StatusType.Protected, 0);
+                        player.AddOngoingStatus(StatusType.SuperProtected, 0);
 
                         for (int tc = 0; tc < player.cards_board.Count; tc++)
                         {
                             Card tcard = player.cards_board[tc];
-                            if (!tcard.HasStatus(StatusType.Protection) && !tcard.HasStatus(StatusType.Protected))
+                            if (!tcard.HasStatus(StatusType.Protection) && !tcard.HasStatus(StatusType.SuperProtected))
                             {
-                                tcard.AddOngoingStatus(StatusType.Protected, 0);
+                                tcard.AddOngoingStatus(StatusType.SuperProtected, 0);
                             }
                         }
                     }
-
+                    */
                     //Status bonus
                     foreach (CardStatus status in card.status)
                         AddOngoingStatusBonus(card, status);

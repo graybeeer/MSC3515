@@ -141,6 +141,10 @@ namespace TcgEngine
         {
             return type == CardType.Character || type == CardType.Hero;
         }
+        public bool ISUnit()
+        {
+            return type == CardType.Character || type == CardType.Artifact;
+        }
         public bool IsCharacter()
         {
             return type == CardType.Character;

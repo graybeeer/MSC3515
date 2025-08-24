@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7edf116efdfa73646a6de43812f81a4a, type: 3}
   m_Name: spell_immunity
   m_EditorClassIdentifier: 
-  effect: 18
+  effect: 19
   title: Spell Immunity
   icon: {fileID: 0}
   desc: Cannot be targeted or damaged by spells and traps.
