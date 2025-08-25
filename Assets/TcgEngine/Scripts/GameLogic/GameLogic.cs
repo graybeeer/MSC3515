@@ -1053,7 +1053,7 @@ namespace TcgEngine.Gameplay
             target.RemoveStatus(StatusType.Sleep);
 
             //Deathtouch
-            if (value > 0 && attacker.HasStatus(StatusType.Deathtouch) && target.CardData.type == CardType.Character)
+            if (value > 0 && attacker.HasStatus(StatusType.Deathtouch) && target.CardData.IsCharacter())
                 KillCard(attacker, target);
 
             //Kill card if no hp
@@ -1662,7 +1662,7 @@ namespace TcgEngine.Gameplay
             {
                 Card card = player.cards_secret[i];
                 CardData icard = card.CardData;
-                if (icard.type == CardType.Secret && !card.exhausted)
+                if (icard.IsSecret() && !card.exhausted)
                 {
                     if (card.AreAbilityConditionsMet(secret_trigger, game_data, card, card))
                     {
@@ -1694,7 +1694,7 @@ namespace TcgEngine.Gameplay
                     {
                         Card card = other_player.cards_secret[i];
                         CardData icard = card.CardData;
-                        if (icard.type == CardType.Secret && !card.exhausted)
+                        if (icard.IsSecret() && !card.exhausted)
                         {
                             Card trigger = trigger_card != null ? trigger_card : card;
                             if (card.AreAbilityConditionsMet(secret_trigger, game_data, card, trigger))
@@ -1719,7 +1719,7 @@ namespace TcgEngine.Gameplay
         {
             CardData icard = secret_card.CardData;
             Player player = game_data.GetPlayer(secret_card.player_id);
-            if (icard.type == CardType.Secret)
+            if (icard.IsSecret())
             {
                 Player tplayer = game_data.GetPlayer(trigger.player_id);
                 if (!is_ai_predict)

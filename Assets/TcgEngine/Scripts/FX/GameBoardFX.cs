@@ -35,7 +35,7 @@ namespace TcgEngine.FX
             if (card != null)
             {
                 CardData icard = CardData.Get(card.card_id);
-                if (icard.type == CardType.Spell)
+                if (icard.IsSpell())
                 {
                     GameObject prefab = player_id == card.player_id ? AssetData.Get().play_card_fx : AssetData.Get().play_card_other_fx;
                     GameObject obj = FXTool.DoFX(prefab, Vector3.zero);
@@ -46,7 +46,7 @@ namespace TcgEngine.FX
                     AudioTool.Get().PlaySFX("card_spell", spawn_audio);
                 }
 
-                if (icard.type == CardType.Secret)
+                if (icard.IsSecret())
                 {
                     GameObject sprefab = player_id == card.player_id ? AssetData.Get().play_secret_fx : AssetData.Get().play_secret_other_fx;
                     FXTool.DoFX(sprefab, Vector3.zero);
