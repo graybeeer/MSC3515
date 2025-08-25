@@ -88,19 +88,19 @@ namespace TcgEngine.AI
 
             yield return new WaitForSeconds(0.5f);
 
-            Move();
+            MoveOrAttack();
 
             yield return new WaitForSeconds(0.5f);
 
-            Move();
+            MoveOrAttack();
 
             yield return new WaitForSeconds(0.5f);
 
-            Attack();
+            MoveOrAttack();
 
             yield return new WaitForSeconds(0.5f);
 
-            Attack();
+            MoveOrAttack();
 
             //yield return new WaitForSeconds(0.5f);
 
@@ -228,7 +228,18 @@ namespace TcgEngine.AI
 
             Game game_data = gameplay.GetGameData();
             Player player = game_data.GetPlayer(player_id);
-
+            if (player.cards_board.Count > 0 && game_data.IsPlayerActionTurn(player))
+            {
+                Card random = player.GetRandomCard(player.cards_board, rand);
+                List<Slot> rtargets = game_data.GetCardMoveorAttackSlot(random);
+                if (rtargets == null)
+                {
+                    return;
+                }
+                Slot rtarget = rtargets[rand.Next(0, rtargets.Count)];
+                if (random != null && rtarget != null)
+                    gameplay.MoveOrAttackSlot(random, rtarget);
+            }
         }
         public void AttackPlayer()
         {

@@ -292,8 +292,16 @@ namespace TcgEngine
                 return false;
             return true;
         }
-        public virtual bool CanMoveOrAttack()
+        public virtual bool CanMoveOrAttack(Card attacker, Slot target, bool skip_cost = false)
         {
+            if (CanAttackTarget(attacker, GetSlotCard(target), skip_cost))
+            {
+                return true;
+            }
+            if (CanMoveCard(attacker, target, skip_cost))
+            {
+                return true;
+            }
             return false;
         }
         public virtual bool CanCastAbility(Card card, AbilityData ability)
@@ -565,6 +573,18 @@ namespace TcgEngine
             foreach (Slot moveable in Slot.GetAll())
             {
                 if (CanMoveCard(card, moveable))
+                    slots.Add(moveable);
+            }
+            if (slots.Count > 0)
+                return slots;
+            return null;
+        }
+        public virtual List<Slot> GetCardMoveorAttackSlot(Card card)
+        {
+            List<Slot> slots = new List<Slot>();
+            foreach (Slot moveable in Slot.GetAll())
+            {
+                if (CanMoveOrAttack(card, moveable))
                     slots.Add(moveable);
             }
             if (slots.Count > 0)

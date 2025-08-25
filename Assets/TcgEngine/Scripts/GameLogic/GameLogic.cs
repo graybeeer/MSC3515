@@ -522,7 +522,7 @@ namespace TcgEngine.Gameplay
             }
         }
         //추가 - 해당 위치로 공격 혹은 이동하는 함수
-        public virtual void MoveOrAttackCard(Card card, Slot slot, bool skip_cost = false)
+        public virtual void MoveOrAttackSlot(Card card, Slot slot, bool skip_cost = false)
         {
             if(game_data.CanAttackTarget(card,game_data.GetSlotCard(slot), skip_cost))
             {
