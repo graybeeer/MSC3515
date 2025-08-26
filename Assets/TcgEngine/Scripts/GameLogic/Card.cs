@@ -23,8 +23,8 @@ namespace TcgEngine
         public int damage = 0;
 
         //카드 방향표
-        public bool[] card_arrow = new bool[9]; //원본 화살표, 안바뀜
-        public bool[] card_arrow_now = new bool[9]; //현재 화살표 상태
+        public bool[] card_arrow = new bool[9]; //화살표, 안바뀜
+        //public bool[] card_arrow_now = new bool[9]; //현재 화살표 상태
 
         public int mana = 0;
         public int attack = 0;
@@ -53,7 +53,7 @@ namespace TcgEngine
         public Card(string card_id, string uid, int player_id) { this.card_id = card_id; this.uid = uid; this.player_id = player_id; }
 
         public virtual void Refresh() { exhausted = false; }
-        public virtual void ClearOngoing() { ongoing_status.Clear(); ongoing_traits.Clear(); ClearOngoingAbility(); attack_ongoing = 0; hp_ongoing = 0; mana_ongoing = 0; card_arrow_now = card_arrow; }
+        public virtual void ClearOngoing() { ongoing_status.Clear(); ongoing_traits.Clear(); ClearOngoingAbility(); attack_ongoing = 0; hp_ongoing = 0; mana_ongoing = 0; }
         public virtual void Clear()
         {
             ClearOngoing(); Refresh(); damage = 0; status.Clear(); 
