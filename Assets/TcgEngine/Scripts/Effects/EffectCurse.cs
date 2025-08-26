@@ -31,7 +31,7 @@ namespace TcgEngine
             target.AddOngoingStatus(StatusType.cursed, curse_value);
         }
 
-        int CalculateCurse(GameLogic logic, AbilityData ability, Card caster, Card target)
+        int CalculateCurse(GameLogic logic, AbilityData ability, Card caster, Card target, int curseNum = 0)
         {
             //ability.value가 1이면 1개 저주, 3개면 3개 화살표 저주하는 셈
 

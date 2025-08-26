@@ -10,8 +10,10 @@ namespace TcgEngine
     /// </summary>
 
     [CreateAssetMenu(fileName = "effect", menuName = "TcgEngine/Effect/ForcedMove", order = 10)]
+
     public class EffectForcedMove : EffectData
     {
+
         //추가예정- 기본적으로는 value값으로 움직이나, 이동 가능한 방향에서 무작위로 움직이는 옵션도 있게
         public bool Random_Move;
         public override void DoEffect(GameLogic logic, AbilityData ability, Card caster, Card target)

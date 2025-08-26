@@ -1,5 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Unity.Burst.Intrinsics;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace TcgEngine
@@ -19,8 +23,8 @@ namespace TcgEngine
         public int damage = 0;
 
         //카드 방향표
-        public bool[] card_arrow = new bool[9];
-        //public int can_move_count = 0; //이동할수있는횟수
+        public bool[] card_arrow = new bool[9]; //원본 화살표, 안바뀜
+        public bool[] card_arrow_now = new bool[9]; //현재 화살표 상태
 
         public int mana = 0;
         public int attack = 0;
@@ -49,8 +53,7 @@ namespace TcgEngine
         public Card(string card_id, string uid, int player_id) { this.card_id = card_id; this.uid = uid; this.player_id = player_id; }
 
         public virtual void Refresh() { exhausted = false; }
-        public virtual void ClearOngoing() { ongoing_status.Clear(); ongoing_traits.Clear(); ClearOngoingAbility(); attack_ongoing = 0; hp_ongoing = 0; mana_ongoing = 0; }
-
+        public virtual void ClearOngoing() { ongoing_status.Clear(); ongoing_traits.Clear(); ClearOngoingAbility(); attack_ongoing = 0; hp_ongoing = 0; mana_ongoing = 0; card_arrow_now = card_arrow; }
         public virtual void Clear()
         {
             ClearOngoing(); Refresh(); damage = 0; status.Clear(); 
@@ -63,6 +66,18 @@ namespace TcgEngine
         public virtual int GetHP(int offset) { return Mathf.Max(hp + hp_ongoing - damage + offset, 0); }
         public virtual int GetHPMax() { return Mathf.Max(hp + hp_ongoing, 0); }
         public virtual int GetMana() { return Mathf.Max(mana + mana_ongoing, 0); }
+        public virtual int GetArrowNum() => card_arrow.Count(v => v == true);
+        public virtual int GetActiveArrowNum()
+        {
+            int tempNum = 0;
+            bool[] temp_curse_arrow = EffectCurse.CheckCursed(this);
+            for (int i=0; i<card_arrow.Count(); i++)
+            {
+                if (!temp_curse_arrow[i] && card_arrow[i])
+                    tempNum++;
+            }
+            return tempNum;
+        }
         public virtual void SetCard(CardData icard, VariantData cvariant)
         {
             data = icard;
@@ -348,7 +363,12 @@ namespace TcgEngine
             if (abilities_data != null)
                 abilities_data.Remove(ability);
         }
-
+        public void ClearAllAbility()
+        {
+            abilities.Clear();
+            abilities_ongoing.Clear();
+            abilities_data.Clear();
+        }
         public void AddOngoingAbility(AbilityData ability)
         {
             if (!abilities_ongoing.Contains(ability.id) && !abilities.Contains(ability.id))

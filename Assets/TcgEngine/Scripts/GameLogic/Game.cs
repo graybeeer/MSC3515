@@ -591,6 +591,7 @@ namespace TcgEngine
                 return slots;
             return null;
         }
+        
         public bool IsInHand(Card card)
         {
             return card != null && GetHandCard(card.uid) != null;
