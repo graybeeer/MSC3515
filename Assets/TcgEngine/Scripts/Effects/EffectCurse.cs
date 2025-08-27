@@ -19,7 +19,6 @@ namespace TcgEngine
     [CreateAssetMenu(fileName = "effect", menuName = "TcgEngine/Effect/Curse", order = 10)]
     public class EffectCurse : EffectData
     {
-        //int curse_death_limit = 3; //추가 예정 - 이 스택 이상으로 저주 쌓이면 남은 화살표 관계없이 사망
         public override void DoEffect(GameLogic logic, AbilityData ability, Card caster, Card target)
         {
             int curse_value = CalculateCurse(logic, ability, caster, target);

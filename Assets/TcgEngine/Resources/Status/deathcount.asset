@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7edf116efdfa73646a6de43812f81a4a, type: 3}
-  m_Name: haste
+  m_Name: deathcount
   m_EditorClassIdentifier: 
-  effect: 0
-  title: 
+  effect: 52
+  title: Deathcount
   icon: {fileID: 0}
-  desc: "\uCD94\uAC00\uB85C \uC774\uB3D9 \uAC00\uB2A5\uD55C \uBC29\uD5A5\uC774 \uC0DD\uAE40"
+  desc: "\uD2B9\uC815 \uD134\uC774 \uACBD\uACFC\uD558\uBA74 \uC774 \uC720\uB2DB\uC740
+    \uC0AC\uB9DD\uD55C\uB2E4."
   status_fx: {fileID: 0}
   hvalue: 0

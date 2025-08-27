@@ -37,7 +37,9 @@ namespace TcgEngine
         Mercy = 40,         //자비 - 상대 영웅을 공격할 수 없음
         Protected = 43, //적 캐릭터(영웅제외)에게 공격받지 않는다
         SuperProtected = 44,     //Cards that are protected by taunt / 적 유닛에게 공격받지 않는다
-        haste = 50, //헤이스트- 저주랑 정 반대로 추가로 이동가능한 방향이 생김
+
+        hasted = 50, //헤이스트- 저주랑 정 반대로 추가로 이동가능한 방향이 생김
+        DeathCount =52, //데쓰카운트 - 일정 턴이 지나면 이 유닛은 사망한다.
     }
 
     /// <summary>
