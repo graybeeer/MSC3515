@@ -9,6 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83bb31ba8a8622d4b854d77356f7e6ea, type: 3}
-  m_Name: Curse
+  m_Script: {fileID: 11500000, guid: 978b281975d54e24b8a99d66b6774213, type: 3}
+  m_Name: haste_random
   m_EditorClassIdentifier: 
+  RandomCurse: 1
+  Haste: 1

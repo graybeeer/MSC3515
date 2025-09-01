@@ -186,21 +186,16 @@ namespace TcgEngine
             int distance_y = slot.y - card.slot.y;
             int distance_arrow = 4 + distance_x * 1 + distance_y * 3;
             int distance_arrow_p2 = 4 - distance_x * 1 - distance_y * 3; //180도 돌려진 P2기준의 위치, (8 - distance_arrow)
-            bool[] temp_curse_arrow = EffectCurse.CheckCursed(card);
 
             if (card.player_id == 0)
             {
-                if (!card.card_arrow[distance_arrow])
+                if (!card.GetActiveArrow()[distance_arrow])
                     return false;
-                if (temp_curse_arrow[distance_arrow])
-                    return false; 
             }
 
             else if (card.player_id == 1)
             {
-                if (!card.card_arrow[distance_arrow_p2])
-                    return false;
-                if (temp_curse_arrow[distance_arrow_p2])
+                if (!card.GetActiveArrow()[distance_arrow_p2])
                     return false;
             }
             else Debug.LogError("플레이어의 존재하지 않는 ID");

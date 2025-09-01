@@ -67,17 +67,24 @@ namespace TcgEngine
         public virtual int GetHPMax() { return Mathf.Max(hp + hp_ongoing, 0); }
         public virtual int GetMana() { return Mathf.Max(mana + mana_ongoing, 0); }
         public virtual int GetArrowNum() => card_arrow.Count(v => v == true);
-        public virtual int GetActiveArrowNum()
+        public virtual bool[] GetActiveArrow()
         {
             int tempNum = 0;
-            bool[] temp_curse_arrow = EffectCurse.CheckCursed(this);
-            for (int i=0; i<card_arrow.Count(); i++)
+            bool[] temp_arrow = new bool[9];
+            bool[] temp_curse_arrow = EffectCurseHaste.CheckCursed(this);
+            bool[] temp_haste_arrow = EffectCurseHaste.CheckHasted(this);
+            for (int i = 0; i < card_arrow.Count(); i++)
             {
-                if (!temp_curse_arrow[i] && card_arrow[i])
+                if (!temp_curse_arrow[i] && (card_arrow[i] || temp_haste_arrow[i]))
+                {
+                    temp_arrow[i] = true;
                     tempNum++;
+                }
+                else temp_arrow[i] = false;
             }
-            return tempNum;
+            return temp_arrow;
         }
+        public virtual int GetActiveArrowNum() => GetActiveArrow().Count(v => v == true);
         public virtual void SetCard(CardData icard, VariantData cvariant)
         {
             data = icard;

@@ -123,7 +123,7 @@ namespace TcgEngine.Gameplay
                 //SummonCard(player, CardData.Get("bear"), VariantData.GetDefault(), Slot.Get(2, player.player_id * 4 + 1));
                 //SummonCard(player, CardData.Get("msc_hero"), VariantData.GetDefault(), Slot.Get(2, player.player_id * 4 + 1));
                 player.hero = SummonCard(player, player.hero_data.CardData, VariantData.GetDefault(), Slot.Get(2, player.player_id * 4 + 1));
-                SummonCard(player, CardData.Get("bic_wall"), VariantData.GetDefault(), Slot.Get(player.player_id*1+1, 3));
+                SummonCard(player, CardData.Get("bear"), VariantData.GetDefault(), Slot.Get(player.player_id*1+1, 3));
 
                 //Draw starting cards
                 int dcards = pdeck != null ? pdeck.start_cards : GameplayData.Get().cards_start;
