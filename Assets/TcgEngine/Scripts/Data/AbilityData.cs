@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TcgEngine.Gameplay;
+using System.Linq;
 
 namespace TcgEngine
 {
@@ -49,6 +50,27 @@ namespace TcgEngine
         public string title;
         [TextArea(5, 7)]
         public string desc;
+
+        [Space(30)]
+        [Header("이 데이터를 참조하는 다른 데이터")]
+        public List<ScriptableObject> referencingComponents = new List<ScriptableObject>();
+
+        public void FindReferencingData()
+        {
+            referencingComponents.Clear();
+            CardData.Load();
+            AbilityData.Load();
+            foreach (var data in ability_list)
+            {
+                if (data.chain_abilities.Contains(this))
+                    referencingComponents.Add(data);
+            }
+            foreach (var data in CardData.card_list)
+            {
+                if (data.abilities.Contains(this))
+                    referencingComponents.Add(data);
+            }
+        }
 
         public static List<AbilityData> ability_list = new List<AbilityData>();                             //Faster access in loops
         public static Dictionary<string, AbilityData> ability_dict = new Dictionary<string, AbilityData>(); //Faster access in Get(id)

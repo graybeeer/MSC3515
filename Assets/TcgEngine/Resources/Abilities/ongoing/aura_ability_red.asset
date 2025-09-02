@@ -32,8 +32,11 @@ MonoBehaviour:
   board_fx: {fileID: 0}
   caster_fx: {fileID: 0}
   target_fx: {fileID: 0}
+  projectile_fx: {fileID: 0}
   cast_audio: {fileID: 0}
   target_audio: {fileID: 0}
   charge_target: 0
   title: Red Burst
   desc: 'All allied red creatures gain: "Take 1 damage to gain +1 attack".'
+  referencingComponents:
+  - {fileID: 11400000, guid: 6194ca0450582774ca001101a5e0e617, type: 2}

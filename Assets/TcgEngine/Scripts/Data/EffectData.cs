@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TcgEngine.Gameplay;
+using System.Linq;
 
 namespace TcgEngine
 {
@@ -54,6 +55,22 @@ namespace TcgEngine
                 return add_value;
             return original_val;
         }
+
+        [HideInInspector]
+        public List<ScriptableObject> referencingComponents = new List<ScriptableObject>();
+        
+
+        public void FindReferencingData()
+        {
+            referencingComponents.Clear();
+            AbilityData.Load();
+            foreach (var data in AbilityData.ability_list)
+            {
+                if (data.effects.Contains(this))
+                    referencingComponents.Add(data);
+            }
+        }
+
     }
 
 
@@ -62,4 +79,7 @@ namespace TcgEngine
         Add,
         Set,
     }
+
+
+
 }
