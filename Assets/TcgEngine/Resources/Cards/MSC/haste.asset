@@ -26,8 +26,10 @@ MonoBehaviour:
   card_arrow: 000000000000000000
   traits: []
   stats: []
-  abilities: []
-  text: 
+  abilities:
+  - {fileID: 11400000, guid: 50aeb052e44d1ee44a8a1284f9324b20, type: 2}
+  text: "\uD558\uC218\uC778 \uD558\uB098\uC758 \uC774\uB3D9 \uBC29\uD5A5\uC744 \uBB34\uC791\uC704\uB85C
+    \uB298\uB9BD\uB2C8\uB2E4."
   desc: 
   spawn_fx: {fileID: 0}
   death_fx: {fileID: 0}

@@ -10,6 +10,7 @@ namespace TcgEngine
         Attack = 10,
         HP = 20,
         Mana = 30,
+        ArrowNum = 40,
     }
 
     /// <summary>
@@ -39,6 +40,10 @@ namespace TcgEngine
             if (type == ConditionStatType.Mana)
             {
                 return CompareInt(target.GetMana(), oper, value);
+            }
+            if(type == ConditionStatType.ArrowNum)
+            {
+                return CompareInt(target.GetActiveArrowNum(), oper, value);
             }
 
             return false;

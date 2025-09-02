@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8ce5f81e5cc37f547af6923758602c8c, type: 3}
-  m_Name: play_haste
+  m_Name: play_immediate_attack
   m_EditorClassIdentifier: 
-  id: play_haste
+  id: play_immediate_attack
   trigger: 10
   conditions_trigger: []
   target: 1
@@ -29,6 +29,7 @@ MonoBehaviour:
   board_fx: {fileID: 0}
   caster_fx: {fileID: 0}
   target_fx: {fileID: 0}
+  projectile_fx: {fileID: 0}
   cast_audio: {fileID: 0}
   target_audio: {fileID: 0}
   charge_target: 0

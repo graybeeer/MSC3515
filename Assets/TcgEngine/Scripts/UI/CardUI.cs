@@ -66,10 +66,13 @@ namespace TcgEngine.UI
             if (card_arrow_icon != null)
             {
                 bool[] temp_check_curse = EffectCurseHaste.CheckCursed(card);
+                bool[] temp_check_haste = EffectCurseHaste.CheckHasted(card);
                 for (int i = 0; i < card_arrow_icon.Length; i++)
                 {
-                    if (card.card_arrow[i])
+                    if (card.card_arrow[i]  )
                         card_arrow_icon[i].color = new Color(1f, 1f, 1f, 1f);
+                    else if (temp_check_haste[i])
+                        card_arrow_icon[i].color = new Color(0.7f, 1f, 0.7f, 1f);
                     else
                         card_arrow_icon[i].color = new Color(1f, 1f, 1f, 0f);
 

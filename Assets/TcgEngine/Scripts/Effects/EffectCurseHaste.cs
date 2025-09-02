@@ -19,10 +19,10 @@ namespace TcgEngine
     [CreateAssetMenu(fileName = "effect", menuName = "TcgEngine/Effect/CurseHaste", order = 11)]
     public class EffectCurseHaste : EffectData
     {
-        [Tooltip("활성화시 어빌리티 밸류값 = 랜덤으로 n회 저주, 비활성화시 n방향으로 한번 저주")]
+        [Header("활성화시 어빌리티 밸류값 = 랜덤으로 n회 저주, 비활성화시 n방향으로 한번 저주")]
         public bool RandomCurse; //활성화시 어빌리티 밸류값 = 랜덤으로 n개 저주, 비활성화시 n방향으로 한번 저주
         //활성화시 ability.value가 1이면 1개 저주, 3개면 3개 화살표 저주하는 셈
-        [Tooltip("체크하면 헤이스트로 계산됨")]
+        [Header("체크하면 헤이스트로 계산됨")]
         public bool Haste; //체크하면 헤이스트로 계산됨.
         public override void DoEffect(GameLogic logic, AbilityData ability, Card caster, Card target)
         {
