@@ -34,8 +34,11 @@ MonoBehaviour:
   board_fx: {fileID: 0}
   caster_fx: {fileID: 0}
   target_fx: {fileID: 0}
+  projectile_fx: {fileID: 0}
   cast_audio: {fileID: 0}
   target_audio: {fileID: 0}
   charge_target: 0
   title: Discover Dragon
   desc: Select a dragon to summon into your hand.
+  referencingComponents:
+  - {fileID: 11400000, guid: 8faf0d78746617c4594039cb64dcca7c, type: 2}

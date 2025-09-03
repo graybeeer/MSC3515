@@ -119,6 +119,9 @@ namespace TcgEngine.Gameplay
                 player.mana_max = pdeck != null ? pdeck.start_mana : GameplayData.Get().mana_start;
                 player.mana = player.mana_max;
 
+                //최대 보드카드 유닛 수 제한
+                player.max_boardcard_num = GameplayData.Get().boards_cards_max;
+
                 //추가 - 플레이어 영웅카드 필드에 소환
                 //SummonCard(player, CardData.Get("bear"), VariantData.GetDefault(), Slot.Get(2, player.player_id * 4 + 1));
                 //SummonCard(player, CardData.Get("msc_hero"), VariantData.GetDefault(), Slot.Get(2, player.player_id * 4 + 1));

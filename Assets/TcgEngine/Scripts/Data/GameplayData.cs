@@ -20,6 +20,7 @@ namespace TcgEngine
         public int cards_start = 5;
         public int cards_per_turn = 1;
         public int cards_max = 10;
+        public int boards_cards_max = 6; //한 플레이어가 보드에 최대로 놓을 수 있는 유닛 수(보스 포함, 기본6->동시 최대 5개의 캐릭터 소환가능)
         public float turn_duration = 30f;
         public CardData second_bonus;
 

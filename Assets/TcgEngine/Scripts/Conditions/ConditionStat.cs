@@ -12,7 +12,11 @@ namespace TcgEngine
         Mana = 30,
         ArrowNum = 40,
     }
-
+    public enum ConditionPlayerValueType
+    {
+        selfHandCount = 0,
+        opponentHandCount = 10,
+    }
     /// <summary>
     /// Compares basic card or player stats such as attack/hp/mana
     /// </summary>
@@ -24,9 +28,22 @@ namespace TcgEngine
         public ConditionStatType type;
         public ConditionOperatorInt oper;
         public int value;
+        [Header("체크하면 value의 값은 무시되고 아래의 해당밸류값과 비교됨")]
+        public bool value_type;
+        public ConditionPlayerValueType Num;
+
 
         public override bool IsTargetConditionMet(Game data, AbilityData ability, Card caster, Card target)
         {
+            if (value_type)
+            {
+                if (Num == ConditionPlayerValueType.selfHandCount)
+                    value = data.GetPlayer(caster.player_id).cards_hand.Count;
+                if (Num == ConditionPlayerValueType.opponentHandCount)
+                    value = data.GetOpponentPlayer(caster.player_id).cards_hand.Count;
+            }
+                
+
             if (type == ConditionStatType.Attack)
             {
                 return CompareInt(target.GetAttack(), oper, value);

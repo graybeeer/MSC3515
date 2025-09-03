@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace TcgEngine
@@ -69,6 +70,23 @@ namespace TcgEngine
                 return ival1 < ival2; ;
             }
             return false;
+        }
+
+        [HideInInspector]
+        public List<ScriptableObject> referencingComponents = new List<ScriptableObject>();
+
+
+        public void FindReferencingData()
+        {
+            referencingComponents.Clear();
+            AbilityData.Load();
+            foreach (var data in AbilityData.ability_list)
+            {
+                if (data.conditions_trigger.Contains(this))
+                    referencingComponents.Add(data);
+                if (data.conditions_target.Contains(this))
+                    referencingComponents.Add(data);
+            }
         }
     }
 
