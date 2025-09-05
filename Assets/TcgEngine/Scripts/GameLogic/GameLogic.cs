@@ -470,8 +470,10 @@ namespace TcgEngine.Gameplay
                 //Cost
                 if (!skip_cost)
                     player.PayMana(card);
-
                 //Play card
+                if(player.cards_hand.Contains(card))
+                    card.is_playing_hand = true;
+
                 player.RemoveCardFromAllGroups(card);
 
                 //Add to board
@@ -518,6 +520,7 @@ namespace TcgEngine.Gameplay
                     TriggerOtherCardsAbilityType(AbilityTrigger.OnPlayOther, card);
                 }
 
+                card.is_playing_hand = false;
                 RefreshData();
 
                 onCardPlayed?.Invoke(card, slot);
@@ -1198,7 +1201,7 @@ namespace TcgEngine.Gameplay
         public virtual void TriggerCardAbility(AbilityData iability, Card caster, Card triggerer)
         {
             Card trigger_card = triggerer != null ? triggerer : caster; //Triggerer is the caster if not set
-            if (!caster.HasStatus(StatusType.Silenced) && iability.AreTriggerConditionsMet(game_data, caster, trigger_card))
+            if (!caster.HasStatus(StatusType.Silenced_legacy) && iability.AreTriggerConditionsMet(game_data, caster, trigger_card))
             {
                 resolve_queue.AddAbility(iability, caster, trigger_card, ResolveCardAbility);
             }
@@ -1206,7 +1209,7 @@ namespace TcgEngine.Gameplay
 
         public virtual void TriggerCardAbility(AbilityData iability, Card caster, Player triggerer)
         {
-            if (!caster.HasStatus(StatusType.Silenced) && iability.AreTriggerConditionsMet(game_data, caster, triggerer))
+            if (!caster.HasStatus(StatusType.Silenced_legacy) && iability.AreTriggerConditionsMet(game_data, caster, triggerer))
             {
                 resolve_queue.AddAbility(iability, caster, caster, ResolveCardAbility);
             }
@@ -1227,7 +1230,7 @@ namespace TcgEngine.Gameplay
         protected virtual void ResolveCardAbility(AbilityData iability, Card caster, Card triggerer)
         {
             if (!caster.CanDoAbilities())
-                return; //Silenced card cant cast
+                return; //Silenced_legacy card cant cast
 
             //Debug.Log("Trigger Ability " + iability.id + " : " + caster.card_id);
 

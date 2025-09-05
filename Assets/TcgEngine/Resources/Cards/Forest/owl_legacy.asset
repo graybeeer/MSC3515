@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 843a21f7f6f205741a0a7341aec8e84d, type: 3}
-  m_Name: owl
+  m_Name: owl_legacy
   m_EditorClassIdentifier: 
-  id: owl
+  id: owl_legacy
+  dbfid: 0
   title: Owl
   art_full: {fileID: 21300000, guid: 212af19a6da6d724ca7f5c132e5e0ab0, type: 3}
   art_board: {fileID: 21300000, guid: ae0882114f0ef6042ad3f7e7b57c15ba, type: 3}
@@ -35,6 +36,7 @@ MonoBehaviour:
   attack_fx: {fileID: 0}
   damage_fx: {fileID: 0}
   idle_fx: {fileID: 0}
+  move_fx: {fileID: 0}
   spawn_audio: {fileID: 0}
   death_audio: {fileID: 0}
   attack_audio: {fileID: 0}

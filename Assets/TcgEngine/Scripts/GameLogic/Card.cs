@@ -50,6 +50,8 @@ namespace TcgEngine
         [System.NonSerialized] private VariantData vdata = null;
         [System.NonSerialized] private List<AbilityData> abilities_data = null;
 
+        [NonSerialized] public bool is_playing_hand; //on play때 이 카드가 패에서 내고 있을때만 true(전투의 함성)
+
         public Card(string card_id, string uid, int player_id) { this.card_id = card_id; this.uid = uid; this.player_id = player_id; }
 
         public virtual void Refresh() { exhausted = false; }
@@ -505,7 +507,7 @@ namespace TcgEngine
         {
             if (HasStatus(StatusType.Paralysed))
                 return false;
-            if (HasStatus(StatusType.Silenced))
+            if (HasStatus(StatusType.Silenced_legacy))
                 return false;
 
             return true;
@@ -513,7 +515,7 @@ namespace TcgEngine
 
         public virtual bool CanDoAbilities()
         {
-            if (HasStatus(StatusType.Silenced))
+            if (HasStatus(StatusType.Silenced_legacy))
                 return false;
             return true;
         }

@@ -14,18 +14,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: play_silence
   trigger: 10
-  conditions_trigger: []
+  conditions_trigger:
+  - {fileID: 11400000, guid: cf98f1e5f9709d24a8532b94f973022e, type: 2}
   target: 30
   conditions_target:
   - {fileID: 11400000, guid: 47221d412dc0a014b8a33abb0cbfc773, type: 2}
   - {fileID: 11400000, guid: 902733d12f434e94b904de5ebf4112de, type: 2}
+  - {fileID: 11400000, guid: 4a06817c1af0d5047b1a7a9f6b93cbd7, type: 2}
   - {fileID: 11400000, guid: a1fb3a7171663234280fdfb41c99ab0a, type: 2}
   filters_target: []
   effects:
-  - {fileID: 11400000, guid: c14a48b31a743494f983c03ec81a7f2d, type: 2}
   - {fileID: 11400000, guid: 55165dd4996d59642a883f20c7b3e07f, type: 2}
+  - {fileID: 11400000, guid: c14a48b31a743494f983c03ec81a7f2d, type: 2}
+  - {fileID: 11400000, guid: 1bd873fd094d53c4bbac382b20f14e87, type: 2}
   status:
-  - {fileID: 11400000, guid: 8580d5669cd3e624c825c09fbba0b4f0, type: 2}
+  - {fileID: 11400000, guid: 014a33e29834fe64f92dffb7187a31a2, type: 2}
   value: 0
   duration: 0
   chain_abilities: []
@@ -40,4 +43,6 @@ MonoBehaviour:
   target_audio: {fileID: 0}
   charge_target: 0
   title: Silence
-  desc: Target abilities are canceled.
+  desc: "\uCE74\uB4DC\uC758 \uBAA8\uB4E0 \uD2B9\uC218 \uB2A5\uB825\uACFC \uAC15\uD654
+    \uD6A8\uACFC\uB97C \uC81C\uAC70\uD569\uB2C8\uB2E4."
+  referencingComponents: []
