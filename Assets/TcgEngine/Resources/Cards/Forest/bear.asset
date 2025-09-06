@@ -26,7 +26,8 @@ MonoBehaviour:
   card_arrow: 010101010000000101
   traits: []
   stats: []
-  abilities: []
+  abilities:
+  - {fileID: 11400000, guid: 263e0ee8a4065054abe719c78c744701, type: 2}
   text: <b>Play:</b> Gain Taunt or Fury
   desc: 
   spawn_fx: {fileID: 5791330189299518109, guid: 1fa8fa11b2c6b9b4d976743e5bbb3956,
