@@ -73,7 +73,7 @@ namespace TcgEngine.Client
 
             //Find target opacity value
             target_alpha = 0f;
-            if (your_turn && dcard != null && dcard.CardData.IsBoardCard())
+            if (your_turn && dcard != null && dcard.CardData.IsCanBeBoardCard())
             {
                 foreach (GroupSlot slot in group_slots)
                 {

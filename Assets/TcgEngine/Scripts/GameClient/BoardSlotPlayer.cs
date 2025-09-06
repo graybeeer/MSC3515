@@ -129,7 +129,7 @@ namespace TcgEngine.Client
 
         private Transform GetFXSource(Card caster)
         {
-            if (caster.CardData.IsBoardCard())
+            if (caster.CardData.IsCanBeBoardCard())
             {
                 BoardCard bcard = BoardCard.Get(caster.uid);
                 if (bcard != null)

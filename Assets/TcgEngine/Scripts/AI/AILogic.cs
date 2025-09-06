@@ -334,7 +334,7 @@ namespace TcgEngine.AI
 
             if (type == GameAction.PlayCard)
             {
-                if (card.CardData.IsBoardCard())
+                if (card.CardData.IsCanBeBoardCard())
                 {
                     //Doesn't matter where the card is played
                     Slot slot = player.GetRandomEmptySlot(random_gen, slot_array.Get());

@@ -137,7 +137,7 @@ namespace TcgEngine.AI
             {
                 Player player = data.GetPlayer(ai_player_id);
                 Card card = data.GetCard(order.card_uid);
-                if (card.CardData.IsBoardCard())
+                if (card.CardData.IsCanBeBoardCard())
                     return 200 + (card.GetMana() * 5) - (30 * player.cards_board.Count); //High cost cards are better to play, better to play when not a lot of cards in play
                 else if (card.CardData.IsEquipment())
                     return 200 + (card.GetMana() * 5) - (30 * player.cards_equip.Count);
@@ -167,7 +167,7 @@ namespace TcgEngine.AI
 
             Card card = data.GetCard(order.card_uid);
             Card target = order.target_uid != null ? data.GetCard(order.target_uid) : null;
-            bool is_spell = card != null && !card.CardData.IsBoardCard();
+            bool is_spell = card != null && !card.CardData.IsCanBeBoardCard();
 
             int type_sort = 0;
             if (order.type == GameAction.PlayCard && is_spell)

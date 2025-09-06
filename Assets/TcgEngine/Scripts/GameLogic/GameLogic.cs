@@ -478,7 +478,7 @@ namespace TcgEngine.Gameplay
 
                 //Add to board
                 CardData icard = card.CardData;
-                if (icard.IsBoardCard())
+                if (icard.IsCanBeBoardCard())
                 {
                     player.cards_board.Add(card);
                     card.slot = slot;
@@ -553,7 +553,7 @@ namespace TcgEngine.Gameplay
                 //Moving doesn't really have any effect in demo so can be done indefinitely
                 if(!skip_cost)
                     card.exhausted = true;
-                //card.RemoveStatus(StatusType.Stealth);
+                //card.RemoveStatus(StatusType.Stealth_legacy);
                 player.AddHistory(GameAction.Move, card);
 
                 //Also move the equipment
@@ -578,7 +578,7 @@ namespace TcgEngine.Gameplay
                 //Moving doesn't really have any effect in demo so can be done indefinitely
                 if (!skip_cost)
                     card.exhausted = true;
-                //card.RemoveStatus(StatusType.Stealth);
+                //card.RemoveStatus(StatusType.Stealth_legacy);
                 player.AddHistory(GameAction.Move, card);
 
                 //Also move the equipment
@@ -600,7 +600,7 @@ namespace TcgEngine.Gameplay
                 Player player = game_data.GetPlayer(card.player_id);
                 if (!is_ai_predict && iability.target != AbilityTarget.SelectTarget)
                     player.AddHistory(GameAction.CastAbility, card, iability);
-                card.RemoveStatus(StatusType.Stealth);
+                card.RemoveStatus(StatusType.Stealth_legacy);
                 TriggerCardAbility(iability, card);
                 resolve_queue.ResolveAll();
             }
@@ -635,7 +635,7 @@ namespace TcgEngine.Gameplay
 
             onAttackStart?.Invoke(attacker, target);
 
-            attacker.RemoveStatus(StatusType.Stealth);
+            attacker.RemoveStatus(StatusType.Stealth_legacy);
             UpdateOngoing();
 
             resolve_queue.AddAttack(attacker, target, ResolveAttackHit, skip_cost);
@@ -717,7 +717,7 @@ namespace TcgEngine.Gameplay
 
             onAttackPlayerStart?.Invoke(attacker, target);
 
-            attacker.RemoveStatus(StatusType.Stealth);
+            attacker.RemoveStatus(StatusType.Stealth_legacy);
             UpdateOngoing();
 
             resolve_queue.AddAttack(attacker, target, ResolveAttackPlayerHit, skip_cost);
@@ -1025,7 +1025,7 @@ namespace TcgEngine.Gameplay
             if (target.HasStatus(StatusType.Invincibility))
                 return; //Invincible
 
-            if (target.HasStatus(StatusType.SpellImmunity) && attacker.CardData.IsBoardCard())
+            if (target.HasStatus(StatusType.SpellImmunity) && attacker.CardData.IsCanBeBoardCard())
                 return; //Spell immunity
 
             //Shell
@@ -1036,9 +1036,9 @@ namespace TcgEngine.Gameplay
                 return;
             }
 
-            //Armor
-            if (!spell_damage && target.HasStatus(StatusType.Armor))
-                value = Mathf.Max(value - target.GetStatusValue(StatusType.Armor), 0);
+            //Armor_legacy
+            if (!spell_damage && target.HasStatus(StatusType.Armor_legacy))
+                value = Mathf.Max(value - target.GetStatusValue(StatusType.Armor_legacy), 0);
 
             //Damage
             int damage_max = Mathf.Min(value, target.GetHP());
@@ -1058,8 +1058,8 @@ namespace TcgEngine.Gameplay
             //Remove sleep on damage
             target.RemoveStatus(StatusType.Sleep);
 
-            //Deathtouch
-            if (value > 0 && attacker.HasStatus(StatusType.Deathtouch) && target.CardData.IsCharacter())
+            //Deathtouch_legacy
+            if (value > 0 && attacker.HasStatus(StatusType.Deathtouch_legacy) && target.CardData.IsCharacter())
                 KillCard(attacker, target);
 
             //Kill card if no hp
@@ -1467,14 +1467,14 @@ namespace TcgEngine.Gameplay
                     Card card = player.cards_board[c];
                     /*
                     //Taunt effect
-                    if (card.HasStatus(StatusType.Protection) && !card.HasStatus(StatusType.Stealth))
+                    if (card.HasStatus(StatusType.Protection_legacy) && !card.HasStatus(StatusType.Stealth_legacy))
                     {
                         player.AddOngoingStatus(StatusType.SuperProtected, 0);
 
                         for (int tc = 0; tc < player.cards_board.Count; tc++)
                         {
                             Card tcard = player.cards_board[tc];
-                            if (!tcard.HasStatus(StatusType.Protection) && !tcard.HasStatus(StatusType.SuperProtected))
+                            if (!tcard.HasStatus(StatusType.Protection_legacy) && !tcard.HasStatus(StatusType.SuperProtected))
                             {
                                 tcard.AddOngoingStatus(StatusType.SuperProtected, 0);
                             }

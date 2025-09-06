@@ -231,7 +231,7 @@ namespace TcgEngine.AI
             if (player.cards_board.Count > 0 && game_data.IsPlayerActionTurn(player))
             {
                 Card random = player.GetRandomCard(player.cards_board, rand);
-                List<Slot> rtargets = game_data.GetCardMoveorAttackSlot(random);
+                List<Slot> rtargets = game_data.GetCanMoveorAttackSlot(random);
                 if (rtargets == null)
                 {
                     return;

@@ -17,7 +17,6 @@ namespace TcgEngine.Client
     public class BoardCard : MonoBehaviour
     {
         //보드 카드가 속한 슬롯
-        public BSlot parent_slot;//추가
         public int player_id;
 
         public SpriteRenderer card_sprite;
@@ -129,11 +128,11 @@ namespace TcgEngine.Client
             float calpha = Mathf.MoveTowards(card_glow.color.a, target_alpha * ccolor.a, 4f * Time.deltaTime);
             card_glow.color = new Color(ccolor.r, ccolor.g, ccolor.b, calpha);
             card_shadow.enabled = !destroyed && timer > 0.4f;
-            card_sprite.color = card.HasStatus(StatusType.Stealth) ? Color.gray : Color.white;
+            card_sprite.color = card.HasStatus(StatusType.Stealth_legacy) ? Color.gray : Color.white;
             card_ui.hp.color = (destroyed || card.damage > 0) ? Color.yellow : Color.white;
 
             //armor
-            int armor_val = card.GetStatusValue(StatusType.Armor);
+            int armor_val = card.GetStatusValue(StatusType.Armor_legacy);
             armor.text = armor_val.ToString();
             armor.enabled = armor_val > 0;
             armor_icon.enabled = armor_val > 0;
@@ -223,7 +222,6 @@ namespace TcgEngine.Client
                 return back_to_hand_target;
 
             BSlot slot = BSlot.Get(card.slot);
-            parent_slot = slot;//추가
             if (slot != null)
             {
                 Vector3 targ_pos = slot.GetPosition(card.slot);

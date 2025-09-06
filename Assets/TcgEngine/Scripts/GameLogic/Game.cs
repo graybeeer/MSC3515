@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using TcgEngine.Client;
 using Unity.Mathematics;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 
 namespace TcgEngine
@@ -97,7 +98,7 @@ namespace TcgEngine
                 && state == GameState.Play && selector != SelectorType.None;
         }
 
-        //Check if a card is allowed to be played on slot
+        //Check if temp_card card is allowed to be played on slot
         public virtual bool CanPlayCard(Card card, Slot slot, bool skip_cost = false)
         {
             if (card == null)
@@ -114,7 +115,7 @@ namespace TcgEngine
                 return false; // AI cant play X-cost card at 0 cost
 
             //보드카드 소환할때
-            if (card.CardData.IsBoardCard())
+            if (card.CardData.IsCanBeBoardCard())
             {
                 if (!slot.IsValid() || IsCardOnSlot(slot))
                     return false;   //Slot already occupied
@@ -146,7 +147,7 @@ namespace TcgEngine
             return true;
         }
 
-        //Check if a card is allowed to move to slot
+        //Check if temp_card card is allowed to move to slot
         public virtual bool CanMoveCard(Card card, Slot slot, bool skip_cost = false)
         {
             
@@ -171,13 +172,13 @@ namespace TcgEngine
                 return false;
             
             Card slot_card = GetSlotCard(slot);
-            if (slot_card != null) //Already a card there
+            if (slot_card != null) //Already temp_card card there
                 return false;
             
             return true;
         }
         
-        //보드카드가 해당 슬롯에 이동 가능한 방향에 있는지 보드카드의 화살표로 계산
+        //보드카드가 해당 슬롯에 이동+공격 가능한 방향에 있는지 보드카드의 화살표로 계산
         public bool CanMoveArrow(Card card, Slot slot)
         {
             if (card.slot.x - slot.x < -1 || card.slot.x - slot.x > 1) return false;
@@ -220,7 +221,7 @@ namespace TcgEngine
             return true;
         }
 
-        //Check if a card is allowed to attack a player
+        //Check if temp_card card is allowed to attack temp_card player
         //추가 - 사용안하는 레거시 함수
         public virtual bool CanAttackTarget(Card attacker, Player target, bool skip_cost = false)
         {
@@ -243,7 +244,7 @@ namespace TcgEngine
             return true;
         }
 
-        //Check if a card is allowed to attack another one
+        //Check if temp_card card is allowed to attack another one
         public virtual bool CanAttackTarget(Card attacker, Card target, bool skip_cost = false)
         {
             if (attacker == null || target == null)
@@ -258,11 +259,14 @@ namespace TcgEngine
             if (!IsOnBoard(attacker) || !IsOnBoard(target))
                 return false; //Cards not on board
 
-            if (!attacker.CardData.IsMoveableCard() || !target.CardData.IsBoardCard())
+            if (!attacker.CardData.IsMoveableCard() || !target.CardData.IsCanBeBoardCard())
                 return false; //Only character can attack
 
-            if (target.HasStatus(StatusType.Stealth))
-                return false; //Stealth cant be attacked
+            if (!CanMoveArrow(attacker, target.slot)) //화살표로 이동가능한 위치인지
+                return false;
+
+            if (target.HasStatus(StatusType.Stealth_legacy))
+                return false; //Stealth_legacy cant be attacked
 
             if (target.HasStatus(StatusType.SuperProtected) && !attacker.HasStatus(StatusType.Flying))
                 return false; //SuperProtected by 컥 하수인 + 영웅 카드
@@ -270,9 +274,9 @@ namespace TcgEngine
             if (target.HasStatus(StatusType.Protected) && !attacker.CardData.IsHero() && !attacker.HasStatus(StatusType.Flying))
                 return false; //Protected by 적 하수인 카드
 
-            //추가
-            if (!CanMoveArrow(attacker, target.slot)) //화살표로 이동가능한 위치인지
-                return false;
+            if (CanAttackTauntCard(attacker) && !target.HasStatus(StatusType.Taunt) && !attacker.HasStatus(StatusType.Flying))
+                return false; //도발 카드 공격 가능한 상태에선 다른 카드 공격 불가능
+
 
             if (attacker.CardData.IsHero() && target.CardData.IsHero()) //둘다 히어로카드면 서로 공격불가
             {
@@ -348,7 +352,7 @@ namespace TcgEngine
             return false;
         }
 
-        //Check if Player play target is valid, play target is the target when a spell requires to drag directly onto another card
+        //Check if Player play target is valid, play target is the target when temp_card spell requires to drag directly onto another card
         public virtual bool IsPlayTargetValid(Card caster, Player target)
         {
             if (caster == null || target == null)
@@ -365,7 +369,7 @@ namespace TcgEngine
             return true;
         }
 
-        //Check if Card play target is valid, play target is the target when a spell requires to drag directly onto another card
+        //Check if Card play target is valid, play target is the target when temp_card spell requires to drag directly onto another card
         public virtual bool IsPlayTargetValid(Card caster, Card target)
         {
             if (caster == null || target == null)
@@ -382,14 +386,14 @@ namespace TcgEngine
             return true;
         }
 
-        //Check if Slot play target is valid, play target is the target when a spell requires to drag directly onto another card
+        //Check if Slot play target is valid, play target is the target when temp_card spell requires to drag directly onto another card
         public virtual bool IsPlayTargetValid(Card caster, Slot target)
         {
             if (caster == null)
                 return false;
 
             if (target.IsPlayerSlot())
-                return IsPlayTargetValid(caster, GetPlayer(target.p)); //Slot 0,0, means we are targeting a player
+                return IsPlayTargetValid(caster, GetPlayer(target.p)); //Slot 0,0, means we are targeting temp_card player
 
             Card slot_card = GetSlotCard(target);
             if (slot_card != null)
@@ -574,7 +578,7 @@ namespace TcgEngine
                 return slots;
             return null;
         }
-        public virtual List<Slot> GetCardMoveorAttackSlot(Card card)
+        public virtual List<Slot> GetCanMoveorAttackSlot(Card card)
         {
             List<Slot> slots = new List<Slot>();
             foreach (Slot moveable in Slot.GetAll())
@@ -586,7 +590,31 @@ namespace TcgEngine
                 return slots;
             return null;
         }
-        
+        public virtual List<Card> GetCardInCanAttackSlot(Card card)
+        {
+            List<Card> cards = new List<Card>();
+            foreach (BoardCard temp_boardcard in BoardCard.GetAll())
+            {
+                Card temp_card = temp_boardcard.GetCard();
+                if (CanMoveArrow(card, temp_card.slot))
+                    cards.Add(temp_card);
+            }
+            if (cards.Count > 0)
+                return cards;
+            return null;
+        }
+        public virtual bool CanAttackTauntCard(Card card)
+        {
+            if (GetCardInCanAttackSlot(card) != null)
+            {
+                foreach (Card temp_card in GetCardInCanAttackSlot(card))
+                {
+                    if (temp_card.HasStatus(StatusType.Taunt))
+                        return true;
+                }
+            }
+            return false;
+        }
         public bool IsInHand(Card card)
         {
             return card != null && GetHandCard(card.uid) != null;
@@ -645,7 +673,7 @@ namespace TcgEngine
             return game;
         }
 
-        //Clone all variables into another var, used mostly by the AI when building a prediction tree
+        //Clone all variables into another var, used mostly by the AI when building temp_card prediction tree
         public static void Clone(Game source, Game dest)
         {
             dest.game_uid = source.game_uid;

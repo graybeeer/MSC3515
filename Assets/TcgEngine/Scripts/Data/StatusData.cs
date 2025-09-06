@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace TcgEngine
@@ -13,15 +14,15 @@ namespace TcgEngine
         AddHP = 5,          //HP status can be used for hp boost limited for X turns 
         AddManaCost = 6,    //Mana Cost status can be used for mana cost increase/reduction limited for X turns 
 
-        Stealth = 10,       //Cant be attacked until do action
+        Stealth_legacy = 10,       //Cant be attacked until do action
         Invincibility = 12, //Cant be attacked for X turns
         Shell = 13,         //Receives no damage the first time
-        Protection = 14,    //Taunt, gives SuperProtected to other cards
+        Protection_legacy = 14,    //Taunt, gives SuperProtected to other cards
 
-        Armor = 18,         //Receives less damage
+        Armor_legacy = 18,         //Receives less damage
         SpellImmunity = 19, //Cant be targeted/damaged by spells
 
-        Deathtouch = 20,    //Kills when attacking a character
+        Deathtouch_legacy = 20,    //Kills when attacking a character
         Fury = 22,          //Can attack twice per turn
         Intimidate = 23,    //Target doesnt counter when attacking
         Flying = 24,         //Can ignore taunt
@@ -36,11 +37,13 @@ namespace TcgEngine
         Sleep = 36,         //Doesnt untap at the start of turn
 
         Mercy = 40,         //자비 - 상대 영웅을 공격할 수 없음
-        Protected = 43, //적 캐릭터(영웅제외)에게 공격받지 않는다
-        SuperProtected = 44,     //Cards that are protected by taunt / 적 유닛에게 공격받지 않는다
+        Protected = 43, //쉴드- 적 캐릭터(영웅제외)에게 공격받지 않는다
+        SuperProtected = 44,     //슈퍼쉴드- 적 유닛에게 공격받지 않는다
+        Taunt = 46,     //도발- 도발 유닛을 공격가능한 상태라면, 도발 유닛만 공격할 수 있다
 
         hasted = 50, //헤이스트- 저주랑 정 반대로 추가로 이동가능한 방향이 생김
-        DeathCount =52, //데쓰카운트 - 일정 턴이 지나면 이 유닛은 사망한다.
+        DeathCount = 52, //데쓰카운트 - 일정 턴이 지나면 이 유닛은 사망한다.
+        
     }
 
     /// <summary>
@@ -68,6 +71,23 @@ namespace TcgEngine
         public int hvalue;
 
         public static List<StatusData> status_list = new List<StatusData>();
+
+        [Space(30)]
+        [Header("이 데이터를 참조하는 다른 데이터")]
+        public List<ScriptableObject> referencingComponents = new List<ScriptableObject>();
+
+        public void FindReferencingData()
+        {
+            referencingComponents.Clear();
+            AbilityData.Load();
+            foreach (var data in AbilityData.ability_list)
+            {
+                if (data.status.Contains(this))
+                    referencingComponents.Add(data);
+            }
+        }
+
+
 
         public string GetTitle()
         {

@@ -227,7 +227,7 @@ namespace TcgEngine.FX
 
             if (card.uid == target.uid)
             {
-                if (target.CardData.IsBoardCard() || card == target)
+                if (target.CardData.IsCanBeBoardCard() || card == target)
                 {
                     //Show Damage Number FX on self
                     DamageFX(attacker, target, transform);
@@ -271,7 +271,7 @@ namespace TcgEngine.FX
             if (!target.HasStatus(StatusType.Invincibility))
             {
                 int value = attacker.GetAttack();
-                value = Mathf.Max(value - target.GetStatusValue(StatusType.Armor), 0);
+                value = Mathf.Max(value - target.GetStatusValue(StatusType.Armor_legacy), 0);
                 DamageFX(target_trans, value, delay);
             }
         }
@@ -377,7 +377,7 @@ namespace TcgEngine.FX
 
                 if (caster.uid == bcard.GetCardUID())
                 {
-                    if (iability.charge_target && caster.CardData.IsBoardCard())
+                    if (iability.charge_target && caster.CardData.IsCanBeBoardCard())
                     {
                         BoardCard btarget = BoardCard.Get(target.uid);
                         ChargeInto(btarget);
@@ -388,7 +388,7 @@ namespace TcgEngine.FX
 
         private Transform GetFXSource(Card caster)
         {
-            if (caster.CardData.IsBoardCard())
+            if (caster.CardData.IsCanBeBoardCard())
             {
                 BoardCard bcard = BoardCard.Get(caster.uid);
                 if (bcard != null)

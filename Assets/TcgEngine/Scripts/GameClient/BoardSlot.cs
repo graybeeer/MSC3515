@@ -57,7 +57,7 @@ namespace TcgEngine.Client
 
             //Find target opacity value
             target_alpha = 0.5f;
-            if (your_turn && dcard != null && dcard.CardData.IsBoardCard() && gdata.CanPlayCard(dcard, slot))
+            if (your_turn && dcard != null && dcard.CardData.IsCanBeBoardCard() && gdata.CanPlayCard(dcard, slot))
             {
                 target_alpha = 1f; //hightlight when dragging a character or artifact
             }
