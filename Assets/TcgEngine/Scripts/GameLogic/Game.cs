@@ -4,6 +4,7 @@ using TcgEngine.Client;
 using Unity.Mathematics;
 using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 namespace TcgEngine
 {
@@ -609,8 +610,12 @@ namespace TcgEngine
             {
                 foreach (Card temp_card in GetCardInCanAttackSlot(card))
                 {
+
                     if (temp_card.HasStatus(StatusType.Taunt))
-                        return true;
+                    {
+                        if (!temp_card.HasStatus(StatusType.SuperProtected) && (!temp_card.HasStatus(StatusType.Protected) || card.CardData.IsHero()))
+                            return true;
+                    }
                 }
             }
             return false;

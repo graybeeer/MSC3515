@@ -471,7 +471,8 @@ namespace TcgEngine.Gameplay
                 if (!skip_cost)
                     player.PayMana(card);
                 //Play card
-                if(player.cards_hand.Contains(card))
+                //if (game_data.IsInHand(card))
+                if (player.cards_hand.Contains(card))
                     card.is_playing_hand = true;
 
                 player.RemoveCardFromAllGroups(card);
@@ -921,13 +922,6 @@ namespace TcgEngine.Gameplay
                 powner.cards_all.Remove(card.uid);
                 owner.cards_all[card.uid] = card;
                 card.player_id = owner.player_id;
-            }
-        }
-        public virtual void DeactivateCardArrow(Card card,int arrow_num)
-        {
-            if (card.CardData.IsMoveableCard()) //움직일수 있는 카드인지
-            {
-                card.card_arrow[arrow_num] = false;
             }
         }
         public virtual void EquipCard(Card card, Card equipment)
