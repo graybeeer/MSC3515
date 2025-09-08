@@ -246,7 +246,7 @@ namespace TcgEngine
         }
 
         //Check if temp_card card is allowed to attack another one
-        public virtual bool CanAttackTarget(Card attacker, Card target, bool skip_cost = false)
+        public virtual bool CanAttackTarget(Card attacker, Card target, bool skip_cost = false, bool checkCanAttackTaunt = false)
         {
             if (attacker == null || target == null)
                 return false;
@@ -275,8 +275,9 @@ namespace TcgEngine
             if (target.HasStatus(StatusType.Protected) && !attacker.CardData.IsHero() && !attacker.HasStatus(StatusType.Flying))
                 return false; //Protected by 적 하수인 카드
 
-            if (CanAttackTauntCard(attacker) && !target.HasStatus(StatusType.Taunt) && !attacker.HasStatus(StatusType.Flying))
-                return false; //도발 카드 공격 가능한 상태에선 다른 카드 공격 불가능
+            if (!checkCanAttackTaunt)
+                if (!target.HasStatus(StatusType.Taunt) && CanAttackTauntCard(attacker) && !attacker.HasStatus(StatusType.Flying))
+                    return false; //도발 카드 공격 가능한 상태에선 다른 카드 공격 불가능
 
 
             if (attacker.CardData.IsHero() && target.CardData.IsHero()) //둘다 히어로카드면 서로 공격불가
@@ -290,6 +291,7 @@ namespace TcgEngine
             }
             if (attacker.HasStatus(StatusType.Mercy) && target.CardData.IsHero()) //공격자가 자비 상태면 영웅 공격불가
                 return false;
+
             return true;
         }
         public virtual bool CanMoveOrAttack(Card attacker, Slot target, bool skip_cost = false)
@@ -591,13 +593,13 @@ namespace TcgEngine
                 return slots;
             return null;
         }
-        public virtual List<Card> GetCardInCanAttackSlot(Card card)
+        public virtual List<Card> GetCardInCanAttackSlot(Card card, bool checkCanAttackTaunt = false)
         {
             List<Card> cards = new List<Card>();
             foreach (BoardCard temp_boardcard in BoardCard.GetAll())
             {
                 Card temp_card = temp_boardcard.GetCard();
-                if (CanMoveArrow(card, temp_card.slot))
+                if (CanAttackTarget(card, temp_card, false, checkCanAttackTaunt))
                     cards.Add(temp_card);
             }
             if (cards.Count > 0)
@@ -606,15 +608,14 @@ namespace TcgEngine
         }
         public virtual bool CanAttackTauntCard(Card card)
         {
-            if (GetCardInCanAttackSlot(card) != null)
+            if (GetCardInCanAttackSlot(card, true) != null)
             {
-                foreach (Card temp_card in GetCardInCanAttackSlot(card))
+                foreach (Card temp_card in GetCardInCanAttackSlot(card, true))
                 {
 
                     if (temp_card.HasStatus(StatusType.Taunt))
                     {
-                        if (!temp_card.HasStatus(StatusType.SuperProtected) && (!temp_card.HasStatus(StatusType.Protected) || card.CardData.IsHero()))
-                            return true;
+                        return true;
                     }
                 }
             }
