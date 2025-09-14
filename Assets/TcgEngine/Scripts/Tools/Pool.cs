@@ -26,6 +26,19 @@ namespace TcgEngine
             return new_obj;
         }
 
+        public void Create(T temp)
+        {
+            if (available.Count > 0)
+            {
+                T elem = available.Pop();
+                in_use.Add(elem);
+                //return elem;
+            }
+            T new_obj = new T();
+            in_use.Add(temp);
+            //return new_obj;
+        }
+
         public void Dispose(T elem)
         {
             in_use.Remove(elem);

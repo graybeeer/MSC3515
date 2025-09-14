@@ -2,12 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TcgEngine.Gameplay;
-using static UnityEngine.Rendering.DebugUI;
 using System.Linq;
 using Unity.Mathematics;
-using static UnityEngine.GraphicsBuffer;
-using TcgEngine.AI;
-using UnityEditor.Playables;
 
 namespace TcgEngine
 {

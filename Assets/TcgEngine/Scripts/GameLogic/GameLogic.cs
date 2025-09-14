@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using TcgEngine.Client;
 using TcgEngine.UI;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Profiling;
+using static UnityEngine.GraphicsBuffer;
 
 namespace TcgEngine.Gameplay
 {
@@ -58,6 +60,8 @@ namespace TcgEngine.Gameplay
         private ListSwap<Slot> slot_array = new ListSwap<Slot>();
         private ListSwap<CardData> card_data_array = new ListSwap<CardData>();
         private List<Card> cards_to_clear = new List<Card>();
+
+        float msc_time = 0.4f;
 
         public GameLogic(bool is_ai)
         {
@@ -226,7 +230,7 @@ namespace TcgEngine.Gameplay
             }
 
             resolve_queue.AddCallback(StartMainPhase);
-            resolve_queue.ResolveAll(0.2f);
+            resolve_queue.ResolveAll(msc_time);
         }
 
         public virtual void StartNextTurn()
@@ -281,7 +285,7 @@ namespace TcgEngine.Gameplay
             RefreshData();
 
             resolve_queue.AddCallback(StartNextTurn);
-            resolve_queue.ResolveAll(0.2f);
+            resolve_queue.ResolveAll(msc_time);
         }
 
         //End game with winner
@@ -465,14 +469,14 @@ namespace TcgEngine.Gameplay
         {
             if (game_data.CanPlayCard(card, slot, skip_cost))
             {
+                Debug.Log("play card");
                 Player player = game_data.GetPlayer(card.player_id);
 
                 //Cost
                 if (!skip_cost)
                     player.PayMana(card);
                 //Play card
-                //if (game_data.IsInHand(card))
-                if (player.cards_hand.Contains(card))
+                if (game_data.IsInHand(card) && player.cards_hand.Contains(card))
                     card.is_playing_hand = true;
 
                 player.RemoveCardFromAllGroups(card);
@@ -525,7 +529,7 @@ namespace TcgEngine.Gameplay
                 RefreshData();
 
                 onCardPlayed?.Invoke(card, slot);
-                resolve_queue.ResolveAll(0.3f);
+                resolve_queue.ResolveAll(msc_time);
             }
         }
         //추가 - 해당 위치로 공격 혹은 이동하는 함수
@@ -549,14 +553,23 @@ namespace TcgEngine.Gameplay
             if (game_data.CanMoveCard(card, slot, skip_cost))
             {
                 Player player = game_data.GetPlayer(card.player_id);
+                /*
                 card.slot = slot;
 
                 //Moving doesn't really have any effect in demo so can be done indefinitely
                 if(!skip_cost)
                     card.exhausted = true;
                 //card.RemoveStatus(StatusType.Stealth_legacy);
+                */
                 player.AddHistory(GameAction.Move, card);
 
+
+
+                //추가 예정-이동 전에 발동하는 효과 트리거 추가예정
+                //TriggerCardAbilityType(AbilityTrigger.OnBeforeMove, attacker, target);
+                //TriggerSecrets(AbilityTrigger.OnBeforeMove, attacker);
+
+                /*
                 //Also move the equipment
                 Card equip = game_data.GetEquipCard(card.equipped_uid);
                 if (equip != null)
@@ -564,24 +577,31 @@ namespace TcgEngine.Gameplay
 
                 UpdateOngoing();
                 RefreshData();
+                
 
                 onCardMoved?.Invoke(card, slot);
-                resolve_queue.ResolveAll(0.2f);
+                resolve_queue.ResolveAll(msc_time);
+                */
+                resolve_queue.AddMove(card, slot, ResolveMove, skip_cost);
+                resolve_queue.ResolveAll();
             }
         }
         public virtual void ForcedMoveCard(Card card, Slot slot, bool skip_cost = false)
         {
-            if(game_data.CanForcedMoveCard(card, slot, skip_cost))
+            if (game_data.CanForcedMoveCard(card, slot, skip_cost))
             {
                 Player player = game_data.GetPlayer(card.player_id);
+                /*
                 card.slot = slot;
 
                 //Moving doesn't really have any effect in demo so can be done indefinitely
                 if (!skip_cost)
                     card.exhausted = true;
                 //card.RemoveStatus(StatusType.Stealth_legacy);
+                */
                 player.AddHistory(GameAction.Move, card);
 
+                /*
                 //Also move the equipment
                 Card equip = game_data.GetEquipCard(card.equipped_uid);
                 if (equip != null)
@@ -592,8 +612,33 @@ namespace TcgEngine.Gameplay
 
                 onCardMoved?.Invoke(card, slot);
                 resolve_queue.ResolveAll(0.2f);
+                */
+
+                resolve_queue.AddMove(card, slot, ResolveMove, skip_cost);
+                resolve_queue.ResolveAll();
             }
         }
+        public virtual void ResolveMove(Card card, Slot slot, bool skip_cost = false)
+        {
+            Player player = game_data.GetPlayer(card.player_id);
+            card.slot = slot;
+
+            //Moving doesn't really have any effect in demo so can be done indefinitely
+            if (!skip_cost)
+                card.exhausted = true;
+
+            //Also move the equipment
+            Card equip = game_data.GetEquipCard(card.equipped_uid);
+            if (equip != null)
+                equip.slot = slot;
+
+            UpdateOngoing();
+            RefreshData();
+
+            onCardMoved?.Invoke(card, slot);
+            resolve_queue.ResolveAll(msc_time);
+        }
+        
         public virtual void CastAbility(Card card, AbilityData iability)
         {
             if (game_data.CanCastAbility(card, iability))
@@ -640,7 +685,7 @@ namespace TcgEngine.Gameplay
             UpdateOngoing();
 
             resolve_queue.AddAttack(attacker, target, ResolveAttackHit, skip_cost);
-            resolve_queue.ResolveAll(0.3f);
+            resolve_queue.ResolveAll(msc_time);
         }
 
         protected virtual void ResolveAttackHit(Card attacker, Card target, bool skip_cost)
@@ -685,7 +730,7 @@ namespace TcgEngine.Gameplay
             RefreshData();
             CheckForWinner();
 
-            resolve_queue.ResolveAll(0.2f);
+            resolve_queue.ResolveAll(msc_time);
             //추가
             MoveCard(attacker, target.slot, true);
         }
@@ -722,7 +767,7 @@ namespace TcgEngine.Gameplay
             UpdateOngoing();
 
             resolve_queue.AddAttack(attacker, target, ResolveAttackPlayerHit, skip_cost);
-            resolve_queue.ResolveAll(0.3f);
+            resolve_queue.ResolveAll(msc_time);
         }
 
         protected virtual void ResolveAttackPlayerHit(Card attacker, Player target, bool skip_cost)
@@ -745,7 +790,7 @@ namespace TcgEngine.Gameplay
             RefreshData();
             CheckForWinner();
 
-            resolve_queue.ResolveAll(0.2f);
+            resolve_queue.ResolveAll(msc_time);
         }
 
         //Exhaust after battle
@@ -770,11 +815,31 @@ namespace TcgEngine.Gameplay
                     att.pcallback = null;
                 }
             }
+            foreach (AttackQueueElement att in resolve_queue.GetCommonQueue())
+            {
+                if (att.attacker.uid == attacker.uid)
+                {
+                    att.target = new_target;
+                    att.ptarget = null;
+                    att.callback = ResolveAttack;
+                    att.pcallback = null;
+                }
+            }
         }
 
         public virtual void RedirectAttack(Card attacker, Player new_target)
         {
             foreach (AttackQueueElement att in resolve_queue.GetAttackQueue())
+            {
+                if (att.attacker.uid == attacker.uid)
+                {
+                    att.ptarget = new_target;
+                    att.target = null;
+                    att.pcallback = ResolveAttackPlayer;
+                    att.callback = null;
+                }
+            }
+            foreach (AttackQueueElement att in resolve_queue.GetCommonQueue())
             {
                 if (att.attacker.uid == attacker.uid)
                 {

@@ -12,15 +12,19 @@ namespace TcgEngine
 
     public class ResolveQueue 
     {
+        private Pool<CommonQueueElement> common_elem_pool = new Pool<CommonQueueElement>();
         private Pool<AbilityQueueElement> ability_elem_pool = new Pool<AbilityQueueElement>();
         private Pool<SecretQueueElement> secret_elem_pool = new Pool<SecretQueueElement>();
         private Pool<AttackQueueElement> attack_elem_pool = new Pool<AttackQueueElement>();
         private Pool<CallbackQueueElement> callback_elem_pool = new Pool<CallbackQueueElement>();
-
+        
+        private Queue<CommonQueueElement> common_queue = new Queue<CommonQueueElement>();
         private Queue<AbilityQueueElement> ability_queue = new Queue<AbilityQueueElement>();
         private Queue<SecretQueueElement> secret_queue = new Queue<SecretQueueElement>();
         private Queue<AttackQueueElement> attack_queue = new Queue<AttackQueueElement>();
         private Queue<CallbackQueueElement> callback_queue = new Queue<CallbackQueueElement>();
+
+        private Queue<int> animation_queue = new Queue<int>(); //추가- 임시 애니메이션 큐
 
         private Game game_data;
         private bool is_resolving = false;
@@ -52,12 +56,15 @@ namespace TcgEngine
         {
             if (ability != null && caster != null)
             {
-                AbilityQueueElement elem = ability_elem_pool.Create();
+                //AbilityQueueElement elem = ability_elem_pool.Create();
+                AbilityQueueElement elem = new AbilityQueueElement();
+                common_elem_pool.Create(elem);
                 elem.caster = caster;
                 elem.triggerer = triggerer;
                 elem.ability = ability;
                 elem.callback = callback;
-                ability_queue.Enqueue(elem);
+                //ability_queue.Enqueue(elem);
+                common_queue.Enqueue(elem);
             }
         }
 
@@ -65,27 +72,45 @@ namespace TcgEngine
         {
             if (attacker != null && target != null)
             {
-                AttackQueueElement elem = attack_elem_pool.Create();
+                //AttackQueueElement elem = attack_elem_pool.Create();
+                AttackQueueElement elem = new AttackQueueElement();
+                common_elem_pool.Create(elem);
                 elem.attacker = attacker;
                 elem.target = target;
                 elem.ptarget = null;
                 elem.skip_cost = skip_cost;
                 elem.callback = callback;
-                attack_queue.Enqueue(elem);
+                //attack_queue.Enqueue(elem);
+                common_queue.Enqueue(elem);
             }
         }
-
+        public virtual void AddMove(Card mover, Slot slot, Action<Card, Slot, bool> callback, bool skip_cost = false)
+        {
+            if(mover != null && slot != null)
+            {
+                MoveQueueElement elem = new MoveQueueElement();
+                common_elem_pool.Create(elem);
+                elem.mover = mover;
+                elem.slot = slot;
+                elem.skip_cost= skip_cost;
+                elem.callback = callback;
+                common_queue.Enqueue(elem);
+            }
+        }
         public virtual void AddAttack(Card attacker, Player target, Action<Card, Player, bool> callback, bool skip_cost = false)
         {
             if (attacker != null && target != null)
             {
-                AttackQueueElement elem = attack_elem_pool.Create();
+                //AttackQueueElement elem = attack_elem_pool.Create();
+                AttackQueueElement elem = new AttackQueueElement();
+                common_elem_pool.Create(elem);
                 elem.attacker = attacker;
                 elem.target = null;
                 elem.ptarget = target;
                 elem.skip_cost = skip_cost;
                 elem.pcallback = callback;
-                attack_queue.Enqueue(elem);
+                //attack_queue.Enqueue(elem);
+                common_queue.Enqueue(elem);
             }
         }
 
@@ -93,12 +118,15 @@ namespace TcgEngine
         {
             if (secret != null && trigger != null)
             {
-                SecretQueueElement elem = secret_elem_pool.Create();
+                //SecretQueueElement elem = secret_elem_pool.Create();
+                SecretQueueElement elem = new SecretQueueElement();
+                common_elem_pool.Create(elem);
                 elem.secret_trigger = secret_trigger;
                 elem.secret = secret;
                 elem.triggerer = trigger;
                 elem.callback = callback;
-                secret_queue.Enqueue(elem);
+                //secret_queue.Enqueue(elem);
+                common_queue.Enqueue(elem);
             }
         }
 
@@ -106,20 +134,68 @@ namespace TcgEngine
         {
             if (callback != null)
             {
-                CallbackQueueElement elem = callback_elem_pool.Create();
+                //CallbackQueueElement elem = callback_elem_pool.Create();
+                CallbackQueueElement elem = new CallbackQueueElement();
+                common_elem_pool.Create(elem);
                 elem.callback = callback;
-                callback_queue.Enqueue(elem);
+                //callback_queue.Enqueue(elem);
+                common_queue.Enqueue(elem);
             }
         }
 
         public virtual void Resolve()
         {
+            if(common_queue.Count > 0)
+            {
+                CommonQueueElement elem = common_queue.Dequeue();
+                if(elem is AbilityQueueElement elem1)
+                {
+                    //Resolve Ability
+                    common_elem_pool.Dispose(elem1);
+                    elem1.callback?.Invoke(elem1.ability, elem1.caster, elem1.triggerer);
+                    Debug.Log("movoo1");
+                }
+                else if(elem is SecretQueueElement elem2)
+                {
+                    common_elem_pool.Dispose(elem2);
+                    elem2.callback?.Invoke(elem2.secret_trigger, elem2.secret, elem2.triggerer);
+                    Debug.Log("movoo2");
+                }
+                else if(elem is AttackQueueElement elem3)
+                {
+                    //Resolve Attack
+                    common_elem_pool.Dispose(elem3);
+                    if (elem3.ptarget != null)
+                        elem3.pcallback?.Invoke(elem3.attacker, elem3.ptarget, elem3.skip_cost);
+                    else
+                        elem3.callback?.Invoke(elem3.attacker, elem3.target, elem3.skip_cost);
+                    Debug.Log("movoo3");
+                }
+                else if(elem is MoveQueueElement elem4)
+                {
+                    common_elem_pool.Dispose(elem4);
+                    elem4.callback?.Invoke(elem4.mover, elem4.slot, elem4.skip_cost);
+                    Debug.Log("movoo4");
+                }
+                else if(elem is CallbackQueueElement elem5)
+                {
+                    common_elem_pool.Dispose(elem5);
+                    elem5.callback.Invoke();
+                    Debug.Log("movoo5");
+                }
+                else
+                {
+                    Debug.Log("ddd");
+                }
+            }
+            /*
             if (ability_queue.Count > 0)
             {
                 //Resolve Ability
                 AbilityQueueElement elem = ability_queue.Dequeue();
                 ability_elem_pool.Dispose(elem);
                 elem.callback?.Invoke(elem.ability, elem.caster, elem.triggerer);
+                //Debug.Log("movoo1");
             }
             else if (secret_queue.Count > 0)
             {
@@ -127,6 +203,7 @@ namespace TcgEngine
                 SecretQueueElement elem = secret_queue.Dequeue();
                 secret_elem_pool.Dispose(elem);
                 elem.callback?.Invoke(elem.secret_trigger, elem.secret, elem.triggerer);
+                //Debug.Log("movoo2");
             }
             else if (attack_queue.Count > 0)
             {
@@ -137,13 +214,16 @@ namespace TcgEngine
                     elem.pcallback?.Invoke(elem.attacker, elem.ptarget, elem.skip_cost);
                 else
                     elem.callback?.Invoke(elem.attacker, elem.target, elem.skip_cost);
+                //Debug.Log("movoo3");
             }
             else if (callback_queue.Count > 0)
             {
                 CallbackQueueElement elem = callback_queue.Dequeue();
                 callback_elem_pool.Dispose(elem);
                 elem.callback.Invoke();
+                //Debug.Log("movoo4");
             }
+            */
         }
 
         public virtual void ResolveAll(float delay)
@@ -181,7 +261,7 @@ namespace TcgEngine
                 return false; //Cant execute anymore when game is ended
             if (game_data.selector != SelectorType.None)
                 return false; //Waiting for player input, in the middle of resolve loop
-            return attack_queue.Count > 0 || ability_queue.Count > 0 || secret_queue.Count > 0 || callback_queue.Count > 0;
+            return common_queue.Count > 0 || attack_queue.Count > 0 || ability_queue.Count > 0 || secret_queue.Count > 0 || callback_queue.Count > 0;
         }
 
         public virtual bool IsResolving()
@@ -191,10 +271,16 @@ namespace TcgEngine
 
         public virtual void Clear()
         {
+            //실제로는 common만 작동
+            common_elem_pool.DisposeAll();
+
             attack_elem_pool.DisposeAll();
             ability_elem_pool.DisposeAll();
             secret_elem_pool.DisposeAll();
             callback_elem_pool.DisposeAll();
+
+            common_queue.Clear();
+
             attack_queue.Clear();
             ability_queue.Clear();
             secret_queue.Clear();
@@ -205,7 +291,6 @@ namespace TcgEngine
         {
             return attack_queue;
         }
-
         public Queue<AbilityQueueElement> GetAbilityQueue()
         {
             return ability_queue;
@@ -220,9 +305,16 @@ namespace TcgEngine
         {
             return callback_queue;
         }
+        public Queue<CommonQueueElement> GetCommonQueue()
+        {
+            return common_queue;
+        }
     }
 
-    public class AbilityQueueElement
+    public class CommonQueueElement
+    {
+    }
+    public class AbilityQueueElement : CommonQueueElement
     {
         public AbilityData ability;
         public Card caster;
@@ -230,7 +322,7 @@ namespace TcgEngine
         public Action<AbilityData, Card, Card> callback;
     }
 
-    public class AttackQueueElement
+    public class AttackQueueElement : CommonQueueElement
     {
         public Card attacker;
         public Card target;
@@ -240,7 +332,15 @@ namespace TcgEngine
         public Action<Card, Player, bool> pcallback;
     }
 
-    public class SecretQueueElement
+    public class MoveQueueElement : CommonQueueElement
+    {
+        public Card mover;
+        public Slot slot;
+        public bool skip_cost;
+        public Action<Card, Slot, bool> callback;
+    }
+
+    public class SecretQueueElement : CommonQueueElement
     {
         public AbilityTrigger secret_trigger;
         public Card secret;
@@ -248,8 +348,23 @@ namespace TcgEngine
         public Action<AbilityTrigger, Card, Card> callback;
     }
 
-    public class CallbackQueueElement
+    public class CallbackQueueElement : CommonQueueElement
     {
         public Action callback;
+    }
+
+    public class TurnEndQueueElement:CommonQueueElement
+    {
+
+    }
+
+    public class PlayCardQueueElement : CommonQueueElement
+    {
+
+    }
+
+    public class AnimaitionFXQueueElement
+    {
+
     }
 }
