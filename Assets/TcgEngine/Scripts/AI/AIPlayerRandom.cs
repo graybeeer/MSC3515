@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TcgEngine.Client;
 using TcgEngine.Gameplay;
+using UnityEditor.ShaderGraph.Internal;
 
 namespace TcgEngine.AI
 {
@@ -17,6 +18,7 @@ namespace TcgEngine.AI
 
         private System.Random rand = new System.Random();
 
+        private float msctime = 0.1f;
         public AIPlayerRandom(GameLogic gameplay, int id, int level)
         {
             this.gameplay = gameplay;
@@ -74,31 +76,31 @@ namespace TcgEngine.AI
 
         private IEnumerator AiTurn()
         {
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(msctime);
 
             PlayCard();
 
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(msctime);
 
             PlayCard();
 
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(msctime);
 
             PlayCard();
 
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(msctime);
 
             MoveOrAttack();
 
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(msctime);
 
             MoveOrAttack();
 
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(msctime);
 
             MoveOrAttack();
 
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(msctime);
 
             MoveOrAttack();
 
@@ -106,7 +108,7 @@ namespace TcgEngine.AI
 
             //AttackPlayer();
 
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(msctime);
 
             EndTurn();
 

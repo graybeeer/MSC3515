@@ -24,7 +24,7 @@ namespace TcgEngine
         private Queue<AttackQueueElement> attack_queue = new Queue<AttackQueueElement>();
         private Queue<CallbackQueueElement> callback_queue = new Queue<CallbackQueueElement>();
 
-        private Queue<int> animation_queue = new Queue<int>(); //추가- 임시 애니메이션 큐
+        //private Queue<int> animation_queue = new Queue<int>(); //추가- 임시 애니메이션 큐
 
         private Game game_data;
         private bool is_resolving = false;
@@ -153,13 +153,13 @@ namespace TcgEngine
                     //Resolve Ability
                     common_elem_pool.Dispose(elem1);
                     elem1.callback?.Invoke(elem1.ability, elem1.caster, elem1.triggerer);
-                    Debug.Log("movoo1");
+                    //Debug.Log("movoo1");
                 }
                 else if(elem is SecretQueueElement elem2)
                 {
                     common_elem_pool.Dispose(elem2);
                     elem2.callback?.Invoke(elem2.secret_trigger, elem2.secret, elem2.triggerer);
-                    Debug.Log("movoo2");
+                    //Debug.Log("movoo2");
                 }
                 else if(elem is AttackQueueElement elem3)
                 {
@@ -169,19 +169,19 @@ namespace TcgEngine
                         elem3.pcallback?.Invoke(elem3.attacker, elem3.ptarget, elem3.skip_cost);
                     else
                         elem3.callback?.Invoke(elem3.attacker, elem3.target, elem3.skip_cost);
-                    Debug.Log("movoo3");
+                    //Debug.Log("movoo3");
                 }
                 else if(elem is MoveQueueElement elem4)
                 {
                     common_elem_pool.Dispose(elem4);
                     elem4.callback?.Invoke(elem4.mover, elem4.slot, elem4.skip_cost);
-                    Debug.Log("movoo4");
+                    //Debug.Log("movoo4");
                 }
                 else if(elem is CallbackQueueElement elem5)
                 {
                     common_elem_pool.Dispose(elem5);
                     elem5.callback.Invoke();
-                    Debug.Log("movoo5");
+                    //Debug.Log("movoo5");
                 }
                 else
                 {
@@ -351,11 +351,6 @@ namespace TcgEngine
     public class CallbackQueueElement : CommonQueueElement
     {
         public Action callback;
-    }
-
-    public class TurnEndQueueElement:CommonQueueElement
-    {
-
     }
 
     public class PlayCardQueueElement : CommonQueueElement
