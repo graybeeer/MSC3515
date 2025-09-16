@@ -167,6 +167,7 @@ namespace TcgEngine.Server
             }
 
             //Process queued actions
+            //if (queued_actions.Count > 0)
             if (queued_actions.Count > 0 && !gameplay.IsResolving())
             {
                 QueuedGameAction action = queued_actions.Dequeue();
@@ -231,6 +232,7 @@ namespace TcgEngine.Server
             {
                 reader.ReadValueSafe(out ushort type);
                 SerializedData sdata = new SerializedData(reader);
+                //if(true)
                 if (!gameplay.IsResolving())
                 {
                     //Not resolving, execute now
@@ -333,6 +335,7 @@ namespace TcgEngine.Server
         {
             MsgPlayCard msg = sdata.Get<MsgPlayCard>();
             Player player = GetPlayer(iclient);
+            //if (player != null && msg != null && game_data.IsPlayerActionTurn(player))
             if (player != null && msg != null && game_data.IsPlayerActionTurn(player) && !gameplay.IsResolving())
             {
                 Card card = player.GetCard(msg.card_uid);

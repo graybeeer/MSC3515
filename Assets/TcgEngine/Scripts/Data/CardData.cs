@@ -60,6 +60,10 @@ namespace TcgEngine
         public GameObject damage_fx;
         public GameObject idle_fx;
         public GameObject move_fx; //추가
+        public float spawn_fx_time; //fx에 총 걸리는 시간(리솔브 큐 딜레이에서 이 시간만큼 걸리게)
+        public float attack_fx_time; 
+        public float damage_fx_time;
+        public float move_fx_time;
         public AudioClip spawn_audio;
         public AudioClip death_audio;
         public AudioClip attack_audio;

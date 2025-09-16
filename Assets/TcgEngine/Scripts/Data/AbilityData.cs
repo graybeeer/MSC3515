@@ -38,10 +38,11 @@ namespace TcgEngine
         public bool exhaust;                    //Action cost for activated abilities
 
         [Header("FX")]
-        public GameObject board_fx;
-        public GameObject caster_fx;
-        public GameObject target_fx;
-        public GameObject projectile_fx;
+        public GameObject board_fx; //보드 전체에 작동되는 fx, (ex.소환될때 필드에 안개가 깔리거나 불바다가 된다거나 하는 연출)
+        public GameObject caster_fx; //발동하는 카드에서 작동하는 fx
+        public GameObject target_fx; //타겟에게 작동하는 fx
+        public GameObject projectile_fx; //발사체 fx
+        public float fx_time; //모든 이펙트가 끝나는데 총 걸리는 시간(리솔브 큐 딜레이에서 이 시간만큼 걸리게)
         public AudioClip cast_audio;
         public AudioClip target_audio;
         public bool charge_target;

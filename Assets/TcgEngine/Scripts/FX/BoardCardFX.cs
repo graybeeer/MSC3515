@@ -5,6 +5,8 @@ using UnityEngine.UI;
 using TcgEngine.Client;
 using UnityEngine.Events;
 using TcgEngine;
+using static UnityEngine.GraphicsBuffer;
+using UnityEditor.Experimental.GraphView;
 
 namespace TcgEngine.FX
 {
@@ -176,6 +178,17 @@ namespace TcgEngine.FX
 
         private void OnMove(Card card, Slot slot)
         {
+            Card move_card = bcard.GetCard();
+            CardData icard = bcard.GetCardData();
+            if (card == null || slot == null)
+                return;
+
+            if (card.uid == move_card.uid)
+            {
+                GameObject fx = icard.move_fx != null ? icard.move_fx : AssetData.Get().card_move_fx;
+            }
+
+
             AudioTool.Get().PlaySFX("card_move", AssetData.Get().card_move_audio);
         }
 

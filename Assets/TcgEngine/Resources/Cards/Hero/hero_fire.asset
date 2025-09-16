@@ -36,6 +36,10 @@ MonoBehaviour:
   damage_fx: {fileID: 0}
   idle_fx: {fileID: 0}
   move_fx: {fileID: 0}
+  spawn_fx_time: 0
+  attack_fx_time: 0
+  damage_fx_time: 0
+  move_fx_time: 0
   spawn_audio: {fileID: 0}
   death_audio: {fileID: 0}
   attack_audio: {fileID: 0}

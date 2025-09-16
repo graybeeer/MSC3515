@@ -42,6 +42,7 @@ namespace TcgEngine.Server
             if (!network.IsActive())
             {
                 network.StartServer(NetworkData.Get().port);
+                //Debug.Log("Start");
             }
 
             Login();
