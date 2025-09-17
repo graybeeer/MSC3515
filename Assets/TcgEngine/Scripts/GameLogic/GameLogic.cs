@@ -27,7 +27,6 @@ namespace TcgEngine.Gameplay
         public UnityAction<Card, Slot> onCardSummoned;
         public UnityAction<Card, Slot> onCardMoved;
         public UnityAction<Card> onCardTransformed;
-        public UnityAction<Card> onCardTransformedOwner; //추가 - 카드 주인이 바뀔때
         public UnityAction<Card> onCardDiscarded;
         public UnityAction<int> onCardDrawn;
         public UnityAction<int> onRollValue;
@@ -589,6 +588,7 @@ namespace TcgEngine.Gameplay
                 resolve_queue.ResolveAll(msc_time);
                 */
                 resolve_queue.AddMove(card, slot, ResolveMove, skip_cost);
+                float move_time = card.CardData.move_fx_time == 0 ? msc_time : card.CardData.move_fx_time;
                 resolve_queue.ResolveAll();
             }
         }
@@ -600,6 +600,7 @@ namespace TcgEngine.Gameplay
                 player.AddHistory(GameAction.Move, card);
 
                 resolve_queue.AddMove(card, slot, ResolveMove, skip_cost);
+                float move_time = card.CardData.move_fx_time == 0 ? msc_time : card.CardData.move_fx_time;
                 resolve_queue.ResolveAll();
             }
         }
@@ -1249,6 +1250,7 @@ namespace TcgEngine.Gameplay
             if (!caster.HasStatus(StatusType.Silenced_legacy) && iability.AreTriggerConditionsMet(game_data, caster, trigger_card))
             {
                 resolve_queue.AddAbility(iability, caster, trigger_card, ResolveCardAbility);
+                //resolve_queue.ResolveAll(5f);
             }
         }
 

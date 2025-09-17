@@ -58,7 +58,9 @@ namespace TcgEngine.Client
         public UnityAction onRefreshAll;
 
         private int player_id = 0; //Player playing on this device;
-        private Game game_data;
+        private Game game_data; //플레이 화면에 보이는 게임데이터
+
+        private Game game_data_server;//서버와 바로 동기화된 게임데이터
 
         private bool observe_mode = false;
         private int observe_player_id = 0;

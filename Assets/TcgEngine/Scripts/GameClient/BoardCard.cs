@@ -56,6 +56,8 @@ namespace TcgEngine.Client
 
         private static List<BoardCard> card_list = new List<BoardCard>();
 
+        Vector3 random_rotate = Vector3.zero;
+
         void Awake()
         {
             card_list.Add(this);
@@ -82,7 +84,8 @@ namespace TcgEngine.Client
         {
             //Random slight rotation
             Vector3 board_rot = GameBoard.Get().GetAngles();
-            transform.rotation = Quaternion.Euler(board_rot.x, board_rot.y, board_rot.z + Random.Range(-1f, 1f));          
+            //transform.rotation = Quaternion.Euler(board_rot.x, board_rot.y, board_rot.z + Random.Range(-1f, 1f));
+            random_rotate = new Vector3(0, 0, Random.Range(-1f, 1f));
         }
 
         void Update()
@@ -146,12 +149,12 @@ namespace TcgEngine.Client
             if (card.player_id == 1)
             {
                 Vector3 board_rot = GameBoard.Get().GetAngles();
-                transform.localRotation = Quaternion.Euler(board_rot.x, board_rot.y, board_rot.z + 180);
+                transform.localRotation = Quaternion.Euler(board_rot.x, board_rot.y, board_rot.z + 180 + random_rotate.z);
             }
             else
             {
                 Vector3 board_rot = GameBoard.Get().GetAngles();
-                transform.localRotation = Quaternion.Euler(board_rot.x, board_rot.y, board_rot.z);
+                transform.localRotation = Quaternion.Euler(board_rot.x, board_rot.y, board_rot.z + random_rotate.z);
             }
 
             //Update frame image
