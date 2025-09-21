@@ -5,8 +5,6 @@ using UnityEngine.UI;
 using TcgEngine.Client;
 using UnityEngine.Events;
 using TcgEngine;
-using static UnityEngine.GraphicsBuffer;
-using UnityEditor.Experimental.GraphView;
 
 namespace TcgEngine.FX
 {

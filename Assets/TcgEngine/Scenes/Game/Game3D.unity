@@ -678,7 +678,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &97822590
 Transform:
   m_ObjectHideFlags: 0
@@ -1174,10 +1174,10 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
+    m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
-    m_Strength: 1
+    m_Strength: 0.6
     m_Bias: 0.05
     m_NormalBias: 0.4
     m_NearPlane: 0.2
@@ -2436,6 +2436,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 97822590}
     m_Modifications:
+    - target: {fileID: 4945828396878837163, guid: 8eda1c0af7b27a141bfb7bc22a5f68f3,
+        type: 3}
+      propertyPath: m_StaticShadowCaster
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5560103066123025008, guid: 8eda1c0af7b27a141bfb7bc22a5f68f3,
         type: 3}
       propertyPath: m_LocalPosition.x

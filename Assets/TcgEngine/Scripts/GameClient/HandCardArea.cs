@@ -107,7 +107,18 @@ namespace TcgEngine.Client
 
         private int SortFunc(HandCard a, HandCard b)
         {
-            return a.transform.localPosition.x.CompareTo(b.transform.localPosition.x);
+            //패의 핸드 카드 위치 순서를 정렬하는 함수
+            if (!GameClient.Get().IsReady())
+                return -1;
+
+            int player_id = GameClient.Get().GetPlayerID();
+            Game data = GameClient.Get().GetGameData();
+            Player player = data.GetPlayer(player_id);
+
+            return player.cards_hand.IndexOf(a.GetCard()).CompareTo(player.cards_hand.IndexOf(b.GetCard()));
+
+            
+            //return a.transform.localPosition.x.CompareTo(b.transform.localPosition.x);
         }
 
         public bool HasCard(string card_uid)

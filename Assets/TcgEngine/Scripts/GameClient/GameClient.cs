@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using Unity.Netcode;
 using System.Threading.Tasks;
+using TcgEngine.AI;
 
 namespace TcgEngine.Client
 {
@@ -58,9 +59,9 @@ namespace TcgEngine.Client
         public UnityAction onRefreshAll;
 
         private int player_id = 0; //Player playing on this device;
-        private Game game_data; //플레이 화면에 보이는 게임데이터
 
-        private Game game_data_server;//서버와 바로 동기화된 게임데이터
+        private Game game_data; //플레이 화면에 보이는 게임데이터
+        //private Game game_data_immediately;//서버와 바로 동기화된 게임데이터, 화면에는 아직 적용안됐지만 바로 이 게임데이터에는 적용
 
         private bool observe_mode = false;
         private int observe_player_id = 0;
@@ -436,6 +437,8 @@ namespace TcgEngine.Client
             MsgAfterConnected msg = sdata.Get<MsgAfterConnected>();
             player_id = msg.player_id;
             game_data = msg.game_data;
+            //game_data_immediately = msg.game_data;
+
             observe_mode = player_id < 0; //Will usually return -1 if its an observer
 
             if (observe_mode)

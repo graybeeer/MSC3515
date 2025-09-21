@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using TcgEngine.Client;
 using TcgEngine.Gameplay;
-using UnityEditor.ShaderGraph.Internal;
 
 namespace TcgEngine.AI
 {

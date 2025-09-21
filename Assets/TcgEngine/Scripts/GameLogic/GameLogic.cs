@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using TcgEngine.Client;
 using TcgEngine.UI;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Profiling;
@@ -48,6 +47,7 @@ namespace TcgEngine.Gameplay
         public UnityAction onRefresh;
 
         private Game game_data;
+        //private Game game_data_immediately;
 
         private ResolveQueue resolve_queue;
         private bool is_ai_predict = false;
@@ -556,7 +556,7 @@ namespace TcgEngine.Gameplay
         {
             if (game_data.CanMoveCard(card, slot, skip_cost))
             {
-                //Debug.Log("무브무브");
+                //Debug.Log("move");
                 Player player = game_data.GetPlayer(card.player_id);
                 /*
                 card.slot = slot;
@@ -598,6 +598,10 @@ namespace TcgEngine.Gameplay
             {
                 Player player = game_data.GetPlayer(card.player_id);
                 player.AddHistory(GameAction.Move, card);
+
+                //추가 예정-이동 전에 발동하는 효과 트리거 추가예정
+                //TriggerCardAbilityType(AbilityTrigger.OnBeforeMove, attacker, target);
+                //TriggerSecrets(AbilityTrigger.OnBeforeMove, attacker);
 
                 resolve_queue.AddMove(card, slot, ResolveMove, skip_cost);
                 float move_time = card.CardData.move_fx_time == 0 ? msc_time : card.CardData.move_fx_time;

@@ -73,7 +73,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0667b5470f3948f498f8dbd5e0af2433, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parent_slot: {fileID: 0}
   player_id: 0
   card_sprite: {fileID: 4561419592773535510}
   card_glow: {fileID: 4561419593299913256}

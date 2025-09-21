@@ -37,7 +37,7 @@ namespace TcgEngine.Server
             client_list[network.ServerID] = new ClientData(network.ServerID); //Add yourself
             server = new GameServer(GameClient.game_settings.game_uid, GameClient.game_settings.nb_players, false);
 
-            //Debug.Log("LocalStart");
+            Debug.Log("LocalStart");
         }
 
         protected virtual void OnDestroy()

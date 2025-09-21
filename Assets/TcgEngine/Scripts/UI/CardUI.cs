@@ -28,6 +28,7 @@ namespace TcgEngine.UI
         public Text hp;
         public Text cost;
         public Image[] card_arrow_icon = new Image[9];
+        //public SpriteRenderer[] card_arrow = new SpriteRenderer[9];
         public Sprite[] full_card_arrow_icon = new Sprite[9];
         public Sprite[] empty_card_arrow_icon = new Sprite[9];
 

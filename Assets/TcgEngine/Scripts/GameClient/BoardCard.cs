@@ -56,7 +56,7 @@ namespace TcgEngine.Client
 
         private static List<BoardCard> card_list = new List<BoardCard>();
 
-        Vector3 random_rotate = Vector3.zero;
+        Vector3 random_rotate = Vector3.zero; //보드카드는 살짝 틀어있게 놓아져있음
 
         void Awake()
         {
