@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TcgEngine.Client;
 using UnityEngine.Events;
 using TcgEngine;
+using UnityEngine.UIElements;
 
 namespace TcgEngine.FX
 {
@@ -183,6 +184,11 @@ namespace TcgEngine.FX
 
             if (card.uid == move_card.uid)
             {
+                //Debug.Log("출발위치: "+bcard.transform.position); //이동하기 시작한 위치가 현재 위치(처음위치)
+                //Debug.Log("도착위치: "+BoardSlot.GetBoardSlot(slot).transform.position); //도착할 슬롯의 위치
+                Vector3 start = bcard.transform.position;
+                Vector3 arrive = BoardSlot.GetBoardSlot(slot).transform.position;
+
                 GameObject fx = icard.move_fx != null ? icard.move_fx : AssetData.Get().card_move_fx;
             }
 

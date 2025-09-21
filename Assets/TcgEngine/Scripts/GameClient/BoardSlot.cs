@@ -101,7 +101,7 @@ namespace TcgEngine.Client
         }
         public static BoardSlot GetBoardSlot(Slot slot)
         {
-            foreach (BoardSlot bslot in GetAll())
+            foreach (BoardSlot bslot in slot_list)
             {
                 if (bslot.HasSlot(slot))
                     return bslot;

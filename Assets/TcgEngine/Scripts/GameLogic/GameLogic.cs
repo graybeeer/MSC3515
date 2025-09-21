@@ -50,6 +50,7 @@ namespace TcgEngine.Gameplay
         //private Game game_data_immediately;
 
         private ResolveQueue resolve_queue;
+        //private ResolveQueue resolve_queue_immediately;
         private bool is_ai_predict = false;
 
         private System.Random random = new System.Random();
