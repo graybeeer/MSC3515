@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ce5f81e5cc37f547af6923758602c8c, type: 3}
+  m_Name: play_transform_copycat
+  m_EditorClassIdentifier: 
+  id: play_transform_copycat
+  trigger: 10
+  conditions_trigger:
+  - {fileID: 11400000, guid: cf98f1e5f9709d24a8532b94f973022e, type: 2}
+  target: 30
+  conditions_target:
+  - {fileID: 11400000, guid: 902733d12f434e94b904de5ebf4112de, type: 2}
+  - {fileID: 11400000, guid: 47221d412dc0a014b8a33abb0cbfc773, type: 2}
+  - {fileID: 11400000, guid: 065da32cbd133734493695579723a718, type: 2}
+  filters_target: []
+  effects:
+  - {fileID: 11400000, guid: d9b97af77c7909e4292378fcdbef17d8, type: 2}
+  status: []
+  value: 0
+  duration: 0
+  chain_abilities: []
+  mana_cost: 0
+  exhaust: 0
+  board_fx: {fileID: 0}
+  caster_fx: {fileID: 4574152529085066528, guid: 0a338e869785e474db7ea79bc0f3b554,
+    type: 3}
+  target_fx: {fileID: 0}
+  projectile_fx: {fileID: 0}
+  fx_time: 0
+  cast_audio: {fileID: 0}
+  target_audio: {fileID: 0}
+  charge_target: 0
+  title: "\uBCC0\uC2E0!"
+  desc: "\uC120\uD0DD\uD55C \uCE74\uB4DC\uB85C \uBCC0\uC2E0\uD569\uB2C8\uB2E4."
+  referencingComponents: []

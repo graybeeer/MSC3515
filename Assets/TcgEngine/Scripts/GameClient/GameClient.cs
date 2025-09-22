@@ -60,8 +60,7 @@ namespace TcgEngine.Client
 
         private int player_id = 0; //Player playing on this device;
 
-        private Game game_data; //플레이 화면에 보이는 게임데이터
-        //private Game game_data_immediately;//서버와 바로 동기화된 게임데이터, 화면에는 아직 적용안됐지만 바로 이 게임데이터에는 적용
+        private Game game_data; 
 
         private bool observe_mode = false;
         private int observe_player_id = 0;

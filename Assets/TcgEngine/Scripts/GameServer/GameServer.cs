@@ -22,7 +22,6 @@ namespace TcgEngine.Server
         public static float win_expire_time = 60f;       //How long for a player to be declared winnner if hes the only one connected
 
         private Game game_data;
-        //private Game game_data_immediately;
         private GameLogic gameplay;
         private float expiration = 0f;
         private float win_expiration = 0f;

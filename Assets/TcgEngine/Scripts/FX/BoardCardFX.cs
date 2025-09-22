@@ -364,8 +364,8 @@ namespace TcgEngine.FX
             {
                 if (caster.uid == bcard.GetCardUID())
                 {
-                    FXTool.DoSnapFX(iability.caster_fx, bcard.transform);
-                    AudioTool.Get().PlaySFX("ability", iability.cast_audio);
+                    //FXTool.DoSnapFX(iability.caster_fx, bcard.transform);
+                    //AudioTool.Get().PlaySFX("ability", iability.cast_audio);
                 }
             }
         }
@@ -385,6 +385,11 @@ namespace TcgEngine.FX
         {
             if (iability != null && caster != null && target != null)
             {
+                if (caster.uid == bcard.GetCardUID())
+                {
+                    FXTool.DoSnapFX(iability.caster_fx, bcard.transform);
+                    AudioTool.Get().PlaySFX("ability", iability.cast_audio);
+                }
                 if (target.uid == bcard.GetCardUID())
                 {
                     FXTool.DoSnapFX(iability.target_fx, bcard.transform);
