@@ -709,7 +709,9 @@ namespace TcgEngine.Server
 
         protected virtual void OnCardMoved(Card card, Slot slot)
         {
-            MsgPlayCard mdata = new MsgPlayCard();
+            //MsgPlayCard mdata = new MsgPlayCard();
+            MscMsgPlayCard mdata = new MscMsgPlayCard();
+            mdata.game_data = GetGameData();
             mdata.card_uid = card.uid;
             mdata.slot = slot;
             SendToAll(GameAction.CardMoved, mdata, NetworkDelivery.Reliable);

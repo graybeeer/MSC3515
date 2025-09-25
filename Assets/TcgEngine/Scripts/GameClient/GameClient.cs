@@ -5,6 +5,7 @@ using UnityEngine.Events;
 using Unity.Netcode;
 using System.Threading.Tasks;
 using TcgEngine.AI;
+using System;
 
 namespace TcgEngine.Client
 {
@@ -60,7 +61,8 @@ namespace TcgEngine.Client
 
         private int player_id = 0; //Player playing on this device;
 
-        private Game game_data; 
+        private Game game_data;
+        private ResolveQueueClient ClientFXQueue; //클라이언트에서 해당 큐에따라 카드발동 결과 화면에서 순차적으로 실행 
 
         private bool observe_mode = false;
         private int observe_player_id = 0;
@@ -115,6 +117,8 @@ namespace TcgEngine.Client
 
             ConnectToAPI();
             ConnectToServer();
+
+            ClientFXQueue = new ResolveQueueClient(game_data);
         }
 
         protected virtual void OnDestroy()
@@ -490,9 +494,15 @@ namespace TcgEngine.Client
 
         private void OnCardMoved(SerializedData sdata)
         {
-            MsgPlayCard msg = sdata.Get<MsgPlayCard>();
+            //MsgPlayCard msg = sdata.Get<MsgPlayCard>();
+            MscMsgPlayCard msg = sdata.Get<MscMsgPlayCard>();
+            
+            if (msg.game_data != null)
+                Debug.Log(msg.game_data.players[0].cards_hand.Count);
             Card card = game_data.GetCard(msg.card_uid);
             onCardMoved?.Invoke(card, msg.slot);
+
+            ClientFXQueue.AddCallback(GameAction.CardMoved, sdata);
         }
 
         private void OnCardTransformed(SerializedData sdata)
@@ -623,12 +633,14 @@ namespace TcgEngine.Client
             onServerMsg?.Invoke(msg);
         }
 
+        
         private void OnRefreshAll(SerializedData sdata)
         {
             MsgRefreshAll msg = sdata.Get<MsgRefreshAll>();
             game_data = msg.game_data;
             onRefreshAll?.Invoke();
         }
+        
 
         //--------------------------
 

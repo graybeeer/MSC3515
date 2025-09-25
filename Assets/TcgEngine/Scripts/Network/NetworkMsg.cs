@@ -328,5 +328,57 @@ namespace TcgEngine
             }
         }
     }
+    public abstract class MscMsgGameData : INetworkSerializable
+    {
+        public Game game_data;
 
+        public virtual void NetworkSerialize<T>(BufferSerializer<T> serializer) where T : IReaderWriter
+        {
+            if (serializer.IsReader)
+            {
+                int size = 0;
+                serializer.SerializeValue(ref size);
+                if (size > 0)
+                {
+                    byte[] bytes = new byte[size];
+                    serializer.SerializeValue(ref bytes);
+                    game_data = NetworkTool.Deserialize<Game>(bytes);
+                }
+            }
+            if (serializer.IsWriter)
+            {
+                byte[] bytes = NetworkTool.Serialize(game_data);
+                int size = bytes.Length;
+                serializer.SerializeValue(ref size);
+                if (size > 0)
+                    serializer.SerializeValue(ref bytes);
+            }
+        }
+    }
+    public class MscMsgPlayCard : MscMsgGameData
+    {
+        public string card_uid;
+        public Slot slot;
+
+        public override void NetworkSerialize<T>(BufferSerializer<T> serializer) 
+        {
+            base.NetworkSerialize<T>(serializer);
+            serializer.SerializeValue(ref card_uid);
+            serializer.SerializeNetworkSerializable(ref slot);
+        }
+    }
+    public class MscMsgAttack : MscMsgGameData
+    {
+        public string attacker_uid;
+        public string target_uid;
+        public int damage;
+
+        public override void NetworkSerialize<T>(BufferSerializer<T> serializer)
+        {
+            base.NetworkSerialize<T>(serializer);
+            serializer.SerializeValue(ref attacker_uid);
+            serializer.SerializeValue(ref target_uid);
+            serializer.SerializeValue(ref damage);
+        }
+    }
 }
