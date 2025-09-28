@@ -475,21 +475,23 @@ namespace TcgEngine.Client
 
         private void OnNewTurn(SerializedData sdata)
         {
-            MsgPlayer msg = sdata.Get<MsgPlayer>();
+            MscMsgPlayer msg = sdata.Get<MscMsgPlayer>();
             onNewTurn?.Invoke(msg.player_id);
         }
 
         private void OnCardPlayed(SerializedData sdata)
         {
-            MsgPlayCard msg = sdata.Get<MsgPlayCard>();
+            MscMsgPlayCard msg = sdata.Get<MscMsgPlayCard>();
             Card card = game_data.GetCard(msg.card_uid);
             onCardPlayed?.Invoke(card, msg.slot);
+            ClientFXQueue.AddCallback(GameAction.CardPlayed, sdata);
         }
 
         private void OnCardSummoned(SerializedData sdata)
         {
-            MsgPlayCard msg = sdata.Get<MsgPlayCard>();
+            MscMsgPlayCard msg = sdata.Get<MscMsgPlayCard>();
             onCardSummoned?.Invoke(msg.slot);
+            ClientFXQueue.AddCallback(GameAction.CardSummoned, sdata);
         }
 
         private void OnCardMoved(SerializedData sdata)
@@ -507,21 +509,21 @@ namespace TcgEngine.Client
 
         private void OnCardTransformed(SerializedData sdata)
         {
-            MsgCard msg = sdata.Get<MsgCard>();
+            MscMsgCard msg = sdata.Get<MscMsgCard>();
             Card card = game_data.GetCard(msg.card_uid);
             onCardTransformed?.Invoke(card);
         }
 
         private void OnCardDiscarded(SerializedData sdata)
         {
-            MsgCard msg = sdata.Get<MsgCard>();
+            MscMsgCard msg = sdata.Get<MscMsgCard>();
             Card card = game_data.GetCard(msg.card_uid);
             onCardDiscarded?.Invoke(card);
         }
 
         private void OnCardDraw(SerializedData sdata)
         {
-            MsgInt msg = sdata.Get<MsgInt>();
+            MscMsgInt msg = sdata.Get<MscMsgInt>();
             onCardDraw?.Invoke(msg.value);
         }
 
@@ -533,7 +535,7 @@ namespace TcgEngine.Client
 
         private void OnAttackStart(SerializedData sdata)
         {
-            MsgAttack msg = sdata.Get<MsgAttack>();
+            MscMsgAttack msg = sdata.Get<MscMsgAttack>();
             Card attacker = game_data.GetCard(msg.attacker_uid);
             Card target = game_data.GetCard(msg.target_uid);
             onAttackStart?.Invoke(attacker, target);
@@ -541,7 +543,7 @@ namespace TcgEngine.Client
 
         private void OnAttackEnd(SerializedData sdata)
         {
-            MsgAttack msg = sdata.Get<MsgAttack>();
+            MscMsgAttack msg = sdata.Get<MscMsgAttack>();
             Card attacker = game_data.GetCard(msg.attacker_uid);
             Card target = game_data.GetCard(msg.target_uid);
             onAttackEnd?.Invoke(attacker, target);
@@ -549,7 +551,7 @@ namespace TcgEngine.Client
 
         private void OnAttackPlayerStart(SerializedData sdata)
         {
-            MsgAttackPlayer msg = sdata.Get<MsgAttackPlayer>();
+            MscMsgAttackPlayer msg = sdata.Get<MscMsgAttackPlayer>();
             Card attacker = game_data.GetCard(msg.attacker_uid);
             Player target = game_data.GetPlayer(msg.target_id);
             onAttackPlayerStart?.Invoke(attacker, target);
@@ -557,7 +559,7 @@ namespace TcgEngine.Client
 
         private void OnAttackPlayerEnd(SerializedData sdata)
         {
-            MsgAttackPlayer msg = sdata.Get<MsgAttackPlayer>();
+            MscMsgAttackPlayer msg = sdata.Get<MscMsgAttackPlayer>();
             Card attacker = game_data.GetCard(msg.attacker_uid);
             Player target = game_data.GetPlayer(msg.target_id);
             onAttackPlayerEnd?.Invoke(attacker, target);
@@ -565,7 +567,7 @@ namespace TcgEngine.Client
 
         private void OnAbilityTrigger(SerializedData sdata)
         {
-            MsgCastAbility msg = sdata.Get<MsgCastAbility>();
+            MscMsgCastAbility msg = sdata.Get<MscMsgCastAbility>();
             AbilityData ability = AbilityData.Get(msg.ability_id);
             Card caster = game_data.GetCard(msg.caster_uid);
             onAbilityStart?.Invoke(ability, caster);
@@ -573,7 +575,7 @@ namespace TcgEngine.Client
 
         private void OnAbilityTargetCard(SerializedData sdata)
         {
-            MsgCastAbility msg = sdata.Get<MsgCastAbility>();
+            MscMsgCastAbility msg = sdata.Get<MscMsgCastAbility>();
             AbilityData ability = AbilityData.Get(msg.ability_id);
             Card caster = game_data.GetCard(msg.caster_uid);
             Card target = game_data.GetCard(msg.target_uid);
@@ -582,7 +584,7 @@ namespace TcgEngine.Client
 
         private void OnAbilityTargetPlayer(SerializedData sdata)
         {
-            MsgCastAbilityPlayer msg = sdata.Get<MsgCastAbilityPlayer>();
+            MscMsgCastAbilityPlayer msg = sdata.Get<MscMsgCastAbilityPlayer>();
             AbilityData ability = AbilityData.Get(msg.ability_id);
             Card caster = game_data.GetCard(msg.caster_uid);
             Player target = game_data.GetPlayer(msg.target_id);
@@ -591,7 +593,7 @@ namespace TcgEngine.Client
 
         private void OnAbilityTargetSlot(SerializedData sdata)
         {
-            MsgCastAbilitySlot msg = sdata.Get<MsgCastAbilitySlot>();
+            MscMsgCastAbilitySlot msg = sdata.Get<MscMsgCastAbilitySlot>();
             AbilityData ability = AbilityData.Get(msg.ability_id);
             Card caster = game_data.GetCard(msg.caster_uid);
             onAbilityTargetSlot?.Invoke(ability, caster, msg.slot);
@@ -599,7 +601,7 @@ namespace TcgEngine.Client
 
         private void OnAbilityAfter(SerializedData sdata)
         {
-            MsgCastAbility msg = sdata.Get<MsgCastAbility>();
+            MscMsgCastAbility msg = sdata.Get<MscMsgCastAbility>();
             AbilityData ability = AbilityData.Get(msg.ability_id);
             Card caster = game_data.GetCard(msg.caster_uid);
             onAbilityEnd?.Invoke(ability, caster);
@@ -607,7 +609,7 @@ namespace TcgEngine.Client
 
         private void OnSecretTrigger(SerializedData sdata)
         {
-            MsgSecret msg = sdata.Get<MsgSecret>();
+            MscMsgSecret msg = sdata.Get<MscMsgSecret>();
             Card secret = game_data.GetCard(msg.secret_uid);
             Card triggerer = game_data.GetCard(msg.triggerer_uid);
             onSecretTrigger?.Invoke(secret, triggerer);
@@ -615,7 +617,7 @@ namespace TcgEngine.Client
 
         private void OnSecretResolve(SerializedData sdata)
         {
-            MsgSecret msg = sdata.Get<MsgSecret>();
+            MscMsgSecret msg = sdata.Get<MscMsgSecret>();
             Card secret = game_data.GetCard(msg.secret_uid);
             Card triggerer = game_data.GetCard(msg.triggerer_uid);
             onSecretResolve?.Invoke(secret, triggerer);

@@ -45,7 +45,7 @@ namespace TcgEngine
         public float fx_time; //모든 이펙트가 끝나는데 총 걸리는 시간(리솔브 큐 딜레이에서 이 시간만큼 걸리게)
         public AudioClip cast_audio;
         public AudioClip target_audio;
-        public bool charge_target;
+        public bool charge_target;//박는 모션 여부
 
         [Header("Text")]
         public string title;
