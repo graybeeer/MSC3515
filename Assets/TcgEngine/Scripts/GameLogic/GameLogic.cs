@@ -47,10 +47,9 @@ namespace TcgEngine.Gameplay
         public UnityAction onRefresh;
 
         private Game game_data;
-        //private Game game_data_immediately;
 
         private ResolveQueue resolve_queue;
-        //private ResolveQueue resolve_queue_immediately;
+
         private bool is_ai_predict = false;
 
         private System.Random random = new System.Random();
@@ -797,6 +796,7 @@ namespace TcgEngine.Gameplay
         //Redirect attack to a new target
         public virtual void RedirectAttack(Card attacker, Card new_target)
         {
+            /*
             foreach (AttackQueueElement att in resolve_queue.GetAttackQueue())
             {
                 if (att.attacker.uid == attacker.uid)
@@ -806,7 +806,7 @@ namespace TcgEngine.Gameplay
                     att.callback = ResolveAttack;
                     att.pcallback = null;
                 }
-            }
+            }*/
             foreach (AttackQueueElement att in resolve_queue.GetCommonQueue())
             {
                 if (att.attacker.uid == attacker.uid)
@@ -821,6 +821,7 @@ namespace TcgEngine.Gameplay
 
         public virtual void RedirectAttack(Card attacker, Player new_target)
         {
+            /*
             foreach (AttackQueueElement att in resolve_queue.GetAttackQueue())
             {
                 if (att.attacker.uid == attacker.uid)
@@ -830,7 +831,7 @@ namespace TcgEngine.Gameplay
                     att.pcallback = ResolveAttackPlayer;
                     att.callback = null;
                 }
-            }
+            }*/
             foreach (AttackQueueElement att in resolve_queue.GetCommonQueue())
             {
                 if (att.attacker.uid == attacker.uid)
@@ -935,7 +936,7 @@ namespace TcgEngine.Gameplay
                 card.SetCardOwner(player.player_id);
                 
                 */
-                game_data.GetPlayer(card.player_id).RemoveCardFromAllGroups(card);
+            game_data.GetPlayer(card.player_id).RemoveCardFromAllGroups(card);
                 game_data.GetPlayer(card.player_id).cards_all.Remove(card.uid);
                 player.cards_all[card.uid] = card;
                 player.cards_board.Add(card);

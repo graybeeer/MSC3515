@@ -23,42 +23,98 @@ namespace TcgEngine
         {
             current_game_data = data;
         }
+        public virtual void Update(float delta)
+        {
+            if (resolve_delay > 0f)
+            {
+                resolve_delay -= delta;
+                if (resolve_delay <= 0f)
+                    ResolveAll();
+            }
+        }
+
+        public virtual void AddCallback(SerializedData sdata, Action<SerializedData> callback)
+        {
+            if (sdata != null)
+            {
+                MscRefreshGameElement elem = new MscRefreshGameElement();
+                common_elem_pool.Create(elem);
+                elem.sdata = sdata;
+                elem.callback = callback;
+                common_queue.Enqueue(elem);
+            }
+        }
 
         public virtual void Resolve()
         {
             if (common_queue.Count > 0)
             {
                 MscRefreshGameElement elem = common_queue.Dequeue();
-                if (elem.action_name == GameAction.CardMoved)
+
+                if (elem is MscRefreshGameElement)
                 {
-                    MscMsgPlayCard msg = elem.sdata.Get<MscMsgPlayCard>();
-
-                    current_game_data = msg.game_data;
-
-                    Card card = client.GetGameData().GetCard(msg.card_uid);
-                    client.onCardMoved?.Invoke(card, msg.slot);
+                    common_elem_pool.Dispose(elem);
+                    elem.callback?.Invoke(elem.sdata);
                 }
             }
         }
+        public virtual void ResolveAll(float delay)
+        {
+            SetDelay(delay);
+            ResolveAll();  //Resolve now if no delay
+        }
 
+        public virtual void ResolveAll()
+        {
+            if (is_resolving)
+                return;
+            is_resolving = true;
+            while (CanResolve())
+            {
+                Resolve();
+            }
+            is_resolving = false;
+        }
+        public virtual bool IsResolving()
+        {
+            return is_resolving || resolve_delay > 0f;
+        }
+        public virtual void SetDelay(float delay)
+        {
+            if (!skip_delay)
+            {
+                resolve_delay = Mathf.Max(resolve_delay, delay);
+            }
+        }
 
+        public virtual bool CanResolve()
+        {
+            if (resolve_delay > 0f)
+                return false;   //Is waiting delay
+            /*
+            if (client.GetGameData().state == GameState.GameEnded)
+                return false; //Cant execute anymore when game is ended
+            if (client.GetGameData().selector != SelectorType.None)
+                return false; //Waiting for player input, in the middle of resolve loop
+            */
+            return common_queue.Count > 0;
+        }
+
+        public virtual void Clear()
+        {
+            common_elem_pool.DisposeAll();
+            common_queue.Clear();
+        }
+
+        public Queue<MscRefreshGameElement> GetCommonQueue()
+        {
+            return common_queue;
+        }
 
         public class MscRefreshGameElement
         {
-            //public Game game_data;
-            public ushort action_name;
             public SerializedData sdata;
-        }
-        public virtual void AddCallback(ushort action_name, SerializedData sdata)
-        {
-            if (sdata != null)
-            {
-                MscRefreshGameElement elem = new MscRefreshGameElement();
-                common_elem_pool.Create(elem);
-                elem.action_name = action_name;
-                elem.sdata = sdata;
-                common_queue.Enqueue(elem);
-            }
+            public Action<SerializedData> callback;
         }
     }
 }

@@ -62,16 +62,18 @@ namespace TcgEngine.Client
         private int player_id = 0; //Player playing on this device;
 
         private Game game_data;
+        private Game current_game_data;
         private ResolveQueueClient ClientFXQueue; //클라이언트에서 해당 큐에따라 카드발동 결과 화면에서 순차적으로 실행 
 
         private bool observe_mode = false;
         private int observe_player_id = 0;
         private float timer = 0f;
 
-
         private Dictionary<ushort, RefreshEvent> registered_commands = new Dictionary<ushort, RefreshEvent>();
 
         private static GameClient instance;
+
+        float msc_time = 2f;
 
         protected virtual void Awake()
         {
@@ -154,6 +156,10 @@ namespace TcgEngine.Client
                     ConnectToServer();
                 }
             }
+
+            if(is_connected)
+                ClientFXQueue.Update(Time.deltaTime);
+
         }
 
         //--------------------
@@ -440,7 +446,8 @@ namespace TcgEngine.Client
             MsgAfterConnected msg = sdata.Get<MsgAfterConnected>();
             player_id = msg.player_id;
             game_data = msg.game_data;
-            //game_data_immediately = msg.game_data;
+            current_game_data = game_data; //추가
+            
 
             observe_mode = player_id < 0; //Will usually return -1 if its an observer
 
@@ -484,29 +491,46 @@ namespace TcgEngine.Client
             MscMsgPlayCard msg = sdata.Get<MscMsgPlayCard>();
             Card card = game_data.GetCard(msg.card_uid);
             onCardPlayed?.Invoke(card, msg.slot);
-            ClientFXQueue.AddCallback(GameAction.CardPlayed, sdata);
-        }
 
+            ClientFXQueue.AddCallback(sdata, OnCardPlayedFX);
+            ClientFXQueue.ResolveAll();
+        }
+        private void OnCardPlayedFX(SerializedData sdata)
+        {
+
+        }
         private void OnCardSummoned(SerializedData sdata)
         {
             MscMsgPlayCard msg = sdata.Get<MscMsgPlayCard>();
             onCardSummoned?.Invoke(msg.slot);
-            ClientFXQueue.AddCallback(GameAction.CardSummoned, sdata);
-        }
 
+            ClientFXQueue.AddCallback(sdata, OnCardSummonedFX);
+            ClientFXQueue.ResolveAll();
+        }
+        private void OnCardSummonedFX(SerializedData sdata)
+        {
+
+        }
         private void OnCardMoved(SerializedData sdata)
         {
-            //MsgPlayCard msg = sdata.Get<MsgPlayCard>();
             MscMsgPlayCard msg = sdata.Get<MscMsgPlayCard>();
-            
+
+            /*
             if (msg.game_data != null)
                 Debug.Log(msg.game_data.players[0].cards_hand.Count);
+            */
             Card card = game_data.GetCard(msg.card_uid);
+            
             onCardMoved?.Invoke(card, msg.slot);
 
-            ClientFXQueue.AddCallback(GameAction.CardMoved, sdata);
+            ClientFXQueue.AddCallback(sdata, OnCardMovedFX);
+            ClientFXQueue.ResolveAll();
         }
-
+        private void OnCardMovedFX(SerializedData sdata)
+        {
+            Debug.Log("순차실행은 fx함수로 ㄱㄱ");
+            ClientFXQueue.ResolveAll(3f);
+        }
         private void OnCardTransformed(SerializedData sdata)
         {
             MscMsgCard msg = sdata.Get<MscMsgCard>();
