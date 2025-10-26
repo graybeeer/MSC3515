@@ -99,7 +99,8 @@ namespace TcgEngine.Client
                 canvas.gameObject.SetActive(true);
 
             PlayerControls controls = PlayerControls.Get();
-            Game data = GameClient.Get().GetGameData();
+            //Game data = GameClient.Get().GetGameData();
+            Game data = GameClient.Get().GetCurrentGameData();
             Player player = GameClient.Get().GetPlayer();
             Card card = data.GetCard(card_uid);
 
@@ -218,7 +219,8 @@ namespace TcgEngine.Client
 
         private Vector3 GetTargetPos()
         {
-            Game data = GameClient.Get().GetGameData();
+            //Game data = GameClient.Get().GetGameData();
+            Game data = GameClient.Get().GetCurrentGameData();
             Card card = data.GetCard(card_uid);
 
             if (destroyed && back_to_hand && timer > 0.5f)
