@@ -485,8 +485,8 @@ namespace TcgEngine.Client
         {
             MsgPlayer msg = sdata.Get<MsgPlayer>();
             onGameEnd?.Invoke(msg.player_id);
+            RefreshAllCurrent(game_data);
 
-            ClientFXQueue.ResolveAll();
         }
 
         private void OnNewTurn(SerializedData sdata)
