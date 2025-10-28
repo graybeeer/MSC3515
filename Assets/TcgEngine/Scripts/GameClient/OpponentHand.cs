@@ -30,7 +30,7 @@ namespace TcgEngine.Client
             if (!GameClient.Get().IsReady())
                 return;
 
-            Game gdata = GameClient.Get().GetGameData();
+            Game gdata = GameClient.Get().GetCurrentGameData();
             Player player = gdata.GetPlayer(GameClient.Get().GetOpponentPlayerID());
 
             if (cards.Count < player.cards_hand.Count)

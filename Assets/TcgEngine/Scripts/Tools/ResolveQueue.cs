@@ -353,13 +353,7 @@ namespace TcgEngine
         public Action callback;
     }
 
-    public class PlayCardQueueElement : CommonQueueElement
-    {
 
-    }
 
-    public class AnimaitionFXQueueElement
-    {
-
-    }
+    
 }

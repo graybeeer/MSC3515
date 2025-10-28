@@ -5,6 +5,7 @@ using UnityEngine.Events;
 using Unity.Netcode;
 using System.Threading.Tasks;
 using TcgEngine.AI;
+using System;
 
 namespace TcgEngine.Client
 {
@@ -57,19 +58,23 @@ namespace TcgEngine.Client
         public UnityAction<int, string> onChatMsg;  //player_id, msg
         public UnityAction< string> onServerMsg;  //msg
         public UnityAction onRefreshAll;
+        public UnityAction onRefreshAllCurrent;
 
         private int player_id = 0; //Player playing on this device;
 
-        private Game game_data; 
+        private Game game_data;
+        private Game current_game_data;
+        private ResolveQueueClient ClientFXQueue; //클라이언트에서 해당 큐에따라 카드발동 결과 화면에서 순차적으로 실행 
 
         private bool observe_mode = false;
         private int observe_player_id = 0;
         private float timer = 0f;
 
-
         private Dictionary<ushort, RefreshEvent> registered_commands = new Dictionary<ushort, RefreshEvent>();
 
         private static GameClient instance;
+
+        float msc_time = 0.4f;
 
         protected virtual void Awake()
         {
@@ -115,6 +120,8 @@ namespace TcgEngine.Client
 
             ConnectToAPI();
             ConnectToServer();
+
+            ClientFXQueue = new ResolveQueueClient(game_data);
         }
 
         protected virtual void OnDestroy()
@@ -150,6 +157,10 @@ namespace TcgEngine.Client
                     ConnectToServer();
                 }
             }
+
+            if(is_connected)
+                ClientFXQueue.Update(Time.deltaTime);
+
         }
 
         //--------------------
@@ -436,7 +447,8 @@ namespace TcgEngine.Client
             MsgAfterConnected msg = sdata.Get<MsgAfterConnected>();
             player_id = msg.player_id;
             game_data = msg.game_data;
-            //game_data_immediately = msg.game_data;
+            current_game_data = game_data; //추가
+            
 
             observe_mode = player_id < 0; //Will usually return -1 if its an observer
 
@@ -466,151 +478,314 @@ namespace TcgEngine.Client
         private void OnGameEnd(SerializedData sdata)
         {
             MsgPlayer msg = sdata.Get<MsgPlayer>();
+            ClientFXQueue.AddCallback(sdata, OnGameEndFX);
+            ClientFXQueue.ResolveAll();
+        }
+        private void OnGameEndFX(SerializedData sdata)
+        {
+            MsgPlayer msg = sdata.Get<MsgPlayer>();
             onGameEnd?.Invoke(msg.player_id);
+
+            ClientFXQueue.ResolveAll();
         }
 
         private void OnNewTurn(SerializedData sdata)
         {
-            MsgPlayer msg = sdata.Get<MsgPlayer>();
+            MscMsgPlayer msg = sdata.Get<MscMsgPlayer>();
+            ClientFXQueue.AddCallback(sdata, OnNewTurnFX);
+            ClientFXQueue.ResolveAll();
+        }
+
+        private void OnNewTurnFX(SerializedData sdata)
+        {
+            MscMsgPlayer msg = sdata.Get<MscMsgPlayer>();
             onNewTurn?.Invoke(msg.player_id);
+            RefreshAllCurrent(msg.game_data);
+            ClientFXQueue.ResolveAll();
         }
 
         private void OnCardPlayed(SerializedData sdata)
         {
-            MsgPlayCard msg = sdata.Get<MsgPlayCard>();
+            MscMsgPlayCard msg = sdata.Get<MscMsgPlayCard>();
+            ClientFXQueue.AddCallback(sdata, OnCardPlayedFX);
+            ClientFXQueue.ResolveAll();
+        }
+        private void OnCardPlayedFX(SerializedData sdata)
+        {
+            MscMsgPlayCard msg = sdata.Get<MscMsgPlayCard>();
             Card card = game_data.GetCard(msg.card_uid);
             onCardPlayed?.Invoke(card, msg.slot);
-        }
+            RefreshAllCurrent(msg.game_data);
 
+            ClientFXQueue.ResolveAll(msc_time / 2);
+        }
         private void OnCardSummoned(SerializedData sdata)
         {
-            MsgPlayCard msg = sdata.Get<MsgPlayCard>();
-            onCardSummoned?.Invoke(msg.slot);
+            MscMsgPlayCard msg = sdata.Get<MscMsgPlayCard>();
+            ClientFXQueue.AddCallback(sdata, OnCardSummonedFX);
+            ClientFXQueue.ResolveAll();
         }
+        private void OnCardSummonedFX(SerializedData sdata)
+        {
+            MscMsgPlayCard msg = sdata.Get<MscMsgPlayCard>();
+            onCardSummoned?.Invoke(msg.slot);
+            RefreshAllCurrent(msg.game_data);
 
+            ClientFXQueue.ResolveAll(msc_time);
+        }
         private void OnCardMoved(SerializedData sdata)
         {
-            MsgPlayCard msg = sdata.Get<MsgPlayCard>();
+            MscMsgPlayCard msg = sdata.Get<MscMsgPlayCard>();
+            ClientFXQueue.AddCallback(sdata, OnCardMovedFX);
+            ClientFXQueue.ResolveAll();
+        }
+        private void OnCardMovedFX(SerializedData sdata)
+        {
+            MscMsgPlayCard msg = sdata.Get<MscMsgPlayCard>();
             Card card = game_data.GetCard(msg.card_uid);
             onCardMoved?.Invoke(card, msg.slot);
-        }
+            RefreshAllCurrent(msg.game_data);
 
+            ClientFXQueue.ResolveAll(msc_time);
+        }
         private void OnCardTransformed(SerializedData sdata)
         {
-            MsgCard msg = sdata.Get<MsgCard>();
+            MscMsgCard msg = sdata.Get<MscMsgCard>();
+            ClientFXQueue.AddCallback(sdata, OnCardTransformedFX);
+            ClientFXQueue.ResolveAll();
+        }
+        private void OnCardTransformedFX(SerializedData sdata)
+        {
+            MscMsgCard msg = sdata.Get<MscMsgCard>();
             Card card = game_data.GetCard(msg.card_uid);
             onCardTransformed?.Invoke(card);
-        }
+            RefreshAllCurrent(msg.game_data);
 
+            ClientFXQueue.ResolveAll();
+        }
         private void OnCardDiscarded(SerializedData sdata)
         {
-            MsgCard msg = sdata.Get<MsgCard>();
+            MscMsgCard msg = sdata.Get<MscMsgCard>();
+            ClientFXQueue.AddCallback(sdata, OnCardDiscardedFX);
+            ClientFXQueue.ResolveAll();
+        }
+        private void OnCardDiscardedFX(SerializedData sdata)
+        {
+            MscMsgCard msg = sdata.Get<MscMsgCard>();
             Card card = game_data.GetCard(msg.card_uid);
             onCardDiscarded?.Invoke(card);
-        }
+            RefreshAllCurrent(msg.game_data);
 
+            ClientFXQueue.ResolveAll();
+        }
         private void OnCardDraw(SerializedData sdata)
         {
-            MsgInt msg = sdata.Get<MsgInt>();
-            onCardDraw?.Invoke(msg.value);
+            MscMsgInt msg = sdata.Get<MscMsgInt>();
+            ClientFXQueue.AddCallback(sdata, OnCardDrawFX);
+            ClientFXQueue.ResolveAll();
         }
 
+        private void OnCardDrawFX(SerializedData sdata)
+        {
+            MscMsgInt msg = sdata.Get<MscMsgInt>();
+            onCardDraw?.Invoke(msg.value);
+            RefreshAllCurrent(msg.game_data);
+
+            ClientFXQueue.ResolveAll(msc_time);
+        }
         private void OnValueRolled(SerializedData sdata)
         {
             MsgInt msg = sdata.Get<MsgInt>();
-            onValueRolled?.Invoke(msg.value);
+            ClientFXQueue.AddCallback(sdata, OnValueRolledFX);
+            ClientFXQueue.ResolveAll();
         }
+        private void OnValueRolledFX(SerializedData sdata)
+        {
+            MsgInt msg = sdata.Get<MsgInt>();
+            onValueRolled?.Invoke(msg.value);
+            //RefreshAllCurrent(msg.game_data);
 
+            ClientFXQueue.ResolveAll();
+
+        }
         private void OnAttackStart(SerializedData sdata)
         {
-            MsgAttack msg = sdata.Get<MsgAttack>();
+            MscMsgAttack msg = sdata.Get<MscMsgAttack>();
+            ClientFXQueue.AddCallback(sdata, OnAttackStartFX);
+            ClientFXQueue.ResolveAll();
+        }
+        private void OnAttackStartFX(SerializedData sdata)
+        {
+            MscMsgAttack msg = sdata.Get<MscMsgAttack>();
             Card attacker = game_data.GetCard(msg.attacker_uid);
             Card target = game_data.GetCard(msg.target_uid);
             onAttackStart?.Invoke(attacker, target);
-        }
+            RefreshAllCurrent(msg.game_data);
 
+            ClientFXQueue.ResolveAll();
+        }
         private void OnAttackEnd(SerializedData sdata)
         {
-            MsgAttack msg = sdata.Get<MsgAttack>();
+            MscMsgAttack msg = sdata.Get<MscMsgAttack>();
+            ClientFXQueue.AddCallback(sdata, OnAttackEndFX);
+            ClientFXQueue.ResolveAll();
+        }
+        private void OnAttackEndFX(SerializedData sdata)
+        {
+            MscMsgAttack msg = sdata.Get<MscMsgAttack>();
             Card attacker = game_data.GetCard(msg.attacker_uid);
             Card target = game_data.GetCard(msg.target_uid);
             onAttackEnd?.Invoke(attacker, target);
-        }
+            RefreshAllCurrent(msg.game_data);
 
+            ClientFXQueue.ResolveAll(msc_time);
+        }
         private void OnAttackPlayerStart(SerializedData sdata)
         {
-            MsgAttackPlayer msg = sdata.Get<MsgAttackPlayer>();
+            MscMsgAttackPlayer msg = sdata.Get<MscMsgAttackPlayer>();
+            ClientFXQueue.AddCallback(sdata, OnAttackPlayerStartFX);
+            ClientFXQueue.ResolveAll();
+        }
+        private void OnAttackPlayerStartFX(SerializedData sdata)
+        {
+            MscMsgAttackPlayer msg = sdata.Get<MscMsgAttackPlayer>();
             Card attacker = game_data.GetCard(msg.attacker_uid);
             Player target = game_data.GetPlayer(msg.target_id);
             onAttackPlayerStart?.Invoke(attacker, target);
-        }
+            RefreshAllCurrent(msg.game_data);
 
+            ClientFXQueue.ResolveAll();
+        }
         private void OnAttackPlayerEnd(SerializedData sdata)
         {
-            MsgAttackPlayer msg = sdata.Get<MsgAttackPlayer>();
+            MscMsgAttackPlayer msg = sdata.Get<MscMsgAttackPlayer>();
+            ClientFXQueue.AddCallback(sdata, OnAttackPlayerEndFX);
+            ClientFXQueue.ResolveAll();
+        }
+        private void OnAttackPlayerEndFX(SerializedData sdata)
+        {
+            MscMsgAttackPlayer msg = sdata.Get<MscMsgAttackPlayer>();
             Card attacker = game_data.GetCard(msg.attacker_uid);
             Player target = game_data.GetPlayer(msg.target_id);
             onAttackPlayerEnd?.Invoke(attacker, target);
-        }
+            RefreshAllCurrent(msg.game_data);
 
+            ClientFXQueue.ResolveAll();
+        }
         private void OnAbilityTrigger(SerializedData sdata)
         {
-            MsgCastAbility msg = sdata.Get<MsgCastAbility>();
+            MscMsgCastAbility msg = sdata.Get<MscMsgCastAbility>();
+            ClientFXQueue.AddCallback(sdata, OnAbilityTriggerFX);
+            ClientFXQueue.ResolveAll();
+        }
+        private void OnAbilityTriggerFX(SerializedData sdata)
+        {
+            MscMsgCastAbility msg = sdata.Get<MscMsgCastAbility>();
             AbilityData ability = AbilityData.Get(msg.ability_id);
             Card caster = game_data.GetCard(msg.caster_uid);
             onAbilityStart?.Invoke(ability, caster);
-        }
+            RefreshAllCurrent(msg.game_data);
 
+            ClientFXQueue.ResolveAll();
+        }
         private void OnAbilityTargetCard(SerializedData sdata)
         {
-            MsgCastAbility msg = sdata.Get<MsgCastAbility>();
+            MscMsgCastAbility msg = sdata.Get<MscMsgCastAbility>();
+            ClientFXQueue.AddCallback(sdata, OnAbilityTargetCardFX);
+            ClientFXQueue.ResolveAll();
+        }
+        private void OnAbilityTargetCardFX(SerializedData sdata)
+        {
+            MscMsgCastAbility msg = sdata.Get<MscMsgCastAbility>();
             AbilityData ability = AbilityData.Get(msg.ability_id);
             Card caster = game_data.GetCard(msg.caster_uid);
             Card target = game_data.GetCard(msg.target_uid);
             onAbilityTargetCard?.Invoke(ability, caster, target);
-        }
+            RefreshAllCurrent(msg.game_data);
 
+            ClientFXQueue.ResolveAll();
+        }
         private void OnAbilityTargetPlayer(SerializedData sdata)
         {
-            MsgCastAbilityPlayer msg = sdata.Get<MsgCastAbilityPlayer>();
+            MscMsgCastAbilityPlayer msg = sdata.Get<MscMsgCastAbilityPlayer>();
+            ClientFXQueue.AddCallback(sdata, OnAbilityTargetPlayerFX);
+            ClientFXQueue.ResolveAll();
+        }
+        private void OnAbilityTargetPlayerFX(SerializedData sdata)
+        {
+            MscMsgCastAbilityPlayer msg = sdata.Get<MscMsgCastAbilityPlayer>();
             AbilityData ability = AbilityData.Get(msg.ability_id);
             Card caster = game_data.GetCard(msg.caster_uid);
             Player target = game_data.GetPlayer(msg.target_id);
             onAbilityTargetPlayer?.Invoke(ability, caster, target);
-        }
+            RefreshAllCurrent(msg.game_data);
 
+            ClientFXQueue.ResolveAll();
+        }
         private void OnAbilityTargetSlot(SerializedData sdata)
         {
-            MsgCastAbilitySlot msg = sdata.Get<MsgCastAbilitySlot>();
+            MscMsgCastAbilitySlot msg = sdata.Get<MscMsgCastAbilitySlot>();
+            ClientFXQueue.AddCallback(sdata, OnAbilityTargetSlotFX);
+            ClientFXQueue.ResolveAll();
+        }
+        private void OnAbilityTargetSlotFX(SerializedData sdata)
+        {
+            MscMsgCastAbilitySlot msg = sdata.Get<MscMsgCastAbilitySlot>();
             AbilityData ability = AbilityData.Get(msg.ability_id);
             Card caster = game_data.GetCard(msg.caster_uid);
             onAbilityTargetSlot?.Invoke(ability, caster, msg.slot);
-        }
+            RefreshAllCurrent(msg.game_data);
 
+            ClientFXQueue.ResolveAll();
+        }
         private void OnAbilityAfter(SerializedData sdata)
         {
-            MsgCastAbility msg = sdata.Get<MsgCastAbility>();
+            MscMsgCastAbility msg = sdata.Get<MscMsgCastAbility>();
+            ClientFXQueue.AddCallback(sdata, OnAbilityAfterFX);
+            ClientFXQueue.ResolveAll();
+        }
+        private void OnAbilityAfterFX(SerializedData sdata)
+        {
+            MscMsgCastAbility msg = sdata.Get<MscMsgCastAbility>();
             AbilityData ability = AbilityData.Get(msg.ability_id);
             Card caster = game_data.GetCard(msg.caster_uid);
             onAbilityEnd?.Invoke(ability, caster);
-        }
+            RefreshAllCurrent(msg.game_data);
 
+            ClientFXQueue.ResolveAll();
+        }
         private void OnSecretTrigger(SerializedData sdata)
         {
-            MsgSecret msg = sdata.Get<MsgSecret>();
+            MscMsgSecret msg = sdata.Get<MscMsgSecret>();
+            ClientFXQueue.AddCallback(sdata, OnSecretTriggerFX);
+            ClientFXQueue.ResolveAll();
+        }
+        private void OnSecretTriggerFX(SerializedData sdata)
+        {
+            MscMsgSecret msg = sdata.Get<MscMsgSecret>();
             Card secret = game_data.GetCard(msg.secret_uid);
             Card triggerer = game_data.GetCard(msg.triggerer_uid);
-            onSecretTrigger?.Invoke(secret, triggerer);
-        }
+            onSecretTrigger?.Invoke(secret, triggerer); 
+            RefreshAllCurrent(msg.game_data);
 
+            ClientFXQueue.ResolveAll();
+        }
         private void OnSecretResolve(SerializedData sdata)
         {
-            MsgSecret msg = sdata.Get<MsgSecret>();
+            MscMsgSecret msg = sdata.Get<MscMsgSecret>();
+            ClientFXQueue.AddCallback(sdata, OnSecretResolveFX);
+            ClientFXQueue.ResolveAll();
+        }
+        private void OnSecretResolveFX(SerializedData sdata)
+        {
+            MscMsgSecret msg = sdata.Get<MscMsgSecret>();
             Card secret = game_data.GetCard(msg.secret_uid);
             Card triggerer = game_data.GetCard(msg.triggerer_uid);
             onSecretResolve?.Invoke(secret, triggerer);
-        }
+            RefreshAllCurrent(msg.game_data);
 
+            ClientFXQueue.ResolveAll();
+        }
         private void OnChat(SerializedData sdata)
         {
             MsgChat msg = sdata.Get<MsgChat>();
@@ -623,11 +798,21 @@ namespace TcgEngine.Client
             onServerMsg?.Invoke(msg);
         }
 
+        
         private void OnRefreshAll(SerializedData sdata)
         {
             MsgRefreshAll msg = sdata.Get<MsgRefreshAll>();
             game_data = msg.game_data;
             onRefreshAll?.Invoke();
+        }
+
+        private void RefreshAllCurrent(Game gameData)
+        {
+            current_game_data = gameData;
+            /*
+            if (gameData != null)
+                Debug.Log(gameData .players[0].cards_hand.Count);
+            */ 
         }
 
         //--------------------------
@@ -712,7 +897,10 @@ namespace TcgEngine.Client
         {
             return game_data;
         }
-
+        public Game GetCurrentGameData()
+        {
+            return current_game_data;
+        }
         public bool HasEnded()
         {
             return game_data != null && game_data.HasEnded();

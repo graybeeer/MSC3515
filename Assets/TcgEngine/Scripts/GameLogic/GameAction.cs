@@ -64,6 +64,7 @@ namespace TcgEngine
 
         public const ushort ServerMessage = 2190; //Server warning msg
         public const ushort RefreshAll = 2100;
+        public const ushort RefreshAllCurrent = 2101;
 
         public static string GetString(ushort type)
         {

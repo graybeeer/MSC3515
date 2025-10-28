@@ -47,7 +47,8 @@ namespace TcgEngine.Client
             BoardCard bcard_selected = PlayerControls.Get().GetSelected();
             HandCard drag_card = HandCard.GetDrag();
 
-            Game gdata = GameClient.Get().GetGameData();
+            //Game gdata = GameClient.Get().GetGameData();
+            Game gdata = GameClient.Get().GetCurrentGameData();
             Player player = GameClient.Get().GetPlayer();
             Slot slot = GetSlot();
             Card dcard = drag_card?.GetCard();
@@ -152,7 +153,8 @@ namespace TcgEngine.Client
             if (GameUI.IsOverUI())
                 return;
 
-            Game gdata = GameClient.Get().GetGameData();
+            //Game gdata = GameClient.Get().GetGameData();
+            Game gdata = GameClient.Get().GetCurrentGameData();
             int player_id = GameClient.Get().GetPlayerID();
 
             if (gdata.selector == SelectorType.SelectTarget && player_id == gdata.selector_player_id)

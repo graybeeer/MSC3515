@@ -38,7 +38,8 @@ namespace TcgEngine.Client
             if (!GameClient.Get().IsReady())
                 return;
 
-            Game data = GameClient.Get().GetGameData();
+            //Game data = GameClient.Get().GetGameData();
+            Game data = GameClient.Get().GetCurrentGameData();
 
             //--- Board cards --------
 
@@ -91,7 +92,8 @@ namespace TcgEngine.Client
 
         private bool HasBoardCard(BoardCard bcard)
         {
-            Game data = GameClient.Get().GetGameData();
+            //Game data = GameClient.Get().GetGameData();
+            Game data = GameClient.Get().GetCurrentGameData();
             Card card = data.GetBoardCard(bcard.GetCardUID());
             return card == null && !bcard.IsDead();
         }

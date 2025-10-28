@@ -40,7 +40,7 @@ namespace TcgEngine.Client
                 return;
 
             int player_id = GameClient.Get().GetPlayerID();
-            Game data = GameClient.Get().GetGameData();
+            Game data = GameClient.Get().GetCurrentGameData();
             Player player = data.GetPlayer(player_id);
 
             last_destroyed_timer += Time.deltaTime;

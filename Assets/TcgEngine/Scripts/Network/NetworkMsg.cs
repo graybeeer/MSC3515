@@ -329,4 +329,165 @@ namespace TcgEngine
         }
     }
 
+    //-------- Msc --------
+
+    public abstract class MscMsgGameData : INetworkSerializable
+    {
+        public Game game_data;
+
+        public virtual void NetworkSerialize<T>(BufferSerializer<T> serializer) where T : IReaderWriter
+        {
+            if (serializer.IsReader)
+            {
+                int size = 0;
+                serializer.SerializeValue(ref size);
+                if (size > 0)
+                {
+                    byte[] bytes = new byte[size];
+                    serializer.SerializeValue(ref bytes);
+                    game_data = NetworkTool.Deserialize<Game>(bytes);
+                }
+            }
+            if (serializer.IsWriter)
+            {
+                byte[] bytes = NetworkTool.Serialize(game_data);
+                int size = bytes.Length;
+                serializer.SerializeValue(ref size);
+                if (size > 0)
+                    serializer.SerializeValue(ref bytes);
+            }
+        }
+    }
+
+    public class MscMsgPlayCard : MscMsgGameData
+    {
+        public string card_uid;
+        public Slot slot;
+
+        public override void NetworkSerialize<T>(BufferSerializer<T> serializer)
+        {
+            base.NetworkSerialize<T>(serializer);
+            serializer.SerializeValue(ref card_uid);
+            serializer.SerializeNetworkSerializable(ref slot);
+        }
+    }
+    public class MscMsgCard : MscMsgGameData
+    {
+        public string card_uid;
+
+        public override void NetworkSerialize<T>(BufferSerializer<T> serializer)
+        {
+            base.NetworkSerialize<T>(serializer);
+            serializer.SerializeValue(ref card_uid);
+        }
+    }
+
+    public class MscMsgPlayer : MscMsgGameData
+    {
+        public int player_id;
+
+        public override void NetworkSerialize<T>(BufferSerializer<T> serializer)
+        {
+            base.NetworkSerialize<T>(serializer);
+            serializer.SerializeValue(ref player_id);
+        }
+    }
+    public class MscMsgAttack : MscMsgGameData
+    {
+        public string attacker_uid;
+        public string target_uid;
+        public int damage;
+
+        public override void NetworkSerialize<T>(BufferSerializer<T> serializer)
+        {
+            base.NetworkSerialize<T>(serializer);
+            serializer.SerializeValue(ref attacker_uid);
+            serializer.SerializeValue(ref target_uid);
+            serializer.SerializeValue(ref damage);
+        }
+    }
+
+    public class MscMsgAttackPlayer : MscMsgGameData
+    {
+        public string attacker_uid;
+        public int target_id;
+        public int damage;
+
+        public override void NetworkSerialize<T>(BufferSerializer<T> serializer)
+        {
+            base.NetworkSerialize<T>(serializer);
+            serializer.SerializeValue(ref attacker_uid);
+            serializer.SerializeValue(ref target_id);
+            serializer.SerializeValue(ref damage);
+        }
+    }
+
+    public class MscMsgCastAbility : MscMsgGameData
+    {
+        public string ability_id;
+        public string caster_uid;
+        public string target_uid;
+
+        public override void NetworkSerialize<T>(BufferSerializer<T> serializer)
+        {
+            base.NetworkSerialize<T>(serializer);
+            serializer.SerializeValue(ref ability_id);
+            serializer.SerializeValue(ref caster_uid);
+            serializer.SerializeValue(ref target_uid);
+        }
+    }
+
+    public class MscMsgCastAbilityPlayer : MscMsgGameData
+    {
+        public string ability_id;
+        public string caster_uid;
+        public int target_id;
+
+        public override void NetworkSerialize<T>(BufferSerializer<T> serializer)
+        {
+            base.NetworkSerialize<T>(serializer);
+            serializer.SerializeValue(ref ability_id);
+            serializer.SerializeValue(ref caster_uid);
+            serializer.SerializeValue(ref target_id);
+        }
+    }
+
+    public class MscMsgCastAbilitySlot : MscMsgGameData
+    {
+        public string ability_id;
+        public string caster_uid;
+        public Slot slot;
+
+        public override void NetworkSerialize<T>(BufferSerializer<T> serializer)
+        {
+            base.NetworkSerialize<T>(serializer);
+            serializer.SerializeValue(ref ability_id);
+            serializer.SerializeValue(ref caster_uid);
+            serializer.SerializeNetworkSerializable(ref slot);
+        }
+    }
+
+    public class MscMsgSecret : MscMsgGameData
+    {
+        public string secret_uid;
+        public string triggerer_uid;
+
+        public override void NetworkSerialize<T>(BufferSerializer<T> serializer)
+        {
+            base.NetworkSerialize<T>(serializer);
+            serializer.SerializeValue(ref secret_uid);
+            serializer.SerializeValue(ref triggerer_uid);
+        }
+    }
+
+    public class MscMsgInt : MscMsgGameData
+    {
+        public int value;
+
+        public override void NetworkSerialize<T>(BufferSerializer<T> serializer)
+        {
+            base.NetworkSerialize<T>(serializer);
+            serializer.SerializeValue(ref value);
+        }
+    }
 }
