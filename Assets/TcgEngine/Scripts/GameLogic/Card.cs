@@ -99,6 +99,24 @@ namespace TcgEngine
             SetTraits(icard);
             SetAbilities(icard);
         }
+        public virtual void SetCard(Card icard, VariantData cvariant)
+        {
+            data = icard.data;
+            card_id = icard.data.id;
+            variant_id = cvariant.id;
+            attack = icard.attack;
+            hp = icard.hp;
+            mana = icard.mana;
+            card_arrow = icard.card_arrow;
+
+            traits= icard.traits;
+            ongoing_traits= icard.ongoing_traits;
+            status = icard.status;
+            ongoing_status = icard.ongoing_status;
+            abilities= icard.abilities;
+            abilities_ongoing = icard.abilities_ongoing;
+            abilities_data = icard.abilities_data;
+        }
         public virtual void SetCardOwner(int new_player_id)
         {
             player_id = new_player_id;
@@ -114,7 +132,6 @@ namespace TcgEngine
                     SetTrait(stat.trait.id, stat.value);
             }
         }
-
         public void SetAbilities(CardData icard)
         {
             abilities.Clear();

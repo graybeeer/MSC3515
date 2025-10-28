@@ -67,7 +67,7 @@ namespace TcgEngine.Client
             if (!GameClient.Get().IsReady())
                 return;
 
-            Card card = GetCard();
+            Card card = GetCardCurrent();
             Vector2 target_position = deck_position;
             Vector3 target_size = start_scale;
 
@@ -150,7 +150,11 @@ namespace TcgEngine.Client
             Game gdata = GameClient.Get().GetGameData();
             return gdata.GetCard(card_uid);
         }
-
+        public Card GetCardCurrent()
+        {
+            Game gdata = GameClient.Get().GetCurrentGameData();
+            return gdata.GetCard(card_uid);
+        }
         public CardData GetCardData()
         {
             Card card = GetCard();

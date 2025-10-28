@@ -45,6 +45,7 @@ namespace TcgEngine.Gameplay
         public UnityAction<Card, Card> onSecretResolve;    //Secret, Triggerer
 
         public UnityAction onRefresh;
+        public UnityAction onRefreshCurrent;
 
         private Game game_data;
 
@@ -60,7 +61,7 @@ namespace TcgEngine.Gameplay
         private ListSwap<CardData> card_data_array = new ListSwap<CardData>();
         private List<Card> cards_to_clear = new List<Card>();
 
-        float msc_time = 0.4f;
+        float msc_time = 0f;
 
         public GameLogic(bool is_ai)
         {
@@ -963,6 +964,14 @@ namespace TcgEngine.Gameplay
         }
         //Transform card into another one
         public virtual Card TransformCard(Card card, CardData transform_to)
+        {
+            card.SetCard(transform_to, card.VariantData);
+
+            onCardTransformed?.Invoke(card);
+
+            return card;
+        }
+        public virtual Card TransformCard(Card card, Card transform_to)
         {
             card.SetCard(transform_to, card.VariantData);
 
