@@ -546,7 +546,8 @@ namespace TcgEngine.Client
             onCardMoved?.Invoke(card, msg.slot);
             RefreshAllCurrent(msg.game_data);
 
-            ClientFXQueue.ResolveAll(msc_time);
+            float move_time = card.CardData.move_fx_time == 0 ? msc_time : card.CardData.move_fx_time;
+            ClientFXQueue.ResolveAll(move_time);
         }
         private void OnCardTransformed(SerializedData sdata)
         {
@@ -752,7 +753,8 @@ namespace TcgEngine.Client
             onAbilityEnd?.Invoke(ability, caster);
             RefreshAllCurrent(msg.game_data);
 
-            ClientFXQueue.ResolveAll();
+            float ability_time = ability.fx_time == 0 ? msc_time : ability.fx_time;
+            ClientFXQueue.ResolveAll(ability_time);
         }
         private void OnSecretTrigger(SerializedData sdata)
         {

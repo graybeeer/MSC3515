@@ -627,8 +627,7 @@ namespace TcgEngine.Gameplay
             RefreshData();
 
             onCardMoved?.Invoke(card, slot);
-            float move_time = card.CardData.move_fx_time == 0 ? msc_time : card.CardData.move_fx_time;
-            resolve_queue.ResolveAll(move_time);
+            resolve_queue.ResolveAll(msc_time);
         }
         
         public virtual void CastAbility(Card card, AbilityData iability)
@@ -1470,9 +1469,9 @@ namespace TcgEngine.Gameplay
             }
 
             onAbilityEnd?.Invoke(iability, caster);
-            //resolve_queue.ResolveAll(0.5f); //모든 어빌리티 효과랑 fx 끝나고 대기시간 (필요없)
-            float ability_time = iability.fx_time == 0 ? msc_time : iability.fx_time;
-            resolve_queue.ResolveAll(ability_time);
+            resolve_queue.ResolveAll(); //모든 어빌리티 효과랑 fx 끝나고 대기시간 (필요없)
+            //float ability_time = iability.fx_time == 0 ? msc_time : iability.fx_time;
+            //resolve_queue.ResolveAll(ability_time);
             RefreshData();
         }
 
