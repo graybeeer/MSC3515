@@ -160,11 +160,6 @@ namespace TcgEngine
 
             if (!card.CanMove(skip_cost)) //Card cant move
                 return false;
-
-            /*
-            if (Slot.GetP(card.player_id) != slot.p)
-                return false; //Card played wrong side
-            */
             
             if (card.slot == slot) //Cant move to same slot
                 return false;

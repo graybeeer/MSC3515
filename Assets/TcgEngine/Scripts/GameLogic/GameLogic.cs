@@ -570,24 +570,11 @@ namespace TcgEngine.Gameplay
                 player.AddHistory(GameAction.Move, card);
 
 
+                //이동 전 트리거 발동
+                TriggerCardAbilityType(AbilityTrigger.OnBeforeMove, card);
+                TriggerOtherCardsAbilityType(AbilityTrigger.OnBeforeMoveOther, card);
+                TriggerSecrets(AbilityTrigger.OnBeforeMoveOther, card);
 
-                //추가 예정-이동 전에 발동하는 효과 트리거 추가예정
-                //TriggerCardAbilityType(AbilityTrigger.OnBeforeMove, attacker, target);
-                //TriggerSecrets(AbilityTrigger.OnBeforeMove, attacker);
-
-                /*
-                //Also move the equipment
-                Card equip = game_data.GetEquipCard(card.equipped_uid);
-                if (equip != null)
-                    equip.slot = slot;
-
-                UpdateOngoing();
-                RefreshData();
-                
-
-                onCardMoved?.Invoke(card, slot);
-                resolve_queue.ResolveAll(msc_time);
-                */
                 resolve_queue.AddMove(card, slot, ResolveMove, skip_cost);
                 float move_time = card.CardData.move_fx_time == 0 ? msc_time : card.CardData.move_fx_time;
                 resolve_queue.ResolveAll();
@@ -600,9 +587,10 @@ namespace TcgEngine.Gameplay
                 Player player = game_data.GetPlayer(card.player_id);
                 player.AddHistory(GameAction.Move, card);
 
-                //추가 예정-이동 전에 발동하는 효과 트리거 추가예정
-                //TriggerCardAbilityType(AbilityTrigger.OnBeforeMove, attacker, target);
-                //TriggerSecrets(AbilityTrigger.OnBeforeMove, attacker);
+                //이동 전 트리거 발동
+                TriggerCardAbilityType(AbilityTrigger.OnBeforeMove, card);
+                TriggerOtherCardsAbilityType(AbilityTrigger.OnBeforeMoveOther, card);
+                TriggerSecrets(AbilityTrigger.OnBeforeMoveOther, card);
 
                 resolve_queue.AddMove(card, slot, ResolveMove, skip_cost);
                 float move_time = card.CardData.move_fx_time == 0 ? msc_time : card.CardData.move_fx_time;
@@ -623,11 +611,15 @@ namespace TcgEngine.Gameplay
             if (equip != null)
                 equip.slot = slot;
 
-            UpdateOngoing();
-            RefreshData();
+            TriggerCardAbilityType(AbilityTrigger.OnAfterMove, card);
+            TriggerOtherCardsAbilityType(AbilityTrigger.OnAfterMoveOther, card);
+            TriggerSecrets(AbilityTrigger.OnAfterMoveOther, card);
 
             onCardMoved?.Invoke(card, slot);
             resolve_queue.ResolveAll(msc_time);
+
+            UpdateOngoing();
+            RefreshData();
         }
         
         public virtual void CastAbility(Card card, AbilityData iability)
@@ -1231,7 +1223,22 @@ namespace TcgEngine.Gameplay
             if (equipped != null)
                 TriggerCardAbilityType(type, equipped, triggerer);
         }
+        /*
+        public virtual void TriggerCardAbilityType(AbilityTrigger type, Card caster, Slot slot)
+        {
+            foreach (AbilityData iability in caster.GetAbilities())
+            {
+                if (iability && iability.trigger == type)
+                {
+                    TriggerCardAbility(iability, caster, slot);
+                }
+            }
 
+            Card equipped = game_data.GetEquipCard(caster.equipped_uid);
+            if (equipped != null)
+                TriggerCardAbilityType(type, equipped, slot);
+        }
+        */
         public virtual void TriggerOtherCardsAbilityType(AbilityTrigger type, Card triggerer)
         {
             foreach (Player oplayer in game_data.players)

@@ -681,6 +681,11 @@ namespace TcgEngine
 
         OnDeath = 40, //When dying
         OnDeathOther = 42, //When another dying
+
+        OnBeforeMove = 51, //이동하기 전
+        OnAfterMove = 52, // 이동하기 후
+        OnBeforeMoveOther = 53, // 다른카드가 이동하기 전
+        OnAfterMoveOther = 54, //다른 카드가 이동 후
     }
 
     public enum AbilityTarget
