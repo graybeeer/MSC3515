@@ -17,7 +17,7 @@ MonoBehaviour:
   icon: {fileID: 0}
   desc: "\uB3C4\uBC1C \uC720\uB2DB\uC744 \uACF5\uACA9\uAC00\uB2A5\uD55C \uC0C1\uD0DC\uB77C\uBA74,
     \uB3C4\uBC1C \uC720\uB2DB\uB9CC \uACF5\uACA9\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4."
-  status_fx: {fileID: 2359911801270334615, guid: b3d90b2abb5dc0d419fa9393d64062fd,
+  status_fx: {fileID: 8041625327064058042, guid: 251ba2869d8f1f44794830ef97e5282f,
     type: 3}
   hvalue: 1
   referencingComponents: []
