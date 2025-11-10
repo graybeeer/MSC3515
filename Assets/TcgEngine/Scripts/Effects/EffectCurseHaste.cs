@@ -153,7 +153,7 @@ namespace TcgEngine
             int temp = 0;
             for (int i = 0; i < 9; i++)
             {
-                if (arrow[i])
+                if (arrow[i] && i != 4)
                     temp += (int)Mathf.Pow(2, i);
             }
             return temp;
