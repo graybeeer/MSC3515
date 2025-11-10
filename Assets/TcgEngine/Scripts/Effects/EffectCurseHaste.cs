@@ -38,7 +38,6 @@ namespace TcgEngine
         }
         public override void DoOngoingEffect(GameLogic logic, AbilityData ability, Card caster, Card target)
         {
-            /*
             int[] curse_haste_value = new int[2]; //1-저주 , 2-헤이스트 값
             if (Haste)
                 curse_haste_value = CalculateHaste(logic, ability, caster, target);
@@ -49,7 +48,7 @@ namespace TcgEngine
                 target.AddOngoingStatus(StatusType.cursed, curse_haste_value[0]);
             if (curse_haste_value[1] != 0)
                 target.AddOngoingStatus(StatusType.hasted, curse_haste_value[1]);
-            */
+            
         }
 
         int[] CalculateCurse(GameLogic logic, AbilityData ability, Card caster, Card target)
@@ -149,9 +148,15 @@ namespace TcgEngine
 
             return curse_haste_value;
         }
-        public static int Calculate()
+        public static int CalculateArrow(bool[] arrow)
         {
-            return 0;
+            int temp = 0;
+            for (int i = 0; i < 9; i++)
+            {
+                if (arrow[i])
+                    temp += (int)Mathf.Pow(2, i);
+            }
+            return temp;
         }
         public static bool[] CheckCursed(Card target)
         {

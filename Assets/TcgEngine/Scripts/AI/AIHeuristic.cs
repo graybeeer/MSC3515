@@ -47,7 +47,7 @@ namespace TcgEngine.AI
             return CalculateHeuristic(data, node, aiplayer, oplayer);
         }
 
-        //Calculate full heuristic
+        //CalculateArrow full heuristic
         //Should return a value between -10000 and 10000 (unless its a win)
         public int CalculateHeuristic(Game data, NodeState node, Player aiplayer, Player oplayer)
         {

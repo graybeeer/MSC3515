@@ -107,7 +107,7 @@ namespace TcgEngine.AI
             Profiler.BeginSample("AI");
             System.Diagnostics.Stopwatch watch = System.Diagnostics.Stopwatch.StartNew();
 
-            //Calculate first node
+            //CalculateArrow first node
             CalculateNode(original_data, first_node);
 
             Debug.Log("AI: Time " + watch.ElapsedMilliseconds + "ms Depth " + reached_depth + " Nodes " + nb_calculated);
@@ -202,7 +202,7 @@ namespace TcgEngine.AI
             if (count_valid <= max_actions_skip)
                 return; //No filtering needed
 
-            //Calculate scores
+            //CalculateArrow scores
             for (int o = 0; o < action_list.Count; o++)
             {
                 AIAction action = action_list[o];
@@ -265,7 +265,7 @@ namespace TcgEngine.AI
             //If win or reached max depth, stop searching deeper
             if (!ndata.HasEnded() && child_node.tdepth < ai_depth)
             {
-                //Calculate child
+                //CalculateArrow child
                 CalculateNode(ndata, child_node);
             }
             else

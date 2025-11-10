@@ -20,10 +20,21 @@ namespace TcgEngine
             bool[] target_hasted = EffectCurseHaste.CheckHasted(target);
             bool[] target_arrow = target.card_arrow;
             bool[] target_temp = new bool[9];
-            int rotate = AntiClock ? -count : count;
-            target_temp = RotateKeypad(target_arrow, rotate);
+            bool[] target_cursed_temp = new bool[9];
+            bool[] target_hasted_temp = new bool[9];
 
-            target.card_arrow = target_temp;
+            int rotate_count = AntiClock ? -count : count;
+            target_temp = RotateKeypad(target_arrow, rotate_count);
+            target.card_arrow = target_temp; //화살표 회전
+
+            target_cursed_temp = RotateKeypad(target_cursed, rotate_count);
+            target_hasted_temp = RotateKeypad(target_hasted, rotate_count);
+            target.RemoveStatus(StatusType.cursed); //기존 헤이스트랑 저주 데이터 지우기
+            target.RemoveStatus(StatusType.hasted);
+            
+            target.AddStatus(StatusType.cursed, EffectCurseHaste.CalculateArrow(target_cursed_temp), ability.duration); //회전된 헤이스트랑 저주 추가
+            target.AddStatus(StatusType.hasted, EffectCurseHaste.CalculateArrow(target_hasted_temp), ability.duration);
+
         }
         public override void DoOngoingEffect(GameLogic logic, AbilityData ability, Card caster, Card target) 
         { 
