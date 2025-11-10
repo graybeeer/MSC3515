@@ -8,8 +8,8 @@ using Unity.Mathematics;
 namespace TcgEngine
 {
     /// <summary>
-    /// Effects that heals a card or player (hp)
-    /// It cannot restore more than the original hp, use AddStats to go beyond original
+    /// 보드카드의 화살표 저주,가속
+    /// 화살표를 이동가능하게 하거나 불가능하게 바꾼다.
     /// </summary>
 
     [CreateAssetMenu(fileName = "effect", menuName = "TcgEngine/Effect/CurseHaste", order = 11)]
@@ -38,6 +38,7 @@ namespace TcgEngine
         }
         public override void DoOngoingEffect(GameLogic logic, AbilityData ability, Card caster, Card target)
         {
+            /*
             int[] curse_haste_value = new int[2]; //1-저주 , 2-헤이스트 값
             if (Haste)
                 curse_haste_value = CalculateHaste(logic, ability, caster, target);
@@ -48,6 +49,7 @@ namespace TcgEngine
                 target.AddOngoingStatus(StatusType.cursed, curse_haste_value[0]);
             if (curse_haste_value[1] != 0)
                 target.AddOngoingStatus(StatusType.hasted, curse_haste_value[1]);
+            */
         }
 
         int[] CalculateCurse(GameLogic logic, AbilityData ability, Card caster, Card target)
@@ -147,7 +149,10 @@ namespace TcgEngine
 
             return curse_haste_value;
         }
-
+        public static int Calculate()
+        {
+            return 0;
+        }
         public static bool[] CheckCursed(Card target)
         {
             bool[] temp_curse_arrow = new bool[9];
