@@ -24,7 +24,7 @@ namespace TcgEngine
 
         //카드 방향표
         public bool[] card_arrow = new bool[9]; //화살표, 안바뀜
-        public bool[] card_arrow_now = new bool[9]; //현재 화살표 상태
+        //public bool[] card_arrow_now = new bool[9]; //현재 화살표 상태
 
         public int mana = 0;
         public int attack = 0;
@@ -95,8 +95,7 @@ namespace TcgEngine
             attack = icard.attack;
             hp = icard.hp;
             mana = icard.mana;
-            card_arrow = icard.card_arrow;
-            card_arrow_now = icard.card_arrow;
+            card_arrow = (bool[])icard.card_arrow.Clone();
             SetTraits(icard);
             SetAbilities(icard);
         }
@@ -108,16 +107,15 @@ namespace TcgEngine
             attack = icard.attack;
             hp = icard.hp;
             mana = icard.mana;
-            card_arrow = icard.card_arrow;
-            card_arrow_now = icard.card_arrow;
-
-            traits = icard.traits;
-            ongoing_traits = icard.ongoing_traits;
-            status = icard.status;
-            ongoing_status = icard.ongoing_status;
-            abilities = icard.abilities;
-            abilities_ongoing = icard.abilities_ongoing;
-            abilities_data = icard.abilities_data;
+            card_arrow = (bool[])icard.card_arrow.Clone();
+            
+            traits = new List<CardTrait>(icard.traits);
+            ongoing_traits = new List<CardTrait>(icard.ongoing_traits);
+            status = new List<CardStatus>(icard.status);
+            ongoing_status = new List<CardStatus>(icard.ongoing_status);
+            abilities = new List<string>(icard.abilities);
+            abilities_ongoing = new List<string>(icard.abilities_ongoing);
+            abilities_data = new List<AbilityData>(icard.abilities_data);
         }
         public virtual void SetCardOwner(int new_player_id)
         {

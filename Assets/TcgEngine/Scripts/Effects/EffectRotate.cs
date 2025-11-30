@@ -47,12 +47,8 @@ namespace TcgEngine
             */
             bool clockwise = times >= 0;
             times = Math.Abs(times) % 8; // 8회 회전 시 원상복귀
-
-            bool[] temp = new bool[9];
-            for(int i = 0; i < 9; i++)
-            {
-                temp[i] = arrow[i];
-            }
+            
+            bool[] temp = (bool[])arrow.Clone();
 
             for (int t = 0; t < times; t++)
             {
