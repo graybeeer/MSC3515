@@ -10,14 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7edf116efdfa73646a6de43812f81a4a, type: 3}
-  m_Name: silenced
+  m_Name: reversed
   m_EditorClassIdentifier: 
   effect: 0
-  title: Silenced
+  title: "\uBC18\uC804\uB41C"
   icon: {fileID: 0}
-  desc: "\uAE30\uC874\uC758 \uD2B9\uC218 \uB2A5\uB825\uACFC \uAC15\uD654 \uD6A8\uACFC\uAC00
-    \uC81C\uAC70\uB428"
-  status_fx: {fileID: 8207343968682951967, guid: 0a2325e55f302f84aa511ce672526fad,
-    type: 3}
-  hvalue: -1
+  desc: "\uC720\uB2DB\uC758 \uBC29\uD5A5 \uD654\uC0B4\uD45C\uAC00 \uBC18\uC804\uB428"
+  status_fx: {fileID: 0}
+  hvalue: 0
   referencingComponents: []

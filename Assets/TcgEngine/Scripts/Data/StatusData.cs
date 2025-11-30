@@ -30,7 +30,6 @@ namespace TcgEngine
         LifeSteal = 28,      //Heal player when fighting
 
         Silenced_legacy = 30,      //All abilities canceled 모든 종류의 능력 봉인됨
-        Silenced = 31,          //자체로는 효과 없음. 침묵이 사용됐다는 걸 알려주기 위한 용도
         Paralysed = 32,     //Cant do any actions for X turns / 마비됨 - 아무 행동(이동, 공격, 액티브 능력사용)도 못함
         cursed = 33,          //저주 - 이동 화살표 중 일부 사용 못하게 됨(중첩가능), 모든 이동화살표 이동 불가능해지면 사망
         Poisoned = 34,     //Lose hp each start of turn

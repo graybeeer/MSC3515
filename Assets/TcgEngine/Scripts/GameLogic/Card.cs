@@ -24,7 +24,7 @@ namespace TcgEngine
 
         //카드 방향표
         public bool[] card_arrow = new bool[9]; //화살표, 안바뀜
-        //public bool[] card_arrow_now = new bool[9]; //현재 화살표 상태
+        public bool[] card_arrow_now = new bool[9]; //현재 화살표 상태
 
         public int mana = 0;
         public int attack = 0;
@@ -96,6 +96,7 @@ namespace TcgEngine
             hp = icard.hp;
             mana = icard.mana;
             card_arrow = icard.card_arrow;
+            card_arrow_now = icard.card_arrow;
             SetTraits(icard);
             SetAbilities(icard);
         }
@@ -108,12 +109,13 @@ namespace TcgEngine
             hp = icard.hp;
             mana = icard.mana;
             card_arrow = icard.card_arrow;
+            card_arrow_now = icard.card_arrow;
 
-            traits= icard.traits;
-            ongoing_traits= icard.ongoing_traits;
+            traits = icard.traits;
+            ongoing_traits = icard.ongoing_traits;
             status = icard.status;
             ongoing_status = icard.ongoing_status;
-            abilities= icard.abilities;
+            abilities = icard.abilities;
             abilities_ongoing = icard.abilities_ongoing;
             abilities_data = icard.abilities_data;
         }

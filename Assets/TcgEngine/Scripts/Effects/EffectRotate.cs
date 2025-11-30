@@ -18,15 +18,13 @@ namespace TcgEngine
         {
             bool[] target_cursed = EffectCurseHaste.CheckCursed(target);
             bool[] target_hasted = EffectCurseHaste.CheckHasted(target);
-            bool[] target_arrow = target.card_arrow;
-            bool[] target_temp = new bool[9];
             bool[] target_cursed_temp = new bool[9];
             bool[] target_hasted_temp = new bool[9];
 
             int rotate_count = AntiClock ? -count : count;
-            target_temp = RotateKeypad(target_arrow, rotate_count);
-            target.card_arrow = target_temp; //화살표 회전
+            target.card_arrow = RotateKeypad(target.card_arrow, rotate_count); //화살표 회전
 
+            
             target_cursed_temp = RotateKeypad(target_cursed, rotate_count);
             target_hasted_temp = RotateKeypad(target_hasted, rotate_count);
             target.RemoveStatus(StatusType.cursed); //기존 헤이스트랑 저주 데이터 지우기
@@ -34,54 +32,61 @@ namespace TcgEngine
             
             target.AddStatus(StatusType.cursed, EffectCurseHaste.CalculateArrow(target_cursed_temp), ability.duration); //회전된 헤이스트랑 저주 추가
             target.AddStatus(StatusType.hasted, EffectCurseHaste.CalculateArrow(target_hasted_temp), ability.duration);
-
+            
         }
         public override void DoOngoingEffect(GameLogic logic, AbilityData ability, Card caster, Card target) 
         { 
         }
-        public static T[] RotateKeypad<T>(T[] keypad, int times)
+        public static bool[] RotateKeypad(bool[] arrow, int times)
         {
-            if (keypad == null)
-                throw new ArgumentNullException(nameof(keypad));
-            if (keypad.Length != 9)
+            /*
+            if (arrow == null)
+                throw new ArgumentNullException(nameof(temp));
+            if (arrow.Length != 9)
                 throw new ArgumentException("3x3 그리드는 반드시 9칸이어야 합니다.");
-
+            */
             bool clockwise = times >= 0;
             times = Math.Abs(times) % 8; // 8회 회전 시 원상복귀
 
+            bool[] temp = new bool[9];
+            for(int i = 0; i < 9; i++)
+            {
+                temp[i] = arrow[i];
+            }
+
             for (int t = 0; t < times; t++)
             {
-                T[] temp = (T[])keypad.Clone();
+                bool[] temp1 = (bool[])temp.Clone();
 
                 if (clockwise)
                 {
                     // 시계 방향 회전
-                    keypad[0] = temp[3];
-                    keypad[1] = temp[0];
-                    keypad[2] = temp[1];
-                    keypad[3] = temp[6];
-                    keypad[4] = temp[4];
-                    keypad[5] = temp[2];
-                    keypad[6] = temp[7];
-                    keypad[7] = temp[8];
-                    keypad[8] = temp[5];
+                    temp[0] = temp1[1];
+                    temp[1] = temp1[2];
+                    temp[2] = temp1[5];
+                    temp[3] = temp1[0];
+                    temp[4] = temp1[4];
+                    temp[5] = temp1[8];
+                    temp[6] = temp1[3];
+                    temp[7] = temp1[6];
+                    temp[8] = temp1[7];
                 }
                 else
                 {
                     // 반시계 방향 회전
-                    keypad[0] = temp[1];
-                    keypad[1] = temp[2];
-                    keypad[2] = temp[5];
-                    keypad[3] = temp[0];
-                    keypad[4] = temp[4];
-                    keypad[5] = temp[8];
-                    keypad[6] = temp[3];
-                    keypad[7] = temp[6];
-                    keypad[8] = temp[7];
+                    temp[0] = temp1[3];
+                    temp[1] = temp1[0];
+                    temp[2] = temp1[1];
+                    temp[3] = temp1[6];
+                    temp[4] = temp1[4];
+                    temp[5] = temp1[2];
+                    temp[6] = temp1[7];
+                    temp[7] = temp1[8];
+                    temp[8] = temp1[5];
                 }
             }
 
-            return keypad;
+            return temp;
         }
     }
 

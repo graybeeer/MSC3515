@@ -25,7 +25,7 @@ namespace TcgEngine
         public override void DoOngoingEffect(GameLogic logic, AbilityData ability, Card caster, Card target) 
         { 
         }
-        public bool[] ReverseArrow(bool[] arrow)
+        public static bool[] ReverseArrow(bool[] arrow)
         {
             bool[] temp = new bool[9];
             for (int i = 0; i < arrow.Length; i++)
