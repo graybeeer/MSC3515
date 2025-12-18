@@ -27,6 +27,7 @@ namespace TcgEngine
         public int mana_max = 0;
         public int kill_count = 0;
         public int max_boardcard_num = 6; //최대 소환가능한 보드 카드 숫자
+        public bool can_move_attack = true; //유닛을 움직일 수 있는 상태인지
         //public int max_handcard_num = 10;
 
         public Dictionary<string, Card> cards_all = new Dictionary<string, Card>(); //Dictionnary for quick access to any card by UID

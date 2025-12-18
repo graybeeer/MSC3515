@@ -120,7 +120,7 @@ namespace TcgEngine
             {
                 if (!slot.IsValid() || IsCardOnSlot(slot))
                     return false;   //Slot already occupied
-                if (card.player_id != BSlot.Get(slot).owner_p_id && (BSlot.Get(slot).owner_p_id != GameClient.Get().GetPlayerNeutralID())) //수정(중립지역이여도 소환가능하게)
+                if (card.player_id != BSlot.Get(slot).owner_p_id && (BSlot.Get(slot).owner_p_id != GameClient.Get().GetPlayerNeutralID())) //중립지역이여도 소환가능
                     return false; //Cant play on opponent side
                 if (GetPlayer(card.player_id).max_boardcard_num <= GetPlayer(card.player_id).cards_board.Count)
                     return false;
@@ -160,7 +160,10 @@ namespace TcgEngine
 
             if (!card.CanMove(skip_cost)) //Card cant move
                 return false;
-            
+
+            if (!GetPlayer(card.player_id).can_move_attack) //플레이어가 이동공격 명령을 할 수 없는상태인지
+                return false;
+
             if (card.slot == slot) //Cant move to same slot
                 return false;
             
@@ -257,6 +260,9 @@ namespace TcgEngine
 
             if (!attacker.CardData.IsMoveableCard() || !target.CardData.IsCanBeBoardCard())
                 return false; //Only character can attack
+
+            if (!GetPlayer(attacker.player_id).can_move_attack) //플레이어가 이동공격 명령을 할 수 없는상태인지
+                return false;
 
             if (!CanMoveArrow(attacker, target.slot)) //화살표로 이동가능한 위치인지
                 return false;

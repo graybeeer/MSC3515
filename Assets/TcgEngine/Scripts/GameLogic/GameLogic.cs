@@ -185,6 +185,8 @@ namespace TcgEngine.Gameplay
 
             if (player.hero_data != null)
                 player.hero_data.Refresh();
+            //추가- 플레이어 유닛을 움직일 수 있는 상태로 초기화
+            player.can_move_attack = true;
 
             //추가 - 상대 깊은 진영에서 1턴이상 버티면 승리
             foreach (Player invader_player in game_data.players)
