@@ -29,6 +29,9 @@ namespace TcgEngine
         public Player[] players;
         public Player neutral_player; //추가 - 중립 지역, 유닛용
 
+        //Grave 죽은 카드 데이터가 저장되는 무덤
+        public CardGrave cardGrave;
+
         //Selector
         public SelectorType selector = SelectorType.None;
         public int selector_player_id = 0;
@@ -57,6 +60,7 @@ namespace TcgEngine
             for (int i = 0; i < nb_players; i++)
                 players[i] = new Player(i);
             settings = GameSettings.Default;
+            cardGrave = new CardGrave();
         }
 
         public virtual bool AreAllPlayersReady()

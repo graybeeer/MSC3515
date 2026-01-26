@@ -22,7 +22,7 @@ namespace TcgEngine
     public class CardData : ScriptableObject
     {
         public string id;
-        public int dbfid;
+        //public int dbfid;
 
         [Header("Display")]
         public string title;
@@ -73,6 +73,7 @@ namespace TcgEngine
         public bool deckbuilding = false; //덱에 넣을수 있는 카드인지
         public int cost = 100;
         public PackData[] packs;
+        public bool can_use = true; //현재 사용가능한 카드인지, false면 게임에서 사용 불가능
 
         public static List<CardData> card_list = new List<CardData>();                              //Faster access in loops
         public static Dictionary<string, CardData> card_dict = new Dictionary<string, CardData>();    //Faster access in Get(id)
@@ -343,7 +344,6 @@ namespace TcgEngine
             }
             return multi_list;
         }
-
         public static List<CardData> GetAll()
         {
             return card_list;

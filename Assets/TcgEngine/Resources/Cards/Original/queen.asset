@@ -46,3 +46,4 @@ MonoBehaviour:
   deckbuilding: 1
   cost: 100
   packs: []
+  can_use: 1

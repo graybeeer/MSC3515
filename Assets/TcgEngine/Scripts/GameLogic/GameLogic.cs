@@ -1151,9 +1151,12 @@ namespace TcgEngine.Gameplay
             if (game_data.IsInDiscard(card))
                 return; //Already discarded
 
+            
             CardData icard = card.CardData;
             Player player = game_data.GetPlayer(card.player_id);
             bool was_on_board = game_data.IsOnBoard(card) || game_data.IsEquipped(card);
+            Slot islot = card.slot;
+            int nowturn = game_data.turn_count;
 
             //Unequip card
             UnequipAll(card);
@@ -1174,6 +1177,9 @@ namespace TcgEngine.Gameplay
                 TriggerCardAbilityType(AbilityTrigger.OnDeath, card);
                 TriggerOtherCardsAbilityType(AbilityTrigger.OnDeathOther, card);
                 TriggerSecrets(AbilityTrigger.OnDeathOther, card);
+                //필드에서 죽으면 무덤에 추가
+                game_data.cardGrave.AddGrave(islot, icard.id, nowturn, player);
+                //Debug.Log("" + islot + icard + nowturn + player);
                 UpdateOngoingCards(); //Not UpdateOngoing() here to avoid recursive calls in UpdateOngoingKills
             }
 
