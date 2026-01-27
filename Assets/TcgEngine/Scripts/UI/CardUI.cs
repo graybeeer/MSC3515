@@ -70,6 +70,12 @@ namespace TcgEngine.UI
                 bool[] temp_check_haste = EffectCurseHaste.CheckHasted(card);
                 for (int i = 0; i < card_arrow_icon.Length; i++)
                 {
+                    //약화된 이동마커는 시각적으로 표시
+                    if (!temp_check_curse[i])
+                        card_arrow_icon[i].sprite = full_card_arrow_icon[i];
+                    else card_arrow_icon[i].sprite = empty_card_arrow_icon[i];
+
+                    //강화된 이동마커도 시각적으로 색깔 다르게 해서 표시
                     if (card.card_arrow[i] )
                         card_arrow_icon[i].color = new Color(1f, 1f, 1f, 1f);
                     else if (temp_check_haste[i])
@@ -77,9 +83,9 @@ namespace TcgEngine.UI
                     else
                         card_arrow_icon[i].color = new Color(1f, 1f, 1f, 0f);
 
-                    if (!temp_check_curse[i])
-                        card_arrow_icon[i].sprite = full_card_arrow_icon[i];
-                    else card_arrow_icon[i].sprite = empty_card_arrow_icon[i];
+                    //아티팩트 이동마커는 다르다는걸 표시
+                    if (card.CardData.IsArtifact())
+                        card_arrow_icon[i].color = new Color(1f, 0.5f, 1f, 1f);
                 }
             }
             foreach (TraitUI stat in stats)

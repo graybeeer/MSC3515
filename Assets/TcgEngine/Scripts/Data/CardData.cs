@@ -34,6 +34,7 @@ namespace TcgEngine
         public TeamData team;
         public RarityData rarity;
         public int mana;
+        [HideInInspector]
         public int attack = 1;
         public int hp = 1;
         public bool[] card_arrow = new bool[9];

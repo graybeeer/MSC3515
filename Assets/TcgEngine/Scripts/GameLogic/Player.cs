@@ -35,6 +35,8 @@ namespace TcgEngine
         public Card hero = null;
         public int hero_invade_turn = 0;
 
+        public List<string> expansion_pack=new List<string>(); //플레이어가 사용하는 확장팩 3개 리스트
+
         public List<Card> cards_deck = new List<Card>();    //Cards in the player's deck
         public List<Card> cards_hand = new List<Card>();    //Cards in the player's hand
         public List<Card> cards_board = new List<Card>();   //Cards on the board
