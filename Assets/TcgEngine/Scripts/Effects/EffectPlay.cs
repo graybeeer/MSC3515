@@ -23,7 +23,7 @@ namespace TcgEngine
 
             if (slot != Slot.None)
             {
-                logic.PlayCard(target, slot, true);
+                logic.PlayCard(target, slot, true, false);
             }
         }
     }

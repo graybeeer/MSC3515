@@ -467,7 +467,7 @@ namespace TcgEngine.Gameplay
 
         //---- Gameplay Actions --------------
 
-        public virtual void PlayCard(Card card, Slot slot, bool skip_cost = false)
+        public virtual void PlayCard(Card card, Slot slot, bool skip_cost = false, bool battle_cry = true)
         {
             if (game_data.CanPlayCard(card, slot, skip_cost))
             {
@@ -478,7 +478,7 @@ namespace TcgEngine.Gameplay
                 if (!skip_cost)
                     player.PayMana(card);
                 //Play card
-                if (game_data.IsInHand(card) && player.cards_hand.Contains(card))
+                if (game_data.IsInHand(card) && player.cards_hand.Contains(card) && battle_cry)
                     card.is_playing_hand = true;
 
                 player.RemoveCardFromAllGroups(card);
@@ -902,7 +902,7 @@ namespace TcgEngine.Gameplay
                 return null;
 
             Card acard = Card.Create(card, variant, player);
-            PlayCard(acard, slot, true);
+            PlayCard(acard, slot, true, false);
             
             onCardSummoned?.Invoke(acard, slot);
             game_data.last_summoned = acard.uid;

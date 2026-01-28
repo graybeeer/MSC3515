@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 843a21f7f6f205741a0a7341aec8e84d, type: 3}
   m_Name: 001_blue_yeti
   m_EditorClassIdentifier: 
-  id: cs1_001
+  id: CS1_001
   title: "\uD30C\uB780\uC124\uC778"
   art_full: {fileID: 0}
   art_board: {fileID: 0}

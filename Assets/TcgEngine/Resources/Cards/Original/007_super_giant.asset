@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 843a21f7f6f205741a0a7341aec8e84d, type: 3}
   m_Name: 007_super_giant
   m_EditorClassIdentifier: 
-  id: cs1_007
+  id: CS1_007
   title: "\uCD08\uB300\uD615 \uAC70\uC778"
   art_full: {fileID: 0}
   art_board: {fileID: 0}

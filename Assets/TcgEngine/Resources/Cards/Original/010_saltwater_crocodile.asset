@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 843a21f7f6f205741a0a7341aec8e84d, type: 3}
   m_Name: 010_saltwater_crocodile
   m_EditorClassIdentifier: 
-  id: cs1_010
+  id: CS1_010
   title: "\uBC14\uB2E4 \uC545\uC5B4"
   art_full: {fileID: 0}
   art_board: {fileID: 0}
@@ -23,7 +23,8 @@ MonoBehaviour:
   attack: 1
   hp: 1
   card_arrow: 000000010001000100
-  traits: []
+  traits:
+  - {fileID: 11400000, guid: 948c650ff5621994ab73f23d55d2ec4f, type: 2}
   stats: []
   abilities: []
   text: 

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 843a21f7f6f205741a0a7341aec8e84d, type: 3}
   m_Name: 005_mud_wall
   m_EditorClassIdentifier: 
-  id: cs1_005
+  id: CS1_005
   title: "\uC9C4\uD759 \uBCBD"
   art_full: {fileID: 21300000, guid: 4552df5a2028c574d807f9c67b42e7bd, type: 3}
   art_board: {fileID: 21300000, guid: 75d36a2392560284ab5f357ebab94a2b, type: 3}
