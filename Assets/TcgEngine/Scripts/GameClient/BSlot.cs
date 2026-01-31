@@ -11,7 +11,7 @@ namespace TcgEngine.Client
     public class BSlot : MonoBehaviour
     {
         public int owner_p_id; //추가 - 이 슬롯의 주인이 누구인지
-        public bool deep; //추가 - 적이 한턴버티면 승리하는 슬롯인지
+        public bool deep; //추가 - 내부진영 인지. 적이 한턴버티면 승리하는 슬롯인지
 
         protected SpriteRenderer render;
         protected Collider collide;

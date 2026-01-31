@@ -104,7 +104,7 @@ namespace TcgEngine
         }
 
         //Check if temp_card card is allowed to be played on slot
-        public virtual bool CanPlayCard(Card card, Slot slot, bool skip_cost = false)
+        public virtual bool CanPlayCard(Card card, Slot slot, bool skip_cost = false, bool skip_summon_condition = false)
         {
             if (card == null)
                 return false;
@@ -122,14 +122,37 @@ namespace TcgEngine
             //보드카드 소환할때
             if (card.CardData.IsCanBeBoardCard())
             {
+                int temp_card_id = card.player_id;
+                int temp_slot_id = BSlot.Get(slot).owner_p_id;
                 if (!slot.IsValid() || IsCardOnSlot(slot))
                     return false;   //Slot already occupied
-                if (card.player_id != BSlot.Get(slot).owner_p_id && (BSlot.Get(slot).owner_p_id != GameClient.Get().GetPlayerNeutralID())) //중립지역이여도 소환가능
-                    return false; //Cant play on opponent side
-                if (GetPlayer(card.player_id).max_boardcard_num <= GetPlayer(card.player_id).cards_board.Count)
+                if (GetPlayer(card.player_id).max_boardcard_num <= GetPlayer(card.player_id).cards_board.Count) //최대 소환물 개수를 넘어서서는 소환 불가능
                     return false;
+                if (skip_summon_condition == true) //소환 조건 무시하고 소환하기면 그냥 소환
+                    return true;
+
+                if (temp_card_id != temp_slot_id) //본인 진영에 소환이 아니라면
+                {
+                    if (temp_slot_id == GameClient.Get().GetPlayerNeutralID())//중립지역이여도 소환가능
+                        return true;
+                    else if (temp_slot_id == GameClient.Get().GetOpponentPlayerID())//만약 상대 진영에 소환하려면
+                    {
+                        if (card.HasStatus(StatusType.SuperInfiltrate)) //깊은 침투 카드면 적 진영이어도 소환가능
+                            return true;
+                        else if (card.HasStatus(StatusType.Infiltrate) && !BSlot.Get(slot).deep) //침투 카드면 적 외부진영에 소환가능
+                            return true;
+                        else return false;
+                    }
+                    else
+                    {
+                        Debug.LogError("소환이상");
+                        return false;
+                    }
+                }
+                
                 return true;
             }
+
             if (card.CardData.IsEquipment())
             {
                 if (!slot.IsValid())

@@ -10,14 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7edf116efdfa73646a6de43812f81a4a, type: 3}
-  m_Name: sleep
+  m_Name: legacy_deathtouch
   m_EditorClassIdentifier: 
-  effect: 36
-  title: Sleep
+  effect: 20
+  title: Deathtouch
   icon: {fileID: 0}
-  desc: 'Does not unexhaust.
-
-    Removed if attacked.'
-  status_fx: {fileID: 8207343968682951967, guid: 73965d73de1b01a4c8c2f1820472d53f,
-    type: 3}
-  hvalue: -1
+  desc: Kill any creature it damages.
+  status_fx: {fileID: 0}
+  hvalue: 1

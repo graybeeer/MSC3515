@@ -42,7 +42,9 @@ namespace TcgEngine
 
         hasted = 50, //헤이스트- 저주랑 정 반대로 추가로 이동가능한 방향이 생김
         DeathCount = 52, //데쓰카운트 - 일정 턴이 지나면 이 유닛은 사망한다.
-        
+
+        Infiltrate = 60, //침투-이 유닛은 적 진영 외부 행에도 소환가능합니다
+        SuperInfiltrate = 61, //깊은 침투-이 유닛은 적 진영 내부 행에도 소환가능합니다
     }
 
     /// <summary>
