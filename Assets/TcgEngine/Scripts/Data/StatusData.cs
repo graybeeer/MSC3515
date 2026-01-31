@@ -43,6 +43,7 @@ namespace TcgEngine
         hasted = 50, //헤이스트- 저주랑 정 반대로 추가로 이동가능한 방향이 생김
         DeathCount = 52, //데쓰카운트 - 일정 턴이 지나면 이 유닛은 사망한다.
 
+        Frozen = 60, //하수인은 이동 및 공격을 할 수 없다, 건물은 침묵효과
     }
 
     /// <summary>

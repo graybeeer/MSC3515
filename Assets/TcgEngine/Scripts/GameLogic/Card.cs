@@ -498,6 +498,8 @@ namespace TcgEngine
         {
             if (HasStatus(StatusType.Paralysed))
                 return false;
+            if (HasStatus(StatusType.Frozen))
+                return false;
             if (!skip_cost && exhausted)
                 return false; //no more action
             return true;
@@ -513,7 +515,9 @@ namespace TcgEngine
             
             if (HasStatus(StatusType.Paralysed))
                 return false;
-            
+            if (HasStatus(StatusType.Frozen))
+                return false;
+
             if (!skip_cost && exhausted)
                 return false; //no more action
             
@@ -526,13 +530,16 @@ namespace TcgEngine
                 return false;
             if (HasStatus(StatusType.Silenced_legacy))
                 return false;
-
+            if (CardData.IsArtifact() && HasStatus(StatusType.Frozen)) //건물 유닛이 빙결상태면 침묵
+                return false;
             return true;
         }
 
         public virtual bool CanDoAbilities()
         {
             if (HasStatus(StatusType.Silenced_legacy))
+                return false;
+            if (CardData.IsArtifact() && HasStatus(StatusType.Frozen)) //건물 유닛이 빙결상태면 침묵
                 return false;
             return true;
         }
