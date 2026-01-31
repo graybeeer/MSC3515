@@ -668,7 +668,7 @@ namespace TcgEngine
 
         OnPlay = 10,  //When playeds
         OnPlayOther = 12,  //When another card played
-        OnPlayHand = 14,    //패에서 낼때만 발동, 전투의 함성
+        OnPlayHand = 14,    //사용x
 
         StartOfTurn = 20, //Every turn
         EndOfTurn = 22, //Every turn

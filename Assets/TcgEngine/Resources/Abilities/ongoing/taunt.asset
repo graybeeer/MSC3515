@@ -30,10 +30,11 @@ MonoBehaviour:
   caster_fx: {fileID: 0}
   target_fx: {fileID: 0}
   projectile_fx: {fileID: 0}
+  fx_time: 0
   cast_audio: {fileID: 0}
   target_audio: {fileID: 0}
   charge_target: 0
-  title: Taunt
+  title: "\uB3C4\uBC1C"
   desc: "\uC774 \uC720\uB2DB\uC744 \uACF5\uACA9\uD560 \uC218 \uC788\uB2E4\uBA74,
     \uC774 \uC720\uB2DB\uB9CC \uACF5\uACA9\uAC00\uB2A5"
   referencingComponents: []

@@ -889,6 +889,12 @@ namespace TcgEngine.Client
             Player player = GetPlayer();
             return IsReady() && game_data.IsPlayerTurn(player);
         }
+        public virtual bool IsCurrentYourTurn()
+        {
+            Game game_data = GetCurrentGameData();
+            Player player = GetPlayer();
+            return IsReady() && game_data.IsPlayerTurn(player);
+        }
 
         public bool IsObserveMode()
         {

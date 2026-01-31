@@ -137,11 +137,12 @@ namespace TcgEngine
                         return true;
                     else if (temp_slot_id == GameClient.Get().GetOpponentPlayerID())//만약 상대 진영에 소환하려면
                     {
-                        if (card.HasStatus(StatusType.SuperInfiltrate)) //깊은 침투 카드면 적 진영이어도 소환가능
+                        if (card.HasStat(TraitData.Get("super_infiltrate"))) //깊은 침투 카드면 적 진영이어도 소환가능
                             return true;
-                        else if (card.HasStatus(StatusType.Infiltrate) && !BSlot.Get(slot).deep) //침투 카드면 적 외부진영에 소환가능
+                        else if (card.HasStat(TraitData.Get("infiltrate")) && !BSlot.Get(slot).deep) //침투 카드면 적 외부진영에 소환가능
                             return true;
                         else return false;
+
                     }
                     else
                     {

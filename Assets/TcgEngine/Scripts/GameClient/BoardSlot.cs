@@ -47,34 +47,35 @@ namespace TcgEngine.Client
             BoardCard bcard_selected = PlayerControls.Get().GetSelected();
             HandCard drag_card = HandCard.GetDrag();
 
-            //Game gdata = GameClient.Get().GetGameData();
-            Game gdata = GameClient.Get().GetCurrentGameData();
+            Game gdata = GameClient.Get().GetGameData();
+            Game current_gdata = GameClient.Get().GetCurrentGameData();
             Player player = GameClient.Get().GetPlayer();
             Slot slot = GetSlot();
             Card dcard = drag_card?.GetCard();
-            Card slot_card = gdata.GetSlotCard(GetSlot());
+            Card slot_card = current_gdata.GetSlotCard(GetSlot());
             bool your_turn = GameClient.Get().IsYourTurn();
+            bool current_your_turn = GameClient.Get().IsCurrentYourTurn();
             collide.enabled = slot_card == null; //Disable collider when a card is here
 
             //Find target opacity value
             target_alpha = 0.5f;
-            if (your_turn && dcard != null && dcard.CardData.IsCanBeBoardCard() && gdata.CanPlayCard(dcard, slot))
+            if (current_your_turn && dcard != null && dcard.CardData.IsCanBeBoardCard() && gdata.CanPlayCard(dcard, slot))
             {
                 target_alpha = 1f; //hightlight when dragging a character or artifact
             }
 
-            if (your_turn && dcard != null && dcard.CardData.IsRequireTarget() && gdata.CanPlayCard(dcard, slot))
+            if (current_your_turn && dcard != null && dcard.CardData.IsRequireTarget() && gdata.CanPlayCard(dcard, slot))
             {
                 target_alpha = 1f; //Highlight when dragin a spell with target
             }
 
-            if (gdata.selector == SelectorType.SelectTarget && player.player_id == gdata.selector_player_id)
+            if (current_gdata.selector == SelectorType.SelectTarget && player.player_id == current_gdata.selector_player_id)
             {
-                Card caster = gdata.GetCard(gdata.selector_caster_uid);
-                AbilityData ability = AbilityData.Get(gdata.selector_ability_id);
-                if(ability != null && slot_card == null && ability.CanTarget(gdata, caster, slot))
+                Card caster = current_gdata.GetCard(current_gdata.selector_caster_uid);
+                AbilityData ability = AbilityData.Get(current_gdata.selector_ability_id);
+                if(ability != null && slot_card == null && ability.CanTarget(current_gdata, caster, slot))
                     target_alpha = 1f; //Highlight when selecting a target and slot are valid
-                if (ability != null && slot_card != null && ability.CanTarget(gdata, caster, slot_card))
+                if (ability != null && slot_card != null && ability.CanTarget(current_gdata, caster, slot_card))
                     target_alpha = 1f; //Highlight when selecting a target and cards are valid
             }
             //추가- 슬롯 주인에 따라 색깔변환
@@ -91,8 +92,8 @@ namespace TcgEngine.Client
             
             Card select_card = bcard_selected?.GetCard();
             
-            bool can_do_move = your_turn && select_card != null && slot_card == null && gdata.CanMoveCard(select_card, slot);
-            bool can_do_attack = your_turn && select_card != null && slot_card != null && gdata.CanAttackTarget(select_card, slot_card);
+            bool can_do_move = current_your_turn && select_card != null && slot_card == null && current_gdata.CanMoveCard(select_card, slot);
+            bool can_do_attack = current_your_turn && select_card != null && slot_card != null && current_gdata.CanAttackTarget(select_card, slot_card);
 
             if (can_do_attack || can_do_move)
             {
@@ -153,7 +154,7 @@ namespace TcgEngine.Client
             if (GameUI.IsOverUI())
                 return;
 
-            //Game gdata = GameClient.Get().GetGameData();
+            //Game current_gdata = GameClient.Get().GetGameData();
             Game gdata = GameClient.Get().GetCurrentGameData();
             int player_id = GameClient.Get().GetPlayerID();
 
