@@ -135,9 +135,9 @@ namespace TcgEngine
 
                 if (temp_card_id != temp_slot_id) //본인 진영에 소환이 아니라면
                 {
-                    if (temp_slot_id == GameClient.Get().GetPlayerNeutralID())//중립지역이여도 소환가능
+                    if (temp_slot_id == GetPlayerNotID())//중립지역이여도 소환가능
                         return true;
-                    else if (temp_slot_id == GameClient.Get().GetOpponentPlayerID())//만약 상대 진영에 소환하려면
+                    else if (temp_slot_id == GetOpponentID(player.player_id))//만약 상대 진영에 소환하려면
                     {
                         if (card.HasStat(TraitData.Get("super_infiltrate"))) //깊은 침투 카드면 적 진영이어도 소환가능
                             return true;
