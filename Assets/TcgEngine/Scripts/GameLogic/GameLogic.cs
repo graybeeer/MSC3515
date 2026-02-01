@@ -5,6 +5,7 @@ using TcgEngine.UI;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Profiling;
+using static UnityEditor.PlayerSettings;
 using static UnityEngine.GraphicsBuffer;
 
 namespace TcgEngine.Gameplay
@@ -110,7 +111,27 @@ namespace TcgEngine.Gameplay
                     game_data.first_player = 1;
                 game_data.current_player = game_data.first_player;
             }
-
+            //추가- 슬롯 정보 저장
+            SlotInform mainSlotInform = game_data.slotInform;
+            if (mainSlotInform != null)
+            {
+                for (int y = 1; y <= 5; y++)
+                {
+                    for (int x = 1; x <= 3; x++)
+                    {
+                        if (y == 1)
+                            mainSlotInform.AddSlotData(Slot.Get(x, y), game_data.GetPlayer1ID(), true);
+                        else if (y == 2)
+                            mainSlotInform.AddSlotData(Slot.Get(x, y), game_data.GetPlayer1ID(), false);
+                        else if (y == 3)
+                            mainSlotInform.AddSlotData(Slot.Get(x, y), game_data.GetPlayerNotID(), false);
+                        else if (y == 4)
+                            mainSlotInform.AddSlotData(Slot.Get(x, y), game_data.GetPlayer2ID(), false);
+                        else if (y == 5)
+                            mainSlotInform.AddSlotData(Slot.Get(x, y), game_data.GetPlayer2ID(), true);
+                    }
+                }
+            }
             //Init each players
             foreach (Player player in game_data.players)
             {
@@ -193,8 +214,8 @@ namespace TcgEngine.Gameplay
             {
                 if (invader_player.hero != null)
                 {
-                    BSlot hero_slot = BSlot.Get(invader_player.hero.slot);
-                    if (hero_slot.owner_p_id == GameClient.Get().GetOpponentID(invader_player.player_id) && hero_slot.deep)
+                    SlotData hero_slot = game_data.slotInform.GetSlotData(invader_player.hero.slot);
+                    if (hero_slot.owner_p_id == GameClient.Get().GetOpponentID(invader_player.player_id) && hero_slot.isDeep)
                     {
                         invader_player.hero_invade_turn++;
                     }

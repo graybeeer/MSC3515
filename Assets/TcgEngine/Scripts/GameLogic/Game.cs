@@ -31,6 +31,7 @@ namespace TcgEngine
 
         //Grave 죽은 카드 데이터가 저장되는 무덤
         public CardGrave cardGrave;
+        public SlotInform slotInform;
 
         //Selector
         public SelectorType selector = SelectorType.None;
@@ -61,6 +62,7 @@ namespace TcgEngine
                 players[i] = new Player(i);
             settings = GameSettings.Default;
             cardGrave = new CardGrave();
+            slotInform = new SlotInform();
         }
 
         public virtual bool AreAllPlayersReady()
@@ -123,7 +125,7 @@ namespace TcgEngine
             if (card.CardData.IsCanBeBoardCard())
             {
                 int temp_card_id = card.player_id;
-                int temp_slot_id = BSlot.Get(slot).owner_p_id;
+                int temp_slot_id = slotInform.GetSlotData(slot).owner_p_id;
                 if (!slot.IsValid() || IsCardOnSlot(slot))
                     return false;   //Slot already occupied
                 if (GetPlayer(card.player_id).max_boardcard_num <= GetPlayer(card.player_id).cards_board.Count) //최대 소환물 개수를 넘어서서는 소환 불가능
@@ -139,7 +141,7 @@ namespace TcgEngine
                     {
                         if (card.HasStat(TraitData.Get("super_infiltrate"))) //깊은 침투 카드면 적 진영이어도 소환가능
                             return true;
-                        else if (card.HasStat(TraitData.Get("infiltrate")) && !BSlot.Get(slot).deep) //침투 카드면 적 외부진영에 소환가능
+                        else if (card.HasStat(TraitData.Get("infiltrate")) && !slotInform.GetSlotData(slot).isDeep) //침투 카드면 적 외부진영에 소환가능
                             return true;
                         else return false;
 
@@ -707,7 +709,26 @@ namespace TcgEngine
             Clone(source, game);
             return game;
         }
-
+        public int GetPlayerNotID()
+        {
+            return -1;
+        }
+        public int GetPlayer1ID()
+        {
+            return 0;
+        }
+        public int GetPlayer2ID()
+        {
+            return 1;
+        }
+        public int GetPlayerNeutralID()
+        {
+            return -1;
+        }
+        public int GetOpponentID(int i)
+        {
+            return i == 0 ? 1 : 0;
+        }
         //Clone all variables into another var, used mostly by the AI when building temp_card prediction tree
         public static void Clone(Game source, Game dest)
         {

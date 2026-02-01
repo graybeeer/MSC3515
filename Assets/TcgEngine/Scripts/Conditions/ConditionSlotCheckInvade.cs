@@ -17,7 +17,7 @@ public class ConditionSlotCheckInvade : ConditionData
 
     public override bool IsTriggerConditionMet(Game data, AbilityData ability, Card caster)
     {
-        BSlot now_slot = BSlot.Get(caster.slot);
+        SlotData now_slot_data = data.slotInform.GetSlotData(caster.slot);
         int CheckID;
 
         if (opponent)
@@ -25,8 +25,8 @@ public class ConditionSlotCheckInvade : ConditionData
         else
             CheckID = caster.player_id;
 
-        if (now_slot.owner_p_id == CheckID)
-            if (deep && now_slot.deep)
+        if (now_slot_data.owner_p_id == CheckID)
+            if (deep && now_slot_data.isDeep)
                 return true;
             else if (!deep)
                 return true;

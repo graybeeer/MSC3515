@@ -16,8 +16,8 @@ namespace TcgEngine
     {
         public int x; //From 1 to 5
         public int y; //Not in use, could be used to add more rows or different locations on the board
-        public int p; //0 or 1, represent player ID, -1은 중립지역 -> BSlot의 owner_p_id로 넘겨감
-        //추가 - ignore p 활성화로 p로 슬롯 구분하지 않음
+        public int p; //추가 - ignore p 활성화로 p로 슬롯 구분하지 않음
+
 
         public static int x_min = 1; //Dont change this, should start at 1  (0,0,0 represent invalid slot)
         public static int x_max = 3; //Number of slots in a row/zone

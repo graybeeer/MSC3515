@@ -79,6 +79,15 @@ namespace TcgEngine.Client
                     target_alpha = 1f; //Highlight when selecting a target and cards are valid
             }
             //추가- 슬롯 주인에 따라 색깔변환
+            if (current_gdata.slotInform.CheckSlot(slot)) //슬롯 정보가 있는 상황이면
+            {
+                if (current_gdata.slotInform.GetSlotData(slot).owner_p_id == player.player_id)
+                    type = BoardSlotType.Player1;
+                else if (current_gdata.slotInform.GetSlotData(slot).owner_p_id == current_gdata.GetOpponentID(player.player_id))
+                    type = BoardSlotType.Player2;
+                else
+                    type = BoardSlotType.PlayerNot;
+            }
             if (type == BoardSlotType.Player1)
             {
                 render.color = new Color(0.5f, 0.5f, 1f, current_alpha);
@@ -87,9 +96,13 @@ namespace TcgEngine.Client
             {
                 render.color = new Color(1f, 0.5f, 0.5f, current_alpha);
             }
+            else if (type == BoardSlotType.PlayerNot)
+            {
+                render.color = new Color(1f, 1f, 1f, current_alpha);
+            }
 
             //추가 - 필드에 어떤 카드가 선택되었을때 그때만 한번 확인하도록 변경예정
-            
+
             Card select_card = bcard_selected?.GetCard();
             
             bool can_do_move = current_your_turn && select_card != null && slot_card == null && current_gdata.CanMoveCard(select_card, slot);
