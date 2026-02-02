@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 510a78cb12497a646b6e2a8ba36b4dcf, type: 3}
+  m_Name: preparate
+  m_EditorClassIdentifier: 
+  id: preparate
+  title: "\uC900\uBE44"
+  icon: {fileID: 0}
+  description: "\uC774 \uC720\uB2DB\uC740 \uC544\uAD70 \uC9C4\uC601\uC5D0\uB9CC \uC18C\uD658\uAC00\uB2A5\uD569\uB2C8\uB2E4\r\n"
+  referencingComponents: []

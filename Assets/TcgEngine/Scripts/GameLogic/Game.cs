@@ -135,8 +135,14 @@ namespace TcgEngine
 
                 if (temp_card_id != temp_slot_id) //본인 진영에 소환이 아니라면
                 {
-                    if (temp_slot_id == GetPlayerNotID())//중립지역이여도 소환가능
-                        return true;
+                    if (temp_slot_id == GetPlayerNotID())//일반적으로는 중립지역에 소환가능
+                    {
+                        if(card.HasStat(TraitData.Get("super_preparate")))//느린 준비나 준비면 중립지역에 소환 불가능
+                            return false;
+                        else if (card.HasStat(TraitData.Get("super_infiltrate")))
+                            return false;
+                        else return true;
+                    }
                     else if (temp_slot_id == GetOpponentID(player.player_id))//만약 상대 진영에 소환하려면
                     {
                         if (card.HasStat(TraitData.Get("super_infiltrate"))) //깊은 침투 카드면 적 진영이어도 소환가능
@@ -151,6 +157,11 @@ namespace TcgEngine
                         Debug.LogError("소환이상");
                         return false;
                     }
+                }
+                else if(temp_card_id == temp_slot_id) //본인 진영 소환이라면
+                {
+                    if (card.HasStat(TraitData.Get("super_preparate")) && !slotInform.GetSlotData(slot).isDeep) //느린 준비 카드면 아군 내부진영에만 소환가능
+                        return false;
                 }
                 
                 return true;
