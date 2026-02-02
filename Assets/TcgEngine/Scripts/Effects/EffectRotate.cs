@@ -27,11 +27,14 @@ namespace TcgEngine
             
             target_cursed_temp = RotateKeypad(target_cursed, rotate_count);
             target_hasted_temp = RotateKeypad(target_hasted, rotate_count);
+
             target.RemoveStatus(StatusType.cursed); //기존 헤이스트랑 저주 데이터 지우기
             target.RemoveStatus(StatusType.hasted);
-            
-            target.AddStatus(StatusType.cursed, EffectCurseHaste.CalculateArrow(target_cursed_temp), ability.duration); //회전된 헤이스트랑 저주 추가
-            target.AddStatus(StatusType.hasted, EffectCurseHaste.CalculateArrow(target_hasted_temp), ability.duration);
+
+            if (EffectCurseHaste.CalculateArrow(target_cursed_temp) != 0)
+                target.AddStatus(StatusType.cursed, EffectCurseHaste.CalculateArrow(target_cursed_temp), ability.duration); //회전된 헤이스트랑 저주 추가
+            if (EffectCurseHaste.CalculateArrow(target_hasted_temp) != 0)
+                target.AddStatus(StatusType.hasted, EffectCurseHaste.CalculateArrow(target_hasted_temp), ability.duration);
             
         }
         public override void DoOngoingEffect(GameLogic logic, AbilityData ability, Card caster, Card target) 

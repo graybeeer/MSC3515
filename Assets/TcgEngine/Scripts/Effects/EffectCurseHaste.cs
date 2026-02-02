@@ -94,13 +94,13 @@ namespace TcgEngine
                 else curse_haste_value[0] += (int)Mathf.Pow(2, curseNum);
                 curse_count = 1;
             }
-
-            //모든 이동가능한 화살표가 저주받으면 카드 사망
+            /*
+            //모든 이동가능한 화살표가 저주받으면 카드 사망 //추가- 나중에 체인효과로 구현
             if (curse_count >= can_curse_arrow.Count)
             {
                 logic.KillCard(caster, target);
             }
-
+            */
             return curse_haste_value;
         }
         int[] CalculateHaste(GameLogic logic, AbilityData ability, Card caster, Card target)
