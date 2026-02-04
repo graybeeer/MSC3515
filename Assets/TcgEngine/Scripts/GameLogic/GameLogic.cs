@@ -639,12 +639,34 @@ namespace TcgEngine.Gameplay
             TriggerSecrets(AbilityTrigger.OnAfterMoveOther, card);
 
             onCardMoved?.Invoke(card, slot);
-            resolve_queue.ResolveAll(msc_time);
+            resolve_queue.ResolveAll();
 
             UpdateOngoing();
             RefreshData();
         }
-        
+        public virtual void ExchangeMove(Card card1, Card card2, bool skip_cost = false)
+        {
+            Player player = game_data.GetPlayer(card1.player_id);
+            Slot slot1= card1.slot;
+            Slot slot2= card2.slot;
+
+
+            player.AddHistory(GameAction.Move, card1);
+            player.AddHistory(GameAction.Move, card2);
+
+            card1.slot = slot2;
+            card2.slot = slot1;
+            if (!skip_cost)
+            {
+                card1.exhausted = true;
+                card2.exhausted = true;
+            }
+
+            UpdateOngoing();
+            RefreshData();
+            resolve_queue.ResolveAll();
+
+        }
         public virtual void CastAbility(Card card, AbilityData iability)
         {
             if (game_data.CanCastAbility(card, iability))

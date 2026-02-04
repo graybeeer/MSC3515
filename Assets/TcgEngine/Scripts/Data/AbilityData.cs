@@ -325,7 +325,18 @@ namespace TcgEngine
                 if (AreTargetConditionsMet(data, caster, caster))
                     targets.Add(caster);
             }
-
+            if (target == AbilityTarget.PlayerSelfHero) //추가- 시전자의 영웅유닛
+            {
+                Player caster_player = data.GetPlayer(caster.player_id);
+                if (AreTargetConditionsMet(data, caster, caster_player.hero))
+                    targets.Add(caster_player.hero);
+            }
+            if (target == AbilityTarget.PlayerOpponentHero)//추가- 시전자의 상대 영웅유닛
+            {
+                Player opponent_player = data.GetOpponentPlayer(caster.player_id);
+                if (AreTargetConditionsMet(data, caster, opponent_player.hero))
+                    targets.Add(opponent_player.hero);
+            }
             if (target == AbilityTarget.AllCardsBoard || target == AbilityTarget.SelectTarget)
             {
                 foreach (Player player in data.players)
@@ -716,6 +727,8 @@ namespace TcgEngine
         LastDestroyed = 74,            //Last card that was killed
         LastSummoned = 77,            //Last card that was summoned or created
 
+        PlayerSelfHero = 80,        //시전하는 플레이어의 히어로 유닛
+        PlayerOpponentHero = 81     //시전하는 플레이어의 상대플레이어 히어로 유닛
     }
 
 }
