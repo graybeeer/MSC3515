@@ -9,9 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 850a5aeabb476904cbaef4345d3d8dff, type: 3}
-  m_Name: is_slot_invade_deep
+  m_Script: {fileID: 11500000, guid: 2df080b90a55a824caa1fb5256aaa2dc, type: 3}
+  m_Name: transform_knight
   m_EditorClassIdentifier: 
   referencingComponents: []
-  opponent: 1
-  deep: 1
+  transform_to: {fileID: 11400000, guid: be0ef9568d16c204f98b984d87b44677, type: 2}
