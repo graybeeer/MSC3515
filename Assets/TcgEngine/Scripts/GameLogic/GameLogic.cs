@@ -973,13 +973,12 @@ namespace TcgEngine.Gameplay
                 card.SetCardOwner(player.player_id);
                 
                 */
-            game_data.GetPlayer(card.player_id).RemoveCardFromAllGroups(card);
+                game_data.GetPlayer(card.player_id).RemoveCardFromAllGroups(card);
                 game_data.GetPlayer(card.player_id).cards_all.Remove(card.uid);
                 player.cards_all[card.uid] = card;
                 player.cards_board.Add(card);
                 //player.AddCard(tempList, card);
                 card.SetCardOwner(player.player_id);
-                //card.exhausted = true; //Cant attack first turn
                 //만약 플레이어 최대 보드카드 수를 넘기면
                 if (player.max_boardcard_num < player.cards_board.Count)
                     DiscardCard(card);
