@@ -44,6 +44,7 @@ namespace TcgEngine
         DeathCount = 52, //데쓰카운트 - 일정 턴이 지나면 이 유닛은 사망한다.
 
         Frozen = 60, //하수인은 이동 및 공격을 할 수 없다, 건물은 침묵효과
+        FriendlyFire = 65, //아군오사 - 아군 소환물을 공격할 수 있다.
     }
 
     /// <summary>

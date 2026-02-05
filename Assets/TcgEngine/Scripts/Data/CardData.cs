@@ -175,7 +175,10 @@ namespace TcgEngine
         {
             return type == CardType.Character || type == CardType.Artifact || type == CardType.Hero;
         }
-        
+        public bool IsCanBeSummonCard()
+        {
+            return type == CardType.Character || type == CardType.Artifact;
+        }
         public bool IsRequireTarget()
         {
             return type == CardType.Equipment || IsRequireTargetSpell();

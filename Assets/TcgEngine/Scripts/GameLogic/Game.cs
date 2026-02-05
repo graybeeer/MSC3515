@@ -141,16 +141,19 @@ namespace TcgEngine
                             return false;
                         else if (card.HasStat(TraitData.Get("super_infiltrate")))
                             return false;
-                        else return true;
                     }
                     else if (temp_slot_id == GetOpponentID(player.player_id))//만약 상대 진영에 소환하려면
                     {
-                        if (card.HasStat(TraitData.Get("super_infiltrate"))) //깊은 침투 카드면 적 진영이어도 소환가능
-                            return true;
-                        else if (card.HasStat(TraitData.Get("infiltrate")) && !slotInform.GetSlotData(slot).isDeep) //침투 카드면 적 외부진영에 소환가능
-                            return true;
-                        else return false;
-
+                        if (slotInform.GetSlotData(slot).isDeep) //상대 내부진영에 소환하려면
+                        {
+                            if (!card.HasStat(TraitData.Get("super_infiltrate"))) //깊은 침투 있으면 소환가능
+                                return false;
+                        }
+                        else //상대 외부진영에 소환하려면
+                        {
+                            if (!card.HasStat(TraitData.Get("super_infiltrate")) && !card.HasStat(TraitData.Get("infiltrate"))) //깊은 침투나 침투 있으면 소환가능
+                                return false;
+                        }
                     }
                     else
                     {
@@ -294,8 +297,11 @@ namespace TcgEngine
                 return false; //Card cant attack
 
             if (attacker.player_id == target.player_id)
-                return false; //Cant attack same player
-
+            {
+                if (attacker.HasStatus(StatusType.FriendlyFire) && target.CardData.IsCanBeSummonCard()) //아군오사 유닛은 아군 소환물 공격가능
+                { }
+                else return false; //아군오사 유닛은 아구
+            }
             if (!IsOnBoard(attacker) || !IsOnBoard(target))
                 return false; //Cards not on board
 
