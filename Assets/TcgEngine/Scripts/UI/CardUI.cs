@@ -11,7 +11,7 @@ using TcgEngine.Client;
 namespace TcgEngine.UI
 {
     /// <summary>
-    /// Scripts to display all stats of a card, 
+    /// Scripts to display all stats of a cardData, 
     /// is used by other script that display cards like BoardCard, and HandCard, CollectionCard..
     /// </summary>
 
@@ -76,7 +76,7 @@ namespace TcgEngine.UI
                     else card_arrow_icon[i].sprite = empty_card_arrow_icon[i];
 
                     //강화된 이동마커도 시각적으로 색깔 다르게 해서 표시
-                    if (card.card_arrow[i] )
+                    if (card.card_arrow[i])
                         card_arrow_icon[i].color = new Color(1f, 1f, 1f, 1f);
                     else if (temp_check_haste[i])
                         card_arrow_icon[i].color = new Color(0.7f, 1f, 0.7f, 1f);
@@ -85,84 +85,89 @@ namespace TcgEngine.UI
 
                     //아티팩트 이동마커는 다르다는걸 표시
                     if (card.CardData.IsArtifact())
-                        card_arrow_icon[i].color = new Color(1f, 0.5f, 1f, 1f);
+                        card_arrow_icon[i].color = new Color(0.3f, 0.3f, 1f, card_arrow_icon[i].color.a);
                 }
             }
             foreach (TraitUI stat in stats)
                 stat.SetCard(card);
         }
 
-        public void SetCard(CardData card, VariantData variant)
+        public void SetCard(CardData cardData, VariantData variant)
         {
-            if (card == null)
+            if (cardData == null)
                 return;
 
-            this.card = card;
+            this.card = cardData;
             this.variant = variant;
 
             if(card_image != null)
-                card_image.sprite = card.GetFullArt(variant);
+                card_image.sprite = cardData.GetFullArt(variant);
             if (frame_image != null)
                 frame_image.sprite = variant.frame;
             if (card_title != null)
-                card_title.text = card.GetTitle().ToUpper();
+                card_title.text = cardData.GetTitle().ToUpper();
             if (card_text != null)
-                card_text.text = card.GetText();
+                card_text.text = cardData.GetText();
 
             if (attack_icon != null)
                 attack_icon.enabled = false;
             if (attack != null)
                 attack.enabled = false;
+            
+            if (hp_icon != null)
+                hp_icon.enabled = cardData.IsArtifact() || cardData.IsEquipment();
+            if (hp != null)
+                hp.enabled = cardData.IsArtifact() || cardData.IsEquipment();
+            if (cost_icon != null)
+                cost_icon.enabled = !cardData.IsHero();
+            if (cost != null)
+                cost.enabled = !cardData.IsHero();
+
+            if (cost != null)
+                cost.text = cardData.mana.ToString();
+            if (cost != null && cardData.IsDynamicManaCost())
+                cost.text = "X";
+            if (attack != null)
+                attack.text = cardData.attack.ToString();
+            if (hp != null)
+                hp.text = cardData.hp.ToString();
+            //내가 추가한 이동방향 ui
+
             if (card_arrow_icon != null)
             {
                 foreach (Image arrow in card_arrow_icon)
                 {
-                    arrow.enabled = card.IsMoveableCard();
+                    arrow.enabled = cardData.IsCanBeBoardCard();
                 }
             }
-            if (hp_icon != null)
-                hp_icon.enabled = card.IsArtifact() || card.IsEquipment();
-            if (hp != null)
-                hp.enabled = card.IsArtifact() || card.IsEquipment();
-            if (cost_icon != null)
-                cost_icon.enabled = !card.IsHero();
-            if (cost != null)
-                cost.enabled = !card.IsHero();
-
-            if (cost != null)
-                cost.text = card.mana.ToString();
-            if (cost != null && card.IsDynamicManaCost())
-                cost.text = "X";
-            if (attack != null)
-                attack.text = card.attack.ToString();
-            if (hp != null)
-                hp.text = card.hp.ToString();
-            //내가 추가한 이동방향 ui
-            
             if (card_arrow_icon != null)
             {
                 for (int i = 0; i < card_arrow_icon.Length; i++)
                 {
-                    if (card.card_arrow[i])
+                    if (cardData.card_arrow[i])
                         card_arrow_icon[i].color = new Color(1f, 1f, 1f, 1f);
                     else
                         card_arrow_icon[i].color = new Color(1f, 1f, 1f, 0f);
+
+                    //아티팩트 이동마커는 다르다는걸 표시
+                    if (cardData.IsArtifact())
+                        card_arrow_icon[i].color = new Color(1f, 0.5f, 1f, card_arrow_icon[i].color.a);
                 }
             }
             if (team_icon != null)
             {
-                team_icon.sprite = card.team.icon;
+                team_icon.sprite = cardData.team.icon;
                 team_icon.enabled = team_icon.sprite != null;
             }
 
             if (rarity_icon != null)
             {
-                rarity_icon.sprite = card.rarity.icon;
-                rarity_icon.enabled = rarity_icon.sprite != null && !card.IsHero();
+                rarity_icon.sprite = cardData.rarity.icon;
+                rarity_icon.enabled = rarity_icon.sprite != null && !cardData.IsHero();
             }
 
             foreach (TraitUI stat in stats)
-                stat.SetCard(card);
+                stat.SetCard(cardData);
 
             if (!gameObject.activeSelf)
                 gameObject.SetActive(true);

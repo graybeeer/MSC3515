@@ -87,7 +87,7 @@ namespace TcgEngine.Client
                     else
                         GameClient.Get().AttackPlayer(card, tslot.GetPlayer());
                 }
-                else if (target != null && target.uid != card.uid && target.player_id != card.player_id)
+                else if (target != null && target.uid != card.uid)//수정 - && target.player_id != card.player_id 삭제- 아군 유닛 공격 가능한 경우 있음.
                 {
                     if(card.exhausted)
                         WarningText.ShowExhausted();

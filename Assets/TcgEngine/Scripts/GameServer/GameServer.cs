@@ -2,6 +2,7 @@
 using TcgEngine.AI;
 using TcgEngine.Gameplay;
 using Unity.Netcode;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -298,6 +299,10 @@ namespace TcgEngine.Server
                 Card card = player.GetCard(msg.card_uid);
                 if (card != null && card.player_id == player.player_id)
                     gameplay.PlayCard(card, msg.slot);
+                else if (card.player_id != player.player_id)
+                {
+                    Debug.LogError("카드 사용자와 유닛 주인이 다름");
+                }
             }
         }
 
@@ -312,6 +317,11 @@ namespace TcgEngine.Server
                 if (attacker != null && target != null && attacker.player_id == player.player_id)
                 {
                     gameplay.AttackTarget(attacker, target);
+                    gameplay.CheckCanAttackTarget(attacker, target); //클라이언트에 불가능 이유 텍스트 보내는 서버 함수 추가하기
+                }
+                else if(attacker.player_id != player.player_id)
+                {
+                    Debug.LogError("공격선언자와 유닛 주인이 다름");
                 }
             }
         }
@@ -327,6 +337,7 @@ namespace TcgEngine.Server
                 if (attacker != null && target != null && attacker.player_id == player.player_id)
                 {
                     gameplay.AttackPlayer(attacker, target);
+                    Debug.LogError("레거시 함수");
                 }
             }
         }
@@ -340,8 +351,16 @@ namespace TcgEngine.Server
             {
                 Card card = player.GetCard(msg.card_uid);
                 if (card != null && card.player_id == player.player_id)
+                {
                     gameplay.MoveCard(card, msg.slot);
+                    gameplay.CheckCanMoveTarget();
+                }
+                else if (card.player_id != player.player_id)
+                {
+                    Debug.LogError("이동선언자와 유닛 주인이 다름");
+                }
             }
+            
         }
 
         public void ReceiveCastCardAbility(ClientData iclient, SerializedData sdata)

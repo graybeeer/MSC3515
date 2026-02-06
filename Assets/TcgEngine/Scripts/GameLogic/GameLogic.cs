@@ -679,6 +679,19 @@ namespace TcgEngine.Gameplay
                 resolve_queue.ResolveAll();
             }
         }
+        //클라이언트에 행동 불가능 이유 텍스트 뽑는 함수
+        public virtual string CheckCanCastTarget()
+        {
+            return "can";
+        }
+        public virtual string CheckCanMoveTarget()
+        {
+            return "can";
+        }
+        public virtual string CheckCanAttackTarget(Card attacker, Card target, bool skip_cost = false)
+        {
+            return "can";
+        }
 
         public virtual void AttackTarget(Card attacker, Card target, bool skip_cost = false)
         {

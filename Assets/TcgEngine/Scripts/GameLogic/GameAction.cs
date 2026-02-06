@@ -27,6 +27,7 @@ namespace TcgEngine
         public const ushort EndTurn = 1040;
         public const ushort Resign = 1050;
         public const ushort ChatMessage = 1090;
+        public const ushort CantTextMessage = 1095; //이동 공격 대상지정 등이 불가능할때 뜨는 메시지
 
         public const ushort PlayerSettings = 1100; //After connect, send player data
         public const ushort PlayerSettingsAI = 1102; //After connect, send player data

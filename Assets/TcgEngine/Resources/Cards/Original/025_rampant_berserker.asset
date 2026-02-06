@@ -10,24 +10,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 843a21f7f6f205741a0a7341aec8e84d, type: 3}
-  m_Name: 024_gold_mine
+  m_Name: 025_rampant_berserker
   m_EditorClassIdentifier: 
-  id: CS1_024
-  title: "\uAE08\uAD11"
-  art_full: {fileID: 21300000, guid: 4552df5a2028c574d807f9c67b42e7bd, type: 3}
-  art_board: {fileID: 21300000, guid: 75d36a2392560284ab5f357ebab94a2b, type: 3}
-  type: 30
+  id: CS1_025
+  title: "\uB0A0\uB6F0\uB294 \uAD11\uC804\uC0AC  "
+  art_full: {fileID: 0}
+  art_board: {fileID: 0}
+  type: 10
   team: {fileID: 11400000, guid: fd7242277f949a0479af0e39137c8fdf, type: 2}
-  rarity: {fileID: 11400000, guid: 72248f07232412e4db2f6864dbb4e271, type: 2}
-  mana: 3
-  attack: 0
-  hp: 3
-  card_arrow: 000000000000000000
+  rarity: {fileID: 11400000, guid: fab1a52f5a36cc942985dea95be18ac9, type: 2}
+  mana: 5
+  attack: 1
+  hp: 1
+  card_arrow: 000100010001000100
   traits: []
   stats: []
   abilities:
-  - {fileID: 11400000, guid: 816349240eac66340ac8747e4fab0bee, type: 2}
-  text: "\uB0B4 \uD134 \uC2DC\uC791\uC2DC\uC5D0 \uAE08\uD654\uB97C \uC5BB\uC2B5\uB2C8\uB2E4.\r\n"
+  - {fileID: 11400000, guid: 87f0735fc03c9ce4ea6d1bcba16b714e, type: 2}
+  - {fileID: 11400000, guid: 771256b877d9eeb43bea7dfda1ee74ee, type: 2}
+  text: "<b>\uC544\uAD70\uC624\uC0AC</b>, \uCC98\uCE58\uD560 \uB54C\uB9C8\uB2E4:
+    \uCE74\uB4DC\uB97C \uBF51\uC2B5\uB2C8\uB2E4"
   desc: 
   spawn_fx: {fileID: 0}
   death_fx: {fileID: 0}
@@ -43,9 +45,7 @@ MonoBehaviour:
   death_audio: {fileID: 0}
   attack_audio: {fileID: 0}
   damage_audio: {fileID: 0}
-  deckbuilding: 1
+  deckbuilding: 0
   cost: 100
-  packs:
-  - {fileID: 11400000, guid: bafca3757bf537c43b1d2ba696456e2c, type: 2}
-  - {fileID: 11400000, guid: 2db0d9f08bdfa57419101c08b8598c1a, type: 2}
+  packs: []
   can_use: 1

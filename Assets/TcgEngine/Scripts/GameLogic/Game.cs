@@ -213,7 +213,8 @@ namespace TcgEngine
             
             if (!CanMoveArrow(card,slot)) //화살표로 이동가능한 위치인지
                 return false;
-            
+
+
             Card slot_card = GetSlotCard(slot);
             if (slot_card != null) //Already temp_card card there
                 return false;
@@ -299,8 +300,10 @@ namespace TcgEngine
             if (attacker.player_id == target.player_id)
             {
                 if (attacker.HasStatus(StatusType.FriendlyFire) && target.CardData.IsCanBeSummonCard()) //아군오사 유닛은 아군 소환물 공격가능
-                { }
-                else return false; //아군오사 유닛은 아구
+                { 
+
+                }
+                else return false; //아군오사 유닛은 아군 소환물 공격가능
             }
             if (!IsOnBoard(attacker) || !IsOnBoard(target))
                 return false; //Cards not on board
