@@ -56,7 +56,8 @@ namespace TcgEngine.Client
         public UnityAction<Card, Player> onAttackPlayerEnd;
 
         public UnityAction<int, string> onChatMsg;  //player_id, msg
-        public UnityAction< string> onServerMsg;  //msg
+        public UnityAction<string> onCantText;  //불가능한 행동에 대한 설명 메시지 받을때
+        public UnityAction<string> onServerMsg;  //msg
         public UnityAction onRefreshAll;
         public UnityAction onRefreshAllCurrent;
 
@@ -114,6 +115,8 @@ namespace TcgEngine.Client
             RegisterRefresh(GameAction.ChatMessage, OnChat);
             RegisterRefresh(GameAction.ServerMessage, OnServerMsg);
             RegisterRefresh(GameAction.RefreshAll, OnRefreshAll);
+
+            RegisterRefresh(GameAction.CantTextMessage, OnCantText); //추가
 
             TcgNetwork.Get().onConnect += OnConnectedServer;
             TcgNetwork.Get().Messaging.ListenMsg("refresh", OnReceiveRefresh);
@@ -792,6 +795,11 @@ namespace TcgEngine.Client
         {
             MsgChat msg = sdata.Get<MsgChat>();
             onChatMsg?.Invoke(msg.player_id, msg.msg);
+        }
+        private void OnCantText(SerializedData sdata)
+        {
+            MsgChat msg = sdata.Get<MsgChat>();
+            onCantText?.Invoke(msg.msg);
         }
 
         private void OnServerMsg(SerializedData sdata)

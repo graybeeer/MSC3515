@@ -352,8 +352,11 @@ namespace TcgEngine.Server
                 Card card = player.GetCard(msg.card_uid);
                 if (card != null && card.player_id == player.player_id)
                 {
+                    if(!game_data.CanMoveCard(card, msg.slot)) //불가능한 행동일경우
+                    {
+                        //SendCantTextMessage(iclient, "임시"); //안된다는 텍스트 메세지 보냄
+                    }
                     gameplay.MoveCard(card, msg.slot);
-                    gameplay.CheckCanMoveTarget();
                 }
                 else if (card.player_id != player.player_id)
                 {
@@ -467,7 +470,13 @@ namespace TcgEngine.Server
                 SendToAll(GameAction.ChatMessage, msg, NetworkDelivery.Reliable);
             }
         }
-
+        //불가능한 플레이시 보내는 문구
+        public void SendCantTextMessage(ClientData iclient, string text)
+        {
+            MsgChat msg = new MsgChat();
+            msg.msg = text;
+            SendToPlayer(GameAction.CantTextMessage, iclient, msg, NetworkDelivery.Unreliable); //이런 설명 문구는 대충 보내도 됨
+        }
         //--- Setup Commands ------
 
         public virtual async void SetPlayerDeck(int player_id, string username, UserDeckData deck)
@@ -928,6 +937,18 @@ namespace TcgEngine.Server
                 {
                     Messaging.Send("refresh", iclient.client_id, writer, delivery);
                 }
+            }
+            writer.Dispose();
+        }
+        public void SendToPlayer(ushort tag, ClientData iclient, INetworkSerializable data, NetworkDelivery delivery)
+        {
+            FastBufferWriter writer = new FastBufferWriter(128, Unity.Collections.Allocator.Temp, TcgNetwork.MsgSizeMax);
+            writer.WriteValueSafe(tag);
+            writer.WriteNetworkSerializable(data);
+
+            if (iclient != null)
+            {
+                Messaging.Send("refresh", iclient.client_id, writer, delivery);
             }
             writer.Dispose();
         }
