@@ -578,7 +578,7 @@ namespace TcgEngine.Gameplay
         }
         public virtual void MoveCard(Card card, Slot slot, bool skip_cost = false)
         {
-            if (game_data.CanMoveCard(card, slot, skip_cost))
+            if (game_data.CanMoveCard(card, slot,skip_cost))
             {
                 //Debug.Log("move");
                 Player player = game_data.GetPlayer(card.player_id);

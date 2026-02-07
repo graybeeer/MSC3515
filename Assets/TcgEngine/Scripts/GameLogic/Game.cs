@@ -191,7 +191,7 @@ namespace TcgEngine
             }
             return true;
         }
-
+        #region 이동관련 함수
         //Check if temp_card card is allowed to move to slot
         public virtual bool CanMoveCard(Card card, Slot slot, bool skip_cost = false)
         {
@@ -221,7 +221,33 @@ namespace TcgEngine
             
             return true;
         }
-        
+        public virtual string CantMoveText(Card card, Slot slot, bool skip_cost = false)
+        {
+            if (card == null || !slot.IsValid())
+                return "유효하지 않음";
+
+            if (!IsOnBoard(card)) //Only cards in play can move
+                return "필드에 없는 유닛";
+
+            if (!card.CanMove(skip_cost)) //Card cant move
+                return "이동 불가능한 상태";
+
+            if (!GetPlayer(card.player_id).can_move_attack) //플레이어가 이동공격 명령을 할 수 없는상태인지
+                return "플레이어의 이동명령 불가";
+
+            if (card.slot == slot) //Cant move to same slot
+                return "기존과 같은 위치로 이동 불가능";
+
+            if (!CanMoveArrow(card, slot)) //화살표로 이동가능한 위치인지
+                return "이동 불가능한 위치";
+
+
+            Card slot_card = GetSlotCard(slot);
+            if (slot_card != null) //Already temp_card card there
+                return "가로막힌 슬롯";
+
+            return "이동 불가능함";
+        }
         //보드카드가 해당 슬롯에 이동+공격 가능한 방향에 있는지 보드카드의 화살표로 계산
         public bool CanMoveArrow(Card card, Slot slot)
         {
@@ -264,11 +290,11 @@ namespace TcgEngine
 
             return true;
         }
-
-        //Check if temp_card card is allowed to attack temp_card player
-        //추가 - 사용안하는 레거시 함수
-        public virtual bool CanAttackTarget(Card attacker, Player target, bool skip_cost = false)
+        #endregion
+        
+        public virtual bool CanAttackTarget(Card attacker, Player target, bool skip_cost = false) //추가 - 사용안하는 레거시 함수
         {
+            //Check if temp_card card is allowed to attack temp_card player
             if(attacker == null || target == null)
                 return false;
 
@@ -337,13 +363,69 @@ namespace TcgEngine
                 Player target_p = GetPlayer(target.player_id);
                 //추가 - 상대 히어로가 침입상태일땐 공격가능하게
                 if (target_p.hero_invade_turn > 0)
-                    return true;
+                { }
                 else return false;
             }
             if (attacker.HasStatus(StatusType.Mercy) && target.CardData.IsHero()) //공격자가 자비 상태면 영웅 공격불가
                 return false;
 
             return true;
+        }
+        public virtual string CantAttackText(Card attacker, Card target, bool skip_cost = false, bool checkCanAttackTaunt = false)
+        {
+            if (attacker == null || target == null)
+                return "존재하지 않는 대상";
+
+            if (!attacker.CanAttack(skip_cost))
+                return "공격 불가능한 상태"; //Card cant attack
+
+            if (attacker.player_id == target.player_id)
+            {
+                if (attacker.HasStatus(StatusType.FriendlyFire) && target.CardData.IsCanBeSummonCard()) //아군오사 유닛은 아군 소환물 공격가능
+                {
+
+                }
+                else return "아군 유닛 공격 불가"; //아군오사 유닛은 아군 소환물 공격가능
+            }
+            if (!IsOnBoard(attacker) || !IsOnBoard(target))
+                return "필드에 없는 카드"; //Cards not on board
+
+            if (!attacker.CardData.IsMoveableCard() || !target.CardData.IsCanBeBoardCard())
+                return "이동 가능 유닛만 공격명령가능"; //Only character can attack
+
+            if (!GetPlayer(attacker.player_id).can_move_attack) //플레이어가 이동공격 명령을 할 수 없는상태인지
+                return "플레이어가 공격 명령 불가상태";
+
+            if (!CanMoveArrow(attacker, target.slot)) //화살표로 이동가능한 위치인지
+                return "공격 불가능한 위치의 슬롯";
+
+            if (target.HasStatus(StatusType.Stealth_legacy))
+                return "레거시"; //Stealth_legacy cant be attacked
+
+            if (target.HasStatus(StatusType.SuperProtected) && !attacker.HasStatus(StatusType.Flying))
+                return "강화 보호 상태의 유닛"; //SuperProtected by 컥 하수인 + 영웅 카드
+
+            if (target.HasStatus(StatusType.Protected) && !attacker.CardData.IsHero() && !attacker.HasStatus(StatusType.Flying))
+                return "보호 상태의 유닛"; //Protected by 적 하수인 카드
+
+            if (!checkCanAttackTaunt)
+                if (!target.HasStatus(StatusType.Taunt) && CanAttackTauntCard(attacker) && !attacker.HasStatus(StatusType.Flying))
+                    return "도발에 가로막힘"; //도발 카드 공격 가능한 상태에선 다른 카드 공격 불가능
+
+
+            if (attacker.CardData.IsHero() && target.CardData.IsHero()) //둘다 히어로카드면 서로 공격불가
+            {
+                Player attacker_p = GetPlayer(attacker.player_id);
+                Player target_p = GetPlayer(target.player_id);
+                //추가 - 상대 히어로가 침입상태일땐 공격가능하게
+                if (target_p.hero_invade_turn > 0)
+                { }
+                else return "침입상태가 아니면, 영웅 유닛끼리 공격불가";
+            }
+            if (attacker.HasStatus(StatusType.Mercy) && target.CardData.IsHero()) //공격자가 자비 상태면 영웅 공격불가
+                return "자비 상태에선 영웅공격 불가";
+
+            return "공격 불가";
         }
         public virtual bool CanMoveOrAttack(Card attacker, Slot target, bool skip_cost = false)
         {

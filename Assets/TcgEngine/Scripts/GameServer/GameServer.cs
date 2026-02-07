@@ -318,7 +318,7 @@ namespace TcgEngine.Server
                 {
                     if (!game_data.CanAttackTarget(attacker,target)) //불가능한 행동일경우
                     {
-                        //SendCantTextMessage(iclient, "임시"); //안된다는 텍스트 메세지 보냄
+                        SendCantTextMessage(iclient, game_data.CantAttackText(attacker, target)); //안된다는 텍스트 메세지 보냄
                     }
                     gameplay.AttackTarget(attacker, target);
                     gameplay.CheckCanAttackTarget(attacker, target); //클라이언트에 불가능 이유 텍스트 보내는 서버 함수 추가하기
@@ -346,7 +346,7 @@ namespace TcgEngine.Server
             }
         }
 
-        public void ReceiveMove(ClientData iclient, SerializedData sdata)
+        public void ReceiveMove(ClientData iclient, SerializedData sdata) //플레이어 클라이언트에게 유닛 이동명령을 받으면
         {
             MsgPlayCard msg = sdata.Get<MsgPlayCard>();
             Player player = GetPlayer(iclient);
@@ -358,7 +358,7 @@ namespace TcgEngine.Server
                 {
                     if(!game_data.CanMoveCard(card, msg.slot)) //불가능한 행동일경우
                     {
-                        //SendCantTextMessage(iclient, "임시"); //안된다는 텍스트 메세지 보냄
+                        SendCantTextMessage(iclient, game_data.CantMoveText(card, msg.slot)); //안된다는 텍스트 메세지 보냄
                     }
                     gameplay.MoveCard(card, msg.slot);
                 }
