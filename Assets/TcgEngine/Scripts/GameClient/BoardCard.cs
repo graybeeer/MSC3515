@@ -10,8 +10,8 @@ using TcgEngine.FX;
 namespace TcgEngine.Client
 {
     /// <summary>
-    /// Represents the visual aspect of a card on the board.
-    /// Will take the data from Card.cs and display it
+    /// Represents the visual aspect of a current_card on the board.
+    /// Will take the current_data from Card.cs and display it
     /// </summary>
 
     public class BoardCard : MonoBehaviour
@@ -99,22 +99,22 @@ namespace TcgEngine.Client
                 canvas.gameObject.SetActive(true);
 
             PlayerControls controls = PlayerControls.Get();
-            //Game data = GameClient.Get().GetGameData();
-            Game data = GameClient.Get().GetCurrentGameData();
+            Game data = GameClient.Get().GetGameData();
+            Game current_data = GameClient.Get().GetCurrentGameData();
             Player player = GameClient.Get().GetPlayer();
-            Card card = data.GetCard(card_uid);
+            Card current_card = current_data.GetCard(card_uid);
 
             //카드주인 플레이어 id 가져오기
-            player_id = card.player_id;
+            player_id = current_card.player_id;
             if (!destroyed)
             {
-                card_ui.SetCard(card);
+                card_ui.SetCard(current_card);
                 card_ui.SetHP(prev_hp);
             }
 
             //Save Previous HP
             if (!IsDamagedDelayed())
-                prev_hp = card.GetHP();
+                prev_hp = current_card.GetHP();
 
             bool selected = controls.GetSelected() == this;
             Vector3 targ_pos = GetTargetPos();
@@ -128,26 +128,26 @@ namespace TcgEngine.Client
             if (equipment != null && equipment.IsFocus())
                 target_alpha = 0f;
 
-            Color ccolor = player.player_id == card.player_id ? glow_ally : glow_enemy;
+            Color ccolor = player.player_id == current_card.player_id ? glow_ally : glow_enemy;
             float calpha = Mathf.MoveTowards(card_glow.color.a, target_alpha * ccolor.a, 4f * Time.deltaTime);
             card_glow.color = new Color(ccolor.r, ccolor.g, ccolor.b, calpha);
             card_shadow.enabled = !destroyed && timer > 0.4f;
-            card_sprite.color = card.HasStatus(StatusType.Stealth_legacy) ? Color.gray : Color.white;
-            card_ui.hp.color = (destroyed || card.damage > 0) ? Color.yellow : Color.white;
+            card_sprite.color = current_card.HasStatus(StatusType.Stealth_legacy) ? Color.gray : Color.white;
+            card_ui.hp.color = (destroyed || current_card.damage > 0) ? Color.yellow : Color.white;
 
             //armor
-            int armor_val = card.GetStatusValue(StatusType.Armor_legacy);
+            int armor_val = current_card.GetStatusValue(StatusType.Armor_legacy);
             armor.text = armor_val.ToString();
             armor.enabled = armor_val > 0;
             armor_icon.enabled = armor_val > 0;
 
-            //Update card image
-            Sprite sprite = card.CardData.GetBoardArt(card.VariantData);
+            //Update current_card image
+            Sprite sprite = current_card.CardData.GetBoardArt(current_card.VariantData);
             if (sprite != card_sprite.sprite)
                 card_sprite.sprite = sprite;
 
             //추가- 2p 보드카드일경우 180도 돌리기
-            if (card.player_id == 1)
+            if (current_card.player_id == 1)
             {
                 Vector3 board_rot = GameBoard.Get().GetAngles();
                 transform.localRotation = Quaternion.Euler(board_rot.x, board_rot.y, board_rot.z + 180 + random_rotate.z);
@@ -159,14 +159,14 @@ namespace TcgEngine.Client
             }
 
             //Update frame image
-            Sprite frame = card.VariantData.frame_board;
+            Sprite frame = current_card.VariantData.frame_board;
             if (frame != null && card_ui.frame_image != null)
                 card_ui.frame_image.sprite = frame;
 
             //Equipment
             if (equipment != null)
             {
-                Card equip = data.GetEquipCard(card.equipped_uid);
+                Card equip = current_data.GetEquipCard(current_card.equipped_uid);
                 equipment.SetEquip(equip);
             }
 
@@ -174,10 +174,10 @@ namespace TcgEngine.Client
             foreach (AbilityButton button in buttons)
                 button.Hide();
 
-            if (selected && card.player_id == player.player_id)
+            if (selected && current_card.player_id == player.player_id)
             {
                 int index = 0;
-                List<AbilityData> abilities = card.GetAbilities();
+                List<AbilityData> abilities = current_card.GetAbilities();
                 foreach (AbilityData iability in abilities)
                 {
                     if (iability != null && iability.trigger == AbilityTrigger.Activate)
@@ -185,14 +185,14 @@ namespace TcgEngine.Client
                         if (index < buttons.Length)
                         {
                             AbilityButton button = buttons[index];
-                            button.SetAbility(card, iability);
-                            button.SetInteractable(data.CanCastAbility(card, iability));
+                            button.SetAbility(current_card, iability);
+                            button.SetInteractable(current_data.CanCastAbility(current_card, iability));
                         }
                         index++;
                     }
                 }
 
-                Card equip = data.GetEquipCard(card.equipped_uid);
+                Card equip = current_data.GetEquipCard(current_card.equipped_uid);
                 if (equip != null)
                 {
                     List<AbilityData> equip_abilities = equip.GetAbilities();
@@ -204,7 +204,7 @@ namespace TcgEngine.Client
                             {
                                 AbilityButton button = buttons[index];
                                 button.SetAbility(equip, iability);
-                                button.SetInteractable(data.CanCastAbility(equip, iability));
+                                button.SetInteractable(current_data.CanCastAbility(equip, iability));
                             }
                             index++;
                         }
@@ -219,7 +219,7 @@ namespace TcgEngine.Client
 
         private Vector3 GetTargetPos()
         {
-            //Game data = GameClient.Get().GetGameData();
+            //Game current_data = GameClient.Get().GetGameData();
             Game data = GameClient.Get().GetCurrentGameData();
             Card card = data.GetCard(card_uid);
 
@@ -448,7 +448,7 @@ namespace TcgEngine.Client
             return card_uid;
         }
 
-        //Return main card (not equip)
+        //Return main current_card (not equip)
         public Card GetCard()
         {
             Game data = GameClient.Get().GetGameData();
@@ -456,7 +456,7 @@ namespace TcgEngine.Client
             return card;
         }
 
-        //Return equip card
+        //Return equip current_card
         public Card GetEquipCard()
         {
             Game data = GameClient.Get().GetGameData();
@@ -465,7 +465,7 @@ namespace TcgEngine.Client
             return equip;
         }
 
-        //Return either main or equip card based on which one is focused
+        //Return either main or equip current_card based on which one is focused
         public Card GetFocusCard()
         {
             if (IsEquipFocus())

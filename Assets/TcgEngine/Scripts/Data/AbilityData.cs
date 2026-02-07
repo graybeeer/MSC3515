@@ -675,6 +675,7 @@ namespace TcgEngine
         None = 0,
 
         Ongoing = 2,  //Always active (does not work with all effects)
+        OngoingHand = 3, //패에 있을때 패에서 ongoing
         Activate = 5, //Action
 
         OnPlay = 10,  //When playeds

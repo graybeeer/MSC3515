@@ -1334,7 +1334,6 @@ namespace TcgEngine.Gameplay
             if (!caster.HasStatus(StatusType.Silenced_legacy) && iability.AreTriggerConditionsMet(game_data, caster, trigger_card))
             {
                 resolve_queue.AddAbility(iability, caster, trigger_card, ResolveCardAbility);
-                //resolve_queue.ResolveAll(5f);
             }
         }
 
@@ -1576,7 +1575,7 @@ namespace TcgEngine.Gameplay
             for (int p = 0; p < game_data.players.Length; p++)
             {
                 Player player = game_data.players[p];
-                UpdateOngoingAbilities(player, player.hero_data);  //Remove this line if hero is on the board
+                //UpdateOngoingAbilities(player, player.hero_data);  //Remove this line if hero is on the board
 
                 for (int c = 0; c < player.cards_board.Count; c++)
                 {
@@ -1588,6 +1587,12 @@ namespace TcgEngine.Gameplay
                 {
                     Card card = player.cards_equip[c];
                     UpdateOngoingAbilities(player, card);
+                }
+                
+                for (int c = 0; c < player.cards_hand.Count; c++) //추가 - 패에서 ongoingHand 어빌리티도 추가
+                {
+                    Card card = player.cards_hand[c];
+                    UpdateOngoingAbilities(player, card, true);
                 }
             }
 
@@ -1668,112 +1673,119 @@ namespace TcgEngine.Gameplay
             cards_to_clear.Clear();
         }
 
-        protected virtual void UpdateOngoingAbilities(Player player, Card card)
+        protected virtual void UpdateOngoingAbilities(Player player, Card card, bool onHand = false)
         {
+            //추가 패의 ongoing도
+            //onhand=패에서 발동하는 ongoing 어빌리티인지 확인
             if (card == null || !card.CanDoAbilities())
                 return;
 
             List<AbilityData> cabilities = card.GetAbilities();
+
             for (int a = 0; a < cabilities.Count; a++)
             {
                 AbilityData ability = cabilities[a];
-                if (ability != null && ability.trigger == AbilityTrigger.Ongoing && ability.AreTriggerConditionsMet(game_data, card))
+
+                if (ability != null && ((onHand == false && ability.trigger == AbilityTrigger.Ongoing) || (onHand == true && ability.trigger == AbilityTrigger.OngoingHand)))
                 {
-                    if (ability.target == AbilityTarget.Self)
+                    if (ability.AreTriggerConditionsMet(game_data, card))
                     {
-                        if (ability.AreTargetConditionsMet(game_data, card, card))
+                        if (ability.target == AbilityTarget.Self)
                         {
-                            ability.DoOngoingEffects(this, card, card);
-                        }
-                    }
-
-                    if (ability.target == AbilityTarget.PlayerSelf)
-                    {
-                        if (ability.AreTargetConditionsMet(game_data, card, player))
-                        {
-                            ability.DoOngoingEffects(this, card, player);
-                        }
-                    }
-
-                    if (ability.target == AbilityTarget.AllPlayers || ability.target == AbilityTarget.PlayerOpponent)
-                    {
-                        for (int tp = 0; tp < game_data.players.Length; tp++)
-                        {
-                            if (ability.target == AbilityTarget.AllPlayers || tp != player.player_id)
+                            if (ability.AreTargetConditionsMet(game_data, card, card))
                             {
-                                Player oplayer = game_data.players[tp];
-                                if (ability.AreTargetConditionsMet(game_data, card, oplayer))
+                                ability.DoOngoingEffects(this, card, card);
+                            }
+                        }
+
+                        if (ability.target == AbilityTarget.PlayerSelf)
+                        {
+                            if (ability.AreTargetConditionsMet(game_data, card, player))
+                            {
+                                ability.DoOngoingEffects(this, card, player);
+                            }
+                        }
+
+                        if (ability.target == AbilityTarget.AllPlayers || ability.target == AbilityTarget.PlayerOpponent)
+                        {
+                            for (int tp = 0; tp < game_data.players.Length; tp++)
+                            {
+                                if (ability.target == AbilityTarget.AllPlayers || tp != player.player_id)
                                 {
-                                    ability.DoOngoingEffects(this, card, oplayer);
-                                }
-                            }
-                        }
-                    }
-
-                    if (ability.target == AbilityTarget.EquippedCard)
-                    {
-                        if (card.CardData.IsEquipment())
-                        {
-                            //Get bearer of the equipment
-                            Card target = player.GetBearerCard(card);
-                            if (target != null && ability.AreTargetConditionsMet(game_data, card, target))
-                            {
-                                ability.DoOngoingEffects(this, card, target);
-                            }
-                        }
-                        else if (card.equipped_uid != null)
-                        {
-                            //Get equipped card
-                            Card target = game_data.GetCard(card.equipped_uid);
-                            if (target != null && ability.AreTargetConditionsMet(game_data, card, target))
-                            {
-                                ability.DoOngoingEffects(this, card, target);
-                            }
-                        }
-                    }
-
-                    if (ability.target == AbilityTarget.AllCardsAllPiles || ability.target == AbilityTarget.AllCardsHand || ability.target == AbilityTarget.AllCardsBoard)
-                    {
-                        for (int tp = 0; tp < game_data.players.Length; tp++)
-                        {
-                            //Looping on all cards is very slow, since there are no ongoing effects that works out of board/hand we loop on those only
-                            Player tplayer = game_data.players[tp];
-
-                            //Hand Cards
-                            if (ability.target == AbilityTarget.AllCardsAllPiles || ability.target == AbilityTarget.AllCardsHand)
-                            {
-                                for (int tc = 0; tc < tplayer.cards_hand.Count; tc++)
-                                {
-                                    Card tcard = tplayer.cards_hand[tc];
-                                    if (ability.AreTargetConditionsMet(game_data, card, tcard))
+                                    Player oplayer = game_data.players[tp];
+                                    if (ability.AreTargetConditionsMet(game_data, card, oplayer))
                                     {
-                                        ability.DoOngoingEffects(this, card, tcard);
+                                        ability.DoOngoingEffects(this, card, oplayer);
                                     }
                                 }
                             }
+                        }
 
-                            //Board Cards
-                            if (ability.target == AbilityTarget.AllCardsAllPiles || ability.target == AbilityTarget.AllCardsBoard)
+                        if (ability.target == AbilityTarget.EquippedCard)
+                        {
+                            if (card.CardData.IsEquipment())
                             {
-                                for (int tc = 0; tc < tplayer.cards_board.Count; tc++)
+                                //Get bearer of the equipment
+                                Card target = player.GetBearerCard(card);
+                                if (target != null && ability.AreTargetConditionsMet(game_data, card, target))
                                 {
-                                    Card tcard = tplayer.cards_board[tc];
-                                    if (ability.AreTargetConditionsMet(game_data, card, tcard))
-                                    {
-                                        ability.DoOngoingEffects(this, card, tcard);
-                                    }
+                                    ability.DoOngoingEffects(this, card, target);
                                 }
                             }
-
-                            //Equip Cards
-                            if (ability.target == AbilityTarget.AllCardsAllPiles)
+                            else if (card.equipped_uid != null)
                             {
-                                for (int tc = 0; tc < tplayer.cards_equip.Count; tc++)
+                                //Get equipped card
+                                Card target = game_data.GetCard(card.equipped_uid);
+                                if (target != null && ability.AreTargetConditionsMet(game_data, card, target))
                                 {
-                                    Card tcard = tplayer.cards_equip[tc];
-                                    if (ability.AreTargetConditionsMet(game_data, card, tcard))
+                                    ability.DoOngoingEffects(this, card, target);
+                                }
+                            }
+                        }
+
+                        if (ability.target == AbilityTarget.AllCardsAllPiles || ability.target == AbilityTarget.AllCardsHand || ability.target == AbilityTarget.AllCardsBoard)
+                        {
+                            for (int tp = 0; tp < game_data.players.Length; tp++)
+                            {
+                                //Looping on all cards is very slow, since there are no ongoing effects that works out of board/hand we loop on those only
+                                Player tplayer = game_data.players[tp];
+
+                                //Hand Cards
+                                if (ability.target == AbilityTarget.AllCardsAllPiles || ability.target == AbilityTarget.AllCardsHand)
+                                {
+                                    for (int tc = 0; tc < tplayer.cards_hand.Count; tc++)
                                     {
-                                        ability.DoOngoingEffects(this, card, tcard);
+                                        Card tcard = tplayer.cards_hand[tc];
+                                        if (ability.AreTargetConditionsMet(game_data, card, tcard))
+                                        {
+                                            ability.DoOngoingEffects(this, card, tcard);
+                                        }
+                                    }
+                                }
+
+                                //Board Cards
+                                if (ability.target == AbilityTarget.AllCardsAllPiles || ability.target == AbilityTarget.AllCardsBoard)
+                                {
+                                    for (int tc = 0; tc < tplayer.cards_board.Count; tc++)
+                                    {
+                                        Card tcard = tplayer.cards_board[tc];
+                                        if (ability.AreTargetConditionsMet(game_data, card, tcard))
+                                        {
+                                            ability.DoOngoingEffects(this, card, tcard);
+                                        }
+                                    }
+                                }
+
+                                //Equip Cards
+                                if (ability.target == AbilityTarget.AllCardsAllPiles)
+                                {
+                                    for (int tc = 0; tc < tplayer.cards_equip.Count; tc++)
+                                    {
+                                        Card tcard = tplayer.cards_equip[tc];
+                                        if (ability.AreTargetConditionsMet(game_data, card, tcard))
+                                        {
+                                            ability.DoOngoingEffects(this, card, tcard);
+                                        }
                                     }
                                 }
                             }
