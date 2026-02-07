@@ -316,6 +316,10 @@ namespace TcgEngine.Server
                 Card target = game_data.GetCard(msg.target_uid);
                 if (attacker != null && target != null && attacker.player_id == player.player_id)
                 {
+                    if (!game_data.CanAttackTarget(attacker,target)) //불가능한 행동일경우
+                    {
+                        //SendCantTextMessage(iclient, "임시"); //안된다는 텍스트 메세지 보냄
+                    }
                     gameplay.AttackTarget(attacker, target);
                     gameplay.CheckCanAttackTarget(attacker, target); //클라이언트에 불가능 이유 텍스트 보내는 서버 함수 추가하기
                 }

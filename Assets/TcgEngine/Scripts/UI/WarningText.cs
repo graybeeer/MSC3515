@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TcgEngine.Client;
+using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -26,11 +28,17 @@ namespace TcgEngine.UI
             animator = GetComponent<Animator>();
             canvas_group.alpha = 0f;
         }
+        private void Start()
+        {
+            GameClient client = GameClient.Get();
+            client.onCantText += ShowCantText;
+        }
 
         void Update()
         {
 
         }
+        
 
         public void Show(string txt)
         {
@@ -48,27 +56,31 @@ namespace TcgEngine.UI
 
         public static void ShowNotYourTurn()
         {
-            ShowText("Not your turn");
+            //ShowText("Not your turn");
         }
 
         public static void ShowExhausted()
         {
-            ShowText("No more action");
+            //ShowText("No more action");
         }
 
         public static void ShowNoMana()
         {
-            ShowText("Not enough mana");
+            //ShowText("Not enough mana");
         }
 
         public static void ShowSpellImmune()
         {
-            ShowText("Spell Immunity");
+            //ShowText("Spell Immunity");
         }
 
         public static void ShowInvalidTarget()
         {
-            ShowText("Invalid target");
+            //ShowText("Invalid target");
+        }
+        public void ShowCantText(string text)
+        {
+            ShowText(text);
         }
 
         public static WarningText Get()
