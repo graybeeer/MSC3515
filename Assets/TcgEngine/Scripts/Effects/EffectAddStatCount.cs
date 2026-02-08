@@ -12,6 +12,7 @@ namespace TcgEngine
     [CreateAssetMenu(fileName = "effect", menuName = "TcgEngine/Effect/AddStatCount", order = 10)]
     public class EffectAddStatCount : EffectData
     {
+        public bool opponent; //체크시 상대 카드로 계산
         public EffectStatType type;
         public PileType pile;
 
@@ -63,6 +64,8 @@ namespace TcgEngine
         private int GetCount(Game data, Card caster)
         {
             Player player = data.GetPlayer(caster.player_id);
+            if (opponent)
+                player = data.GetOpponentPlayer(caster.player_id);
             return CountPile(player, pile);
         }
 

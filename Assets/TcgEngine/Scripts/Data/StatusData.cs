@@ -14,16 +14,16 @@ namespace TcgEngine
         AddHP = 5,          //HP status can be used for hp boost limited for X turns 
         AddManaCost = 6,    //Mana Cost status can be used for mana cost increase/reduction limited for X turns 
 
-        Stealth_legacy = 10,       //Cant be attacked until do action
+        Stealth_legacy = 10,       //레거시-Cant be attacked until do action
         Invincibility = 12, //Cant be attacked for X turns
         Shell = 13,         //Receives no damage the first time
-        Protection_legacy = 14,    //Taunt, gives SuperProtected to other cards
+        Protection_legacy = 14,    //레거시-Taunt, gives SuperProtected to other cards
 
-        Armor_legacy = 18,         //Receives less damage
+        Armor_legacy = 18,         //레거시-Receives less damage
         SpellImmunity = 19, //Cant be targeted/damaged by spells
 
-        Deathtouch_legacy = 20,    //Kills when attacking a character
-        Fury = 22,          //Can attack twice per turn
+        Deathtouch_legacy = 20,    //레거시-Kills when attacking a character
+        Fury = 22,          // Can attack twice per turn 
         Intimidate = 23,    //Target doesnt counter when attacking
         Flying = 24,         //Can ignore taunt
         Trample = 26,         //Extra damage is assigned to player
@@ -45,6 +45,11 @@ namespace TcgEngine
 
         Frozen = 60, //하수인은 이동 및 공격을 할 수 없다, 건물은 침묵효과
         FriendlyFire = 65, //아군오사 - 아군 소환물을 공격할 수 있다.
+
+        Infiltrate = 70,//침투
+        SuperInfiltrate = 71,//깊은 침투
+        Preparate = 75,//준비
+        SuperPreparate = 76,//느린 준비
     }
 
     /// <summary>

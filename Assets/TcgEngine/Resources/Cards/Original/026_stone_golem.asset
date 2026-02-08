@@ -10,26 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 843a21f7f6f205741a0a7341aec8e84d, type: 3}
-  m_Name: 025_rampant_berserker
+  m_Name: 026_stone_golem
   m_EditorClassIdentifier: 
-  id: CS1_025
-  title: "\uB0A0\uB6F0\uB294 \uAD11\uC804\uC0AC  "
+  id: CS1_026
+  title: "\uBC14\uC704 \uACE8\uB818"
   art_full: {fileID: 0}
   art_board: {fileID: 0}
   type: 10
   team: {fileID: 11400000, guid: fd7242277f949a0479af0e39137c8fdf, type: 2}
-  rarity: {fileID: 11400000, guid: fab1a52f5a36cc942985dea95be18ac9, type: 2}
-  mana: 5
+  rarity: {fileID: 11400000, guid: 13b592f40b7cd424c966f5d7eef425aa, type: 2}
+  mana: 10
   attack: 1
   hp: 1
-  card_arrow: 000100010001000100
+  card_arrow: 010101010001010101
   traits: []
   stats: []
   abilities:
-  - {fileID: 11400000, guid: 87f0735fc03c9ce4ea6d1bcba16b714e, type: 2}
-  - {fileID: 11400000, guid: 771256b877d9eeb43bea7dfda1ee74ee, type: 2}
-  text: "<b>\uC544\uAD70\uC624\uC0AC</b>, \uCC98\uCE58\uD560 \uB54C\uB9C8\uB2E4:
-    \uCE74\uB4DC\uB97C \uBF51\uC2B5\uB2C8\uB2E4"
+  - {fileID: 11400000, guid: 0406c564f070f2b40b3cca1886fdea32, type: 2}
+  text: "\uD544\uB4DC \uC704 \uC18C\uD658\uBB3C \uC218\uB9CC\uD07C \uBE44\uC6A9\uC774
+    \uAC10\uC18C\uD569\uB2C8\uB2E4."
   desc: 
   spawn_fx: {fileID: 0}
   death_fx: {fileID: 0}
