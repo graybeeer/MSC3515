@@ -36,6 +36,8 @@ namespace TcgEngine
 
         public string equipped_uid = null;
 
+        public string dead_by_uid = null; //이 카드를 죽인 uid
+
         public List<CardTrait> traits = new List<CardTrait>();
         public List<CardTrait> ongoing_traits = new List<CardTrait>();
 

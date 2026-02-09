@@ -1192,6 +1192,8 @@ namespace TcgEngine.Gameplay
             if (attacker.player_id != target.player_id)
                 pattacker.kill_count++;
 
+            target.dead_by_uid = attacker.uid; //죽은 유닛에 죽게만든 카드 uid 저장
+
             DiscardCard(target);
 
             TriggerCardAbilityType(AbilityTrigger.OnKill, attacker, target);

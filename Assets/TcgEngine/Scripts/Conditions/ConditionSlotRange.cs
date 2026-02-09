@@ -15,7 +15,7 @@ namespace TcgEngine
         [Header("Slot Range")]
         public int range_x = 1;
         public int range_y = 1;
-        public int range_p = 0;
+        int range_p = 0;
         
         public override bool IsTargetConditionMet(Game data, AbilityData ability, Card caster, Card target)
         {
