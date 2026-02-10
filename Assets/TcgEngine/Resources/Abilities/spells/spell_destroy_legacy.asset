@@ -10,16 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8ce5f81e5cc37f547af6923758602c8c, type: 3}
-  m_Name: spell_destroy
+  m_Name: spell_destroy_legacy
   m_EditorClassIdentifier: 
-  id: spell_destroy
+  id: spell_destroy_legacy
   trigger: 10
   conditions_trigger: []
   target: 20
   conditions_target:
-  - {fileID: 11400000, guid: 707ab85bffdfd2643a7375e15b2fa634, type: 2}
   - {fileID: 11400000, guid: 902733d12f434e94b904de5ebf4112de, type: 2}
-  - {fileID: 11400000, guid: 4a06817c1af0d5047b1a7a9f6b93cbd7, type: 2}
   - {fileID: 11400000, guid: a1fb3a7171663234280fdfb41c99ab0a, type: 2}
   filters_target: []
   effects:
@@ -39,6 +37,7 @@ MonoBehaviour:
   cast_audio: {fileID: 0}
   target_audio: {fileID: 0}
   charge_target: 0
-  title: "\uD30C\uAD34"
-  desc: "\uD574\uB2F9 \uC18C\uD658\uBB3C\uC744 \uD30C\uAD34\uD55C\uB2E4."
-  referencingComponents: []
+  title: Destroy
+  desc: Destroy target character or location.
+  referencingComponents:
+  - {fileID: 11400000, guid: 879711e9fc6210b42a2bc43c0f595222, type: 2}
