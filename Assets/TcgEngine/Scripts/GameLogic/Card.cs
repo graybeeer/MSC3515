@@ -504,6 +504,8 @@ namespace TcgEngine
                 return false;
             if (!skip_cost && exhausted)
                 return false; //no more action
+            if (!CardData.IsMoveableCard()) //영웅+하수인 유닛만 이동가능, 건물 유닛은 이동 불가능
+                return false;
             return true;
         }
 

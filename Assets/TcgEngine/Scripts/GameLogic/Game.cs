@@ -195,7 +195,6 @@ namespace TcgEngine
         //Check if temp_card card is allowed to move to slot
         public virtual bool CanMoveCard(Card card, Slot slot, bool skip_cost = false)
         {
-            
             if (card == null || !slot.IsValid())
                 return false;
 
@@ -211,7 +210,7 @@ namespace TcgEngine
             if (card.slot == slot) //Cant move to same slot
                 return false;
             
-            if (!CanMoveArrow(card,slot)) //화살표로 이동가능한 위치인지
+            if (!HeadingMoveArrow(card,slot)) //화살표로 이동가능한 위치인지
                 return false;
 
 
@@ -238,7 +237,7 @@ namespace TcgEngine
             if (card.slot == slot) //Cant move to same slot
                 return "기존과 같은 위치로 이동 불가능";
 
-            if (!CanMoveArrow(card, slot)) //화살표로 이동가능한 위치인지
+            if (!HeadingMoveArrow(card, slot)) //화살표로 이동가능한 위치인지
                 return "이동 불가능한 위치";
 
 
@@ -249,10 +248,11 @@ namespace TcgEngine
             return "이동 불가능함";
         }
         //보드카드가 해당 슬롯에 이동+공격 가능한 방향에 있는지 보드카드의 화살표로 계산
-        public bool CanMoveArrow(Card card, Slot slot)
+        public bool HeadingMoveArrow(Card card, Slot slot)
         {
-            if (card.slot.x - slot.x < -1 || card.slot.x - slot.x > 1) return false;
-            if (card.slot.y - slot.y < -1 || card.slot.y - slot.y > 1) return false;
+            if (!IsNarrow(card, slot))
+                return false;
+
             int distance_x = slot.x - card.slot.x;
             int distance_y = slot.y - card.slot.y;
             int distance_arrow = 4 + distance_x * 1 + distance_y * 3;
@@ -270,6 +270,13 @@ namespace TcgEngine
                     return false;
             }
             else Debug.LogError("플레이어의 존재하지 않는 ID");
+
+            return true;
+        }
+        public bool IsNarrow(Card card, Slot slot)
+        {
+            if (card.slot.x - slot.x < -1 || card.slot.x - slot.x > 1) return false;
+            if (card.slot.y - slot.y < -1 || card.slot.y - slot.y > 1) return false;
 
             return true;
         }
@@ -294,8 +301,8 @@ namespace TcgEngine
         
         public virtual bool CanAttackTarget(Card attacker, Player target, bool skip_cost = false) //추가 - 사용안하는 레거시 함수
         {
-            //Check if temp_card card is allowed to attack temp_card player
-            if(attacker == null || target == null)
+            //추가 - 사용안하는 레거시 함수
+            if (attacker == null || target == null)
                 return false;
 
             if (!attacker.CanAttack(skip_cost))
@@ -310,7 +317,6 @@ namespace TcgEngine
             if (target.HasStatus(StatusType.SuperProtected) && !attacker.HasStatus(StatusType.Flying))
                 return false; //SuperProtected by taunt
 
-            //추가해야함-공격방식 이동해서 잡는것으로 변경
             return true;
         }
 
@@ -334,14 +340,22 @@ namespace TcgEngine
             if (!IsOnBoard(attacker) || !IsOnBoard(target))
                 return false; //Cards not on board
 
-            if (!attacker.CardData.IsMoveableCard() || !target.CardData.IsCanBeBoardCard())
-                return false; //Only character can attack
-
             if (!GetPlayer(attacker.player_id).can_move_attack) //플레이어가 이동공격 명령을 할 수 없는상태인지
                 return false;
 
-            if (!CanMoveArrow(attacker, target.slot)) //화살표로 이동가능한 위치인지
+            if (!IsNarrow(attacker, target.slot))//화살표로 이동가능한 위치인지(일단 근접해야함)
                 return false;
+
+            if (target.HasStatus(StatusType.Reflector))//공격받는 대상이 반사경이 있으면
+            {
+                if (attacker.CardData.IsCharacter() && HeadingMoveArrow(attacker, target.slot)) //하수인은 화살표가 향하지 않아야 공격가능
+                    return false;
+            }
+            else //공격받는 대상이 반사경이 없으면
+            {
+                if (!HeadingMoveArrow(attacker, target.slot)) //화살표로 이동가능한 위치인지
+                    return false;
+            }
 
             if (target.HasStatus(StatusType.Stealth_legacy))
                 return false; //Stealth_legacy cant be attacked
@@ -396,8 +410,19 @@ namespace TcgEngine
             if (!GetPlayer(attacker.player_id).can_move_attack) //플레이어가 이동공격 명령을 할 수 없는상태인지
                 return "플레이어가 공격 명령 불가상태";
 
-            if (!CanMoveArrow(attacker, target.slot)) //화살표로 이동가능한 위치인지
-                return "공격 불가능한 위치의 슬롯";
+            if (!IsNarrow(attacker, target.slot))
+                return "공격 불가능한 위치의 유닛";
+
+            if (target.HasStatus(StatusType.Reflector))//공격받는 대상이 반사경이 있으면
+            {
+                if (attacker.CardData.IsCharacter() && HeadingMoveArrow(attacker, target.slot)) 
+                    return "반사경 유닛에게는 마커가 반대로 작용";
+            }
+            else //공격받는 대상이 반사경이 없으면
+            {
+                if (!HeadingMoveArrow(attacker, target.slot)) 
+                    return "마커가 가리키는 유닛이여야 한다.";
+            }
 
             if (target.HasStatus(StatusType.Stealth_legacy))
                 return "레거시"; //Stealth_legacy cant be attacked

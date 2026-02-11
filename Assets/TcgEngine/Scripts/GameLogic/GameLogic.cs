@@ -772,8 +772,8 @@ namespace TcgEngine.Gameplay
             CheckForWinner();
 
             resolve_queue.ResolveAll(msc_time);
-            //추가
-            MoveCard(attacker, target.slot, true);
+            //추가-공격한 뒤에
+            ForcedMoveCard(attacker, target.slot, true);
         }
 
         public virtual void AttackPlayer(Card attacker, Player target, bool skip_cost = false)
@@ -797,7 +797,7 @@ namespace TcgEngine.Gameplay
             resolve_queue.ResolveAll();
         }
 
-        protected virtual void ResolveAttackPlayer(Card attacker, Player target, bool skip_cost)
+        protected virtual void ResolveAttackPlayer(Card attacker, Player target, bool skip_cost) //레거시
         {
             if (!game_data.IsOnBoard(attacker))
                 return;
@@ -811,7 +811,7 @@ namespace TcgEngine.Gameplay
             resolve_queue.ResolveAll(msc_time);
         }
 
-        protected virtual void ResolveAttackPlayerHit(Card attacker, Player target, bool skip_cost)
+        protected virtual void ResolveAttackPlayerHit(Card attacker, Player target, bool skip_cost) //레거시
         {
             DamagePlayer(attacker, target, attacker.GetAttack());
 
