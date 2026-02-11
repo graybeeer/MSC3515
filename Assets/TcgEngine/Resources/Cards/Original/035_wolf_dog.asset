@@ -10,25 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 843a21f7f6f205741a0a7341aec8e84d, type: 3}
-  m_Name: 032_ferocious_guard_dog
+  m_Name: 035_wolf_dog
   m_EditorClassIdentifier: 
-  id: CS1_032
-  title: "\uC0AC\uB098\uC6B4 \uACBD\uBE44\uACAC"
+  id: CS1_035
+  title: "\uC6B8\uD504\uB3C5"
   art_full: {fileID: 0}
   art_board: {fileID: 0}
   type: 10
   team: {fileID: 11400000, guid: fd7242277f949a0479af0e39137c8fdf, type: 2}
   rarity: {fileID: 11400000, guid: 72248f07232412e4db2f6864dbb4e271, type: 2}
-  mana: 3
+  mana: 2
   attack: 1
   hp: 1
-  card_arrow: 010001000000010001
+  card_arrow: 010001000000000100
   traits:
   - {fileID: 11400000, guid: 948c650ff5621994ab73f23d55d2ec4f, type: 2}
   stats: []
   abilities:
-  - {fileID: 11400000, guid: e33361c8200337444b621a36d1e4b3e0, type: 2}
-  text: "<b>\uD30C\uAD34\uB420 \uB54C:</b>\uBB34\uC791\uC704\uB85C \uCE74\uB4DC\uB97C
+  - {fileID: 11400000, guid: df8347eb0ae664943bb71f62deeef27a, type: 2}
+  text: "<b>\uD328\uC5D0\uC11C \uB0BC \uB54C:</b>\uBB34\uC791\uC704\uB85C \uCE74\uB4DC\uB97C
     \uBC84\uB9BD\uB2C8\uB2E4"
   desc: 
   spawn_fx: {fileID: 0}

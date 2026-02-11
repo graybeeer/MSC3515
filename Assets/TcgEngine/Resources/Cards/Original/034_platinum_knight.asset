@@ -10,26 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 843a21f7f6f205741a0a7341aec8e84d, type: 3}
-  m_Name: 032_ferocious_guard_dog
+  m_Name: 034_platinum_knight
   m_EditorClassIdentifier: 
-  id: CS1_032
-  title: "\uC0AC\uB098\uC6B4 \uACBD\uBE44\uACAC"
+  id: CS1_034
+  title: "\uBC31\uAE08\uAE30\uC0AC"
   art_full: {fileID: 0}
   art_board: {fileID: 0}
   type: 10
   team: {fileID: 11400000, guid: fd7242277f949a0479af0e39137c8fdf, type: 2}
-  rarity: {fileID: 11400000, guid: 72248f07232412e4db2f6864dbb4e271, type: 2}
-  mana: 3
+  rarity: {fileID: 11400000, guid: 13b592f40b7cd424c966f5d7eef425aa, type: 2}
+  mana: 5
   attack: 1
   hp: 1
-  card_arrow: 010001000000010001
-  traits:
-  - {fileID: 11400000, guid: 948c650ff5621994ab73f23d55d2ec4f, type: 2}
+  card_arrow: 000100010001000100
+  traits: []
   stats: []
   abilities:
-  - {fileID: 11400000, guid: e33361c8200337444b621a36d1e4b3e0, type: 2}
-  text: "<b>\uD30C\uAD34\uB420 \uB54C:</b>\uBB34\uC791\uC704\uB85C \uCE74\uB4DC\uB97C
-    \uBC84\uB9BD\uB2C8\uB2E4"
+  - {fileID: 11400000, guid: c28f730d8cdac214f97737f7b9f82cfb, type: 2}
+  text: "<b>\uD328\uC5D0\uC11C \uB0BC \uB54C:</b>\uC801 \uB3C4\uBC1C \uC18C\uD658\uBB3C\uC744
+    \uCC98\uCE58\uD569\uB2C8\uB2E4."
   desc: 
   spawn_fx: {fileID: 0}
   death_fx: {fileID: 0}

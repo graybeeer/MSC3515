@@ -1707,7 +1707,21 @@ namespace TcgEngine.Gameplay
                                 ability.DoOngoingEffects(this, card, player);
                             }
                         }
-
+                        if (ability.target == AbilityTarget.PlayerSelfHero) //추가
+                        {
+                            if (ability.AreTargetConditionsMet(game_data, card, player.hero))
+                            {
+                                ability.DoOngoingEffects(this, card, player.hero);
+                            }
+                        }
+                        if (ability.target == AbilityTarget.PlayerOpponentHero) //추가
+                        {
+                            Card opponent_hero = game_data.GetOpponentPlayer(player.player_id).hero;
+                            if (ability.AreTargetConditionsMet(game_data, card, opponent_hero))
+                            {
+                                ability.DoOngoingEffects(this, card, opponent_hero);
+                            }
+                        }
                         if (ability.target == AbilityTarget.AllPlayers || ability.target == AbilityTarget.PlayerOpponent)
                         {
                             for (int tp = 0; tp < game_data.players.Length; tp++)
