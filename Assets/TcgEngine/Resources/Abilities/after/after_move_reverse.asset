@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8ce5f81e5cc37f547af6923758602c8c, type: 3}
-  m_Name: exchange_king_slot
+  m_Name: after_move_reverse
   m_EditorClassIdentifier: 
-  id: exchange_king_slot
-  trigger: 10
+  id: after_move_reverse
+  trigger: 52
   conditions_trigger: []
   target: 1
   conditions_target: []
   filters_target: []
   effects:
-  - {fileID: 11400000, guid: e4d76f9185671524aa32301be20cd08b, type: 2}
+  - {fileID: 11400000, guid: 4ffe96ad396ac3240af638ee89446b91, type: 2}
   status: []
   value: 0
   duration: 0
@@ -34,6 +34,6 @@ MonoBehaviour:
   cast_audio: {fileID: 0}
   target_audio: {fileID: 0}
   charge_target: 0
-  title: 
-  desc: 
+  title: "\uBE44\uD2C0\uAC70\uB9AC\uB294 \uAC78\uC74C"
+  desc: "\uC774\uB3D9 \uD6C4, \uC774 \uC720\uB2DB\uC740 \uBC18\uC804\uB41C\uB2E4."
   referencingComponents: []

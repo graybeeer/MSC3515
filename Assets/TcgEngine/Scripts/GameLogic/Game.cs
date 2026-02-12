@@ -367,7 +367,7 @@ namespace TcgEngine
                 return false; //Protected by 적 하수인 카드
 
             if (!checkCanAttackTaunt)
-                if (!target.HasStatus(StatusType.Taunt) && CanAttackTauntCard(attacker) && !attacker.HasStatus(StatusType.Flying))
+                if (!target.HasStatus(StatusType.Taunt) && CanAttackTauntCard(attacker,true) && !attacker.HasStatus(StatusType.Flying))
                     return false; //도발 카드 공격 가능한 상태에선 다른 카드 공격 불가능
 
 
@@ -434,7 +434,7 @@ namespace TcgEngine
                 return "보호 상태의 유닛"; //Protected by 적 하수인 카드
 
             if (!checkCanAttackTaunt)
-                if (!target.HasStatus(StatusType.Taunt) && CanAttackTauntCard(attacker) && !attacker.HasStatus(StatusType.Flying))
+                if (!target.HasStatus(StatusType.Taunt) && CanAttackTauntCard(attacker,true) && !attacker.HasStatus(StatusType.Flying))
                     return "도발에 가로막힘"; //도발 카드 공격 가능한 상태에선 다른 카드 공격 불가능
 
 
@@ -764,16 +764,25 @@ namespace TcgEngine
                 return cards;
             return null;
         }
-        public virtual bool CanAttackTauntCard(Card card)
+        public virtual bool CanAttackTauntCard(Card card, bool cantAttackAlly = false)
         {
             if (GetCardInCanAttackSlot(card, true) != null)
             {
                 foreach (Card temp_card in GetCardInCanAttackSlot(card, true))
                 {
-
-                    if (temp_card.HasStatus(StatusType.Taunt))
+                    if (cantAttackAlly)
                     {
-                        return true;
+                        if (temp_card.HasStatus(StatusType.Taunt) && card.player_id != temp_card.player_id)
+                        {
+                            return true;
+                        }
+                    }
+                    else
+                    {
+                        if (temp_card.HasStatus(StatusType.Taunt))
+                        {
+                            return true;
+                        }
                     }
                 }
             }

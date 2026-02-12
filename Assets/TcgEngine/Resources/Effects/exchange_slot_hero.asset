@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6ad562ceaa60f6240b81acec29a4e7ae, type: 3}
-  m_Name: exchange_slot_king
+  m_Name: exchange_slot_hero
   m_EditorClassIdentifier: 
   referencingComponents: []
   change_king: 1
