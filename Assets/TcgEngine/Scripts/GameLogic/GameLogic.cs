@@ -914,9 +914,12 @@ namespace TcgEngine.Gameplay
                     Card card = player.cards_deck[0];
                     player.cards_deck.RemoveAt(0);
                     player.cards_hand.Add(card);
+
+                    TriggerCardAbilityType(AbilityTrigger.OnAfterDraw, card);
+                    TriggerOtherCardsAbilityType(AbilityTrigger.OnAfterDrawOther, card);
+                    TriggerSecrets(AbilityTrigger.OnAfterDrawOther, card);
                 }
             }
-
             onCardDrawn?.Invoke(nb);
         }
 
@@ -1308,8 +1311,10 @@ namespace TcgEngine.Gameplay
         {
             foreach (Player oplayer in game_data.players)
             {
+                /*
                 if (oplayer.hero_data != null)
                     TriggerCardAbilityType(type, oplayer.hero_data, triggerer);
+                */
 
                 foreach (Card card in oplayer.cards_board)
                     TriggerCardAbilityType(type, card, triggerer);
@@ -1318,8 +1323,10 @@ namespace TcgEngine.Gameplay
 
         public virtual void TriggerPlayerCardsAbilityType(Player player, AbilityTrigger type)
         {
+            /*
             if (player.hero_data != null)
                 TriggerCardAbilityType(type, player.hero_data, player.hero_data);
+            */
 
             foreach (Card card in player.cards_board)
                 TriggerCardAbilityType(type, card, card);

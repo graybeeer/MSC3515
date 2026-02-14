@@ -10,16 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8ce5f81e5cc37f547af6923758602c8c, type: 3}
-  m_Name: play_frozen
+  m_Name: spell_frozen
   m_EditorClassIdentifier: 
-  id: play_frozen
+  id: spell_frozen
   trigger: 10
   conditions_trigger:
   - {fileID: 11400000, guid: cf98f1e5f9709d24a8532b94f973022e, type: 2}
-  target: 30
+  target: 20
   conditions_target:
   - {fileID: 11400000, guid: 902733d12f434e94b904de5ebf4112de, type: 2}
-  - {fileID: 11400000, guid: 47221d412dc0a014b8a33abb0cbfc773, type: 2}
   - {fileID: 11400000, guid: 4a06817c1af0d5047b1a7a9f6b93cbd7, type: 2}
   - {fileID: 11400000, guid: a1fb3a7171663234280fdfb41c99ab0a, type: 2}
   filters_target: []
@@ -42,5 +41,4 @@ MonoBehaviour:
   charge_target: 0
   title: 
   desc: 
-  referencingComponents:
-  - {fileID: 11400000, guid: 464c1204708b0b3438921e0869aab9f5, type: 2}
+  referencingComponents: []

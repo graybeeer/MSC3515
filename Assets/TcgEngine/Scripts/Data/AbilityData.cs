@@ -680,7 +680,6 @@ namespace TcgEngine
 
         OnPlay = 10,  //When playeds
         OnPlayOther = 12,  //When another card played
-        OnPlayHand = 14,    //사용x
 
         StartOfTurn = 20, //Every turn
         EndOfTurn = 22, //Every turn
@@ -698,6 +697,9 @@ namespace TcgEngine
         OnAfterMove = 52, // 이동하기 후
         OnBeforeMoveOther = 53, // 다른카드가 이동하기 전
         OnAfterMoveOther = 54, //다른 카드가 이동 후
+
+        OnAfterDraw = 61, //카드를 드로우 한 후
+        OnAfterDrawOther = 62, //카드를 드로우 한 후
     }
 
     public enum AbilityTarget
