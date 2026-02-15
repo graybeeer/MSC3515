@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 843a21f7f6f205741a0a7341aec8e84d, type: 3}
-  m_Name: changeP
+  m_Name: 048_mind_control
   m_EditorClassIdentifier: 
-  id: changeP
-  title: "\uB2C8\uB9D8\uC5D0 \uC7A5\uB09C"
-  art_full: {fileID: 21300000, guid: 9a7c267c3a3833e4b9078e0f88e08c36, type: 3}
-  art_board: {fileID: 21300000, guid: 81c7e5a3bc1037840b994439809f9f6b, type: 3}
+  id: CS1_048
+  title: "\uC815\uC2E0 \uC9C0\uBC30"
+  art_full: {fileID: 0}
+  art_board: {fileID: 0}
   type: 20
-  team: {fileID: 11400000, guid: 44accef98e769754d9edb8fe6051443a, type: 2}
-  rarity: {fileID: 11400000, guid: fab1a52f5a36cc942985dea95be18ac9, type: 2}
-  mana: 2
+  team: {fileID: 11400000, guid: fd7242277f949a0479af0e39137c8fdf, type: 2}
+  rarity: {fileID: 11400000, guid: 15eaa2a0fbd97f149b3aa87387c160d1, type: 2}
+  mana: 8
   attack: 1
   hp: 1
   card_arrow: 000000000000000000
@@ -27,7 +27,8 @@ MonoBehaviour:
   stats: []
   abilities:
   - {fileID: 11400000, guid: 3aa60786230971b4988d6ea078c85f34, type: 2}
-  text: "\uB2C8\uB9D8\uC5D0 \uC7A5\uB09C\uCCD0\uBCFC\uAE4C"
+  text: "\uC0C1\uB300\uBC29 \uD558\uC218\uC778 \uD558\uB098\uC758 \uCEE8\uD2B8\uB864\uC744
+    \uAC00\uC838\uC635\uB2C8\uB2E4.\r\n"
   desc: 
   spawn_fx: {fileID: 5791330189299518109, guid: 1fa8fa11b2c6b9b4d976743e5bbb3956,
     type: 3}
