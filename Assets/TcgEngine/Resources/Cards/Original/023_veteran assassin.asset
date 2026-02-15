@@ -24,11 +24,10 @@ MonoBehaviour:
   hp: 1
   card_arrow: 010001010001000100
   traits: []
-  stats:
-  - trait: {fileID: 11400000, guid: 2187d03bab59e5d4c99a000abbd6600d, type: 2}
-    value: 0
+  stats: []
   abilities:
   - {fileID: 11400000, guid: 87f0735fc03c9ce4ea6d1bcba16b714e, type: 2}
+  - {fileID: 11400000, guid: 944dee78fc3425f4c8ab2055b3b7b1c5, type: 2}
   text: "<b>\uC544\uAD70\uC624\uC0AC, \uCE68\uD22C</b>"
   desc: 
   spawn_fx: {fileID: 0}

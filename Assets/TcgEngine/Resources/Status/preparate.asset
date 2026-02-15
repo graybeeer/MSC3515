@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7edf116efdfa73646a6de43812f81a4a, type: 3}
-  m_Name: fury
+  m_Name: preparate
   m_EditorClassIdentifier: 
-  effect: 22
-  title: Fury
+  effect: 75
+  title: "\uC900\uBE44"
   icon: {fileID: 0}
-  desc: Can attack twice per turn
+  desc: "\uC544\uAD70 \uC9C4\uC601\uC5D0\uB9CC \uC18C\uD658\uAC00\uB2A5\uD569\uB2C8\uB2E4\n"
   status_fx: {fileID: 0}
-  hvalue: 1
+  hvalue: 0
+  referencingComponents: []

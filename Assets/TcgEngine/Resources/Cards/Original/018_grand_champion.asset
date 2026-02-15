@@ -24,10 +24,9 @@ MonoBehaviour:
   hp: 1
   card_arrow: 000000010001010101
   traits: []
-  stats:
-  - trait: {fileID: 11400000, guid: 2afe834ed8d3f8147ae5e06202089167, type: 2}
-    value: 0
-  abilities: []
+  stats: []
+  abilities:
+  - {fileID: 11400000, guid: 0cfb9a9c32478384685edda9c5121c71, type: 2}
   text: "<b>\uC900\uBE44</b>"
   desc: "\uC900\uBE44: \uC774 \uC720\uB2DB\uC740 \uC544\uAD70 \uC9C4\uC601\uC5D0\uB9CC
     \uC18C\uD658\uAC00\uB2A5\uD569\uB2C8\uB2E4\r\n"

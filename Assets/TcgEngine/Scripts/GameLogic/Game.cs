@@ -137,13 +137,20 @@ namespace TcgEngine
                 {
                     if (temp_slot_id == GetPlayerNotID())//일반적으로는 중립지역에 소환가능
                     {
+                        /*
                         if(card.HasStat(TraitData.Get("super_preparate")))//느린 준비나 준비면 중립지역에 소환 불가능
                             return false;
-                        else if (card.HasStat(TraitData.Get("super_infiltrate")))
+                        else if (card.HasStat(TraitData.Get("preparate")))
+                            return false;
+                        */
+                        if (card.HasStatus(StatusType.SuperPreparate))//느린 준비나 준비면 중립지역에 소환 불가능
+                            return false;
+                        else if (card.HasStatus(StatusType.Preparate))
                             return false;
                     }
                     else if (temp_slot_id == GetOpponentID(player.player_id))//만약 상대 진영에 소환하려면
                     {
+                        /*
                         if (slotInform.GetSlotData(slot).isDeep) //상대 내부진영에 소환하려면
                         {
                             if (!card.HasStat(TraitData.Get("super_infiltrate"))) //깊은 침투 있으면 소환가능
@@ -152,6 +159,17 @@ namespace TcgEngine
                         else //상대 외부진영에 소환하려면
                         {
                             if (!card.HasStat(TraitData.Get("super_infiltrate")) && !card.HasStat(TraitData.Get("infiltrate"))) //깊은 침투나 침투 있으면 소환가능
+                                return false;
+                        }
+                        */
+                        if (slotInform.GetSlotData(slot).isDeep) //상대 내부진영에 소환하려면
+                        {
+                            if (!card.HasStatus(StatusType.SuperInfiltrate)) //깊은 침투 있으면 소환가능
+                                return false;
+                        }
+                        else //상대 외부진영에 소환하려면
+                        {
+                            if (!card.HasStatus(StatusType.SuperInfiltrate) && !card.HasStatus(StatusType.Infiltrate)) //깊은 침투나 침투 있으면 소환가능
                                 return false;
                         }
                     }
@@ -163,7 +181,11 @@ namespace TcgEngine
                 }
                 else if(temp_card_id == temp_slot_id) //본인 진영 소환이라면
                 {
+                    /*
                     if (card.HasStat(TraitData.Get("super_preparate")) && !slotInform.GetSlotData(slot).isDeep) //느린 준비 카드면 아군 내부진영에만 소환가능
+                        return false;
+                    */
+                    if (card.HasStatus(StatusType.SuperPreparate) && !slotInform.GetSlotData(slot).isDeep) //느린 준비 카드면 아군 내부진영에만 소환가능
                         return false;
                 }
                 

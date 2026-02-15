@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7edf116efdfa73646a6de43812f81a4a, type: 3}
-  m_Name: armor
+  m_Name: Infiltrate
   m_EditorClassIdentifier: 
-  effect: 18
-  title: 
+  effect: 70
+  title: "\uCE68\uD22C"
   icon: {fileID: 0}
-  desc: 
+  desc: "\uC801 \uC9C4\uC601 \uC678\uBD80 \uD589\uC5D0\uB3C4 \uC18C\uD658\uAC00\uB2A5\uD569\uB2C8\uB2E4\r\n"
   status_fx: {fileID: 0}
-  hvalue: 1
+  hvalue: 0
+  referencingComponents: []
