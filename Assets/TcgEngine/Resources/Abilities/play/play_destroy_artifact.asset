@@ -10,15 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8ce5f81e5cc37f547af6923758602c8c, type: 3}
-  m_Name: 0
+  m_Name: play_destroy_artifact
   m_EditorClassIdentifier: 
-  id: spell_destroy_all_character
+  id: play_destroy_artifact
   trigger: 10
-  conditions_trigger: []
-  target: 10
+  conditions_trigger:
+  - {fileID: 11400000, guid: cf98f1e5f9709d24a8532b94f973022e, type: 2}
+  target: 30
   conditions_target:
-  - {fileID: 11400000, guid: 065da32cbd133734493695579723a718, type: 2}
   - {fileID: 11400000, guid: 707ab85bffdfd2643a7375e15b2fa634, type: 2}
+  - {fileID: 11400000, guid: 47221d412dc0a014b8a33abb0cbfc773, type: 2}
+  - {fileID: 11400000, guid: 902733d12f434e94b904de5ebf4112de, type: 2}
+  - {fileID: 11400000, guid: 1ae405c308d60cc409deb9e25f3f965e, type: 2}
   filters_target: []
   effects:
   - {fileID: 11400000, guid: f71d4af1506339149852f66291383dc4, type: 2}
@@ -37,6 +40,7 @@ MonoBehaviour:
   cast_audio: {fileID: 0}
   target_audio: {fileID: 0}
   charge_target: 0
-  title: "\uD30C"
-  desc: 
-  referencingComponents: []
+  title: "\uD30C\uAD34"
+  desc: "\uAC74\uBB3C\uC744 \uD30C\uAD34\uD55C\uB2E4."
+  referencingComponents:
+  - {fileID: 11400000, guid: 08a8ff89308b3b44a81491b4c48931bd, type: 2}

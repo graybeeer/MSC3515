@@ -10,15 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8ce5f81e5cc37f547af6923758602c8c, type: 3}
-  m_Name: spell_destroy_all_character
+  m_Name: spell_destroy_ally_character
   m_EditorClassIdentifier: 
-  id: spell_destroy_all_character
+  id: spell_destroy_ally_character
   trigger: 10
   conditions_trigger: []
-  target: 10
+  target: 20
   conditions_target:
-  - {fileID: 11400000, guid: 065da32cbd133734493695579723a718, type: 2}
   - {fileID: 11400000, guid: 707ab85bffdfd2643a7375e15b2fa634, type: 2}
+  - {fileID: 11400000, guid: 902733d12f434e94b904de5ebf4112de, type: 2}
+  - {fileID: 11400000, guid: 7463bf87d3794e249b7610c9de9c5327, type: 2}
+  - {fileID: 11400000, guid: 065da32cbd133734493695579723a718, type: 2}
   filters_target: []
   effects:
   - {fileID: 11400000, guid: f71d4af1506339149852f66291383dc4, type: 2}
@@ -37,7 +39,6 @@ MonoBehaviour:
   cast_audio: {fileID: 0}
   target_audio: {fileID: 0}
   charge_target: 0
-  title: "\uD558\uC218\uC778 \uC804\uBD80 \uD30C\uAD34"
+  title: 
   desc: 
-  referencingComponents:
-  - {fileID: 11400000, guid: 423b926421ea1924ca042094671de109, type: 2}
+  referencingComponents: []
