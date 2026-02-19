@@ -52,6 +52,14 @@ namespace TcgEngine
         [TextArea(5, 7)]
         public string desc;
 
+        //기억정보
+        [HideInInspector]
+        public List<string> memory_card_uid = new List<string>();
+        [HideInInspector]
+        public Player memory_player = null;
+        [HideInInspector]
+        public List<Slot> memory_slot = new List<Slot>();
+
         [Space(30)]
         [Header("이 데이터를 참조하는 다른 데이터")]
         public List<ScriptableObject> referencingComponents = new List<ScriptableObject>();

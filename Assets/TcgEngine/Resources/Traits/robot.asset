@@ -9,11 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afd4095159bc7a149bacde93e89240ae, type: 3}
-  m_Name: add_mana_cost
+  m_Script: {fileID: 11500000, guid: 510a78cb12497a646b6e2a8ba36b4dcf, type: 3}
+  m_Name: robot
   m_EditorClassIdentifier: 
+  id: robot
+  title: Robot
+  icon: {fileID: 0}
+  description: 
   referencingComponents:
-  - {fileID: 11400000, guid: f405476e6b47d6d498fe3d3211c16430, type: 2}
-  type: 30
-  manaMinLimt: 0
-  manaMaxLimt: 10000
+  - {fileID: 11400000, guid: ea60b8f5ee09bd34390b497bff35c18b, type: 2}

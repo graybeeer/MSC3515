@@ -10,21 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8ce5f81e5cc37f547af6923758602c8c, type: 3}
-  m_Name: death_to_reverse
+  m_Name: aura_hand_character_minus_mana_2_min_1
   m_EditorClassIdentifier: 
-  id: death_to_reverse
-  trigger: 40
+  id: aura_hand_character_minus_mana_2_min_1
+  trigger: 2
   conditions_trigger: []
-  target: 10
+  target: 11
   conditions_target:
-  - {fileID: 11400000, guid: d890613da0af16e419af5d244649a5c0, type: 2}
-  - {fileID: 11400000, guid: 707ab85bffdfd2643a7375e15b2fa634, type: 2}
+  - {fileID: 11400000, guid: 7463bf87d3794e249b7610c9de9c5327, type: 2}
   - {fileID: 11400000, guid: 065da32cbd133734493695579723a718, type: 2}
   filters_target: []
   effects:
-  - {fileID: 11400000, guid: 4ffe96ad396ac3240af638ee89446b91, type: 2}
+  - {fileID: 11400000, guid: 7b0ce0dd3248dfc489f3f9a8241638cc, type: 2}
   status: []
-  value: 1
+  value: -2
   duration: 0
   chain_abilities: []
   mana_cost: 0
@@ -37,7 +36,7 @@ MonoBehaviour:
   cast_audio: {fileID: 0}
   target_audio: {fileID: 0}
   charge_target: 0
-  title: "\uBC18\uC804"
-  desc: "\uC774\uB3D9 \uB9C8\uCEE4\uB4E4\uC758 \uD65C\uC131\uD654\uC640 \uBE44\uD65C\uC131\uD654\uB97C
-    \uBC18\uB300\uB85C\uD55C\uB2E4.\n"
+  title: "\uC9C0\uC6D0"
+  desc: "\uD328\uC758 \uD558\uC218\uC778 \uBE44\uC6A9 2\uAC10\uC18C(\uCD5C\uC18C
+    1)"
   referencingComponents: []

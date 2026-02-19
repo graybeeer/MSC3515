@@ -384,6 +384,30 @@ namespace TcgEngine
 			if (abilities_data != null)
 				abilities_data.Add(ability);
         }
+        public void AddAbility(AbilityData ability, Card temp_card)
+        {
+            ability.memory_card_uid.Add(temp_card.uid);
+
+            abilities.Add(ability.id);
+            if (abilities_data != null)
+                abilities_data.Add(ability);
+        }
+        public void AddAbility(AbilityData ability, Player temp_player)
+        {
+            ability.memory_player = temp_player;
+
+            abilities.Add(ability.id);
+            if (abilities_data != null)
+                abilities_data.Add(ability);
+        }
+        public void AddAbility(AbilityData ability, Slot temp_slot)
+        {
+            ability.memory_slot.Add(temp_slot);
+
+            abilities.Add(ability.id);
+            if (abilities_data != null)
+                abilities_data.Add(ability);
+        }
 
         public void RemoveAbility(AbilityData ability)
         {

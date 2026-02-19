@@ -25,3 +25,10 @@ namespace TcgEngine
         }
     }
 }
+public enum check_addability
+{
+    not,
+    player,
+    card,
+    slot
+}

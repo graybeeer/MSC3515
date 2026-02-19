@@ -9,11 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afd4095159bc7a149bacde93e89240ae, type: 3}
-  m_Name: add_mana_cost
+  m_Script: {fileID: 11500000, guid: 67b1c9e385092324882802d9e2462028, type: 3}
+  m_Name: transform_owner_ally
   m_EditorClassIdentifier: 
-  referencingComponents:
-  - {fileID: 11400000, guid: f405476e6b47d6d498fe3d3211c16430, type: 2}
-  type: 30
-  manaMinLimt: 0
-  manaMaxLimt: 10000
