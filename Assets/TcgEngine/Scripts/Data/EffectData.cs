@@ -46,7 +46,12 @@ namespace TcgEngine
         {
             //Ongoing effect only
         }
-
+        /*
+        public virtual void DoOngoingEffect(GameLogic logic, AbilityData ability, Card caster, Slot target)
+        {
+            //Server side gameplay logic
+        }
+        */
         public int AddOrSet(int original_val, EffectOperatorInt oper, int add_value)
         {
             if (oper == EffectOperatorInt.Add)

@@ -16,11 +16,11 @@ MonoBehaviour:
   title: Test Deck
   hero: {fileID: 11400000, guid: cf170aea7ffb041428f37608f1561058, type: 2}
   cards:
-  - {fileID: 11400000, guid: 8c98ed43b89b89744941231511cc8664, type: 2}
-  - {fileID: 11400000, guid: 8c98ed43b89b89744941231511cc8664, type: 2}
-  - {fileID: 11400000, guid: 8c98ed43b89b89744941231511cc8664, type: 2}
-  - {fileID: 11400000, guid: 8c98ed43b89b89744941231511cc8664, type: 2}
-  - {fileID: 11400000, guid: 8c98ed43b89b89744941231511cc8664, type: 2}
+  - {fileID: 11400000, guid: e3338d4e5981e524eaf740b039413b8f, type: 2}
+  - {fileID: 11400000, guid: e3338d4e5981e524eaf740b039413b8f, type: 2}
+  - {fileID: 11400000, guid: e3338d4e5981e524eaf740b039413b8f, type: 2}
+  - {fileID: 11400000, guid: e3338d4e5981e524eaf740b039413b8f, type: 2}
+  - {fileID: 11400000, guid: e3338d4e5981e524eaf740b039413b8f, type: 2}
   - {fileID: 11400000, guid: 9a674a7a7c51f8a41a7c7821225978cc, type: 2}
   - {fileID: 11400000, guid: 4880e51de15a12545b84e788e0942953, type: 2}
   - {fileID: 11400000, guid: 8c98ed43b89b89744941231511cc8664, type: 2}

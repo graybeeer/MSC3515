@@ -8,7 +8,7 @@ using TcgEngine.UI;
 namespace TcgEngine.Client
 {
     /// <summary>
-    /// Represents the visual aspect of a card in hand.
+    /// Represents the visual aspect of a card_current in hand.
     /// Will take the data from Card.cs and display it
     /// </summary>
 
@@ -66,8 +66,8 @@ namespace TcgEngine.Client
         {
             if (!GameClient.Get().IsReady())
                 return;
-
-            Card card = GetCardCurrent();
+            Card card = GetCard();
+            Card card_current = GetCardCurrent();
             Vector2 target_position = deck_position;
             Vector3 target_size = start_scale;
 
@@ -98,7 +98,7 @@ namespace TcgEngine.Client
             card_transform.localRotation = Quaternion.Slerp(card_transform.localRotation, Quaternion.Euler(current_rotate), Time.deltaTime * move_speed);
             card_transform.localScale = Vector3.Lerp(card_transform.localScale, target_size, 5f * Time.deltaTime);
 
-            card_ui.SetCard(card);
+            card_ui.SetCard(card_current, card);
             card_glow.enabled = IsFocus() || IsDrag();
             prev_pos = Vector3.Lerp(prev_pos, card_transform.localPosition, 1f * Time.deltaTime);
 

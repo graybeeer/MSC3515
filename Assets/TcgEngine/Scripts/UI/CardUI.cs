@@ -48,26 +48,28 @@ namespace TcgEngine.UI
 
         }
 
-        public void SetCard(Card card)
+        public void SetCard(Card current_card, Card card = null)
         {
-            if (card == null)
+            if (current_card == null)
                 return;
+            if (card == null)
+                card = current_card;
 
-            SetCard(card.CardData, card.VariantData);
+            SetCard(current_card.CardData, current_card.VariantData);
 
             if (cost != null)
-                cost.text = card.GetMana().ToString();
-            if (cost != null && card.CardData.IsDynamicManaCost())
+                cost.text = current_card.GetMana().ToString();
+            if (cost != null && current_card.CardData.IsDynamicManaCost())
                 cost.text = "X";
             if (attack != null)
-                attack.text = card.GetAttack().ToString();
+                attack.text = current_card.GetAttack().ToString();
             if (hp != null)
-                hp.text = card.GetHP().ToString();
+                hp.text = current_card.GetHP().ToString();
             //내가 추가한 이동방향 ui
             if (card_arrow_icon != null)
             {
-                bool[] temp_check_curse = EffectCurseHaste.CheckCursed(card);
-                bool[] temp_check_haste = EffectCurseHaste.CheckHasted(card);
+                bool[] temp_check_curse = EffectCurseHaste.CheckCursed(current_card);
+                bool[] temp_check_haste = EffectCurseHaste.CheckHasted(current_card);
                 for (int i = 0; i < card_arrow_icon.Length; i++)
                 {
                     //약화된 이동마커는 시각적으로 표시
@@ -76,7 +78,7 @@ namespace TcgEngine.UI
                     else card_arrow_icon[i].sprite = empty_card_arrow_icon[i];
 
                     //강화된 이동마커도 시각적으로 색깔 다르게 해서 표시
-                    if (card.card_arrow[i])
+                    if (current_card.card_arrow[i])
                         card_arrow_icon[i].color = new Color(1f, 1f, 1f, 1f);
                     else if (temp_check_haste[i])
                         card_arrow_icon[i].color = new Color(0.7f, 1f, 0.7f, 1f);
@@ -84,12 +86,12 @@ namespace TcgEngine.UI
                         card_arrow_icon[i].color = new Color(1f, 1f, 1f, 0f);
 
                     //아티팩트 이동마커는 다르다는걸 표시
-                    if (card.CardData.IsArtifact())
+                    if (current_card.CardData.IsArtifact())
                         card_arrow_icon[i].color = new Color(0.3f, 0.3f, 1f, card_arrow_icon[i].color.a);
                 }
             }
             foreach (TraitUI stat in stats)
-                stat.SetCard(card);
+                stat.SetCard(current_card);
         }
 
         public void SetCard(CardData cardData, VariantData variant)

@@ -1612,22 +1612,6 @@ namespace TcgEngine.Gameplay
                 for (int c = 0; c < player.cards_board.Count; c++)
                 {
                     Card card = player.cards_board[c];
-                    /*
-                    //Taunt effect
-                    if (card.HasStatus(StatusType.Protection_legacy) && !card.HasStatus(StatusType.Stealth_legacy))
-                    {
-                        player.AddOngoingStatus(StatusType.SuperProtected, 0);
-
-                        for (int tc = 0; tc < player.cards_board.Count; tc++)
-                        {
-                            Card tcard = player.cards_board[tc];
-                            if (!tcard.HasStatus(StatusType.Protection_legacy) && !tcard.HasStatus(StatusType.SuperProtected))
-                            {
-                                tcard.AddOngoingStatus(StatusType.SuperProtected, 0);
-                            }
-                        }
-                    }
-                    */
                     //Status bonus
                     foreach (CardStatus status in card.status)
                         AddOngoingStatusBonus(card, status);
