@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 55e41d6c5fb036a40bc0a37bfe1f52ac, type: 3}
-  m_Name: BasicPack
+  m_Name: central_magic
   m_EditorClassIdentifier: 
-  id: basicPack
-  title: BasicPack
+  id: central_magic
+  title: "\uD3B8\uB9AC\uD55C \uB9C8\uBC95"
   icon: {fileID: 0}
-  color: {r: 0.9622642, g: 0.9622642, b: 0.9622642, a: 1}
+  color: {r: 0.49056602, g: 0.34478462, b: 0.34478462, a: 1}

@@ -17,7 +17,7 @@ MonoBehaviour:
   art_full: {fileID: 0}
   art_board: {fileID: 0}
   type: 20
-  team: {fileID: 11400000, guid: fd7242277f949a0479af0e39137c8fdf, type: 2}
+  team: {fileID: 11400000, guid: deb2344f7311f524d930c4ed0bfc3b34, type: 2}
   rarity: {fileID: 11400000, guid: fab1a52f5a36cc942985dea95be18ac9, type: 2}
   mana: 2
   attack: 1
