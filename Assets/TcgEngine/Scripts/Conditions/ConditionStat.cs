@@ -14,8 +14,8 @@ namespace TcgEngine
     }
     public enum ConditionPlayerValueType
     {
-        selfHandCount = 0,
-        opponentHandCount = 10,
+        selfHandCount = 10,
+        opponentHandCount = 11,
     }
     /// <summary>
     /// Compares basic card or player stats such as attack/hp/mana
