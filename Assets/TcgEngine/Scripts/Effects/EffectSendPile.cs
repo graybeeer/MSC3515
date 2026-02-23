@@ -13,37 +13,56 @@ namespace TcgEngine
     public class EffectSendPile : EffectData
     {
         public PileType pile;
+        [Header("어느 플레이어의 공간으로 보낼건지")]
+        public SendPlayerType type;
 
         public override void DoEffect(GameLogic logic, AbilityData ability, Card caster, Card target)
         {
             Game data = logic.GetGameData();
             Player player = data.GetPlayer(target.player_id);
+            Player sendPlayer = null;
+            if (type == SendPlayerType.self)
+            {
+                sendPlayer = data.GetPlayer(caster.player_id);
+            }
+            else if (type == SendPlayerType.opponent)
+            {
+                sendPlayer = data.GetOpponentPlayer(caster.player_id);
+            }
+            else if (type == SendPlayerType.original_owner)
+            {
+                sendPlayer = data.GetPlayer(target.player_id);
+            }
+            else
+            {
+                Debug.LogError("sendplayer 타입 오류");
+            }
 
             if (pile == PileType.Deck)
             {
                 player.RemoveCardFromAllGroups(target);
-                player.cards_deck.Add(target);
+                sendPlayer.cards_deck.Add(target);
                 target.Clear();
             }
 
             if (pile == PileType.Hand)
             {
                 player.RemoveCardFromAllGroups(target);
-                player.cards_hand.Add(target);
+                sendPlayer.cards_hand.Add(target);
                 target.Clear();
             }
 
             if (pile == PileType.Discard)
             {
                 player.RemoveCardFromAllGroups(target);
-                player.cards_discard.Add(target);
+                sendPlayer.cards_discard.Add(target);
                 target.Clear();
             }
 
             if (pile == PileType.Temp)
             {
                 player.RemoveCardFromAllGroups(target);
-                player.cards_temp.Add(target);
+                sendPlayer.cards_temp.Add(target);
                 target.Clear();
             }
         }
@@ -60,5 +79,10 @@ namespace TcgEngine
         Equipped = 60,
         Temp = 90,
     }
-
+    public enum SendPlayerType
+    {
+        self,
+        opponent,
+        original_owner,
+    }
 }

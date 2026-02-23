@@ -394,7 +394,7 @@ namespace TcgEngine
         }
         public void AddAbility(AbilityData ability, Player temp_player)
         {
-            ability.memory_player = temp_player;
+            ability.memory_player.Add(temp_player);
 
             abilities.Add(ability.id);
             if (abilities_data != null)

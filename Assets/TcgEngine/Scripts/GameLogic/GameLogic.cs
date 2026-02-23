@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using TcgEngine.Client;
 using TcgEngine.UI;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Profiling;
@@ -1542,6 +1543,9 @@ namespace TcgEngine.Gameplay
                     if (chain_ability != null)
                     {
                         TriggerCardAbility(chain_ability, caster);
+                        chain_ability.memory_card_uid.AddRange(iability.memory_card_uid);
+                        chain_ability.memory_slot.AddRange(iability.memory_slot);
+                        chain_ability.memory_player.AddRange(iability.memory_player);
                     }
                 }
             }
