@@ -545,6 +545,8 @@ namespace TcgEngine
                 return false;
             if (HasStatus(StatusType.Frozen))
                 return false;
+            if (HasStatus(StatusType.OnlyAttack))
+                return false;
 
             if (!skip_cost && exhausted)
                 return false; //no more action
