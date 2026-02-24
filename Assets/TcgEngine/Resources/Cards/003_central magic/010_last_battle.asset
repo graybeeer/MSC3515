@@ -10,24 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 843a21f7f6f205741a0a7341aec8e84d, type: 3}
-  m_Name: 008_homecoming
+  m_Name: 010_last_battle
   m_EditorClassIdentifier: 
-  id: CM1_008
-  title: "\uD68C\uC218"
+  id: CM1_010
+  title: "\uB77C\uC2A4\uD2B8 \uBC30\uD2C0"
   art_full: {fileID: 0}
   art_board: {fileID: 0}
   type: 20
   team: {fileID: 11400000, guid: 07fef488294c8a14680d5e3a81cb0d55, type: 2}
   rarity: {fileID: 11400000, guid: fab1a52f5a36cc942985dea95be18ac9, type: 2}
-  mana: 3
+  mana: 8
   attack: 1
   hp: 1
   card_arrow: 000000000000000000
   traits: []
   stats: []
   abilities:
-  - {fileID: 11400000, guid: 1f14a5785e8912045add33d382cff992, type: 2}
-  text: "\uC801 \uD558\uC218\uC778\uC744 \uC0C1\uB300 \uD328\uB85C \uB3CC\uB824\uBCF4\uB0C5\uB2C8\uB2E4\r\n"
+  - {fileID: 11400000, guid: 5b448162ea9907b4e949f6145bbffdcb, type: 2}
+  text: "\uB0B4 \uC601\uC6C5\uACFC \uC801 \uC601\uC6C5\uC774 8\uD134 \uB3D9\uC548
+    \uBE59\uACB0\uC0C1\uD0DC\uAC00 \uB429\uB2C8\uB2E4.\r\n"
   desc: 
   spawn_fx: {fileID: 0}
   death_fx: {fileID: 0}

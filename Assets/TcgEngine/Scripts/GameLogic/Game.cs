@@ -295,6 +295,31 @@ namespace TcgEngine
 
             return true;
         }
+        public bool HeadingMoveArrow(Card card, Slot slot, bool[] temp_arrow) //카드의 이동마커가 아닌 별개의 마커로 계산
+        {
+            if (!IsNarrow(card, slot))
+                return false;
+
+            int distance_x = slot.x - card.slot.x;
+            int distance_y = slot.y - card.slot.y;
+            int distance_arrow = 4 + distance_x * 1 + distance_y * 3;
+            int distance_arrow_p2 = 4 - distance_x * 1 - distance_y * 3; //180도 돌려진 P2기준의 위치, (8 - distance_arrow)
+
+            if (card.player_id == 0)
+            {
+                if (!temp_arrow[distance_arrow])
+                    return false;
+            }
+
+            else if (card.player_id == 1)
+            {
+                if (!temp_arrow[distance_arrow_p2])
+                    return false;
+            }
+            else Debug.LogError("플레이어의 존재하지 않는 ID");
+
+            return true;
+        }
         public bool IsNarrow(Card card, Slot slot)
         {
             if (card.slot.x - slot.x < -1 || card.slot.x - slot.x > 1) return false;
