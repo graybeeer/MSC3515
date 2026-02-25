@@ -47,6 +47,9 @@ MonoBehaviour:
   title: Silence
   desc: "\uCE68\uBB35: \uCE74\uB4DC\uC758 \uBAA8\uB4E0 \uD2B9\uC218 \uB2A5\uB825\uACFC
     \uAC15\uD654 \uD6A8\uACFC\uB97C \uC81C\uAC70\uD569\uB2C8\uB2E4."
+  memory_card_uid: []
+  memory_player: []
+  memory_slot: []
   referencingComponents:
   - {fileID: 11400000, guid: 88ee1fec50ed77b40b8a1833f5a8454b, type: 2}
   - {fileID: 11400000, guid: 8c98ed43b89b89744941231511cc8664, type: 2}

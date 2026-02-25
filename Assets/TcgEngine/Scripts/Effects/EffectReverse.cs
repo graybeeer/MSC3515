@@ -12,7 +12,7 @@ namespace TcgEngine
             bool[] target_cursed = EffectCurseHaste.CheckCursed(target);
             bool[] target_hasted = EffectCurseHaste.CheckHasted(target);
             int target_cursed_reversed = EffectCurseHaste.CalculateArrow(target_hasted); //반전하려면 헤이스트랑 저주는 수치 거꾸로
-            int target_hasted_reversed = EffectCurseHaste.CalculateArrow(target_cursed); 
+            int target_hasted_reversed = EffectCurseHaste.CalculateArrow(target_cursed);
 
             target.card_arrow = ReverseArrow(target.card_arrow); //카드 화살표 반전
 

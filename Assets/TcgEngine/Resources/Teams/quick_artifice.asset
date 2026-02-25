@@ -9,8 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05e842c49f2d3d04fa3627df2d352860, type: 3}
-  m_Name: change_owner_self
+  m_Script: {fileID: 11500000, guid: 55e41d6c5fb036a40bc0a37bfe1f52ac, type: 3}
+  m_Name: quick_artifice
   m_EditorClassIdentifier: 
-  referencingComponents: []
-  owner_opponent: 0
+  id: quick_artifice
+  title: "\uC7AC\uBE60\uB978 \uAE30\uAD50"
+  icon: {fileID: 0}
+  color: {r: 0.5943396, g: 0.18783373, b: 0.18783373, a: 1}

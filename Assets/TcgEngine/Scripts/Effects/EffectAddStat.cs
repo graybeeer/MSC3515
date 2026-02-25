@@ -63,5 +63,6 @@ namespace TcgEngine
         Attack = 10,
         HP = 20,
         Mana = 30,
+        Arrow = 40,
     }
 }

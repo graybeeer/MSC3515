@@ -31,6 +31,7 @@ namespace TcgEngine
         }
         public override void DoEffect(GameLogic logic, AbilityData ability, Card caster, Slot target)
         {
+            Debug.LogError("아직 구현안됨");
         }
     }
 }
