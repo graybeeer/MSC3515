@@ -10,9 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d028860b966ab8f44908a62e25280a39, type: 3}
-  m_Name: is_equipment
+  m_Name: is_red_legacy
   m_EditorClassIdentifier: 
-  has_type: 50
-  has_team: {fileID: 0}
-  has_trait: {fileID: 0}
+  referencingComponents: []
+  has_type: 
+  has_team:
+  - {fileID: 11400000, guid: 6bbb96863ece0314fb318c0fce569afc, type: 2}
+  has_trait: []
   oper: 0

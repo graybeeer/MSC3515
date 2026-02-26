@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 namespace TcgEngine
 {
@@ -12,9 +13,11 @@ namespace TcgEngine
     public class ConditionCardType : ConditionData
     {
         [Header("Card is of type")]
-        public CardType has_type;
-        public TeamData has_team;
-        public TraitData has_trait;
+        [Space(10)]
+        [Header("목록 내에서 해당 속성이 있으면 속한 것으로 판단 / 타입, 팀, 종족 등을 동시에 충족해야함")]
+        public List<CardType> has_type;
+        public List<TeamData> has_team;
+        public List<TraitData> has_trait;
 
         public ConditionOperatorBool oper;
 
@@ -35,17 +38,48 @@ namespace TcgEngine
 
         public override bool IsTargetConditionMet(Game data, AbilityData ability, Card caster, CardData target)
         {
-            bool is_type = target.type == has_type || has_type == CardType.None;
-            bool is_team = target.team == has_team || has_team == null;
-            bool is_trait = target.HasTrait(has_trait) || has_trait == null;
-            return (is_type && is_team && is_trait);
+            bool is_type = (has_type.Count == 0) || has_type.Contains(CardType.None);
+            bool is_team = has_team.Count == 0;
+            bool is_trait = has_trait.Count == 0;
+            for(int i = 0; i < has_type.Count; i++)
+            {
+                if (target.type == has_type[i])
+                    is_type = true;
+            }
+            for (int i = 0; i < has_team.Count; i++)
+            {
+                if (target.team == has_team[i])
+                    is_type = true;
+            }
+            for (int i = 0; i < has_trait.Count; i++)
+            {
+                if (target.HasTrait(has_trait[i]))
+                    is_type = true;
+            }
+            return CompareBool(is_type && is_team && is_trait, oper);
+
         }
 
         private bool IsTrait(Card card)
         {
-            bool is_type = card.CardData.type == has_type || has_type == CardType.None;
-            bool is_team = card.CardData.team == has_team || has_team == null;
-            bool is_trait = card.HasTrait(has_trait) || has_trait == null;
+            bool is_type = (has_type.Count == 0) || has_type.Contains(CardType.None);
+            bool is_team = has_team.Count == 0;
+            bool is_trait = has_trait.Count == 0;
+            for (int i = 0; i < has_type.Count; i++)
+            {
+                if (card.CardData.type == has_type[i])
+                    is_type = true;
+            }
+            for (int i = 0; i < has_team.Count; i++)
+            {
+                if (card.CardData.team == has_team[i])
+                    is_type = true;
+            }
+            for (int i = 0; i < has_trait.Count; i++)
+            {
+                if (card.CardData.HasTrait(has_trait[i]))
+                    is_type = true;
+            }
             return (is_type && is_team && is_trait);
         }
     }
