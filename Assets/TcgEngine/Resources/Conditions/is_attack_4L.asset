@@ -17,4 +17,4 @@ MonoBehaviour:
   oper: 3
   value: 4
   value_type: 0
-  Num: 0
+  player_type: 10

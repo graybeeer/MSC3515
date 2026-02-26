@@ -12,10 +12,17 @@ namespace TcgEngine
         Mana = 30,
         ArrowNum = 40,
     }
+    public enum ConditionEffectTrigger
+    {
+        Target = 10,
+        Caster = 20,
+    }
     public enum ConditionPlayerValueType
     {
-        selfHandCount = 10,
-        opponentHandCount = 11,
+        SelfHandCount = 10,
+        OpponentHandCount = 11,
+        SelfSummonCount = 20,
+        OpponentSummonCount = 22,
     }
     /// <summary>
     /// Compares basic card or player stats such as attack/hp/mana
@@ -30,16 +37,16 @@ namespace TcgEngine
         public int value;
         [Header("체크하면 value의 값은 무시되고 아래의 해당밸류값과 비교됨")]
         public bool value_type;
-        public ConditionPlayerValueType Num;
+        public ConditionPlayerValueType player_type;
 
 
         public override bool IsTargetConditionMet(Game data, AbilityData ability, Card caster, Card target)
         {
             if (value_type)
             {
-                if (Num == ConditionPlayerValueType.selfHandCount)
+                if (player_type == ConditionPlayerValueType.SelfHandCount)
                     value = data.GetPlayer(caster.player_id).cards_hand.Count;
-                if (Num == ConditionPlayerValueType.opponentHandCount)
+                if (player_type == ConditionPlayerValueType.OpponentHandCount)
                     value = data.GetOpponentPlayer(caster.player_id).cards_hand.Count;
             }
                 
