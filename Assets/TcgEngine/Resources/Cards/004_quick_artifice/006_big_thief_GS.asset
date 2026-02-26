@@ -10,25 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 843a21f7f6f205741a0a7341aec8e84d, type: 3}
-  m_Name: 001_usurper_voon
+  m_Name: 006_big_thief_GS
   m_EditorClassIdentifier: 
-  id: QA1_001
-  title: "\uAC15\uD0C8\uC790 \uBD84"
+  id: QA1_006
+  title: "\uB300\uB3C4 \uAD34\uC2E0"
   art_full: {fileID: 0}
   art_board: {fileID: 0}
   type: 10
   team: {fileID: 11400000, guid: 1b1ea424627dd42499a294005f3b634f, type: 2}
   rarity: {fileID: 11400000, guid: 13b592f40b7cd424c966f5d7eef425aa, type: 2}
-  mana: 5
+  mana: 9
   attack: 1
   hp: 1
-  card_arrow: 000000010001000000
+  card_arrow: 010101010001010101
   traits: []
   stats: []
   abilities:
-  - {fileID: 11400000, guid: 311c0e47c92592346bcff1f6945b0951, type: 2}
-  text: "\uC804\uD568: \uB2E4\uB978 \uD558\uC218\uC778\uACFC \uC774\uB3D9\uB9C8\uCEE4\uB97C
-    \uBC14\uAFC9\uB2C8\uB2E4.\r\n"
+  - {fileID: 11400000, guid: fdfd9b6e9637d9a4a89f0a2571d0d7d1, type: 2}
+  text: "<b>\uD328\uC5D0\uC11C \uB0BC \uB54C:</b> \uC801 \uC601\uC6C5\uC744 \uC57D\uD654\uD569\uB2C8\uB2E4.\r\n"
   desc: 
   spawn_fx: {fileID: 0}
   death_fx: {fileID: 0}

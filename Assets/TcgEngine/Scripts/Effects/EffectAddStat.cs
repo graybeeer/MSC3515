@@ -42,7 +42,9 @@ namespace TcgEngine
             if (type == EffectStatType.HP)
                 target.hp += ability.value;
             if (type == EffectStatType.Mana)
+            {
                 target.mana = Mathf.Clamp(target.mana + ability.value, manaMinLimt, manaMaxLimt);
+            }
         }
 
         public override void DoOngoingEffect(GameLogic logic, AbilityData ability, Card caster, Card target)
@@ -52,7 +54,8 @@ namespace TcgEngine
             if (type == EffectStatType.HP)
                 target.hp_ongoing += ability.value;
             if (type == EffectStatType.Mana)
-                target.mana_ongoing = Mathf.Clamp(target.mana + ability.value, manaMinLimt, manaMaxLimt);
+                target.mana_ongoing += ability.value;
+            
         }
 
     }

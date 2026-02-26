@@ -9,6 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9908c302fc7ade44f9e3b5dd67215ac1, type: 3}
-  m_Name: draw
+  m_Script: {fileID: 11500000, guid: a9785c691464715448026046e7a5b848, type: 3}
+  m_Name: is_alive
   m_EditorClassIdentifier: 
+  referencingComponents: []
+  oper: 0

@@ -181,8 +181,6 @@ namespace TcgEngine.Gameplay
 
             ClearTurnData();
             game_data.phase = GamePhase.StartTurn;
-            onTurnStart?.Invoke();
-            RefreshData();
 
             Player player = game_data.GetActivePlayer();
 
@@ -252,6 +250,9 @@ namespace TcgEngine.Gameplay
                 if (card.CardData.IsArtifact())
                     DamageCard(card, 1);
             }
+
+            onTurnStart?.Invoke();
+            RefreshData();
 
             resolve_queue.AddCallback(StartMainPhase);
             resolve_queue.ResolveAll(msc_time);

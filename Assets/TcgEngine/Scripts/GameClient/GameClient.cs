@@ -819,10 +819,6 @@ namespace TcgEngine.Client
         private void RefreshAllCurrent(Game gameData)
         {
             current_game_data = gameData;
-            /*
-            if (gameData != null)
-                Debug.Log(gameData .players[0].cards_hand.Count);
-            */ 
         }
 
         //--------------------------
