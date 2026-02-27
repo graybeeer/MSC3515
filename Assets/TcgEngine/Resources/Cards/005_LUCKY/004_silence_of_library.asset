@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 843a21f7f6f205741a0a7341aec8e84d, type: 3}
-  m_Name: 001_steal_wall
+  m_Name: 004_silence_of_library
   m_EditorClassIdentifier: 
-  id: LK1_001
-  title: "\uAC15\uD654 \uAC15\uCCA0 \uBCBD"
+  id: LK1_004
+  title: "\uB3C4\uC11C\uAD00\uC758 \uCE68\uBB35"
   art_full: {fileID: 0}
   art_board: {fileID: 0}
-  type: 30
+  type: 20
   team: {fileID: 11400000, guid: 4843b40d581193a469b3ba6335ad9688, type: 2}
   rarity: {fileID: 11400000, guid: fab1a52f5a36cc942985dea95be18ac9, type: 2}
   mana: 4
@@ -26,9 +26,9 @@ MonoBehaviour:
   traits: []
   stats: []
   abilities:
-  - {fileID: 11400000, guid: 267e3bc0d13084a428a7711cc330eac2, type: 2}
-  - {fileID: 11400000, guid: 05010882768813f4391992e21093a5e9, type: 2}
-  text: "<b>\uBCF4\uD638, \uAC15\uD654 \uCE68\uD22C</b>\r"
+  - {fileID: 11400000, guid: 50da7d1ae3a7ff74cb90f08de358a0ab, type: 2}
+  text: "\uC801 \uD558\uC218\uC778\uC744 \uAC15\uD654\uD569\uB2C8\uB2E4. \uCE74\uB4DC\uB97C
+    2\uC7A5 \uBF51\uC2B5\uB2C8\uB2E4.\r\n"
   desc: 
   spawn_fx: {fileID: 0}
   death_fx: {fileID: 0}
