@@ -27,6 +27,7 @@ MonoBehaviour:
   value: 1
   duration: 0
   chain_abilities:
+  - {fileID: 11400000, guid: 4803fd6e0c87cef4ab44914f06967570, type: 2}
   - {fileID: 11400000, guid: 6a3493e72667662408bb4846a7429112, type: 2}
   mana_cost: 0
   exhaust: 0

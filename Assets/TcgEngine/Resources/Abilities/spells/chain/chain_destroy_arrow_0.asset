@@ -10,16 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8ce5f81e5cc37f547af6923758602c8c, type: 3}
-  m_Name: chain_alive_draw1
+  m_Name: chain_destroy_arrow_0
   m_EditorClassIdentifier: 
-  id: chain_alive_draw1
+  id: chain_destroy_arrow_0
   trigger: 0
   conditions_trigger: []
   target: 20
-  conditions_target: []
+  conditions_target:
+  - {fileID: 11400000, guid: fdcccac367005b34ea631055a9e45027, type: 2}
   filters_target: []
   effects:
-  - {fileID: 11400000, guid: 32bffacbbe33994489366efd745c8119, type: 2}
+  - {fileID: 11400000, guid: f71d4af1506339149852f66291383dc4, type: 2}
   status: []
   value: 1
   duration: 0
@@ -63015,5 +63016,4 @@ MonoBehaviour:
     ongoing_status: []
     history_list: []
   memory_slot: []
-  referencingComponents:
-  - {fileID: 11400000, guid: 9be39012c6c377949bf79ce225d7dc6b, type: 2}
+  referencingComponents: []
