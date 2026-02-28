@@ -357,7 +357,17 @@ namespace TcgEngine
                     }
                 }
             }
-
+            if (target == AbilityTarget.AllCardsDeck)
+            {
+                foreach (Player player in data.players)
+                {
+                    foreach (Card card in player.cards_deck)
+                    {
+                        if (AreTargetConditionsMet(data, caster, card))
+                            targets.Add(card);
+                    }
+                }
+            }
             if (target == AbilityTarget.AllCardsHand)
             {
                 foreach (Player player in data.players)
@@ -725,6 +735,7 @@ namespace TcgEngine
         AllCardsAllPiles = 12,
         AllSlots = 15,
         AllCardData = 17,       //For card Create effects only
+        AllCardsDeck = 18,
 
         PlayTarget = 20,        //The target selected at the same time the spell was played (spell only)  패에서 주문카드로 드래그 하는것처럼
         AbilityTriggerer = 25,   //The card that triggered the trap

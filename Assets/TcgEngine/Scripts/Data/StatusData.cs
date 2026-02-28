@@ -23,19 +23,20 @@ namespace TcgEngine
         SpellImmunity = 19, //Cant be targeted/damaged by spells
 
         Deathtouch_legacy = 20,    //레거시-Kills when attacking a character
-        Fury = 22,          // Can attack twice per turn 
+        Fury_legacy = 22,          //레거시- Can attack twice per turn 
         Intimidate = 23,    //Target doesnt counter when attacking
         Flying = 24,         //Can ignore taunt
         Trample = 26,         //Extra damage is assigned to player
-        LifeSteal = 28,      //Heal player when fighting
+        LifeSteal_legacy = 28,      //레거시-Heal player when fighting
 
-        Silenced_legacy = 30,      //All abilities canceled 모든 종류의 능력 봉인됨
+        Silenced_legacy = 30,      //레거시-All abilities canceled 모든 종류의 능력 봉인됨
         Paralysed = 32,     //Cant do any actions for X turns / 마비됨 - 아무 행동(이동, 공격, 액티브 능력사용)도 못함
         cursed = 33,          //저주 - 이동 화살표 중 일부 사용 못하게 됨(중첩가능), 모든 이동화살표 이동 불가능해지면 사망
         Poisoned = 34,     //Lose hp each start of turn
         Sleep = 36,         //Doesnt untap at the start of turn
 
         Mercy = 40,         //자비 - 상대 영웅을 공격할 수 없음
+        Peace = 41,       //평화- 유닛을 공격할 수 없음
         Protected = 43, //쉴드- 적 캐릭터(영웅제외)에게 공격받지 않는다
         SuperProtected = 44,     //슈퍼쉴드- 적 유닛에게 공격받지 않는다
         Taunt = 46,     //도발- 도발 유닛을 공격가능한 상태라면, 도발 유닛만 공격할 수 있다

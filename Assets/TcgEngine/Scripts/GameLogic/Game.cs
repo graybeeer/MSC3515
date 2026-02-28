@@ -429,7 +429,8 @@ namespace TcgEngine
             }
             if (attacker.HasStatus(StatusType.Mercy) && target.CardData.IsHero()) //공격자가 자비 상태면 영웅 공격불가
                 return false;
-
+            if (attacker.HasStatus(StatusType.Peace)) //공격자가 평화 상태면 공격불가
+                return false;
             return true;
         }
         public virtual string CantAttackText(Card attacker, Card target, bool skip_cost = false, bool checkCanAttackTaunt = false)
@@ -496,7 +497,8 @@ namespace TcgEngine
             }
             if (attacker.HasStatus(StatusType.Mercy) && target.CardData.IsHero()) //공격자가 자비 상태면 영웅 공격불가
                 return "자비 상태에선 영웅공격 불가";
-
+            if (attacker.HasStatus(StatusType.Peace)) //공격자가 평화 상태면 공격불가
+                return "평화 상태에선 공격 불가";
             return "공격 불가";
         }
         public virtual bool CanMoveOrAttack(Card attacker, Slot target, bool skip_cost = false)

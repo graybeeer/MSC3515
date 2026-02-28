@@ -841,7 +841,7 @@ namespace TcgEngine.Gameplay
         {
             bool attacked_before = game_data.cards_attacked.Contains(attacker.uid);
             game_data.cards_attacked.Add(attacker.uid);
-            bool attack_again = attacker.HasStatus(StatusType.Fury) && !attacked_before;
+            bool attack_again = attacker.HasStatus(StatusType.Fury_legacy) && !attacked_before;
             attacker.exhausted = !attack_again;
         }
 
@@ -1086,7 +1086,7 @@ namespace TcgEngine.Gameplay
 
             //Lifesteal
             Player aplayer = game_data.GetPlayer(attacker.player_id);
-            if (attacker.HasStatus(StatusType.LifeSteal))
+            if (attacker.HasStatus(StatusType.LifeSteal_legacy))
                 aplayer.hp += value;
         }
 
@@ -1166,7 +1166,7 @@ namespace TcgEngine.Gameplay
 
             //Lifesteal
             Player player = game_data.GetPlayer(attacker.player_id);
-            if (!spell_damage && attacker.HasStatus(StatusType.LifeSteal))
+            if (!spell_damage && attacker.HasStatus(StatusType.LifeSteal_legacy))
                 player.hp += damage_max;
 
             //Remove sleep on damage
@@ -1755,7 +1755,7 @@ namespace TcgEngine.Gameplay
                             }
                         }
 
-                        if (ability.target == AbilityTarget.AllCardsAllPiles || ability.target == AbilityTarget.AllCardsHand || ability.target == AbilityTarget.AllCardsBoard)
+                        if (ability.target == AbilityTarget.AllCardsAllPiles || ability.target == AbilityTarget.AllCardsHand || ability.target == AbilityTarget.AllCardsBoard|| ability.target == AbilityTarget.AllCardsDeck)
                         {
                             for (int tp = 0; tp < game_data.players.Length; tp++)
                             {
@@ -1787,9 +1787,20 @@ namespace TcgEngine.Gameplay
                                         }
                                     }
                                 }
-
-                                //Equip Cards
-                                if (ability.target == AbilityTarget.AllCardsAllPiles)
+                                //덱 카드
+                                if (ability.target == AbilityTarget.AllCardsAllPiles || ability.target == AbilityTarget.AllCardsDeck)
+                                {
+                                    for (int tc = 0; tc < tplayer.cards_deck.Count; tc++)
+                                    {
+                                        Card tcard = tplayer.cards_deck[tc];
+                                        if (ability.AreTargetConditionsMet(game_data, card, tcard))
+                                        {
+                                            ability.DoOngoingEffects(this, card, tcard);
+                                        }
+                                    }
+                                }
+                                    //Equip Cards
+                                    if (ability.target == AbilityTarget.AllCardsAllPiles)
                                 {
                                     for (int tc = 0; tc < tplayer.cards_equip.Count; tc++)
                                     {
