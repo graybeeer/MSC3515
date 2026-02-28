@@ -31,7 +31,6 @@ namespace TcgEngine
 
         Silenced_legacy = 30,      //레거시-All abilities canceled 모든 종류의 능력 봉인됨
         Paralysed = 32,     //Cant do any actions for X turns / 마비됨 - 아무 행동(이동, 공격, 액티브 능력사용)도 못함
-        cursed = 33,          //저주 - 이동 화살표 중 일부 사용 못하게 됨(중첩가능), 모든 이동화살표 이동 불가능해지면 사망
         Poisoned = 34,     //Lose hp each start of turn
         Sleep = 36,         //Doesnt untap at the start of turn
 
@@ -42,6 +41,7 @@ namespace TcgEngine
         Taunt = 46,     //도발- 도발 유닛을 공격가능한 상태라면, 도발 유닛만 공격할 수 있다
 
         hasted = 50, //헤이스트- 저주랑 정 반대로 추가로 이동가능한 방향이 생김
+        cursed = 51,          //저주 - 이동 화살표 중 일부 사용 못하게 됨(중첩가능), 모든 이동화살표 이동 불가능해지면 사망
         DeathCount = 52, //데쓰카운트 - 일정 턴이 지나면 이 유닛은 사망한다.
 
         Frozen = 60, //하수인은 이동 및 공격을 할 수 없다, 건물은 침묵효과

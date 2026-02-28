@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8ce5f81e5cc37f547af6923758602c8c, type: 3}
-  m_Name: spell_curse_all_character
+  m_Name: spell_curse_enemy_character
   m_EditorClassIdentifier: 
   id: spell_curse_all_character
   trigger: 10
@@ -18,7 +18,7 @@ MonoBehaviour:
   target: 10
   conditions_target:
   - {fileID: 11400000, guid: 065da32cbd133734493695579723a718, type: 2}
-  - {fileID: 11400000, guid: 707ab85bffdfd2643a7375e15b2fa634, type: 2}
+  - {fileID: 11400000, guid: 41c58513071a53b4e9066a58c439760f, type: 2}
   filters_target: []
   effects:
   - {fileID: 11400000, guid: c31fc2ebf8cac4c44a9ff4e0c93ab363, type: 2}
@@ -2667,5 +2667,4 @@ MonoBehaviour:
     ongoing_status: []
     history_list: []
   memory_slot: []
-  referencingComponents:
-  - {fileID: 11400000, guid: 88a704944e3661840a8b3cfba97e4560, type: 2}
+  referencingComponents: []

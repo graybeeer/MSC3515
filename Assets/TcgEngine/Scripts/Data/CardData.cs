@@ -71,7 +71,7 @@ namespace TcgEngine
         public AudioClip damage_audio;
 
         [Header("Availability")]
-        public bool deckbuilding = false; //덱에 넣을수 있는 카드인지
+        public bool deckbuilding = true; //덱에 넣을수 있는 카드인지
         public int cost = 100;
         public PackData[] packs;
         public bool can_use = true; //현재 사용가능한 카드인지, false면 게임에서 사용 불가능

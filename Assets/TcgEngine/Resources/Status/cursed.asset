@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7edf116efdfa73646a6de43812f81a4a, type: 3}
   m_Name: cursed
   m_EditorClassIdentifier: 
-  effect: 33
+  effect: 51
   title: Cursed
   icon: {fileID: 0}
   desc: "\uC800\uC8FC\uB97C \uBC1B\uC544 \uBB34\uC791\uC704 \uC774\uB3D9 \uBC29\uD5A5\uC774
@@ -20,3 +20,4 @@ MonoBehaviour:
   status_fx: {fileID: 2865177547529958675, guid: 08ad2f4aab8ffdb40ace3902fe348812,
     type: 3}
   hvalue: -1
+  referencingComponents: []
