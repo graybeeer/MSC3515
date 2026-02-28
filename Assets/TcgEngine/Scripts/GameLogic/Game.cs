@@ -187,6 +187,8 @@ namespace TcgEngine
                     */
                     if (card.HasStatus(StatusType.SuperPreparate) && !slotInform.GetSlotData(slot).isDeep) //느린 준비 카드면 아군 내부진영에만 소환가능
                         return false;
+                    //if (card.HasStatus(StatusType.CantSummonAlly))//아군 진영에 소환 불가능 상태면 불가능
+                    //    return false;
                 }
                 
                 return true;

@@ -53,6 +53,7 @@ namespace TcgEngine
         SuperInfiltrate = 71,//깊은 침투
         Preparate = 75,//준비
         SuperPreparate = 76,//느린 준비
+        CantSummonAlly = 78,//아군 진영에 소환 불가능
     }
 
     /// <summary>

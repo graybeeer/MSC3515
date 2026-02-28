@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7edf116efdfa73646a6de43812f81a4a, type: 3}
-  m_Name: trample
+  m_Name: cant_summon_ally
   m_EditorClassIdentifier: 
-  effect: 26
-  title: Trample
+  effect: 78
+  title: "\uC544\uAD70\uC9C4\uC601\uC5D0 \uC18C\uD658 \uBD88\uAC00\uB2A5"
   icon: {fileID: 0}
-  desc: Extra damage is dealt to player.
+  desc: "\uC544\uAD70 \uC9C4\uC601\uC5D0 \uC18C\uD658\uD560 \uC218 \uC5C6\uB2E4."
   status_fx: {fileID: 0}
-  hvalue: 1
+  hvalue: 0
+  referencingComponents: []
