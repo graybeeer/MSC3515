@@ -408,7 +408,14 @@ namespace TcgEngine
             if (abilities_data != null)
                 abilities_data.Add(ability);
         }
+        public void AddAbility(AbilityData ability, int temp_int)
+        {
+            ability.memory_turn.Add(temp_int);
 
+            abilities.Add(ability.id);
+            if (abilities_data != null)
+                abilities_data.Add(ability);
+        }
         public void RemoveAbility(AbilityData ability)
         {
             abilities.Remove(ability.id);

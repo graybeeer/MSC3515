@@ -1547,6 +1547,7 @@ namespace TcgEngine.Gameplay
                         chain_ability.memory_card_uid.AddRange(iability.memory_card_uid);
                         chain_ability.memory_slot.AddRange(iability.memory_slot);
                         chain_ability.memory_player.AddRange(iability.memory_player);
+                        chain_ability.memory_turn.AddRange(iability.memory_turn);
                     }
                 }
             }

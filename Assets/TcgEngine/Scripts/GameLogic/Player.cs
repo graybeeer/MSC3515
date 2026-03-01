@@ -31,7 +31,6 @@ namespace TcgEngine
         public int GetBoardcardNumExceptHero() => cards_board.Count(v => v.CardData.type != CardType.Hero); //필드 위 소환물의 개수
         public bool can_move_attack = true; //유닛을 움직일 수 있는 상태인지
         //public int max_handcard_num = 10;
-        
 
         public Dictionary<string, Card> cards_all = new Dictionary<string, Card>(); //Dictionnary for quick access to any card by UID
         public Card hero_data = null;

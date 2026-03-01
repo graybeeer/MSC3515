@@ -12,17 +12,22 @@ namespace TcgEngine
 
     public class EffectMemory : EffectData
     {
+        //public bool memory_turn;
         public override void DoEffect(GameLogic logic, AbilityData ability, Card caster, Card target)
         {
             ability.memory_card_uid.Add(target.uid);
+            ability.memory_turn.Add(logic.GameData.turn_count);
+            
         }
         public override void DoEffect(GameLogic logic, AbilityData ability, Card caster, Slot target)
         {
             ability.memory_slot.Add(target);
+            ability.memory_turn.Add(logic.GameData.turn_count);
         }
         public override void DoEffect(GameLogic logic, AbilityData ability, Card caster, Player target)
         {
             ability.memory_player.Add(target);
+            ability.memory_turn.Add(logic.GameData.turn_count);
         }
     }
 }

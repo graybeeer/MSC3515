@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d115d896db1512b4aa55b33f28350743, type: 3}
-  m_Name: draw_count_card
+  m_Script: {fileID: 11500000, guid: 966196aeb18279e42ade2517d61a206b, type: 3}
+  m_Name: memory
   m_EditorClassIdentifier: 
   referencingComponents: []

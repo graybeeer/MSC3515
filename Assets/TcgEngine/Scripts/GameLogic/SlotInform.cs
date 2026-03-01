@@ -55,6 +55,10 @@ namespace TcgEngine
         {
             return GetSlotData(slot.x, slot.y);
         }
+        public List<SlotData> GetSlotDataList()
+        {
+            return slotData;
+        }
     }
     [System.Serializable]
     public struct SlotData

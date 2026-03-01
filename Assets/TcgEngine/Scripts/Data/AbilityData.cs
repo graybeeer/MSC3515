@@ -60,6 +60,8 @@ namespace TcgEngine
         public List<Player> memory_player = new List<Player>();
         [HideInInspector]
         public List<Slot> memory_slot = new List<Slot>();
+        [HideInInspector]
+        public List<int> memory_turn = new List<int>();
 
         [Space(30)]
         [Header("이 데이터를 참조하는 다른 데이터")]

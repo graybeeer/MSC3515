@@ -21,6 +21,7 @@ namespace TcgEngine
         public CardData[] cards;
 
         public static List<DeckData> deck_list = new List<DeckData>();
+        public List<TeamData> expansion_pack = new List<TeamData>(); //플레이어가 사용하는 확장팩 3개 리스트
 
         public static void Load(string folder = "")
         {
