@@ -10,23 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 843a21f7f6f205741a0a7341aec8e84d, type: 3}
-  m_Name: 003_Little_firefly
+  m_Name: 005_prepare_arming
   m_EditorClassIdentifier: 
-  id: ORG_003
-  title: "\uC791\uC740 \uBC18\uB527\uBD88\uC774"
+  id: US1_005
+  title: "\uBB34\uC7A5 \uC900\uBE44"
   art_full: {fileID: 0}
   art_board: {fileID: 0}
-  type: 10
-  team: {fileID: 11400000, guid: 44accef98e769754d9edb8fe6051443a, type: 2}
+  type: 20
+  team: {fileID: 11400000, guid: 34f33ebc401c1924a9b584d5d622bb09, type: 2}
   rarity: {fileID: 11400000, guid: fab1a52f5a36cc942985dea95be18ac9, type: 2}
   mana: 2
-  attack: 0
+  attack: 1
   hp: 1
-  card_arrow: 000100000000000100
+  card_arrow: 000000000000000000
   traits: []
   stats: []
-  abilities: []
-  text: 
+  abilities:
+  - {fileID: 11400000, guid: cc0a4853d19dcb44e8e9390e1fff4696, type: 2}
+  text: "\uBB34\uC791\uC704 \uC544\uAD70 \uD558\uC218\uC778 \uB458\uC5D0\uAC8C \uAC15\uD654\uC640
+    \uB3C4\uBC1C\uC744 \uBD80\uC5EC\uD569\uB2C8\uB2E4.\r\n"
   desc: 
   spawn_fx: {fileID: 0}
   death_fx: {fileID: 0}
@@ -42,7 +44,7 @@ MonoBehaviour:
   death_audio: {fileID: 0}
   attack_audio: {fileID: 0}
   damage_audio: {fileID: 0}
-  deckbuilding: 0
+  deckbuilding: 1
   cost: 100
   packs: []
   can_use: 1

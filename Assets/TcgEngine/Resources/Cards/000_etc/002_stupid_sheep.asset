@@ -21,7 +21,7 @@ MonoBehaviour:
   rarity: {fileID: 11400000, guid: fab1a52f5a36cc942985dea95be18ac9, type: 2}
   mana: 1
   attack: 0
-  hp: 0
+  hp: 1
   card_arrow: 000000000000000100
   traits:
   - {fileID: 11400000, guid: 948c650ff5621994ab73f23d55d2ec4f, type: 2}

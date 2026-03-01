@@ -26,8 +26,8 @@ MonoBehaviour:
   traits: []
   stats: []
   abilities:
-  - {fileID: 11400000, guid: 6a6fd5348960d984ca9846509b7be427, type: 2}
   - {fileID: 11400000, guid: 150fb0613506f614392706a83e96db73, type: 2}
+  - {fileID: 11400000, guid: 6a6fd5348960d984ca9846509b7be427, type: 2}
   text: "\uC911\uB9BD \uC9C0\uC5ED\uC5D0\uB9CC \uC18C\uD658\uAC00\uB2A5, \uB0B4 \uD134\uC774
     \uB05D\uB0A0\uB54C \uD328\uB85C '\uD3C9\uBC94\uD55C \uC591'\uC744 \uAC00\uC838\uC635\uB2C8\uB2E4.\r\n"
   desc: 

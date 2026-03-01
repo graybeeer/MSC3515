@@ -10,23 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 843a21f7f6f205741a0a7341aec8e84d, type: 3}
-  m_Name: 003_Little_firefly
+  m_Name: 004_Hyena_Queen
   m_EditorClassIdentifier: 
-  id: ORG_003
-  title: "\uC791\uC740 \uBC18\uB527\uBD88\uC774"
+  id: US1_004
+  title: "\uD558\uC774\uC5D0\uB098 \uBB34\uB9AC\uC5EC\uC655"
   art_full: {fileID: 0}
   art_board: {fileID: 0}
   type: 10
-  team: {fileID: 11400000, guid: 44accef98e769754d9edb8fe6051443a, type: 2}
-  rarity: {fileID: 11400000, guid: fab1a52f5a36cc942985dea95be18ac9, type: 2}
-  mana: 2
-  attack: 0
+  team: {fileID: 11400000, guid: 34f33ebc401c1924a9b584d5d622bb09, type: 2}
+  rarity: {fileID: 11400000, guid: 72248f07232412e4db2f6864dbb4e271, type: 2}
+  mana: 4
+  attack: 1
   hp: 1
-  card_arrow: 000100000000000100
+  card_arrow: 000000000000010101
   traits: []
   stats: []
-  abilities: []
-  text: 
+  abilities:
+  - {fileID: 11400000, guid: ed1afd00be843ca478e05a7ae692d995, type: 2}
+  text: "\uC801 \uC9C4\uC601\uC73C\uB85C \uC774\uB3D9\uD558\uBA74, \uBC18\uC804\uD569\uB2C8\uB2E4(\uBC18\uBCF5\uB428)\r\n"
   desc: 
   spawn_fx: {fileID: 0}
   death_fx: {fileID: 0}
@@ -42,7 +43,7 @@ MonoBehaviour:
   death_audio: {fileID: 0}
   attack_audio: {fileID: 0}
   damage_audio: {fileID: 0}
-  deckbuilding: 0
+  deckbuilding: 1
   cost: 100
   packs: []
   can_use: 1
