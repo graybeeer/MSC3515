@@ -55,6 +55,8 @@ namespace TcgEngine
 
         public List<ActionHistory> history_list = new List<ActionHistory>();  //History of actions performed by the player
 
+        //public List<CardData> cards_summoned = new List<CardData>(); //플레이어가 소환했던 카드 정보 목록
+
         public Player(int id) { this.player_id = id; }
 
         public bool IsReady() { return ready && cards_all.Count > 0; }

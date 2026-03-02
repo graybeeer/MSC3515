@@ -10,31 +10,35 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8ce5f81e5cc37f547af6923758602c8c, type: 3}
-  m_Name: death_draw
+  m_Name: death_enemy_draw_1
   m_EditorClassIdentifier: 
-  id: death_draw
+  id: death_enemy_draw_1
   trigger: 40
   conditions_trigger: []
-  target: 4
+  target: 5
   conditions_target: []
   filters_target: []
   effects:
   - {fileID: 11400000, guid: d2f15281b01c4b347a527a3011ef430a, type: 2}
   status: []
-  value: 1
+  value: 0
   duration: 0
   chain_abilities: []
   mana_cost: 0
   exhaust: 0
   board_fx: {fileID: 0}
   caster_fx: {fileID: 0}
-  target_fx: {fileID: 0}
+  target_fx: {fileID: 9125387663047351618, guid: b66600b51774daa49964ead5c6a00c49,
+    type: 3}
   projectile_fx: {fileID: 0}
   fx_time: 0
   cast_audio: {fileID: 0}
   target_audio: {fileID: 0}
   charge_target: 0
-  title: Draw
-  desc: "\uC774 \uC720\uB2DB\uC774 \uC8FD\uC744\uB54C, \uCE74\uB4DC\uB97C \uD55C\uC7A5
-    \uBF51\uB294\uB2E4."
+  title: 
+  desc: 
+  memory_card_uid: []
+  memory_player: []
+  memory_slot: []
+  memory_turn: 
   referencingComponents: []

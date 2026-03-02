@@ -249,8 +249,6 @@ namespace TcgEngine.Gameplay
                 //추가 - 건물카드는 자기 턴 시작시 데미지 입음
                 if (card.CardData.IsArtifact())
                     DamageCard(card, 1, true);
-                
-                    
             }
 
             onTurnStart?.Invoke();
@@ -1130,9 +1128,10 @@ namespace TcgEngine.Gameplay
 
             if (target.GetHP() <= 0)
             {
-                DiscardCard(target);
                 if (natural_damage)
                     target.destroied_naturally = true;
+                DiscardCard(target);
+                
             }
                 
 
