@@ -248,7 +248,9 @@ namespace TcgEngine.Gameplay
                 Card card = player.cards_board[i];
                 //추가 - 건물카드는 자기 턴 시작시 데미지 입음
                 if (card.CardData.IsArtifact())
-                    DamageCard(card, 1);
+                    DamageCard(card, 1, true);
+                
+                    
             }
 
             onTurnStart?.Invoke();
@@ -1112,8 +1114,8 @@ namespace TcgEngine.Gameplay
             target.hp = Mathf.Clamp(target.hp, 0, target.hp_max);
         }
 
-        //Generic damage that doesnt come from another card
-        public virtual void DamageCard(Card target, int value)
+        //건물 카드에만 사용
+        public virtual void DamageCard(Card target, int value, bool natural_damage=false)
         {
             if (target == null)
                 return;
@@ -1127,7 +1129,13 @@ namespace TcgEngine.Gameplay
             target.damage += value;
 
             if (target.GetHP() <= 0)
+            {
                 DiscardCard(target);
+                if (natural_damage)
+                    target.destroied_naturally = true;
+            }
+                
+
         }
 
         //Damage a card with attacker/caster
@@ -1172,7 +1180,7 @@ namespace TcgEngine.Gameplay
             //Remove sleep on damage
             target.RemoveStatus(StatusType.Sleep);
 
-            //Deathtouch_legacy
+            //htouch_legacy
             if (value > 0 && attacker.HasStatus(StatusType.Deathtouch_legacy) && target.CardData.IsCharacter())
                 KillCard(attacker, target);
 

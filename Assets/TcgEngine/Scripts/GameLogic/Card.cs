@@ -37,6 +37,7 @@ namespace TcgEngine
         public string equipped_uid = null;
 
         public string dead_by_uid = null; //이 카드를 죽인 uid
+        public bool destroied_naturally = false; //건물이 수명이 다 되어 파괴되면 true;
 
         public List<CardTrait> traits = new List<CardTrait>();
         public List<CardTrait> ongoing_traits = new List<CardTrait>();
