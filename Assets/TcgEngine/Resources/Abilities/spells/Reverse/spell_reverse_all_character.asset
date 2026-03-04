@@ -10,24 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8ce5f81e5cc37f547af6923758602c8c, type: 3}
-  m_Name: spell_reverse_GE3
+  m_Name: spell_reverse_all_character
   m_EditorClassIdentifier: 
-  id: spell_reverse_GE3
+  id: spell_reverse_all_character
   trigger: 10
   conditions_trigger: []
-  target: 20
+  target: 10
   conditions_target:
   - {fileID: 11400000, guid: 902733d12f434e94b904de5ebf4112de, type: 2}
   - {fileID: 11400000, guid: 065da32cbd133734493695579723a718, type: 2}
-  - {fileID: 11400000, guid: b3240044d7d5ed34b9b1c41e6b87a071, type: 2}
   filters_target: []
   effects:
   - {fileID: 11400000, guid: 4ffe96ad396ac3240af638ee89446b91, type: 2}
+  - {fileID: 11400000, guid: f1fd6c4c6e9405e448ddf3605433186d, type: 2}
   status: []
   value: 1
   duration: 0
   chain_abilities:
-  - {fileID: 11400000, guid: 4803fd6e0c87cef4ab44914f06967570, type: 2}
+  - {fileID: 11400000, guid: fc79451bbe7092944854eab19ca358cc, type: 2}
   mana_cost: 0
   exhaust: 0
   board_fx: {fileID: 0}
@@ -41,7 +41,10 @@ MonoBehaviour:
   charge_target: 0
   title: 
   desc: 
-  memory_card_uid: []
+  memory_card_uid:
+  - qr1zF3gPkPU5
+  - uqG50GE8jwgdf
+  - XrfOMBLTp83
   memory_player:
   - player_id: 0
     username: 
@@ -2732,5 +2735,5 @@ MonoBehaviour:
     ongoing_status: []
     history_list: []
   memory_slot: []
-  memory_turn: 
+  memory_turn: 040000000400000004000000
   referencingComponents: []

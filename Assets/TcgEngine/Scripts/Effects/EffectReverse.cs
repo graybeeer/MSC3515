@@ -19,8 +19,10 @@ namespace TcgEngine
             target.RemoveStatus(StatusType.cursed); //기존 헤이스트랑 저주 데이터 지우기
             target.RemoveStatus(StatusType.hasted);
 
-            target.AddStatus(StatusType.cursed, target_cursed_reversed, ability.duration); //반전된 헤이스트랑 저주 추가
-            target.AddStatus(StatusType.hasted, target_hasted_reversed, ability.duration);
+            if (target_cursed_reversed != 0)
+                target.AddStatus(StatusType.cursed, target_cursed_reversed, ability.duration); //반전된 헤이스트랑 저주 추가
+            if (target_hasted_reversed != 0)
+                target.AddStatus(StatusType.hasted, target_hasted_reversed, ability.duration);
         }
         public override void DoOngoingEffect(GameLogic logic, AbilityData ability, Card caster, Card target) 
         { 

@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8ce5f81e5cc37f547af6923758602c8c, type: 3}
-  m_Name: play_summon_sheep_heading_4,6
+  m_Name: play_summon_small_soldier_heading_4,6_random_1
   m_EditorClassIdentifier: 
-  id: play_summon_sheep_heading_4,6
+  id: play_summon_small_soldier_heading_4,6_random_1
   trigger: 10
   conditions_trigger:
   - {fileID: 11400000, guid: cf98f1e5f9709d24a8532b94f973022e, type: 2}
@@ -20,9 +20,10 @@ MonoBehaviour:
   conditions_target:
   - {fileID: 11400000, guid: dfcba82135ff9a7408e821bcdad2fd39, type: 2}
   - {fileID: 11400000, guid: 3bf265369871b504f816cd688c94eaeb, type: 2}
-  filters_target: []
+  filters_target:
+  - {fileID: 11400000, guid: 507a3373a2fe2e7419a20621a468048f, type: 2}
   effects:
-  - {fileID: 11400000, guid: bc0e95a88eda0aa4c8ae181c474b914b, type: 2}
+  - {fileID: 11400000, guid: 5449797c566120e4aba6650e5cca5d7e, type: 2}
   status: []
   value: 1
   duration: 0
