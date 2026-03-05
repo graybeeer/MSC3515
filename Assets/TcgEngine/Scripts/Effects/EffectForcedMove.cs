@@ -22,6 +22,10 @@ namespace TcgEngine
             logic.ForcedMoveCard(target, Slot.GetArrowPointsSlot(target.slot, ability.value, caster.player_id));
             //target.exhausted = true; //강제이동후 카드는 탈진되서 이동 공격 못함 추가-연계 이펙트로 모든 자신 유닛 탈진상태 효과 넣기
         }
+        public override void DoEffect(GameLogic logic, AbilityData ability, Card caster, Slot target)
+        {
+            logic.ForcedMoveCard(caster, target);
+        }
 
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace TcgEngine
 {
-    [System.Serializable]
+    //[System.Serializable]
     public class CardGrave 
     {
         public List<DeathCard> graveCards = new List<DeathCard>();
@@ -20,7 +20,7 @@ namespace TcgEngine
 
         
     }
-    [System.Serializable]
+    //[System.Serializable]
     public struct DeathCard
     {
         public Slot deathSlot;

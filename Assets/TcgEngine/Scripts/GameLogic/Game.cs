@@ -30,7 +30,7 @@ namespace TcgEngine
         public Player neutral_player; //추가 - 중립 지역, 유닛용
 
         //Grave 죽은 카드 데이터가 저장되는 무덤
-        public CardGrave cardGrave;
+        //public CardGrave cardGrave;
         public SlotInform slotInform;
 
         //Selector
@@ -61,7 +61,7 @@ namespace TcgEngine
             for (int i = 0; i < nb_players; i++)
                 players[i] = new Player(i);
             settings = GameSettings.Default;
-            cardGrave = new CardGrave();
+            //cardGrave = new CardGrave();
             slotInform = new SlotInform();
         }
 

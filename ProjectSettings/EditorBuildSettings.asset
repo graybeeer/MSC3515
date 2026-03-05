@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/TcgEngine/Scenes/Tool/TestP2P.unity
     guid: 6f9ac14d723692947a10179c5a9df34b
   - enabled: 1
+    path: Assets/TcgEngine/Scenes/Server/Server.unity
+    guid: acefba10b24d5f14aa51f6451ec467bf
+  - enabled: 1
     path: Assets/TcgEngine/Scenes/Menu/LoginMenu.unity
     guid: 35845f83f169a8249ba97386e43cc114
   - enabled: 1

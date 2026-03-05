@@ -6,8 +6,6 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Profiling;
-using static UnityEditor.PlayerSettings;
-using static UnityEngine.GraphicsBuffer;
 
 namespace TcgEngine.Gameplay
 {
@@ -1247,7 +1245,7 @@ namespace TcgEngine.Gameplay
                 TriggerOtherCardsAbilityType(AbilityTrigger.OnDeathOther, card);
                 TriggerSecrets(AbilityTrigger.OnDeathOther, card);
                 //필드에서 죽으면 무덤에 추가
-                game_data.cardGrave.AddGrave(islot, icard.id, nowturn, player);
+                //game_data.cardGrave.AddGrave(islot, icard.id, nowturn, player);
                 //Debug.Log("" + islot + icard + nowturn + player);
                 UpdateOngoingCards(); //Not UpdateOngoing() here to avoid recursive calls in UpdateOngoingKills
             }

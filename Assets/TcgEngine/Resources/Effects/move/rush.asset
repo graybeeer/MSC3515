@@ -9,12 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70dc9fcaed7d5274a8381edb4e206a92, type: 3}
-  m_Name: NetworkData
+  m_Script: {fileID: 11500000, guid: 9b057f4364332c54b910921fb3ce2baf, type: 3}
+  m_Name: rush
   m_EditorClassIdentifier: 
-  url: 127.0.0.1
-  port: 8777
-  api_url: api.tcgengine.com
-  api_https: 1
-  solo_type: 0
-  auth_type: 0
+  referencingComponents: []

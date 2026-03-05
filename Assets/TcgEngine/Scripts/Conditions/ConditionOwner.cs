@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using TcgEngine.Client;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 namespace TcgEngine
 {
@@ -14,7 +15,6 @@ namespace TcgEngine
     {
         [Header("Target owner is caster owner")]
         public ConditionOperatorBool oper;
-
         public override bool IsTargetConditionMet(Game data, AbilityData ability, Card caster, Card target)
         {
             bool same_owner = caster.player_id == target.player_id;

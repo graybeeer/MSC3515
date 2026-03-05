@@ -23,11 +23,11 @@ public class ConditionSlotCheckCount : ConditionData
 
         foreach (SlotData temp in data.slotInform.GetSlotDataList())
         {
-            if (temp.owner_p_id == caster.player_id && data.GetSlotCard(temp.slot) != null)
+            if (temp.owner_p_id == caster.player_id && data.GetSlotCard(Slot.Get(temp.slot_x, temp.slot_y)) != null)
                 temp_self_int++;
-            if (temp.owner_p_id == data.GetOpponentID(caster.player_id) && data.GetSlotCard(temp.slot) != null)
+            if (temp.owner_p_id == data.GetOpponentID(caster.player_id) && data.GetSlotCard(Slot.Get(temp.slot_x, temp.slot_y)) != null)
                 temp_opponent_int++;
-            if (temp.owner_p_id == data.GetPlayerNeutralID() && data.GetSlotCard(temp.slot) != null)
+            if (temp.owner_p_id == data.GetPlayerNeutralID() && data.GetSlotCard(Slot.Get(temp.slot_x, temp.slot_y)) != null)
                 temp_neutral_int++;
         }
 
