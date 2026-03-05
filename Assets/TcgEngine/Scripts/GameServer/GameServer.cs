@@ -714,7 +714,7 @@ namespace TcgEngine.Server
         {
             MsgPlayer msg = new MsgPlayer();
             msg.player_id = winner != null ? winner.player_id : -1;
-            SendToAll(GameAction.GameEnd, msg, NetworkDelivery.Reliable);
+            SendToAll(GameAction.GameEnd, msg, NetworkDelivery.ReliableFragmentedSequenced);
 
             if (is_dedicated_server && Authenticator.Get().IsApi())
             {
@@ -728,7 +728,7 @@ namespace TcgEngine.Server
             MscMsgPlayer msg = new MscMsgPlayer();
             msg.game_data = GetGameData();
             msg.player_id = game_data.current_player;
-            SendToAll(GameAction.NewTurn, msg, NetworkDelivery.Reliable);
+            SendToAll(GameAction.NewTurn, msg, NetworkDelivery.ReliableFragmentedSequenced);
         }
 
         protected virtual void OnCardPlayed(Card card, Slot slot)
@@ -737,7 +737,7 @@ namespace TcgEngine.Server
             mdata.game_data = GetGameData();
             mdata.card_uid = card.uid;
             mdata.slot = slot;
-            SendToAll(GameAction.CardPlayed, mdata, NetworkDelivery.Reliable);
+            SendToAll(GameAction.CardPlayed, mdata, NetworkDelivery.ReliableFragmentedSequenced);
         }
 
         protected virtual void OnCardMoved(Card card, Slot slot)
@@ -747,7 +747,7 @@ namespace TcgEngine.Server
             mdata.game_data = GetGameData();
             mdata.card_uid = card.uid;
             mdata.slot = slot;
-            SendToAll(GameAction.CardMoved, mdata, NetworkDelivery.Reliable);
+            SendToAll(GameAction.CardMoved, mdata, NetworkDelivery.ReliableFragmentedSequenced);
         }
         
         protected virtual void OnCardSummoned(Card card, Slot slot)
@@ -756,7 +756,7 @@ namespace TcgEngine.Server
             mdata.game_data = GetGameData();
             mdata.card_uid = card.uid;
             mdata.slot = slot;
-            SendToAll(GameAction.CardSummoned, mdata, NetworkDelivery.Reliable);
+            SendToAll(GameAction.CardSummoned, mdata, NetworkDelivery.ReliableFragmentedSequenced);
         }
 
         protected virtual void OnCardTransformed(Card card)
@@ -764,7 +764,7 @@ namespace TcgEngine.Server
             MscMsgCard mdata = new MscMsgCard();
             mdata.game_data = GetGameData();
             mdata.card_uid = card.uid;
-            SendToAll(GameAction.CardTransformed, mdata, NetworkDelivery.Reliable);
+            SendToAll(GameAction.CardTransformed, mdata, NetworkDelivery.ReliableFragmentedSequenced);
         }
 
         protected virtual void OnCardDiscarded(Card card)
@@ -772,7 +772,7 @@ namespace TcgEngine.Server
             MscMsgCard mdata = new MscMsgCard();
             mdata.game_data = GetGameData();
             mdata.card_uid = card.uid;
-            SendToAll(GameAction.CardDiscarded, mdata, NetworkDelivery.Reliable);
+            SendToAll(GameAction.CardDiscarded, mdata, NetworkDelivery.ReliableFragmentedSequenced);
         }
 
         protected virtual void OnCardDraw(int nb)
@@ -780,7 +780,7 @@ namespace TcgEngine.Server
             MscMsgInt mdata = new MscMsgInt();
             mdata.game_data = GetGameData();
             mdata.value = nb;
-            SendToAll(GameAction.CardDrawn, mdata, NetworkDelivery.Reliable);
+            SendToAll(GameAction.CardDrawn, mdata, NetworkDelivery.ReliableFragmentedSequenced);
         }
 
         protected virtual void OnValueRolled(int nb)
@@ -797,7 +797,7 @@ namespace TcgEngine.Server
             mdata.attacker_uid = attacker.uid;
             mdata.target_uid = target.uid;
             mdata.damage = 0;
-            SendToAll(GameAction.AttackStart, mdata, NetworkDelivery.Reliable);
+            SendToAll(GameAction.AttackStart, mdata, NetworkDelivery.ReliableFragmentedSequenced);
         }
 
         protected virtual void OnAttackEnd(Card attacker, Card target)
@@ -807,7 +807,7 @@ namespace TcgEngine.Server
             mdata.attacker_uid = attacker.uid;
             mdata.target_uid = target.uid;
             mdata.damage = 0;
-            SendToAll(GameAction.AttackEnd, mdata, NetworkDelivery.Reliable);
+            SendToAll(GameAction.AttackEnd, mdata, NetworkDelivery.ReliableFragmentedSequenced);
         }
 
         protected virtual void OnAttackPlayerStart(Card attacker, Player target)
@@ -817,7 +817,7 @@ namespace TcgEngine.Server
             mdata.attacker_uid = attacker.uid;
             mdata.target_id = target.player_id;
             mdata.damage = 0;
-            SendToAll(GameAction.AttackPlayerStart, mdata, NetworkDelivery.Reliable);
+            SendToAll(GameAction.AttackPlayerStart, mdata, NetworkDelivery.ReliableFragmentedSequenced);
         }
 
         protected virtual void OnAttackPlayerEnd(Card attacker, Player target)
@@ -827,7 +827,7 @@ namespace TcgEngine.Server
             mdata.attacker_uid = attacker.uid;
             mdata.target_id = target.player_id;
             mdata.damage = 0;
-            SendToAll(GameAction.AttackPlayerEnd, mdata, NetworkDelivery.Reliable);
+            SendToAll(GameAction.AttackPlayerEnd, mdata, NetworkDelivery.ReliableFragmentedSequenced);
         }
 
         protected virtual void OnAbilityStart(AbilityData ability, Card caster)
@@ -837,7 +837,7 @@ namespace TcgEngine.Server
             mdata.ability_id = ability.id;
             mdata.caster_uid = caster.uid;
             mdata.target_uid = "";
-            SendToAll(GameAction.AbilityTrigger, mdata, NetworkDelivery.Reliable);
+            SendToAll(GameAction.AbilityTrigger, mdata, NetworkDelivery.ReliableFragmentedSequenced);
         }
 
         protected virtual void OnAbilityTargetCard(AbilityData ability, Card caster, Card target)
@@ -847,7 +847,7 @@ namespace TcgEngine.Server
             mdata.ability_id = ability.id;
             mdata.caster_uid = caster.uid;
             mdata.target_uid = target != null ? target.uid : "";
-            SendToAll(GameAction.AbilityTargetCard, mdata, NetworkDelivery.Reliable);
+            SendToAll(GameAction.AbilityTargetCard, mdata, NetworkDelivery.ReliableFragmentedSequenced);
         }
 
         protected virtual void OnAbilityTargetPlayer(AbilityData ability, Card caster, Player target)
@@ -857,7 +857,7 @@ namespace TcgEngine.Server
             mdata.ability_id = ability.id;
             mdata.caster_uid = caster.uid;
             mdata.target_id = target != null ? target.player_id : -1;
-            SendToAll(GameAction.AbilityTargetPlayer, mdata, NetworkDelivery.Reliable);
+            SendToAll(GameAction.AbilityTargetPlayer, mdata, NetworkDelivery.ReliableFragmentedSequenced);
         }
 
         protected virtual void OnAbilityTargetSlot(AbilityData ability, Card caster, Slot target)
@@ -867,7 +867,7 @@ namespace TcgEngine.Server
             mdata.ability_id = ability.id;
             mdata.caster_uid = caster.uid;
             mdata.slot = target;
-            SendToAll(GameAction.AbilityTargetSlot, mdata, NetworkDelivery.Reliable);
+            SendToAll(GameAction.AbilityTargetSlot, mdata, NetworkDelivery.ReliableFragmentedSequenced);
         }
 
         protected virtual void OnAbilityEnd(AbilityData ability, Card caster)
@@ -877,7 +877,7 @@ namespace TcgEngine.Server
             mdata.ability_id = ability.id;
             mdata.caster_uid = caster.uid;
             mdata.target_uid = "";
-            SendToAll(GameAction.AbilityEnd, mdata, NetworkDelivery.Reliable);
+            SendToAll(GameAction.AbilityEnd, mdata, NetworkDelivery.ReliableFragmentedSequenced);
         }
 
         protected virtual void OnSecretTriggered(Card secret, Card trigger)
@@ -886,7 +886,7 @@ namespace TcgEngine.Server
             mdata.game_data = GetGameData();
             mdata.secret_uid = secret.uid;
             mdata.triggerer_uid = trigger != null ? trigger.uid : "";
-            SendToAll(GameAction.SecretTriggered, mdata, NetworkDelivery.Reliable);
+            SendToAll(GameAction.SecretTriggered, mdata, NetworkDelivery.ReliableFragmentedSequenced);
         }
 
         protected virtual void OnSecretResolved(Card secret, Card trigger)
@@ -895,7 +895,7 @@ namespace TcgEngine.Server
             mdata.game_data = GetGameData();
             mdata.secret_uid = secret.uid;
             mdata.triggerer_uid = trigger != null ? trigger.uid : "";
-            SendToAll(GameAction.SecretResolved, mdata, NetworkDelivery.Reliable);
+            SendToAll(GameAction.SecretResolved, mdata, NetworkDelivery.ReliableFragmentedSequenced);
         }
 
         protected virtual void SendPlayerReady(Player player)
@@ -923,7 +923,7 @@ namespace TcgEngine.Server
             {
                 if (iclient != null)
                 {
-                    Messaging.Send("refresh", iclient.client_id, writer, NetworkDelivery.Reliable);
+                    Messaging.Send("refresh", iclient.client_id, writer, NetworkDelivery.ReliableFragmentedSequenced);
                 }
             }
             writer.Dispose();

@@ -283,13 +283,13 @@ namespace TcgEngine
         {
             if (IsOnline)
             {
-                Debug.Log($"[Network] 전송하려는 데이터 크기: {writer.Length} bytes / 최대 크기: {writer.Capacity} bytes");
+                //Debug.Log($"{type}+[Network] 전송하려는 데이터 크기: {writer.Length} bytes / 최대 크기: {writer.Capacity} bytes");
                 SendOnline(type, target, writer, delivery);
             }
 
             else if (target == ClientID)
             {
-                Debug.Log($"[Network] 전송하려는 데이터 크기: {writer.Length} bytes / 최대 크기: {writer.Capacity} bytes");
+                //Debug.Log($"{type}+[Network] 전송하려는 데이터 크기: {writer.Length} bytes / 최대 크기: {writer.Capacity} bytes");
                 SendOffline(type, writer);
             }
         }
