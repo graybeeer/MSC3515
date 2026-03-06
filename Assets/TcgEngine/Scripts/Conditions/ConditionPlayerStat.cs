@@ -7,10 +7,11 @@ namespace TcgEngine
     public class ConditionPlayerStat : ConditionData
     {
         [Header("")]
-        public ConditionPlayerValueType player_type;
+        public ConditionPlayerValueType value_type;
+        public ConditionPlayerType player_who;
         public ConditionEffectTrigger effector;
         public ConditionOperatorInt oper;
-        
+
         public int value;
 
         public override bool IsTargetConditionMet(Game data, AbilityData ability, Card caster, Card target)
@@ -27,25 +28,28 @@ namespace TcgEngine
 
         public override bool IsTargetConditionMet(Game data, AbilityData ability, Card caster, Player target)
         {
+            Player effect_player;
             Player opponent_player = data.GetOpponentPlayer(target.player_id);
-            if (player_type == ConditionPlayerValueType.SelfSummonCount)
+            if (player_who == ConditionPlayerType.Self)
+                effect_player = target;
+            else if (player_who == ConditionPlayerType.Opponent)
+                effect_player = opponent_player;
+            else effect_player = target;
+
+            if (value_type == ConditionPlayerValueType.SummonCount)
             {
-                return CompareInt(target.GetBoardcardNumExceptHero(), oper, value);
+                return CompareInt(effect_player.GetBoardcardNumExceptHero(), oper, value);
             }
 
-            if (player_type == ConditionPlayerValueType.OpponentSummonCount)
+            if (value_type == ConditionPlayerValueType.HandCount)
             {
-                return CompareInt(opponent_player.GetBoardcardNumExceptHero(), oper, value);
+                return CompareInt(effect_player.cards_hand.Count, oper, value);
+            }
+            if (value_type == ConditionPlayerValueType.DeckCount)
+            {
+                return CompareInt(effect_player.cards_deck.Count, oper, value);
             }
 
-            if (player_type == ConditionPlayerValueType.SelfHandCount)
-            {
-                return CompareInt(target.cards_hand.Count, oper, value);
-            }
-            if (player_type == ConditionPlayerValueType.OpponentHandCount)
-            {
-                return CompareInt(opponent_player.cards_hand.Count, oper, value);
-            }
             return false;
         }
     }

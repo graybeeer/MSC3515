@@ -1331,12 +1331,14 @@ namespace TcgEngine.Gameplay
         public virtual void TriggerPlayerCardsAbilityType(Player player, AbilityTrigger type)
         {
             /*
-            if (player.hero_data != null)
-                TriggerCardAbilityType(type, player.hero_data, player.hero_data);
-            */
-
             foreach (Card card in player.cards_board)
                 TriggerCardAbilityType(type, card, card);
+            */
+            foreach (Player oplayer in game_data.players)
+            {
+                foreach (Card card in oplayer.cards_board)
+                    TriggerCardAbilityType(type, card, card);
+            }
         }
 
         public virtual void TriggerCardAbility(AbilityData iability, Card caster)

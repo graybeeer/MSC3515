@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6d5f6cce89a500845aa64d3b6898542b, type: 3}
-  m_Name: add_ability_activate_burst
+  m_Name: add_ability_added_deathcount
   m_EditorClassIdentifier: 
   referencingComponents: []
-  gain_ability: {fileID: 0}
+  gain_ability: {fileID: 11400000, guid: 9a2fb3272de57d64b814dec82b0c2da1, type: 2}

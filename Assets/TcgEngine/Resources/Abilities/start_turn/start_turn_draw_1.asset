@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: start_turn_draw_1
   trigger: 20
-  conditions_trigger: []
+  conditions_trigger:
+  - {fileID: 11400000, guid: 00511614df2ba714996da7ccda6c4bac, type: 2}
   target: 4
   conditions_target: []
   filters_target: []
@@ -38,7 +39,7 @@ MonoBehaviour:
   desc: 
   memory_card_uid: []
   memory_player:
-    player_id: 0
+  - player_id: 0
     username: 
     avatar: 
     cardback: 
@@ -74,12 +75,14 @@ MonoBehaviour:
       hp_ongoing: 0
       equipped_uid: 
       dead_by_uid: 
+      destroied_naturally: 0
       traits: []
       ongoing_traits: []
       status: []
       ongoing_status: []
       abilities: []
       abilities_ongoing: []
+      is_playing_hand: 0
     hero:
       card_id: 
       uid: 
@@ -100,12 +103,2680 @@ MonoBehaviour:
       hp_ongoing: 0
       equipped_uid: 
       dead_by_uid: 
+      destroied_naturally: 0
       traits: []
       ongoing_traits: []
       status: []
       ongoing_status: []
       abilities: []
       abilities_ongoing: []
+      is_playing_hand: 0
+    hero_invade_turn: 0
+    expansion_pack: []
+    cards_deck: []
+    cards_hand: []
+    cards_board: []
+    cards_equip: []
+    cards_discard: []
+    cards_secret: []
+    cards_temp: []
+    traits: []
+    ongoing_traits: []
+    status: []
+    ongoing_status: []
+    history_list: []
+  - player_id: 0
+    username: 
+    avatar: 
+    cardback: 
+    deck: 
+    is_ai: 0
+    ai_level: 0
+    connected: 0
+    ready: 0
+    hp: 0
+    hp_max: 0
+    mana: 0
+    mana_max: 0
+    kill_count: 0
+    max_boardcard_num: 0
+    can_move_attack: 0
+    hero_data:
+      card_id: 
+      uid: 
+      player_id: 0
+      variant_id: 
+      slot:
+        x: 0
+        y: 0
+        p: 0
+      exhausted: 0
+      damage: 0
+      card_arrow: 
+      mana: 0
+      attack: 0
+      hp: 0
+      mana_ongoing: 0
+      attack_ongoing: 0
+      hp_ongoing: 0
+      equipped_uid: 
+      dead_by_uid: 
+      destroied_naturally: 0
+      traits: []
+      ongoing_traits: []
+      status: []
+      ongoing_status: []
+      abilities: []
+      abilities_ongoing: []
+      is_playing_hand: 0
+    hero:
+      card_id: 
+      uid: 
+      player_id: 0
+      variant_id: 
+      slot:
+        x: 0
+        y: 0
+        p: 0
+      exhausted: 0
+      damage: 0
+      card_arrow: 
+      mana: 0
+      attack: 0
+      hp: 0
+      mana_ongoing: 0
+      attack_ongoing: 0
+      hp_ongoing: 0
+      equipped_uid: 
+      dead_by_uid: 
+      destroied_naturally: 0
+      traits: []
+      ongoing_traits: []
+      status: []
+      ongoing_status: []
+      abilities: []
+      abilities_ongoing: []
+      is_playing_hand: 0
+    hero_invade_turn: 0
+    expansion_pack: []
+    cards_deck: []
+    cards_hand: []
+    cards_board: []
+    cards_equip: []
+    cards_discard: []
+    cards_secret: []
+    cards_temp: []
+    traits: []
+    ongoing_traits: []
+    status: []
+    ongoing_status: []
+    history_list: []
+  - player_id: 0
+    username: 
+    avatar: 
+    cardback: 
+    deck: 
+    is_ai: 0
+    ai_level: 0
+    connected: 0
+    ready: 0
+    hp: 0
+    hp_max: 0
+    mana: 0
+    mana_max: 0
+    kill_count: 0
+    max_boardcard_num: 0
+    can_move_attack: 0
+    hero_data:
+      card_id: 
+      uid: 
+      player_id: 0
+      variant_id: 
+      slot:
+        x: 0
+        y: 0
+        p: 0
+      exhausted: 0
+      damage: 0
+      card_arrow: 
+      mana: 0
+      attack: 0
+      hp: 0
+      mana_ongoing: 0
+      attack_ongoing: 0
+      hp_ongoing: 0
+      equipped_uid: 
+      dead_by_uid: 
+      destroied_naturally: 0
+      traits: []
+      ongoing_traits: []
+      status: []
+      ongoing_status: []
+      abilities: []
+      abilities_ongoing: []
+      is_playing_hand: 0
+    hero:
+      card_id: 
+      uid: 
+      player_id: 0
+      variant_id: 
+      slot:
+        x: 0
+        y: 0
+        p: 0
+      exhausted: 0
+      damage: 0
+      card_arrow: 
+      mana: 0
+      attack: 0
+      hp: 0
+      mana_ongoing: 0
+      attack_ongoing: 0
+      hp_ongoing: 0
+      equipped_uid: 
+      dead_by_uid: 
+      destroied_naturally: 0
+      traits: []
+      ongoing_traits: []
+      status: []
+      ongoing_status: []
+      abilities: []
+      abilities_ongoing: []
+      is_playing_hand: 0
+    hero_invade_turn: 0
+    expansion_pack: []
+    cards_deck: []
+    cards_hand: []
+    cards_board: []
+    cards_equip: []
+    cards_discard: []
+    cards_secret: []
+    cards_temp: []
+    traits: []
+    ongoing_traits: []
+    status: []
+    ongoing_status: []
+    history_list: []
+  - player_id: 0
+    username: 
+    avatar: 
+    cardback: 
+    deck: 
+    is_ai: 0
+    ai_level: 0
+    connected: 0
+    ready: 0
+    hp: 0
+    hp_max: 0
+    mana: 0
+    mana_max: 0
+    kill_count: 0
+    max_boardcard_num: 0
+    can_move_attack: 0
+    hero_data:
+      card_id: 
+      uid: 
+      player_id: 0
+      variant_id: 
+      slot:
+        x: 0
+        y: 0
+        p: 0
+      exhausted: 0
+      damage: 0
+      card_arrow: 
+      mana: 0
+      attack: 0
+      hp: 0
+      mana_ongoing: 0
+      attack_ongoing: 0
+      hp_ongoing: 0
+      equipped_uid: 
+      dead_by_uid: 
+      destroied_naturally: 0
+      traits: []
+      ongoing_traits: []
+      status: []
+      ongoing_status: []
+      abilities: []
+      abilities_ongoing: []
+      is_playing_hand: 0
+    hero:
+      card_id: 
+      uid: 
+      player_id: 0
+      variant_id: 
+      slot:
+        x: 0
+        y: 0
+        p: 0
+      exhausted: 0
+      damage: 0
+      card_arrow: 
+      mana: 0
+      attack: 0
+      hp: 0
+      mana_ongoing: 0
+      attack_ongoing: 0
+      hp_ongoing: 0
+      equipped_uid: 
+      dead_by_uid: 
+      destroied_naturally: 0
+      traits: []
+      ongoing_traits: []
+      status: []
+      ongoing_status: []
+      abilities: []
+      abilities_ongoing: []
+      is_playing_hand: 0
+    hero_invade_turn: 0
+    expansion_pack: []
+    cards_deck: []
+    cards_hand: []
+    cards_board: []
+    cards_equip: []
+    cards_discard: []
+    cards_secret: []
+    cards_temp: []
+    traits: []
+    ongoing_traits: []
+    status: []
+    ongoing_status: []
+    history_list: []
+  - player_id: 0
+    username: 
+    avatar: 
+    cardback: 
+    deck: 
+    is_ai: 0
+    ai_level: 0
+    connected: 0
+    ready: 0
+    hp: 0
+    hp_max: 0
+    mana: 0
+    mana_max: 0
+    kill_count: 0
+    max_boardcard_num: 0
+    can_move_attack: 0
+    hero_data:
+      card_id: 
+      uid: 
+      player_id: 0
+      variant_id: 
+      slot:
+        x: 0
+        y: 0
+        p: 0
+      exhausted: 0
+      damage: 0
+      card_arrow: 
+      mana: 0
+      attack: 0
+      hp: 0
+      mana_ongoing: 0
+      attack_ongoing: 0
+      hp_ongoing: 0
+      equipped_uid: 
+      dead_by_uid: 
+      destroied_naturally: 0
+      traits: []
+      ongoing_traits: []
+      status: []
+      ongoing_status: []
+      abilities: []
+      abilities_ongoing: []
+      is_playing_hand: 0
+    hero:
+      card_id: 
+      uid: 
+      player_id: 0
+      variant_id: 
+      slot:
+        x: 0
+        y: 0
+        p: 0
+      exhausted: 0
+      damage: 0
+      card_arrow: 
+      mana: 0
+      attack: 0
+      hp: 0
+      mana_ongoing: 0
+      attack_ongoing: 0
+      hp_ongoing: 0
+      equipped_uid: 
+      dead_by_uid: 
+      destroied_naturally: 0
+      traits: []
+      ongoing_traits: []
+      status: []
+      ongoing_status: []
+      abilities: []
+      abilities_ongoing: []
+      is_playing_hand: 0
+    hero_invade_turn: 0
+    expansion_pack: []
+    cards_deck: []
+    cards_hand: []
+    cards_board: []
+    cards_equip: []
+    cards_discard: []
+    cards_secret: []
+    cards_temp: []
+    traits: []
+    ongoing_traits: []
+    status: []
+    ongoing_status: []
+    history_list: []
+  - player_id: 0
+    username: 
+    avatar: 
+    cardback: 
+    deck: 
+    is_ai: 0
+    ai_level: 0
+    connected: 0
+    ready: 0
+    hp: 0
+    hp_max: 0
+    mana: 0
+    mana_max: 0
+    kill_count: 0
+    max_boardcard_num: 0
+    can_move_attack: 0
+    hero_data:
+      card_id: 
+      uid: 
+      player_id: 0
+      variant_id: 
+      slot:
+        x: 0
+        y: 0
+        p: 0
+      exhausted: 0
+      damage: 0
+      card_arrow: 
+      mana: 0
+      attack: 0
+      hp: 0
+      mana_ongoing: 0
+      attack_ongoing: 0
+      hp_ongoing: 0
+      equipped_uid: 
+      dead_by_uid: 
+      destroied_naturally: 0
+      traits: []
+      ongoing_traits: []
+      status: []
+      ongoing_status: []
+      abilities: []
+      abilities_ongoing: []
+      is_playing_hand: 0
+    hero:
+      card_id: 
+      uid: 
+      player_id: 0
+      variant_id: 
+      slot:
+        x: 0
+        y: 0
+        p: 0
+      exhausted: 0
+      damage: 0
+      card_arrow: 
+      mana: 0
+      attack: 0
+      hp: 0
+      mana_ongoing: 0
+      attack_ongoing: 0
+      hp_ongoing: 0
+      equipped_uid: 
+      dead_by_uid: 
+      destroied_naturally: 0
+      traits: []
+      ongoing_traits: []
+      status: []
+      ongoing_status: []
+      abilities: []
+      abilities_ongoing: []
+      is_playing_hand: 0
+    hero_invade_turn: 0
+    expansion_pack: []
+    cards_deck: []
+    cards_hand: []
+    cards_board: []
+    cards_equip: []
+    cards_discard: []
+    cards_secret: []
+    cards_temp: []
+    traits: []
+    ongoing_traits: []
+    status: []
+    ongoing_status: []
+    history_list: []
+  - player_id: 0
+    username: 
+    avatar: 
+    cardback: 
+    deck: 
+    is_ai: 0
+    ai_level: 0
+    connected: 0
+    ready: 0
+    hp: 0
+    hp_max: 0
+    mana: 0
+    mana_max: 0
+    kill_count: 0
+    max_boardcard_num: 0
+    can_move_attack: 0
+    hero_data:
+      card_id: 
+      uid: 
+      player_id: 0
+      variant_id: 
+      slot:
+        x: 0
+        y: 0
+        p: 0
+      exhausted: 0
+      damage: 0
+      card_arrow: 
+      mana: 0
+      attack: 0
+      hp: 0
+      mana_ongoing: 0
+      attack_ongoing: 0
+      hp_ongoing: 0
+      equipped_uid: 
+      dead_by_uid: 
+      destroied_naturally: 0
+      traits: []
+      ongoing_traits: []
+      status: []
+      ongoing_status: []
+      abilities: []
+      abilities_ongoing: []
+      is_playing_hand: 0
+    hero:
+      card_id: 
+      uid: 
+      player_id: 0
+      variant_id: 
+      slot:
+        x: 0
+        y: 0
+        p: 0
+      exhausted: 0
+      damage: 0
+      card_arrow: 
+      mana: 0
+      attack: 0
+      hp: 0
+      mana_ongoing: 0
+      attack_ongoing: 0
+      hp_ongoing: 0
+      equipped_uid: 
+      dead_by_uid: 
+      destroied_naturally: 0
+      traits: []
+      ongoing_traits: []
+      status: []
+      ongoing_status: []
+      abilities: []
+      abilities_ongoing: []
+      is_playing_hand: 0
+    hero_invade_turn: 0
+    expansion_pack: []
+    cards_deck: []
+    cards_hand: []
+    cards_board: []
+    cards_equip: []
+    cards_discard: []
+    cards_secret: []
+    cards_temp: []
+    traits: []
+    ongoing_traits: []
+    status: []
+    ongoing_status: []
+    history_list: []
+  - player_id: 0
+    username: 
+    avatar: 
+    cardback: 
+    deck: 
+    is_ai: 0
+    ai_level: 0
+    connected: 0
+    ready: 0
+    hp: 0
+    hp_max: 0
+    mana: 0
+    mana_max: 0
+    kill_count: 0
+    max_boardcard_num: 0
+    can_move_attack: 0
+    hero_data:
+      card_id: 
+      uid: 
+      player_id: 0
+      variant_id: 
+      slot:
+        x: 0
+        y: 0
+        p: 0
+      exhausted: 0
+      damage: 0
+      card_arrow: 
+      mana: 0
+      attack: 0
+      hp: 0
+      mana_ongoing: 0
+      attack_ongoing: 0
+      hp_ongoing: 0
+      equipped_uid: 
+      dead_by_uid: 
+      destroied_naturally: 0
+      traits: []
+      ongoing_traits: []
+      status: []
+      ongoing_status: []
+      abilities: []
+      abilities_ongoing: []
+      is_playing_hand: 0
+    hero:
+      card_id: 
+      uid: 
+      player_id: 0
+      variant_id: 
+      slot:
+        x: 0
+        y: 0
+        p: 0
+      exhausted: 0
+      damage: 0
+      card_arrow: 
+      mana: 0
+      attack: 0
+      hp: 0
+      mana_ongoing: 0
+      attack_ongoing: 0
+      hp_ongoing: 0
+      equipped_uid: 
+      dead_by_uid: 
+      destroied_naturally: 0
+      traits: []
+      ongoing_traits: []
+      status: []
+      ongoing_status: []
+      abilities: []
+      abilities_ongoing: []
+      is_playing_hand: 0
+    hero_invade_turn: 0
+    expansion_pack: []
+    cards_deck: []
+    cards_hand: []
+    cards_board: []
+    cards_equip: []
+    cards_discard: []
+    cards_secret: []
+    cards_temp: []
+    traits: []
+    ongoing_traits: []
+    status: []
+    ongoing_status: []
+    history_list: []
+  - player_id: 0
+    username: 
+    avatar: 
+    cardback: 
+    deck: 
+    is_ai: 0
+    ai_level: 0
+    connected: 0
+    ready: 0
+    hp: 0
+    hp_max: 0
+    mana: 0
+    mana_max: 0
+    kill_count: 0
+    max_boardcard_num: 0
+    can_move_attack: 0
+    hero_data:
+      card_id: 
+      uid: 
+      player_id: 0
+      variant_id: 
+      slot:
+        x: 0
+        y: 0
+        p: 0
+      exhausted: 0
+      damage: 0
+      card_arrow: 
+      mana: 0
+      attack: 0
+      hp: 0
+      mana_ongoing: 0
+      attack_ongoing: 0
+      hp_ongoing: 0
+      equipped_uid: 
+      dead_by_uid: 
+      destroied_naturally: 0
+      traits: []
+      ongoing_traits: []
+      status: []
+      ongoing_status: []
+      abilities: []
+      abilities_ongoing: []
+      is_playing_hand: 0
+    hero:
+      card_id: 
+      uid: 
+      player_id: 0
+      variant_id: 
+      slot:
+        x: 0
+        y: 0
+        p: 0
+      exhausted: 0
+      damage: 0
+      card_arrow: 
+      mana: 0
+      attack: 0
+      hp: 0
+      mana_ongoing: 0
+      attack_ongoing: 0
+      hp_ongoing: 0
+      equipped_uid: 
+      dead_by_uid: 
+      destroied_naturally: 0
+      traits: []
+      ongoing_traits: []
+      status: []
+      ongoing_status: []
+      abilities: []
+      abilities_ongoing: []
+      is_playing_hand: 0
+    hero_invade_turn: 0
+    expansion_pack: []
+    cards_deck: []
+    cards_hand: []
+    cards_board: []
+    cards_equip: []
+    cards_discard: []
+    cards_secret: []
+    cards_temp: []
+    traits: []
+    ongoing_traits: []
+    status: []
+    ongoing_status: []
+    history_list: []
+  - player_id: 0
+    username: 
+    avatar: 
+    cardback: 
+    deck: 
+    is_ai: 0
+    ai_level: 0
+    connected: 0
+    ready: 0
+    hp: 0
+    hp_max: 0
+    mana: 0
+    mana_max: 0
+    kill_count: 0
+    max_boardcard_num: 0
+    can_move_attack: 0
+    hero_data:
+      card_id: 
+      uid: 
+      player_id: 0
+      variant_id: 
+      slot:
+        x: 0
+        y: 0
+        p: 0
+      exhausted: 0
+      damage: 0
+      card_arrow: 
+      mana: 0
+      attack: 0
+      hp: 0
+      mana_ongoing: 0
+      attack_ongoing: 0
+      hp_ongoing: 0
+      equipped_uid: 
+      dead_by_uid: 
+      destroied_naturally: 0
+      traits: []
+      ongoing_traits: []
+      status: []
+      ongoing_status: []
+      abilities: []
+      abilities_ongoing: []
+      is_playing_hand: 0
+    hero:
+      card_id: 
+      uid: 
+      player_id: 0
+      variant_id: 
+      slot:
+        x: 0
+        y: 0
+        p: 0
+      exhausted: 0
+      damage: 0
+      card_arrow: 
+      mana: 0
+      attack: 0
+      hp: 0
+      mana_ongoing: 0
+      attack_ongoing: 0
+      hp_ongoing: 0
+      equipped_uid: 
+      dead_by_uid: 
+      destroied_naturally: 0
+      traits: []
+      ongoing_traits: []
+      status: []
+      ongoing_status: []
+      abilities: []
+      abilities_ongoing: []
+      is_playing_hand: 0
+    hero_invade_turn: 0
+    expansion_pack: []
+    cards_deck: []
+    cards_hand: []
+    cards_board: []
+    cards_equip: []
+    cards_discard: []
+    cards_secret: []
+    cards_temp: []
+    traits: []
+    ongoing_traits: []
+    status: []
+    ongoing_status: []
+    history_list: []
+  - player_id: 0
+    username: 
+    avatar: 
+    cardback: 
+    deck: 
+    is_ai: 0
+    ai_level: 0
+    connected: 0
+    ready: 0
+    hp: 0
+    hp_max: 0
+    mana: 0
+    mana_max: 0
+    kill_count: 0
+    max_boardcard_num: 0
+    can_move_attack: 0
+    hero_data:
+      card_id: 
+      uid: 
+      player_id: 0
+      variant_id: 
+      slot:
+        x: 0
+        y: 0
+        p: 0
+      exhausted: 0
+      damage: 0
+      card_arrow: 
+      mana: 0
+      attack: 0
+      hp: 0
+      mana_ongoing: 0
+      attack_ongoing: 0
+      hp_ongoing: 0
+      equipped_uid: 
+      dead_by_uid: 
+      destroied_naturally: 0
+      traits: []
+      ongoing_traits: []
+      status: []
+      ongoing_status: []
+      abilities: []
+      abilities_ongoing: []
+      is_playing_hand: 0
+    hero:
+      card_id: 
+      uid: 
+      player_id: 0
+      variant_id: 
+      slot:
+        x: 0
+        y: 0
+        p: 0
+      exhausted: 0
+      damage: 0
+      card_arrow: 
+      mana: 0
+      attack: 0
+      hp: 0
+      mana_ongoing: 0
+      attack_ongoing: 0
+      hp_ongoing: 0
+      equipped_uid: 
+      dead_by_uid: 
+      destroied_naturally: 0
+      traits: []
+      ongoing_traits: []
+      status: []
+      ongoing_status: []
+      abilities: []
+      abilities_ongoing: []
+      is_playing_hand: 0
+    hero_invade_turn: 0
+    expansion_pack: []
+    cards_deck: []
+    cards_hand: []
+    cards_board: []
+    cards_equip: []
+    cards_discard: []
+    cards_secret: []
+    cards_temp: []
+    traits: []
+    ongoing_traits: []
+    status: []
+    ongoing_status: []
+    history_list: []
+  - player_id: 0
+    username: 
+    avatar: 
+    cardback: 
+    deck: 
+    is_ai: 0
+    ai_level: 0
+    connected: 0
+    ready: 0
+    hp: 0
+    hp_max: 0
+    mana: 0
+    mana_max: 0
+    kill_count: 0
+    max_boardcard_num: 0
+    can_move_attack: 0
+    hero_data:
+      card_id: 
+      uid: 
+      player_id: 0
+      variant_id: 
+      slot:
+        x: 0
+        y: 0
+        p: 0
+      exhausted: 0
+      damage: 0
+      card_arrow: 
+      mana: 0
+      attack: 0
+      hp: 0
+      mana_ongoing: 0
+      attack_ongoing: 0
+      hp_ongoing: 0
+      equipped_uid: 
+      dead_by_uid: 
+      destroied_naturally: 0
+      traits: []
+      ongoing_traits: []
+      status: []
+      ongoing_status: []
+      abilities: []
+      abilities_ongoing: []
+      is_playing_hand: 0
+    hero:
+      card_id: 
+      uid: 
+      player_id: 0
+      variant_id: 
+      slot:
+        x: 0
+        y: 0
+        p: 0
+      exhausted: 0
+      damage: 0
+      card_arrow: 
+      mana: 0
+      attack: 0
+      hp: 0
+      mana_ongoing: 0
+      attack_ongoing: 0
+      hp_ongoing: 0
+      equipped_uid: 
+      dead_by_uid: 
+      destroied_naturally: 0
+      traits: []
+      ongoing_traits: []
+      status: []
+      ongoing_status: []
+      abilities: []
+      abilities_ongoing: []
+      is_playing_hand: 0
+    hero_invade_turn: 0
+    expansion_pack: []
+    cards_deck: []
+    cards_hand: []
+    cards_board: []
+    cards_equip: []
+    cards_discard: []
+    cards_secret: []
+    cards_temp: []
+    traits: []
+    ongoing_traits: []
+    status: []
+    ongoing_status: []
+    history_list: []
+  - player_id: 0
+    username: 
+    avatar: 
+    cardback: 
+    deck: 
+    is_ai: 0
+    ai_level: 0
+    connected: 0
+    ready: 0
+    hp: 0
+    hp_max: 0
+    mana: 0
+    mana_max: 0
+    kill_count: 0
+    max_boardcard_num: 0
+    can_move_attack: 0
+    hero_data:
+      card_id: 
+      uid: 
+      player_id: 0
+      variant_id: 
+      slot:
+        x: 0
+        y: 0
+        p: 0
+      exhausted: 0
+      damage: 0
+      card_arrow: 
+      mana: 0
+      attack: 0
+      hp: 0
+      mana_ongoing: 0
+      attack_ongoing: 0
+      hp_ongoing: 0
+      equipped_uid: 
+      dead_by_uid: 
+      destroied_naturally: 0
+      traits: []
+      ongoing_traits: []
+      status: []
+      ongoing_status: []
+      abilities: []
+      abilities_ongoing: []
+      is_playing_hand: 0
+    hero:
+      card_id: 
+      uid: 
+      player_id: 0
+      variant_id: 
+      slot:
+        x: 0
+        y: 0
+        p: 0
+      exhausted: 0
+      damage: 0
+      card_arrow: 
+      mana: 0
+      attack: 0
+      hp: 0
+      mana_ongoing: 0
+      attack_ongoing: 0
+      hp_ongoing: 0
+      equipped_uid: 
+      dead_by_uid: 
+      destroied_naturally: 0
+      traits: []
+      ongoing_traits: []
+      status: []
+      ongoing_status: []
+      abilities: []
+      abilities_ongoing: []
+      is_playing_hand: 0
+    hero_invade_turn: 0
+    expansion_pack: []
+    cards_deck: []
+    cards_hand: []
+    cards_board: []
+    cards_equip: []
+    cards_discard: []
+    cards_secret: []
+    cards_temp: []
+    traits: []
+    ongoing_traits: []
+    status: []
+    ongoing_status: []
+    history_list: []
+  - player_id: 0
+    username: 
+    avatar: 
+    cardback: 
+    deck: 
+    is_ai: 0
+    ai_level: 0
+    connected: 0
+    ready: 0
+    hp: 0
+    hp_max: 0
+    mana: 0
+    mana_max: 0
+    kill_count: 0
+    max_boardcard_num: 0
+    can_move_attack: 0
+    hero_data:
+      card_id: 
+      uid: 
+      player_id: 0
+      variant_id: 
+      slot:
+        x: 0
+        y: 0
+        p: 0
+      exhausted: 0
+      damage: 0
+      card_arrow: 
+      mana: 0
+      attack: 0
+      hp: 0
+      mana_ongoing: 0
+      attack_ongoing: 0
+      hp_ongoing: 0
+      equipped_uid: 
+      dead_by_uid: 
+      destroied_naturally: 0
+      traits: []
+      ongoing_traits: []
+      status: []
+      ongoing_status: []
+      abilities: []
+      abilities_ongoing: []
+      is_playing_hand: 0
+    hero:
+      card_id: 
+      uid: 
+      player_id: 0
+      variant_id: 
+      slot:
+        x: 0
+        y: 0
+        p: 0
+      exhausted: 0
+      damage: 0
+      card_arrow: 
+      mana: 0
+      attack: 0
+      hp: 0
+      mana_ongoing: 0
+      attack_ongoing: 0
+      hp_ongoing: 0
+      equipped_uid: 
+      dead_by_uid: 
+      destroied_naturally: 0
+      traits: []
+      ongoing_traits: []
+      status: []
+      ongoing_status: []
+      abilities: []
+      abilities_ongoing: []
+      is_playing_hand: 0
+    hero_invade_turn: 0
+    expansion_pack: []
+    cards_deck: []
+    cards_hand: []
+    cards_board: []
+    cards_equip: []
+    cards_discard: []
+    cards_secret: []
+    cards_temp: []
+    traits: []
+    ongoing_traits: []
+    status: []
+    ongoing_status: []
+    history_list: []
+  - player_id: 0
+    username: 
+    avatar: 
+    cardback: 
+    deck: 
+    is_ai: 0
+    ai_level: 0
+    connected: 0
+    ready: 0
+    hp: 0
+    hp_max: 0
+    mana: 0
+    mana_max: 0
+    kill_count: 0
+    max_boardcard_num: 0
+    can_move_attack: 0
+    hero_data:
+      card_id: 
+      uid: 
+      player_id: 0
+      variant_id: 
+      slot:
+        x: 0
+        y: 0
+        p: 0
+      exhausted: 0
+      damage: 0
+      card_arrow: 
+      mana: 0
+      attack: 0
+      hp: 0
+      mana_ongoing: 0
+      attack_ongoing: 0
+      hp_ongoing: 0
+      equipped_uid: 
+      dead_by_uid: 
+      destroied_naturally: 0
+      traits: []
+      ongoing_traits: []
+      status: []
+      ongoing_status: []
+      abilities: []
+      abilities_ongoing: []
+      is_playing_hand: 0
+    hero:
+      card_id: 
+      uid: 
+      player_id: 0
+      variant_id: 
+      slot:
+        x: 0
+        y: 0
+        p: 0
+      exhausted: 0
+      damage: 0
+      card_arrow: 
+      mana: 0
+      attack: 0
+      hp: 0
+      mana_ongoing: 0
+      attack_ongoing: 0
+      hp_ongoing: 0
+      equipped_uid: 
+      dead_by_uid: 
+      destroied_naturally: 0
+      traits: []
+      ongoing_traits: []
+      status: []
+      ongoing_status: []
+      abilities: []
+      abilities_ongoing: []
+      is_playing_hand: 0
+    hero_invade_turn: 0
+    expansion_pack: []
+    cards_deck: []
+    cards_hand: []
+    cards_board: []
+    cards_equip: []
+    cards_discard: []
+    cards_secret: []
+    cards_temp: []
+    traits: []
+    ongoing_traits: []
+    status: []
+    ongoing_status: []
+    history_list: []
+  - player_id: 0
+    username: 
+    avatar: 
+    cardback: 
+    deck: 
+    is_ai: 0
+    ai_level: 0
+    connected: 0
+    ready: 0
+    hp: 0
+    hp_max: 0
+    mana: 0
+    mana_max: 0
+    kill_count: 0
+    max_boardcard_num: 0
+    can_move_attack: 0
+    hero_data:
+      card_id: 
+      uid: 
+      player_id: 0
+      variant_id: 
+      slot:
+        x: 0
+        y: 0
+        p: 0
+      exhausted: 0
+      damage: 0
+      card_arrow: 
+      mana: 0
+      attack: 0
+      hp: 0
+      mana_ongoing: 0
+      attack_ongoing: 0
+      hp_ongoing: 0
+      equipped_uid: 
+      dead_by_uid: 
+      destroied_naturally: 0
+      traits: []
+      ongoing_traits: []
+      status: []
+      ongoing_status: []
+      abilities: []
+      abilities_ongoing: []
+      is_playing_hand: 0
+    hero:
+      card_id: 
+      uid: 
+      player_id: 0
+      variant_id: 
+      slot:
+        x: 0
+        y: 0
+        p: 0
+      exhausted: 0
+      damage: 0
+      card_arrow: 
+      mana: 0
+      attack: 0
+      hp: 0
+      mana_ongoing: 0
+      attack_ongoing: 0
+      hp_ongoing: 0
+      equipped_uid: 
+      dead_by_uid: 
+      destroied_naturally: 0
+      traits: []
+      ongoing_traits: []
+      status: []
+      ongoing_status: []
+      abilities: []
+      abilities_ongoing: []
+      is_playing_hand: 0
+    hero_invade_turn: 0
+    expansion_pack: []
+    cards_deck: []
+    cards_hand: []
+    cards_board: []
+    cards_equip: []
+    cards_discard: []
+    cards_secret: []
+    cards_temp: []
+    traits: []
+    ongoing_traits: []
+    status: []
+    ongoing_status: []
+    history_list: []
+  - player_id: 0
+    username: 
+    avatar: 
+    cardback: 
+    deck: 
+    is_ai: 0
+    ai_level: 0
+    connected: 0
+    ready: 0
+    hp: 0
+    hp_max: 0
+    mana: 0
+    mana_max: 0
+    kill_count: 0
+    max_boardcard_num: 0
+    can_move_attack: 0
+    hero_data:
+      card_id: 
+      uid: 
+      player_id: 0
+      variant_id: 
+      slot:
+        x: 0
+        y: 0
+        p: 0
+      exhausted: 0
+      damage: 0
+      card_arrow: 
+      mana: 0
+      attack: 0
+      hp: 0
+      mana_ongoing: 0
+      attack_ongoing: 0
+      hp_ongoing: 0
+      equipped_uid: 
+      dead_by_uid: 
+      destroied_naturally: 0
+      traits: []
+      ongoing_traits: []
+      status: []
+      ongoing_status: []
+      abilities: []
+      abilities_ongoing: []
+      is_playing_hand: 0
+    hero:
+      card_id: 
+      uid: 
+      player_id: 0
+      variant_id: 
+      slot:
+        x: 0
+        y: 0
+        p: 0
+      exhausted: 0
+      damage: 0
+      card_arrow: 
+      mana: 0
+      attack: 0
+      hp: 0
+      mana_ongoing: 0
+      attack_ongoing: 0
+      hp_ongoing: 0
+      equipped_uid: 
+      dead_by_uid: 
+      destroied_naturally: 0
+      traits: []
+      ongoing_traits: []
+      status: []
+      ongoing_status: []
+      abilities: []
+      abilities_ongoing: []
+      is_playing_hand: 0
+    hero_invade_turn: 0
+    expansion_pack: []
+    cards_deck: []
+    cards_hand: []
+    cards_board: []
+    cards_equip: []
+    cards_discard: []
+    cards_secret: []
+    cards_temp: []
+    traits: []
+    ongoing_traits: []
+    status: []
+    ongoing_status: []
+    history_list: []
+  - player_id: 0
+    username: 
+    avatar: 
+    cardback: 
+    deck: 
+    is_ai: 0
+    ai_level: 0
+    connected: 0
+    ready: 0
+    hp: 0
+    hp_max: 0
+    mana: 0
+    mana_max: 0
+    kill_count: 0
+    max_boardcard_num: 0
+    can_move_attack: 0
+    hero_data:
+      card_id: 
+      uid: 
+      player_id: 0
+      variant_id: 
+      slot:
+        x: 0
+        y: 0
+        p: 0
+      exhausted: 0
+      damage: 0
+      card_arrow: 
+      mana: 0
+      attack: 0
+      hp: 0
+      mana_ongoing: 0
+      attack_ongoing: 0
+      hp_ongoing: 0
+      equipped_uid: 
+      dead_by_uid: 
+      destroied_naturally: 0
+      traits: []
+      ongoing_traits: []
+      status: []
+      ongoing_status: []
+      abilities: []
+      abilities_ongoing: []
+      is_playing_hand: 0
+    hero:
+      card_id: 
+      uid: 
+      player_id: 0
+      variant_id: 
+      slot:
+        x: 0
+        y: 0
+        p: 0
+      exhausted: 0
+      damage: 0
+      card_arrow: 
+      mana: 0
+      attack: 0
+      hp: 0
+      mana_ongoing: 0
+      attack_ongoing: 0
+      hp_ongoing: 0
+      equipped_uid: 
+      dead_by_uid: 
+      destroied_naturally: 0
+      traits: []
+      ongoing_traits: []
+      status: []
+      ongoing_status: []
+      abilities: []
+      abilities_ongoing: []
+      is_playing_hand: 0
+    hero_invade_turn: 0
+    expansion_pack: []
+    cards_deck: []
+    cards_hand: []
+    cards_board: []
+    cards_equip: []
+    cards_discard: []
+    cards_secret: []
+    cards_temp: []
+    traits: []
+    ongoing_traits: []
+    status: []
+    ongoing_status: []
+    history_list: []
+  - player_id: 0
+    username: 
+    avatar: 
+    cardback: 
+    deck: 
+    is_ai: 0
+    ai_level: 0
+    connected: 0
+    ready: 0
+    hp: 0
+    hp_max: 0
+    mana: 0
+    mana_max: 0
+    kill_count: 0
+    max_boardcard_num: 0
+    can_move_attack: 0
+    hero_data:
+      card_id: 
+      uid: 
+      player_id: 0
+      variant_id: 
+      slot:
+        x: 0
+        y: 0
+        p: 0
+      exhausted: 0
+      damage: 0
+      card_arrow: 
+      mana: 0
+      attack: 0
+      hp: 0
+      mana_ongoing: 0
+      attack_ongoing: 0
+      hp_ongoing: 0
+      equipped_uid: 
+      dead_by_uid: 
+      destroied_naturally: 0
+      traits: []
+      ongoing_traits: []
+      status: []
+      ongoing_status: []
+      abilities: []
+      abilities_ongoing: []
+      is_playing_hand: 0
+    hero:
+      card_id: 
+      uid: 
+      player_id: 0
+      variant_id: 
+      slot:
+        x: 0
+        y: 0
+        p: 0
+      exhausted: 0
+      damage: 0
+      card_arrow: 
+      mana: 0
+      attack: 0
+      hp: 0
+      mana_ongoing: 0
+      attack_ongoing: 0
+      hp_ongoing: 0
+      equipped_uid: 
+      dead_by_uid: 
+      destroied_naturally: 0
+      traits: []
+      ongoing_traits: []
+      status: []
+      ongoing_status: []
+      abilities: []
+      abilities_ongoing: []
+      is_playing_hand: 0
+    hero_invade_turn: 0
+    expansion_pack: []
+    cards_deck: []
+    cards_hand: []
+    cards_board: []
+    cards_equip: []
+    cards_discard: []
+    cards_secret: []
+    cards_temp: []
+    traits: []
+    ongoing_traits: []
+    status: []
+    ongoing_status: []
+    history_list: []
+  - player_id: 0
+    username: 
+    avatar: 
+    cardback: 
+    deck: 
+    is_ai: 0
+    ai_level: 0
+    connected: 0
+    ready: 0
+    hp: 0
+    hp_max: 0
+    mana: 0
+    mana_max: 0
+    kill_count: 0
+    max_boardcard_num: 0
+    can_move_attack: 0
+    hero_data:
+      card_id: 
+      uid: 
+      player_id: 0
+      variant_id: 
+      slot:
+        x: 0
+        y: 0
+        p: 0
+      exhausted: 0
+      damage: 0
+      card_arrow: 
+      mana: 0
+      attack: 0
+      hp: 0
+      mana_ongoing: 0
+      attack_ongoing: 0
+      hp_ongoing: 0
+      equipped_uid: 
+      dead_by_uid: 
+      destroied_naturally: 0
+      traits: []
+      ongoing_traits: []
+      status: []
+      ongoing_status: []
+      abilities: []
+      abilities_ongoing: []
+      is_playing_hand: 0
+    hero:
+      card_id: 
+      uid: 
+      player_id: 0
+      variant_id: 
+      slot:
+        x: 0
+        y: 0
+        p: 0
+      exhausted: 0
+      damage: 0
+      card_arrow: 
+      mana: 0
+      attack: 0
+      hp: 0
+      mana_ongoing: 0
+      attack_ongoing: 0
+      hp_ongoing: 0
+      equipped_uid: 
+      dead_by_uid: 
+      destroied_naturally: 0
+      traits: []
+      ongoing_traits: []
+      status: []
+      ongoing_status: []
+      abilities: []
+      abilities_ongoing: []
+      is_playing_hand: 0
+    hero_invade_turn: 0
+    expansion_pack: []
+    cards_deck: []
+    cards_hand: []
+    cards_board: []
+    cards_equip: []
+    cards_discard: []
+    cards_secret: []
+    cards_temp: []
+    traits: []
+    ongoing_traits: []
+    status: []
+    ongoing_status: []
+    history_list: []
+  - player_id: 0
+    username: 
+    avatar: 
+    cardback: 
+    deck: 
+    is_ai: 0
+    ai_level: 0
+    connected: 0
+    ready: 0
+    hp: 0
+    hp_max: 0
+    mana: 0
+    mana_max: 0
+    kill_count: 0
+    max_boardcard_num: 0
+    can_move_attack: 0
+    hero_data:
+      card_id: 
+      uid: 
+      player_id: 0
+      variant_id: 
+      slot:
+        x: 0
+        y: 0
+        p: 0
+      exhausted: 0
+      damage: 0
+      card_arrow: 
+      mana: 0
+      attack: 0
+      hp: 0
+      mana_ongoing: 0
+      attack_ongoing: 0
+      hp_ongoing: 0
+      equipped_uid: 
+      dead_by_uid: 
+      destroied_naturally: 0
+      traits: []
+      ongoing_traits: []
+      status: []
+      ongoing_status: []
+      abilities: []
+      abilities_ongoing: []
+      is_playing_hand: 0
+    hero:
+      card_id: 
+      uid: 
+      player_id: 0
+      variant_id: 
+      slot:
+        x: 0
+        y: 0
+        p: 0
+      exhausted: 0
+      damage: 0
+      card_arrow: 
+      mana: 0
+      attack: 0
+      hp: 0
+      mana_ongoing: 0
+      attack_ongoing: 0
+      hp_ongoing: 0
+      equipped_uid: 
+      dead_by_uid: 
+      destroied_naturally: 0
+      traits: []
+      ongoing_traits: []
+      status: []
+      ongoing_status: []
+      abilities: []
+      abilities_ongoing: []
+      is_playing_hand: 0
+    hero_invade_turn: 0
+    expansion_pack: []
+    cards_deck: []
+    cards_hand: []
+    cards_board: []
+    cards_equip: []
+    cards_discard: []
+    cards_secret: []
+    cards_temp: []
+    traits: []
+    ongoing_traits: []
+    status: []
+    ongoing_status: []
+    history_list: []
+  - player_id: 0
+    username: 
+    avatar: 
+    cardback: 
+    deck: 
+    is_ai: 0
+    ai_level: 0
+    connected: 0
+    ready: 0
+    hp: 0
+    hp_max: 0
+    mana: 0
+    mana_max: 0
+    kill_count: 0
+    max_boardcard_num: 0
+    can_move_attack: 0
+    hero_data:
+      card_id: 
+      uid: 
+      player_id: 0
+      variant_id: 
+      slot:
+        x: 0
+        y: 0
+        p: 0
+      exhausted: 0
+      damage: 0
+      card_arrow: 
+      mana: 0
+      attack: 0
+      hp: 0
+      mana_ongoing: 0
+      attack_ongoing: 0
+      hp_ongoing: 0
+      equipped_uid: 
+      dead_by_uid: 
+      destroied_naturally: 0
+      traits: []
+      ongoing_traits: []
+      status: []
+      ongoing_status: []
+      abilities: []
+      abilities_ongoing: []
+      is_playing_hand: 0
+    hero:
+      card_id: 
+      uid: 
+      player_id: 0
+      variant_id: 
+      slot:
+        x: 0
+        y: 0
+        p: 0
+      exhausted: 0
+      damage: 0
+      card_arrow: 
+      mana: 0
+      attack: 0
+      hp: 0
+      mana_ongoing: 0
+      attack_ongoing: 0
+      hp_ongoing: 0
+      equipped_uid: 
+      dead_by_uid: 
+      destroied_naturally: 0
+      traits: []
+      ongoing_traits: []
+      status: []
+      ongoing_status: []
+      abilities: []
+      abilities_ongoing: []
+      is_playing_hand: 0
+    hero_invade_turn: 0
+    expansion_pack: []
+    cards_deck: []
+    cards_hand: []
+    cards_board: []
+    cards_equip: []
+    cards_discard: []
+    cards_secret: []
+    cards_temp: []
+    traits: []
+    ongoing_traits: []
+    status: []
+    ongoing_status: []
+    history_list: []
+  - player_id: 0
+    username: 
+    avatar: 
+    cardback: 
+    deck: 
+    is_ai: 0
+    ai_level: 0
+    connected: 0
+    ready: 0
+    hp: 0
+    hp_max: 0
+    mana: 0
+    mana_max: 0
+    kill_count: 0
+    max_boardcard_num: 0
+    can_move_attack: 0
+    hero_data:
+      card_id: 
+      uid: 
+      player_id: 0
+      variant_id: 
+      slot:
+        x: 0
+        y: 0
+        p: 0
+      exhausted: 0
+      damage: 0
+      card_arrow: 
+      mana: 0
+      attack: 0
+      hp: 0
+      mana_ongoing: 0
+      attack_ongoing: 0
+      hp_ongoing: 0
+      equipped_uid: 
+      dead_by_uid: 
+      destroied_naturally: 0
+      traits: []
+      ongoing_traits: []
+      status: []
+      ongoing_status: []
+      abilities: []
+      abilities_ongoing: []
+      is_playing_hand: 0
+    hero:
+      card_id: 
+      uid: 
+      player_id: 0
+      variant_id: 
+      slot:
+        x: 0
+        y: 0
+        p: 0
+      exhausted: 0
+      damage: 0
+      card_arrow: 
+      mana: 0
+      attack: 0
+      hp: 0
+      mana_ongoing: 0
+      attack_ongoing: 0
+      hp_ongoing: 0
+      equipped_uid: 
+      dead_by_uid: 
+      destroied_naturally: 0
+      traits: []
+      ongoing_traits: []
+      status: []
+      ongoing_status: []
+      abilities: []
+      abilities_ongoing: []
+      is_playing_hand: 0
+    hero_invade_turn: 0
+    expansion_pack: []
+    cards_deck: []
+    cards_hand: []
+    cards_board: []
+    cards_equip: []
+    cards_discard: []
+    cards_secret: []
+    cards_temp: []
+    traits: []
+    ongoing_traits: []
+    status: []
+    ongoing_status: []
+    history_list: []
+  - player_id: 0
+    username: 
+    avatar: 
+    cardback: 
+    deck: 
+    is_ai: 0
+    ai_level: 0
+    connected: 0
+    ready: 0
+    hp: 0
+    hp_max: 0
+    mana: 0
+    mana_max: 0
+    kill_count: 0
+    max_boardcard_num: 0
+    can_move_attack: 0
+    hero_data:
+      card_id: 
+      uid: 
+      player_id: 0
+      variant_id: 
+      slot:
+        x: 0
+        y: 0
+        p: 0
+      exhausted: 0
+      damage: 0
+      card_arrow: 
+      mana: 0
+      attack: 0
+      hp: 0
+      mana_ongoing: 0
+      attack_ongoing: 0
+      hp_ongoing: 0
+      equipped_uid: 
+      dead_by_uid: 
+      destroied_naturally: 0
+      traits: []
+      ongoing_traits: []
+      status: []
+      ongoing_status: []
+      abilities: []
+      abilities_ongoing: []
+      is_playing_hand: 0
+    hero:
+      card_id: 
+      uid: 
+      player_id: 0
+      variant_id: 
+      slot:
+        x: 0
+        y: 0
+        p: 0
+      exhausted: 0
+      damage: 0
+      card_arrow: 
+      mana: 0
+      attack: 0
+      hp: 0
+      mana_ongoing: 0
+      attack_ongoing: 0
+      hp_ongoing: 0
+      equipped_uid: 
+      dead_by_uid: 
+      destroied_naturally: 0
+      traits: []
+      ongoing_traits: []
+      status: []
+      ongoing_status: []
+      abilities: []
+      abilities_ongoing: []
+      is_playing_hand: 0
+    hero_invade_turn: 0
+    expansion_pack: []
+    cards_deck: []
+    cards_hand: []
+    cards_board: []
+    cards_equip: []
+    cards_discard: []
+    cards_secret: []
+    cards_temp: []
+    traits: []
+    ongoing_traits: []
+    status: []
+    ongoing_status: []
+    history_list: []
+  - player_id: 0
+    username: 
+    avatar: 
+    cardback: 
+    deck: 
+    is_ai: 0
+    ai_level: 0
+    connected: 0
+    ready: 0
+    hp: 0
+    hp_max: 0
+    mana: 0
+    mana_max: 0
+    kill_count: 0
+    max_boardcard_num: 0
+    can_move_attack: 0
+    hero_data:
+      card_id: 
+      uid: 
+      player_id: 0
+      variant_id: 
+      slot:
+        x: 0
+        y: 0
+        p: 0
+      exhausted: 0
+      damage: 0
+      card_arrow: 
+      mana: 0
+      attack: 0
+      hp: 0
+      mana_ongoing: 0
+      attack_ongoing: 0
+      hp_ongoing: 0
+      equipped_uid: 
+      dead_by_uid: 
+      destroied_naturally: 0
+      traits: []
+      ongoing_traits: []
+      status: []
+      ongoing_status: []
+      abilities: []
+      abilities_ongoing: []
+      is_playing_hand: 0
+    hero:
+      card_id: 
+      uid: 
+      player_id: 0
+      variant_id: 
+      slot:
+        x: 0
+        y: 0
+        p: 0
+      exhausted: 0
+      damage: 0
+      card_arrow: 
+      mana: 0
+      attack: 0
+      hp: 0
+      mana_ongoing: 0
+      attack_ongoing: 0
+      hp_ongoing: 0
+      equipped_uid: 
+      dead_by_uid: 
+      destroied_naturally: 0
+      traits: []
+      ongoing_traits: []
+      status: []
+      ongoing_status: []
+      abilities: []
+      abilities_ongoing: []
+      is_playing_hand: 0
+    hero_invade_turn: 0
+    expansion_pack: []
+    cards_deck: []
+    cards_hand: []
+    cards_board: []
+    cards_equip: []
+    cards_discard: []
+    cards_secret: []
+    cards_temp: []
+    traits: []
+    ongoing_traits: []
+    status: []
+    ongoing_status: []
+    history_list: []
+  - player_id: 0
+    username: 
+    avatar: 
+    cardback: 
+    deck: 
+    is_ai: 0
+    ai_level: 0
+    connected: 0
+    ready: 0
+    hp: 0
+    hp_max: 0
+    mana: 0
+    mana_max: 0
+    kill_count: 0
+    max_boardcard_num: 0
+    can_move_attack: 0
+    hero_data:
+      card_id: 
+      uid: 
+      player_id: 0
+      variant_id: 
+      slot:
+        x: 0
+        y: 0
+        p: 0
+      exhausted: 0
+      damage: 0
+      card_arrow: 
+      mana: 0
+      attack: 0
+      hp: 0
+      mana_ongoing: 0
+      attack_ongoing: 0
+      hp_ongoing: 0
+      equipped_uid: 
+      dead_by_uid: 
+      destroied_naturally: 0
+      traits: []
+      ongoing_traits: []
+      status: []
+      ongoing_status: []
+      abilities: []
+      abilities_ongoing: []
+      is_playing_hand: 0
+    hero:
+      card_id: 
+      uid: 
+      player_id: 0
+      variant_id: 
+      slot:
+        x: 0
+        y: 0
+        p: 0
+      exhausted: 0
+      damage: 0
+      card_arrow: 
+      mana: 0
+      attack: 0
+      hp: 0
+      mana_ongoing: 0
+      attack_ongoing: 0
+      hp_ongoing: 0
+      equipped_uid: 
+      dead_by_uid: 
+      destroied_naturally: 0
+      traits: []
+      ongoing_traits: []
+      status: []
+      ongoing_status: []
+      abilities: []
+      abilities_ongoing: []
+      is_playing_hand: 0
+    hero_invade_turn: 0
+    expansion_pack: []
+    cards_deck: []
+    cards_hand: []
+    cards_board: []
+    cards_equip: []
+    cards_discard: []
+    cards_secret: []
+    cards_temp: []
+    traits: []
+    ongoing_traits: []
+    status: []
+    ongoing_status: []
+    history_list: []
+  - player_id: 0
+    username: 
+    avatar: 
+    cardback: 
+    deck: 
+    is_ai: 0
+    ai_level: 0
+    connected: 0
+    ready: 0
+    hp: 0
+    hp_max: 0
+    mana: 0
+    mana_max: 0
+    kill_count: 0
+    max_boardcard_num: 0
+    can_move_attack: 0
+    hero_data:
+      card_id: 
+      uid: 
+      player_id: 0
+      variant_id: 
+      slot:
+        x: 0
+        y: 0
+        p: 0
+      exhausted: 0
+      damage: 0
+      card_arrow: 
+      mana: 0
+      attack: 0
+      hp: 0
+      mana_ongoing: 0
+      attack_ongoing: 0
+      hp_ongoing: 0
+      equipped_uid: 
+      dead_by_uid: 
+      destroied_naturally: 0
+      traits: []
+      ongoing_traits: []
+      status: []
+      ongoing_status: []
+      abilities: []
+      abilities_ongoing: []
+      is_playing_hand: 0
+    hero:
+      card_id: 
+      uid: 
+      player_id: 0
+      variant_id: 
+      slot:
+        x: 0
+        y: 0
+        p: 0
+      exhausted: 0
+      damage: 0
+      card_arrow: 
+      mana: 0
+      attack: 0
+      hp: 0
+      mana_ongoing: 0
+      attack_ongoing: 0
+      hp_ongoing: 0
+      equipped_uid: 
+      dead_by_uid: 
+      destroied_naturally: 0
+      traits: []
+      ongoing_traits: []
+      status: []
+      ongoing_status: []
+      abilities: []
+      abilities_ongoing: []
+      is_playing_hand: 0
+    hero_invade_turn: 0
+    expansion_pack: []
+    cards_deck: []
+    cards_hand: []
+    cards_board: []
+    cards_equip: []
+    cards_discard: []
+    cards_secret: []
+    cards_temp: []
+    traits: []
+    ongoing_traits: []
+    status: []
+    ongoing_status: []
+    history_list: []
+  - player_id: 0
+    username: 
+    avatar: 
+    cardback: 
+    deck: 
+    is_ai: 0
+    ai_level: 0
+    connected: 0
+    ready: 0
+    hp: 0
+    hp_max: 0
+    mana: 0
+    mana_max: 0
+    kill_count: 0
+    max_boardcard_num: 0
+    can_move_attack: 0
+    hero_data:
+      card_id: 
+      uid: 
+      player_id: 0
+      variant_id: 
+      slot:
+        x: 0
+        y: 0
+        p: 0
+      exhausted: 0
+      damage: 0
+      card_arrow: 
+      mana: 0
+      attack: 0
+      hp: 0
+      mana_ongoing: 0
+      attack_ongoing: 0
+      hp_ongoing: 0
+      equipped_uid: 
+      dead_by_uid: 
+      destroied_naturally: 0
+      traits: []
+      ongoing_traits: []
+      status: []
+      ongoing_status: []
+      abilities: []
+      abilities_ongoing: []
+      is_playing_hand: 0
+    hero:
+      card_id: 
+      uid: 
+      player_id: 0
+      variant_id: 
+      slot:
+        x: 0
+        y: 0
+        p: 0
+      exhausted: 0
+      damage: 0
+      card_arrow: 
+      mana: 0
+      attack: 0
+      hp: 0
+      mana_ongoing: 0
+      attack_ongoing: 0
+      hp_ongoing: 0
+      equipped_uid: 
+      dead_by_uid: 
+      destroied_naturally: 0
+      traits: []
+      ongoing_traits: []
+      status: []
+      ongoing_status: []
+      abilities: []
+      abilities_ongoing: []
+      is_playing_hand: 0
+    hero_invade_turn: 0
+    expansion_pack: []
+    cards_deck: []
+    cards_hand: []
+    cards_board: []
+    cards_equip: []
+    cards_discard: []
+    cards_secret: []
+    cards_temp: []
+    traits: []
+    ongoing_traits: []
+    status: []
+    ongoing_status: []
+    history_list: []
+  - player_id: 0
+    username: 
+    avatar: 
+    cardback: 
+    deck: 
+    is_ai: 0
+    ai_level: 0
+    connected: 0
+    ready: 0
+    hp: 0
+    hp_max: 0
+    mana: 0
+    mana_max: 0
+    kill_count: 0
+    max_boardcard_num: 0
+    can_move_attack: 0
+    hero_data:
+      card_id: 
+      uid: 
+      player_id: 0
+      variant_id: 
+      slot:
+        x: 0
+        y: 0
+        p: 0
+      exhausted: 0
+      damage: 0
+      card_arrow: 
+      mana: 0
+      attack: 0
+      hp: 0
+      mana_ongoing: 0
+      attack_ongoing: 0
+      hp_ongoing: 0
+      equipped_uid: 
+      dead_by_uid: 
+      destroied_naturally: 0
+      traits: []
+      ongoing_traits: []
+      status: []
+      ongoing_status: []
+      abilities: []
+      abilities_ongoing: []
+      is_playing_hand: 0
+    hero:
+      card_id: 
+      uid: 
+      player_id: 0
+      variant_id: 
+      slot:
+        x: 0
+        y: 0
+        p: 0
+      exhausted: 0
+      damage: 0
+      card_arrow: 
+      mana: 0
+      attack: 0
+      hp: 0
+      mana_ongoing: 0
+      attack_ongoing: 0
+      hp_ongoing: 0
+      equipped_uid: 
+      dead_by_uid: 
+      destroied_naturally: 0
+      traits: []
+      ongoing_traits: []
+      status: []
+      ongoing_status: []
+      abilities: []
+      abilities_ongoing: []
+      is_playing_hand: 0
+    hero_invade_turn: 0
+    expansion_pack: []
+    cards_deck: []
+    cards_hand: []
+    cards_board: []
+    cards_equip: []
+    cards_discard: []
+    cards_secret: []
+    cards_temp: []
+    traits: []
+    ongoing_traits: []
+    status: []
+    ongoing_status: []
+    history_list: []
+  - player_id: 0
+    username: 
+    avatar: 
+    cardback: 
+    deck: 
+    is_ai: 0
+    ai_level: 0
+    connected: 0
+    ready: 0
+    hp: 0
+    hp_max: 0
+    mana: 0
+    mana_max: 0
+    kill_count: 0
+    max_boardcard_num: 0
+    can_move_attack: 0
+    hero_data:
+      card_id: 
+      uid: 
+      player_id: 0
+      variant_id: 
+      slot:
+        x: 0
+        y: 0
+        p: 0
+      exhausted: 0
+      damage: 0
+      card_arrow: 
+      mana: 0
+      attack: 0
+      hp: 0
+      mana_ongoing: 0
+      attack_ongoing: 0
+      hp_ongoing: 0
+      equipped_uid: 
+      dead_by_uid: 
+      destroied_naturally: 0
+      traits: []
+      ongoing_traits: []
+      status: []
+      ongoing_status: []
+      abilities: []
+      abilities_ongoing: []
+      is_playing_hand: 0
+    hero:
+      card_id: 
+      uid: 
+      player_id: 0
+      variant_id: 
+      slot:
+        x: 0
+        y: 0
+        p: 0
+      exhausted: 0
+      damage: 0
+      card_arrow: 
+      mana: 0
+      attack: 0
+      hp: 0
+      mana_ongoing: 0
+      attack_ongoing: 0
+      hp_ongoing: 0
+      equipped_uid: 
+      dead_by_uid: 
+      destroied_naturally: 0
+      traits: []
+      ongoing_traits: []
+      status: []
+      ongoing_status: []
+      abilities: []
+      abilities_ongoing: []
+      is_playing_hand: 0
+    hero_invade_turn: 0
+    expansion_pack: []
+    cards_deck: []
+    cards_hand: []
+    cards_board: []
+    cards_equip: []
+    cards_discard: []
+    cards_secret: []
+    cards_temp: []
+    traits: []
+    ongoing_traits: []
+    status: []
+    ongoing_status: []
+    history_list: []
+  - player_id: 0
+    username: 
+    avatar: 
+    cardback: 
+    deck: 
+    is_ai: 0
+    ai_level: 0
+    connected: 0
+    ready: 0
+    hp: 0
+    hp_max: 0
+    mana: 0
+    mana_max: 0
+    kill_count: 0
+    max_boardcard_num: 0
+    can_move_attack: 0
+    hero_data:
+      card_id: 
+      uid: 
+      player_id: 0
+      variant_id: 
+      slot:
+        x: 0
+        y: 0
+        p: 0
+      exhausted: 0
+      damage: 0
+      card_arrow: 
+      mana: 0
+      attack: 0
+      hp: 0
+      mana_ongoing: 0
+      attack_ongoing: 0
+      hp_ongoing: 0
+      equipped_uid: 
+      dead_by_uid: 
+      destroied_naturally: 0
+      traits: []
+      ongoing_traits: []
+      status: []
+      ongoing_status: []
+      abilities: []
+      abilities_ongoing: []
+      is_playing_hand: 0
+    hero:
+      card_id: 
+      uid: 
+      player_id: 0
+      variant_id: 
+      slot:
+        x: 0
+        y: 0
+        p: 0
+      exhausted: 0
+      damage: 0
+      card_arrow: 
+      mana: 0
+      attack: 0
+      hp: 0
+      mana_ongoing: 0
+      attack_ongoing: 0
+      hp_ongoing: 0
+      equipped_uid: 
+      dead_by_uid: 
+      destroied_naturally: 0
+      traits: []
+      ongoing_traits: []
+      status: []
+      ongoing_status: []
+      abilities: []
+      abilities_ongoing: []
+      is_playing_hand: 0
+    hero_invade_turn: 0
+    expansion_pack: []
+    cards_deck: []
+    cards_hand: []
+    cards_board: []
+    cards_equip: []
+    cards_discard: []
+    cards_secret: []
+    cards_temp: []
+    traits: []
+    ongoing_traits: []
+    status: []
+    ongoing_status: []
+    history_list: []
+  - player_id: 0
+    username: 
+    avatar: 
+    cardback: 
+    deck: 
+    is_ai: 0
+    ai_level: 0
+    connected: 0
+    ready: 0
+    hp: 0
+    hp_max: 0
+    mana: 0
+    mana_max: 0
+    kill_count: 0
+    max_boardcard_num: 0
+    can_move_attack: 0
+    hero_data:
+      card_id: 
+      uid: 
+      player_id: 0
+      variant_id: 
+      slot:
+        x: 0
+        y: 0
+        p: 0
+      exhausted: 0
+      damage: 0
+      card_arrow: 
+      mana: 0
+      attack: 0
+      hp: 0
+      mana_ongoing: 0
+      attack_ongoing: 0
+      hp_ongoing: 0
+      equipped_uid: 
+      dead_by_uid: 
+      destroied_naturally: 0
+      traits: []
+      ongoing_traits: []
+      status: []
+      ongoing_status: []
+      abilities: []
+      abilities_ongoing: []
+      is_playing_hand: 0
+    hero:
+      card_id: 
+      uid: 
+      player_id: 0
+      variant_id: 
+      slot:
+        x: 0
+        y: 0
+        p: 0
+      exhausted: 0
+      damage: 0
+      card_arrow: 
+      mana: 0
+      attack: 0
+      hp: 0
+      mana_ongoing: 0
+      attack_ongoing: 0
+      hp_ongoing: 0
+      equipped_uid: 
+      dead_by_uid: 
+      destroied_naturally: 0
+      traits: []
+      ongoing_traits: []
+      status: []
+      ongoing_status: []
+      abilities: []
+      abilities_ongoing: []
+      is_playing_hand: 0
     hero_invade_turn: 0
     expansion_pack: []
     cards_deck: []
@@ -121,5 +2792,6 @@ MonoBehaviour:
     ongoing_status: []
     history_list: []
   memory_slot: []
+  memory_turn: 
   referencingComponents:
   - {fileID: 11400000, guid: 7fd22b79e43545a4ab24b23d604e2ae7, type: 2}

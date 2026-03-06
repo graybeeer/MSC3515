@@ -18,6 +18,7 @@ namespace TcgEngine
         public List<CardType> has_type;
         public List<TeamData> has_team;
         public List<TraitData> has_trait;
+        public List<TraitData> has_trait_stat;
 
         public ConditionOperatorBool oper;
 
@@ -41,7 +42,8 @@ namespace TcgEngine
             bool is_type = (has_type.Count == 0) || has_type.Contains(CardType.None);
             bool is_team = has_team.Count == 0;
             bool is_trait = has_trait.Count == 0;
-            for(int i = 0; i < has_type.Count; i++)
+            bool is_trait_stat = has_trait_stat.Count == 0;
+            for (int i = 0; i < has_type.Count; i++)
             {
                 if (target.type == has_type[i])
                     is_type = true;
@@ -49,14 +51,19 @@ namespace TcgEngine
             for (int i = 0; i < has_team.Count; i++)
             {
                 if (target.team == has_team[i])
-                    is_type = true;
+                    is_team = true;
             }
             for (int i = 0; i < has_trait.Count; i++)
             {
                 if (target.HasTrait(has_trait[i]))
-                    is_type = true;
+                    is_trait = true;
             }
-            return CompareBool(is_type && is_team && is_trait, oper);
+            for (int i = 0; i < has_trait_stat.Count; i++)
+            {
+                if (target.HasStat(has_trait_stat[i]))
+                    is_trait_stat = true;
+            }
+            return CompareBool(is_type && is_team && is_trait && is_trait_stat, oper);
 
         }
 
@@ -65,6 +72,7 @@ namespace TcgEngine
             bool is_type = (has_type.Count == 0) || has_type.Contains(CardType.None);
             bool is_team = has_team.Count == 0;
             bool is_trait = has_trait.Count == 0;
+            bool is_trait_stat = has_trait_stat.Count == 0;
             for (int i = 0; i < has_type.Count; i++)
             {
                 if (card.CardData.type == has_type[i])
@@ -73,14 +81,19 @@ namespace TcgEngine
             for (int i = 0; i < has_team.Count; i++)
             {
                 if (card.CardData.team == has_team[i])
-                    is_type = true;
+                    is_team = true;
             }
             for (int i = 0; i < has_trait.Count; i++)
             {
                 if (card.CardData.HasTrait(has_trait[i]))
-                    is_type = true;
+                    is_trait = true;
             }
-            return (is_type && is_team && is_trait);
+            for (int i = 0; i < has_trait_stat.Count; i++)
+            {
+                if (card.HasStat(has_trait_stat[i]))
+                    is_trait_stat = true;
+            }
+            return (is_type && is_team && is_trait && is_trait_stat);
         }
     }
 }

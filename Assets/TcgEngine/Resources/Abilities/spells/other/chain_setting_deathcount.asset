@@ -10,17 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8ce5f81e5cc37f547af6923758602c8c, type: 3}
-  m_Name: start_turn_gain_ally_bloodstone
+  m_Name: chain_setting_deathcount
   m_EditorClassIdentifier: 
-  id: start_turn_gain_ally_bloodstone
-  trigger: 20
-  conditions_trigger:
-  - {fileID: 11400000, guid: 00511614df2ba714996da7ccda6c4bac, type: 2}
-  target: 4
+  id: chain_setting_deathcount
+  trigger: 0
+  conditions_trigger: []
+  target: 20
   conditions_target: []
   filters_target: []
   effects:
-  - {fileID: 11400000, guid: 241758707c5e1f5429ca382b59885ec3, type: 2}
+  - {fileID: 11400000, guid: 806a6792ad606c84db804506f6607362, type: 2}
   status: []
   value: 0
   duration: 0

@@ -81,12 +81,14 @@ MonoBehaviour:
       hp_ongoing: 0
       equipped_uid: 
       dead_by_uid: 
+      destroied_naturally: 0
       traits: []
       ongoing_traits: []
       status: []
       ongoing_status: []
       abilities: []
       abilities_ongoing: []
+      is_playing_hand: 0
     hero:
       card_id: 
       uid: 
@@ -107,12 +109,14 @@ MonoBehaviour:
       hp_ongoing: 0
       equipped_uid: 
       dead_by_uid: 
+      destroied_naturally: 0
       traits: []
       ongoing_traits: []
       status: []
       ongoing_status: []
       abilities: []
       abilities_ongoing: []
+      is_playing_hand: 0
     hero_invade_turn: 0
     expansion_pack: []
     cards_deck: []
@@ -163,12 +167,14 @@ MonoBehaviour:
       hp_ongoing: 0
       equipped_uid: 
       dead_by_uid: 
+      destroied_naturally: 0
       traits: []
       ongoing_traits: []
       status: []
       ongoing_status: []
       abilities: []
       abilities_ongoing: []
+      is_playing_hand: 0
     hero:
       card_id: 
       uid: 
@@ -189,12 +195,14 @@ MonoBehaviour:
       hp_ongoing: 0
       equipped_uid: 
       dead_by_uid: 
+      destroied_naturally: 0
       traits: []
       ongoing_traits: []
       status: []
       ongoing_status: []
       abilities: []
       abilities_ongoing: []
+      is_playing_hand: 0
     hero_invade_turn: 0
     expansion_pack: []
     cards_deck: []
@@ -245,12 +253,14 @@ MonoBehaviour:
       hp_ongoing: 0
       equipped_uid: 
       dead_by_uid: 
+      destroied_naturally: 0
       traits: []
       ongoing_traits: []
       status: []
       ongoing_status: []
       abilities: []
       abilities_ongoing: []
+      is_playing_hand: 0
     hero:
       card_id: 
       uid: 
@@ -271,12 +281,14 @@ MonoBehaviour:
       hp_ongoing: 0
       equipped_uid: 
       dead_by_uid: 
+      destroied_naturally: 0
       traits: []
       ongoing_traits: []
       status: []
       ongoing_status: []
       abilities: []
       abilities_ongoing: []
+      is_playing_hand: 0
     hero_invade_turn: 0
     expansion_pack: []
     cards_deck: []
@@ -327,12 +339,14 @@ MonoBehaviour:
       hp_ongoing: 0
       equipped_uid: 
       dead_by_uid: 
+      destroied_naturally: 0
       traits: []
       ongoing_traits: []
       status: []
       ongoing_status: []
       abilities: []
       abilities_ongoing: []
+      is_playing_hand: 0
     hero:
       card_id: 
       uid: 
@@ -353,12 +367,14 @@ MonoBehaviour:
       hp_ongoing: 0
       equipped_uid: 
       dead_by_uid: 
+      destroied_naturally: 0
       traits: []
       ongoing_traits: []
       status: []
       ongoing_status: []
       abilities: []
       abilities_ongoing: []
+      is_playing_hand: 0
     hero_invade_turn: 0
     expansion_pack: []
     cards_deck: []
@@ -409,12 +425,14 @@ MonoBehaviour:
       hp_ongoing: 0
       equipped_uid: 
       dead_by_uid: 
+      destroied_naturally: 0
       traits: []
       ongoing_traits: []
       status: []
       ongoing_status: []
       abilities: []
       abilities_ongoing: []
+      is_playing_hand: 0
     hero:
       card_id: 
       uid: 
@@ -435,12 +453,14 @@ MonoBehaviour:
       hp_ongoing: 0
       equipped_uid: 
       dead_by_uid: 
+      destroied_naturally: 0
       traits: []
       ongoing_traits: []
       status: []
       ongoing_status: []
       abilities: []
       abilities_ongoing: []
+      is_playing_hand: 0
     hero_invade_turn: 0
     expansion_pack: []
     cards_deck: []
@@ -491,12 +511,14 @@ MonoBehaviour:
       hp_ongoing: 0
       equipped_uid: 
       dead_by_uid: 
+      destroied_naturally: 0
       traits: []
       ongoing_traits: []
       status: []
       ongoing_status: []
       abilities: []
       abilities_ongoing: []
+      is_playing_hand: 0
     hero:
       card_id: 
       uid: 
@@ -517,12 +539,14 @@ MonoBehaviour:
       hp_ongoing: 0
       equipped_uid: 
       dead_by_uid: 
+      destroied_naturally: 0
       traits: []
       ongoing_traits: []
       status: []
       ongoing_status: []
       abilities: []
       abilities_ongoing: []
+      is_playing_hand: 0
     hero_invade_turn: 0
     expansion_pack: []
     cards_deck: []
@@ -573,12 +597,14 @@ MonoBehaviour:
       hp_ongoing: 0
       equipped_uid: 
       dead_by_uid: 
+      destroied_naturally: 0
       traits: []
       ongoing_traits: []
       status: []
       ongoing_status: []
       abilities: []
       abilities_ongoing: []
+      is_playing_hand: 0
     hero:
       card_id: 
       uid: 
@@ -599,12 +625,14 @@ MonoBehaviour:
       hp_ongoing: 0
       equipped_uid: 
       dead_by_uid: 
+      destroied_naturally: 0
       traits: []
       ongoing_traits: []
       status: []
       ongoing_status: []
       abilities: []
       abilities_ongoing: []
+      is_playing_hand: 0
     hero_invade_turn: 0
     expansion_pack: []
     cards_deck: []
@@ -655,12 +683,14 @@ MonoBehaviour:
       hp_ongoing: 0
       equipped_uid: 
       dead_by_uid: 
+      destroied_naturally: 0
       traits: []
       ongoing_traits: []
       status: []
       ongoing_status: []
       abilities: []
       abilities_ongoing: []
+      is_playing_hand: 0
     hero:
       card_id: 
       uid: 
@@ -681,12 +711,14 @@ MonoBehaviour:
       hp_ongoing: 0
       equipped_uid: 
       dead_by_uid: 
+      destroied_naturally: 0
       traits: []
       ongoing_traits: []
       status: []
       ongoing_status: []
       abilities: []
       abilities_ongoing: []
+      is_playing_hand: 0
     hero_invade_turn: 0
     expansion_pack: []
     cards_deck: []
@@ -737,12 +769,14 @@ MonoBehaviour:
       hp_ongoing: 0
       equipped_uid: 
       dead_by_uid: 
+      destroied_naturally: 0
       traits: []
       ongoing_traits: []
       status: []
       ongoing_status: []
       abilities: []
       abilities_ongoing: []
+      is_playing_hand: 0
     hero:
       card_id: 
       uid: 
@@ -763,12 +797,14 @@ MonoBehaviour:
       hp_ongoing: 0
       equipped_uid: 
       dead_by_uid: 
+      destroied_naturally: 0
       traits: []
       ongoing_traits: []
       status: []
       ongoing_status: []
       abilities: []
       abilities_ongoing: []
+      is_playing_hand: 0
     hero_invade_turn: 0
     expansion_pack: []
     cards_deck: []
@@ -819,12 +855,14 @@ MonoBehaviour:
       hp_ongoing: 0
       equipped_uid: 
       dead_by_uid: 
+      destroied_naturally: 0
       traits: []
       ongoing_traits: []
       status: []
       ongoing_status: []
       abilities: []
       abilities_ongoing: []
+      is_playing_hand: 0
     hero:
       card_id: 
       uid: 
@@ -845,12 +883,14 @@ MonoBehaviour:
       hp_ongoing: 0
       equipped_uid: 
       dead_by_uid: 
+      destroied_naturally: 0
       traits: []
       ongoing_traits: []
       status: []
       ongoing_status: []
       abilities: []
       abilities_ongoing: []
+      is_playing_hand: 0
     hero_invade_turn: 0
     expansion_pack: []
     cards_deck: []
@@ -901,12 +941,14 @@ MonoBehaviour:
       hp_ongoing: 0
       equipped_uid: 
       dead_by_uid: 
+      destroied_naturally: 0
       traits: []
       ongoing_traits: []
       status: []
       ongoing_status: []
       abilities: []
       abilities_ongoing: []
+      is_playing_hand: 0
     hero:
       card_id: 
       uid: 
@@ -927,12 +969,14 @@ MonoBehaviour:
       hp_ongoing: 0
       equipped_uid: 
       dead_by_uid: 
+      destroied_naturally: 0
       traits: []
       ongoing_traits: []
       status: []
       ongoing_status: []
       abilities: []
       abilities_ongoing: []
+      is_playing_hand: 0
     hero_invade_turn: 0
     expansion_pack: []
     cards_deck: []
@@ -983,12 +1027,14 @@ MonoBehaviour:
       hp_ongoing: 0
       equipped_uid: 
       dead_by_uid: 
+      destroied_naturally: 0
       traits: []
       ongoing_traits: []
       status: []
       ongoing_status: []
       abilities: []
       abilities_ongoing: []
+      is_playing_hand: 0
     hero:
       card_id: 
       uid: 
@@ -1009,12 +1055,14 @@ MonoBehaviour:
       hp_ongoing: 0
       equipped_uid: 
       dead_by_uid: 
+      destroied_naturally: 0
       traits: []
       ongoing_traits: []
       status: []
       ongoing_status: []
       abilities: []
       abilities_ongoing: []
+      is_playing_hand: 0
     hero_invade_turn: 0
     expansion_pack: []
     cards_deck: []
@@ -1065,12 +1113,14 @@ MonoBehaviour:
       hp_ongoing: 0
       equipped_uid: 
       dead_by_uid: 
+      destroied_naturally: 0
       traits: []
       ongoing_traits: []
       status: []
       ongoing_status: []
       abilities: []
       abilities_ongoing: []
+      is_playing_hand: 0
     hero:
       card_id: 
       uid: 
@@ -1091,12 +1141,14 @@ MonoBehaviour:
       hp_ongoing: 0
       equipped_uid: 
       dead_by_uid: 
+      destroied_naturally: 0
       traits: []
       ongoing_traits: []
       status: []
       ongoing_status: []
       abilities: []
       abilities_ongoing: []
+      is_playing_hand: 0
     hero_invade_turn: 0
     expansion_pack: []
     cards_deck: []
@@ -1147,12 +1199,14 @@ MonoBehaviour:
       hp_ongoing: 0
       equipped_uid: 
       dead_by_uid: 
+      destroied_naturally: 0
       traits: []
       ongoing_traits: []
       status: []
       ongoing_status: []
       abilities: []
       abilities_ongoing: []
+      is_playing_hand: 0
     hero:
       card_id: 
       uid: 
@@ -1173,12 +1227,14 @@ MonoBehaviour:
       hp_ongoing: 0
       equipped_uid: 
       dead_by_uid: 
+      destroied_naturally: 0
       traits: []
       ongoing_traits: []
       status: []
       ongoing_status: []
       abilities: []
       abilities_ongoing: []
+      is_playing_hand: 0
     hero_invade_turn: 0
     expansion_pack: []
     cards_deck: []
@@ -1229,12 +1285,14 @@ MonoBehaviour:
       hp_ongoing: 0
       equipped_uid: 
       dead_by_uid: 
+      destroied_naturally: 0
       traits: []
       ongoing_traits: []
       status: []
       ongoing_status: []
       abilities: []
       abilities_ongoing: []
+      is_playing_hand: 0
     hero:
       card_id: 
       uid: 
@@ -1255,12 +1313,14 @@ MonoBehaviour:
       hp_ongoing: 0
       equipped_uid: 
       dead_by_uid: 
+      destroied_naturally: 0
       traits: []
       ongoing_traits: []
       status: []
       ongoing_status: []
       abilities: []
       abilities_ongoing: []
+      is_playing_hand: 0
     hero_invade_turn: 0
     expansion_pack: []
     cards_deck: []
@@ -1311,12 +1371,14 @@ MonoBehaviour:
       hp_ongoing: 0
       equipped_uid: 
       dead_by_uid: 
+      destroied_naturally: 0
       traits: []
       ongoing_traits: []
       status: []
       ongoing_status: []
       abilities: []
       abilities_ongoing: []
+      is_playing_hand: 0
     hero:
       card_id: 
       uid: 
@@ -1337,12 +1399,14 @@ MonoBehaviour:
       hp_ongoing: 0
       equipped_uid: 
       dead_by_uid: 
+      destroied_naturally: 0
       traits: []
       ongoing_traits: []
       status: []
       ongoing_status: []
       abilities: []
       abilities_ongoing: []
+      is_playing_hand: 0
     hero_invade_turn: 0
     expansion_pack: []
     cards_deck: []
@@ -1393,12 +1457,14 @@ MonoBehaviour:
       hp_ongoing: 0
       equipped_uid: 
       dead_by_uid: 
+      destroied_naturally: 0
       traits: []
       ongoing_traits: []
       status: []
       ongoing_status: []
       abilities: []
       abilities_ongoing: []
+      is_playing_hand: 0
     hero:
       card_id: 
       uid: 
@@ -1419,12 +1485,14 @@ MonoBehaviour:
       hp_ongoing: 0
       equipped_uid: 
       dead_by_uid: 
+      destroied_naturally: 0
       traits: []
       ongoing_traits: []
       status: []
       ongoing_status: []
       abilities: []
       abilities_ongoing: []
+      is_playing_hand: 0
     hero_invade_turn: 0
     expansion_pack: []
     cards_deck: []
@@ -1475,12 +1543,14 @@ MonoBehaviour:
       hp_ongoing: 0
       equipped_uid: 
       dead_by_uid: 
+      destroied_naturally: 0
       traits: []
       ongoing_traits: []
       status: []
       ongoing_status: []
       abilities: []
       abilities_ongoing: []
+      is_playing_hand: 0
     hero:
       card_id: 
       uid: 
@@ -1501,12 +1571,14 @@ MonoBehaviour:
       hp_ongoing: 0
       equipped_uid: 
       dead_by_uid: 
+      destroied_naturally: 0
       traits: []
       ongoing_traits: []
       status: []
       ongoing_status: []
       abilities: []
       abilities_ongoing: []
+      is_playing_hand: 0
     hero_invade_turn: 0
     expansion_pack: []
     cards_deck: []
@@ -1557,12 +1629,14 @@ MonoBehaviour:
       hp_ongoing: 0
       equipped_uid: 
       dead_by_uid: 
+      destroied_naturally: 0
       traits: []
       ongoing_traits: []
       status: []
       ongoing_status: []
       abilities: []
       abilities_ongoing: []
+      is_playing_hand: 0
     hero:
       card_id: 
       uid: 
@@ -1583,12 +1657,14 @@ MonoBehaviour:
       hp_ongoing: 0
       equipped_uid: 
       dead_by_uid: 
+      destroied_naturally: 0
       traits: []
       ongoing_traits: []
       status: []
       ongoing_status: []
       abilities: []
       abilities_ongoing: []
+      is_playing_hand: 0
     hero_invade_turn: 0
     expansion_pack: []
     cards_deck: []
@@ -1639,12 +1715,14 @@ MonoBehaviour:
       hp_ongoing: 0
       equipped_uid: 
       dead_by_uid: 
+      destroied_naturally: 0
       traits: []
       ongoing_traits: []
       status: []
       ongoing_status: []
       abilities: []
       abilities_ongoing: []
+      is_playing_hand: 0
     hero:
       card_id: 
       uid: 
@@ -1665,12 +1743,14 @@ MonoBehaviour:
       hp_ongoing: 0
       equipped_uid: 
       dead_by_uid: 
+      destroied_naturally: 0
       traits: []
       ongoing_traits: []
       status: []
       ongoing_status: []
       abilities: []
       abilities_ongoing: []
+      is_playing_hand: 0
     hero_invade_turn: 0
     expansion_pack: []
     cards_deck: []
@@ -1721,12 +1801,14 @@ MonoBehaviour:
       hp_ongoing: 0
       equipped_uid: 
       dead_by_uid: 
+      destroied_naturally: 0
       traits: []
       ongoing_traits: []
       status: []
       ongoing_status: []
       abilities: []
       abilities_ongoing: []
+      is_playing_hand: 0
     hero:
       card_id: 
       uid: 
@@ -1747,12 +1829,14 @@ MonoBehaviour:
       hp_ongoing: 0
       equipped_uid: 
       dead_by_uid: 
+      destroied_naturally: 0
       traits: []
       ongoing_traits: []
       status: []
       ongoing_status: []
       abilities: []
       abilities_ongoing: []
+      is_playing_hand: 0
     hero_invade_turn: 0
     expansion_pack: []
     cards_deck: []
@@ -1803,12 +1887,14 @@ MonoBehaviour:
       hp_ongoing: 0
       equipped_uid: 
       dead_by_uid: 
+      destroied_naturally: 0
       traits: []
       ongoing_traits: []
       status: []
       ongoing_status: []
       abilities: []
       abilities_ongoing: []
+      is_playing_hand: 0
     hero:
       card_id: 
       uid: 
@@ -1829,12 +1915,14 @@ MonoBehaviour:
       hp_ongoing: 0
       equipped_uid: 
       dead_by_uid: 
+      destroied_naturally: 0
       traits: []
       ongoing_traits: []
       status: []
       ongoing_status: []
       abilities: []
       abilities_ongoing: []
+      is_playing_hand: 0
     hero_invade_turn: 0
     expansion_pack: []
     cards_deck: []
@@ -1885,12 +1973,14 @@ MonoBehaviour:
       hp_ongoing: 0
       equipped_uid: 
       dead_by_uid: 
+      destroied_naturally: 0
       traits: []
       ongoing_traits: []
       status: []
       ongoing_status: []
       abilities: []
       abilities_ongoing: []
+      is_playing_hand: 0
     hero:
       card_id: 
       uid: 
@@ -1911,12 +2001,14 @@ MonoBehaviour:
       hp_ongoing: 0
       equipped_uid: 
       dead_by_uid: 
+      destroied_naturally: 0
       traits: []
       ongoing_traits: []
       status: []
       ongoing_status: []
       abilities: []
       abilities_ongoing: []
+      is_playing_hand: 0
     hero_invade_turn: 0
     expansion_pack: []
     cards_deck: []
@@ -1967,12 +2059,14 @@ MonoBehaviour:
       hp_ongoing: 0
       equipped_uid: 
       dead_by_uid: 
+      destroied_naturally: 0
       traits: []
       ongoing_traits: []
       status: []
       ongoing_status: []
       abilities: []
       abilities_ongoing: []
+      is_playing_hand: 0
     hero:
       card_id: 
       uid: 
@@ -1993,12 +2087,14 @@ MonoBehaviour:
       hp_ongoing: 0
       equipped_uid: 
       dead_by_uid: 
+      destroied_naturally: 0
       traits: []
       ongoing_traits: []
       status: []
       ongoing_status: []
       abilities: []
       abilities_ongoing: []
+      is_playing_hand: 0
     hero_invade_turn: 0
     expansion_pack: []
     cards_deck: []
@@ -2049,12 +2145,14 @@ MonoBehaviour:
       hp_ongoing: 0
       equipped_uid: 
       dead_by_uid: 
+      destroied_naturally: 0
       traits: []
       ongoing_traits: []
       status: []
       ongoing_status: []
       abilities: []
       abilities_ongoing: []
+      is_playing_hand: 0
     hero:
       card_id: 
       uid: 
@@ -2075,12 +2173,14 @@ MonoBehaviour:
       hp_ongoing: 0
       equipped_uid: 
       dead_by_uid: 
+      destroied_naturally: 0
       traits: []
       ongoing_traits: []
       status: []
       ongoing_status: []
       abilities: []
       abilities_ongoing: []
+      is_playing_hand: 0
     hero_invade_turn: 0
     expansion_pack: []
     cards_deck: []
@@ -2131,12 +2231,14 @@ MonoBehaviour:
       hp_ongoing: 0
       equipped_uid: 
       dead_by_uid: 
+      destroied_naturally: 0
       traits: []
       ongoing_traits: []
       status: []
       ongoing_status: []
       abilities: []
       abilities_ongoing: []
+      is_playing_hand: 0
     hero:
       card_id: 
       uid: 
@@ -2157,12 +2259,14 @@ MonoBehaviour:
       hp_ongoing: 0
       equipped_uid: 
       dead_by_uid: 
+      destroied_naturally: 0
       traits: []
       ongoing_traits: []
       status: []
       ongoing_status: []
       abilities: []
       abilities_ongoing: []
+      is_playing_hand: 0
     hero_invade_turn: 0
     expansion_pack: []
     cards_deck: []
@@ -2213,12 +2317,14 @@ MonoBehaviour:
       hp_ongoing: 0
       equipped_uid: 
       dead_by_uid: 
+      destroied_naturally: 0
       traits: []
       ongoing_traits: []
       status: []
       ongoing_status: []
       abilities: []
       abilities_ongoing: []
+      is_playing_hand: 0
     hero:
       card_id: 
       uid: 
@@ -2239,12 +2345,14 @@ MonoBehaviour:
       hp_ongoing: 0
       equipped_uid: 
       dead_by_uid: 
+      destroied_naturally: 0
       traits: []
       ongoing_traits: []
       status: []
       ongoing_status: []
       abilities: []
       abilities_ongoing: []
+      is_playing_hand: 0
     hero_invade_turn: 0
     expansion_pack: []
     cards_deck: []
@@ -2295,12 +2403,14 @@ MonoBehaviour:
       hp_ongoing: 0
       equipped_uid: 
       dead_by_uid: 
+      destroied_naturally: 0
       traits: []
       ongoing_traits: []
       status: []
       ongoing_status: []
       abilities: []
       abilities_ongoing: []
+      is_playing_hand: 0
     hero:
       card_id: 
       uid: 
@@ -2321,12 +2431,14 @@ MonoBehaviour:
       hp_ongoing: 0
       equipped_uid: 
       dead_by_uid: 
+      destroied_naturally: 0
       traits: []
       ongoing_traits: []
       status: []
       ongoing_status: []
       abilities: []
       abilities_ongoing: []
+      is_playing_hand: 0
     hero_invade_turn: 0
     expansion_pack: []
     cards_deck: []
@@ -2377,12 +2489,14 @@ MonoBehaviour:
       hp_ongoing: 0
       equipped_uid: 
       dead_by_uid: 
+      destroied_naturally: 0
       traits: []
       ongoing_traits: []
       status: []
       ongoing_status: []
       abilities: []
       abilities_ongoing: []
+      is_playing_hand: 0
     hero:
       card_id: 
       uid: 
@@ -2403,12 +2517,14 @@ MonoBehaviour:
       hp_ongoing: 0
       equipped_uid: 
       dead_by_uid: 
+      destroied_naturally: 0
       traits: []
       ongoing_traits: []
       status: []
       ongoing_status: []
       abilities: []
       abilities_ongoing: []
+      is_playing_hand: 0
     hero_invade_turn: 0
     expansion_pack: []
     cards_deck: []
@@ -2459,12 +2575,14 @@ MonoBehaviour:
       hp_ongoing: 0
       equipped_uid: 
       dead_by_uid: 
+      destroied_naturally: 0
       traits: []
       ongoing_traits: []
       status: []
       ongoing_status: []
       abilities: []
       abilities_ongoing: []
+      is_playing_hand: 0
     hero:
       card_id: 
       uid: 
@@ -2485,12 +2603,14 @@ MonoBehaviour:
       hp_ongoing: 0
       equipped_uid: 
       dead_by_uid: 
+      destroied_naturally: 0
       traits: []
       ongoing_traits: []
       status: []
       ongoing_status: []
       abilities: []
       abilities_ongoing: []
+      is_playing_hand: 0
     hero_invade_turn: 0
     expansion_pack: []
     cards_deck: []
@@ -2541,12 +2661,14 @@ MonoBehaviour:
       hp_ongoing: 0
       equipped_uid: 
       dead_by_uid: 
+      destroied_naturally: 0
       traits: []
       ongoing_traits: []
       status: []
       ongoing_status: []
       abilities: []
       abilities_ongoing: []
+      is_playing_hand: 0
     hero:
       card_id: 
       uid: 
@@ -2567,12 +2689,14 @@ MonoBehaviour:
       hp_ongoing: 0
       equipped_uid: 
       dead_by_uid: 
+      destroied_naturally: 0
       traits: []
       ongoing_traits: []
       status: []
       ongoing_status: []
       abilities: []
       abilities_ongoing: []
+      is_playing_hand: 0
     hero_invade_turn: 0
     expansion_pack: []
     cards_deck: []
@@ -2623,12 +2747,14 @@ MonoBehaviour:
       hp_ongoing: 0
       equipped_uid: 
       dead_by_uid: 
+      destroied_naturally: 0
       traits: []
       ongoing_traits: []
       status: []
       ongoing_status: []
       abilities: []
       abilities_ongoing: []
+      is_playing_hand: 0
     hero:
       card_id: 
       uid: 
@@ -2649,12 +2775,14 @@ MonoBehaviour:
       hp_ongoing: 0
       equipped_uid: 
       dead_by_uid: 
+      destroied_naturally: 0
       traits: []
       ongoing_traits: []
       status: []
       ongoing_status: []
       abilities: []
       abilities_ongoing: []
+      is_playing_hand: 0
     hero_invade_turn: 0
     expansion_pack: []
     cards_deck: []
@@ -2670,4 +2798,6 @@ MonoBehaviour:
     ongoing_status: []
     history_list: []
   memory_slot: []
-  referencingComponents: []
+  memory_turn: 
+  referencingComponents:
+  - {fileID: 11400000, guid: 3d8e374805d0ae34c815eb620b212402, type: 2}

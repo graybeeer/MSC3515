@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d028860b966ab8f44908a62e25280a39, type: 3}
+  m_Name: has_deathcount
+  m_EditorClassIdentifier: 
+  referencingComponents:
+  - {fileID: 11400000, guid: 9a2fb3272de57d64b814dec82b0c2da1, type: 2}
+  - {fileID: 11400000, guid: 0c9822306ed60484e84b7e53fe9cf582, type: 2}
+  has_type: 
+  has_team: []
+  has_trait: []
+  has_trait_stat:
+  - {fileID: 11400000, guid: 5e31f4b4dedaa534e9790657d14a8c84, type: 2}
+  oper: 0

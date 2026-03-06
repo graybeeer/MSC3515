@@ -6,7 +6,7 @@ using UnityEngine;
 namespace TcgEngine
 {
 
-    [CreateAssetMenu(fileName = "condition", menuName = "TcgEngine/Condition/dfff", order = 99)]
+    [CreateAssetMenu(fileName = "condition", menuName = "TcgEngine/Condition/MemoriedTurn_legacy", order = 99)]
     public class ConditionMemoriedTurn : ConditionData
     {
         //[Header("현재 어빌리티에 기억된 턴인지")]

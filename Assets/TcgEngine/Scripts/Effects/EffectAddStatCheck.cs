@@ -6,7 +6,7 @@ using TcgEngine.Gameplay;
 namespace TcgEngine
 {
     /// <summary>
-    /// Effect that sets stats equal to a dynamic calculated value from a pile (number of cards on board/hand/deck)
+    /// 
     /// </summary>
     
     [CreateAssetMenu(fileName = "effect", menuName = "TcgEngine/Effect/AddStatCheck", order = 10)]

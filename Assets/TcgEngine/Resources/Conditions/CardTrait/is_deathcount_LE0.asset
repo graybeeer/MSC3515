@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc5ee312d5d0efd448bf6e1a851af5ce, type: 3}
+  m_Name: is_deathcount_LE0
+  m_EditorClassIdentifier: 
+  referencingComponents: []
+  trait: {fileID: 11400000, guid: 5e31f4b4dedaa534e9790657d14a8c84, type: 2}
+  oper: 3
+  value: 0

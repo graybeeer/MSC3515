@@ -9,7 +9,7 @@ namespace TcgEngine
     /// Effect that sets custom stats to a specific value
     /// </summary>
     
-    [CreateAssetMenu(fileName = "effect", menuName = "TcgEngine/Effect/SetStatCustom", order = 10)]
+    [CreateAssetMenu(fileName = "effect", menuName = "TcgEngine/Effect/SetTraitStatCustom", order = 70)]
     public class EffectSetTrait : EffectData
     {
         public TraitData trait;

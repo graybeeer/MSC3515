@@ -9,9 +9,10 @@ namespace TcgEngine
     /// Effect that adds card/player custom stats or traits
     /// </summary>
 
-    [CreateAssetMenu(fileName = "effect", menuName = "TcgEngine/Effect/AddTrait", order = 10)]
+    [CreateAssetMenu(fileName = "effect", menuName = "TcgEngine/Effect/AddTrait", order = 70)]
     public class EffectAddTrait : EffectData
     {
+        //[Header("체크하면 trait값")]
         public TraitData trait;
 
         public override void DoEffect(GameLogic logic, AbilityData ability, Card caster, Player target)

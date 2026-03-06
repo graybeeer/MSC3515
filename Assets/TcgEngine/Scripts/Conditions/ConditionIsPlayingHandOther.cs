@@ -6,7 +6,7 @@ using static UnityEngine.GraphicsBuffer;
 
 namespace TcgEngine
 {
-    [CreateAssetMenu(fileName = "condition", menuName = "TcgEngine/Condition/IsPlayingHandOther", order = 1)]
+    [CreateAssetMenu(fileName = "condition", menuName = "TcgEngine/Condition/IsPlayingHandOther", order = 70)]
     public class ConditionIsPlayingHandOther : ConditionData
     {
         [Header("패에서 발동한 카드인지")]
