@@ -14,17 +14,18 @@ namespace TcgEngine
 
         public override bool IsTargetConditionMet(Game data, AbilityData ability, Card caster, Card target)
         {
-            return CompareBool(ability.memory_card_uid.Contains(target.uid), oper);
+            //Debug.Log(caster.memory.memories);
+            return CompareBool(caster.memory.Contains(ability, target.uid), oper);
         }
 
         public override bool IsTargetConditionMet(Game data, AbilityData ability, Card caster, Player target)
         {
-            return CompareBool(ability.memory_player.Contains(target), oper);
+            return CompareBool(caster.memory.Contains(ability, target), oper);
         }
 
         public override bool IsTargetConditionMet(Game data, AbilityData ability, Card caster, Slot target)
         {
-            return CompareBool(ability.memory_slot.Contains(target), oper);
+            return CompareBool(caster.memory.Contains(ability, target), oper);
         }
     }
 }

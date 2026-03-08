@@ -62,6 +62,7 @@ namespace TcgEngine.Gameplay
         private List<Card> cards_to_clear = new List<Card>();
 
         float msc_time = 0f;
+        int max_chain_count = 30; //최대 체인 반복 횟수
 
         public GameLogic(bool is_ai)
         {
@@ -324,6 +325,7 @@ namespace TcgEngine.Gameplay
                 Player player = game_data.GetPlayer(winner);
                 onGameEnd?.Invoke(player);
                 RefreshData();
+                //Debug.Log("게임종료");
             }
         }
 
@@ -1543,26 +1545,42 @@ namespace TcgEngine.Gameplay
             UpdateOngoing();
             CheckForWinner();
 
+            bool chain_ckeck = false;
             //Chain ability
             if (iability.target != AbilityTarget.ChoiceSelector && game_data.state != GameState.GameEnded)
             {
                 foreach (AbilityData chain_ability in iability.chain_abilities)
                 {
-                    if (chain_ability != null)
+                    if (chain_ability != null && caster.chain_count <= max_chain_count)
                     {
                         TriggerCardAbility(chain_ability, caster);
-                        chain_ability.memory_card_uid.AddRange(iability.memory_card_uid);
+                        /*
+                        chain_ability.memory_card.AddRange(iability.memory_card);
                         chain_ability.memory_slot.AddRange(iability.memory_slot);
                         chain_ability.memory_player.AddRange(iability.memory_player);
                         chain_ability.memory_turn.AddRange(iability.memory_turn);
+                        */
+                        caster.memory.Chain(iability, chain_ability);
+
+                        caster.chain_count++;
+                        //Debug.Log("체인횟수:" + caster.chain_count);
+                        chain_ckeck = true;
                     }
                 }
             }
 
+            resolve_queue.ResolveAll();
             onAbilityEnd?.Invoke(iability, caster);
-            resolve_queue.ResolveAll(); //모든 어빌리티 효과랑 fx 끝나고 대기시간 (필요없)
+
+            //모든 어빌리티 효과랑 fx 끝나고 대기시간 (필요없)
             //float ability_time = iability.fx_time == 0 ? msc_time : iability.fx_time;
             //resolve_queue.ResolveAll(ability_time);
+
+            if (!chain_ckeck) //체인이 끝났으면
+            {
+                //Debug.Log("끝!"); 
+                caster.chain_count = 0; //카드 체인카운트 0, 나중에 모든 카드 체인카운트 0으로 만들어야하나?
+            }
             RefreshData();
         }
 

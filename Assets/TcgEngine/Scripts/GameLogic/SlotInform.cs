@@ -10,7 +10,7 @@ namespace TcgEngine
         public void AddSlotData(Slot slot, int controlPlayerID, bool deep)
         {
             /*
-            if (CheckSlot(slot))
+            if (ContainsSlot(slot))
                 slotData.Remove(GetSlotData(slot)); //기존에 있던 슬롯 정보는 삭제. 새로운 정보로 대체됨
 
             SlotData temp = new SlotData();
@@ -24,7 +24,7 @@ namespace TcgEngine
         }
         public void AddSlotData(int temp_slot_x,int temp_slot_y, int controlPlayerID, bool deep)
         {
-            if (CheckSlot(temp_slot_x,temp_slot_y))
+            if (ContainsSlot(temp_slot_x,temp_slot_y))
                 slotData.Remove(GetSlotData(temp_slot_x, temp_slot_y)); //기존에 있던 슬롯 정보는 삭제. 새로운 정보로 대체됨
 
             SlotData temp = new SlotData();
@@ -35,7 +35,7 @@ namespace TcgEngine
             slotData.Add(temp);
         }
         
-        public bool CheckSlot(int x, int y)
+        public bool ContainsSlot(int x, int y)
         {
             foreach (var tempSlot in slotData)
             {
@@ -46,7 +46,7 @@ namespace TcgEngine
         }
         public bool CheckSlot(Slot slot)
         {
-            return CheckSlot(slot.x, slot.y);
+            return ContainsSlot(slot.x, slot.y);
         }
         public SlotData GetSlotData(int x, int y)
         {

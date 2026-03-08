@@ -75,7 +75,7 @@ namespace TcgEngine.Client
 
         private static GameClient instance;
 
-        float msc_time = 0.4f;
+        float msc_time = 0.1f;
 
         protected virtual void Awake()
         {
@@ -480,15 +480,15 @@ namespace TcgEngine.Client
 
         private void OnGameEnd(SerializedData sdata)
         {
-            MsgPlayer msg = sdata.Get<MsgPlayer>();
+            MscMsgPlayer msg = sdata.Get<MscMsgPlayer>();
             ClientFXQueue.AddCallback(sdata, OnGameEndFX);
             ClientFXQueue.ResolveAll();
         }
         private void OnGameEndFX(SerializedData sdata)
         {
-            MsgPlayer msg = sdata.Get<MsgPlayer>();
+            MscMsgPlayer msg = sdata.Get<MscMsgPlayer>();
             onGameEnd?.Invoke(msg.player_id);
-            RefreshAllCurrent(game_data);
+            RefreshAllCurrent(msg.game_data);
 
         }
 

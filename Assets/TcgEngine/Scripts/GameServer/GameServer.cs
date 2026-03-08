@@ -712,7 +712,8 @@ namespace TcgEngine.Server
 
         protected virtual void OnGameEnd(Player winner)
         {
-            MsgPlayer msg = new MsgPlayer();
+            MscMsgPlayer msg = new MscMsgPlayer();
+            msg.game_data = GetGameData();
             msg.player_id = winner != null ? winner.player_id : -1;
             SendToAll(GameAction.GameEnd, msg, NetworkDelivery.ReliableFragmentedSequenced);
 

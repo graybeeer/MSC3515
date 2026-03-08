@@ -54,14 +54,16 @@ namespace TcgEngine
 
         //기억정보
         //체인 어빌리티가 실행될때 해당 저장된 기억정보가 넘어가 추가된다.
+        /*
         [HideInInspector]
-        public List<string> memory_card_uid = new List<string>();
+        public List<string> memory_card = new List<string>();
         [HideInInspector]
         public List<Player> memory_player = new List<Player>();
         [HideInInspector]
         public List<Slot> memory_slot = new List<Slot>();
         [HideInInspector]
         public List<int> memory_turn = new List<int>();
+        */
 
         [Space(30)]
         [Header("이 데이터를 참조하는 다른 데이터")]

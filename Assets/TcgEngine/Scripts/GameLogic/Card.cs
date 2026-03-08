@@ -54,6 +54,12 @@ namespace TcgEngine
         [System.NonSerialized] private List<AbilityData> abilities_data = null;
 
         public bool is_playing_hand; //on play때 이 카드가 패에서 내고 있을때만 true(전투의 함성)
+        [System.NonSerialized] public int chain_count = 0; //체인된 횟수
+
+        //기억정보
+        //체인 어빌리티가 실행될때 해당 저장된 기억정보가 넘어가 추가된다.
+        [System.NonSerialized] public CardMemory memory = new CardMemory();
+
 
         public Card(string card_id, string uid, int player_id) { this.card_id = card_id; this.uid = uid; this.player_id = player_id; }
 
@@ -387,7 +393,8 @@ namespace TcgEngine
         }
         public void AddAbility(AbilityData ability, Card temp_card)
         {
-            ability.memory_card_uid.Add(temp_card.uid);
+            //ability.memory_card.Add(temp_card.uid);
+            memory.Add(ability, temp_card.uid);
 
             abilities.Add(ability.id);
             if (abilities_data != null)
@@ -395,7 +402,8 @@ namespace TcgEngine
         }
         public void AddAbility(AbilityData ability, Player temp_player)
         {
-            ability.memory_player.Add(temp_player);
+            //ability.memory_player.Add(temp_player);
+            memory.Add(ability, temp_player);
 
             abilities.Add(ability.id);
             if (abilities_data != null)
@@ -403,7 +411,8 @@ namespace TcgEngine
         }
         public void AddAbility(AbilityData ability, Slot temp_slot)
         {
-            ability.memory_slot.Add(temp_slot);
+            //ability.memory_slot.Add(temp_slot);
+            memory.Add(ability, temp_slot);
 
             abilities.Add(ability.id);
             if (abilities_data != null)
@@ -411,7 +420,8 @@ namespace TcgEngine
         }
         public void AddAbility(AbilityData ability, int temp_int)
         {
-            ability.memory_turn.Add(temp_int);
+            //ability.memory_turn.Add(temp_int);
+            memory.Add(ability, temp_int);
 
             abilities.Add(ability.id);
             if (abilities_data != null)
