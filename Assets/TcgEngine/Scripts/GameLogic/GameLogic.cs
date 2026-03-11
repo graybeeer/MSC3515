@@ -188,6 +188,10 @@ namespace TcgEngine.Gameplay
             {
                 DrawCard(player, GameplayData.Get().cards_per_turn);
             }
+            if (game_data.turn_count > 150)
+            {
+                EndGame(-1);
+            }
 
             //Mana 
             player.mana_max += GameplayData.Get().mana_per_turn;
@@ -1236,7 +1240,7 @@ namespace TcgEngine.Gameplay
             game_data.last_destroyed = card.uid;
 
             //Remove from bearer
-            Card bearer = player.GetBearerCard(card);
+            Card bearer = player.GetBearerCard_legacy(card);
             if (bearer != null)
                 bearer.equipped_uid = null;
 
@@ -1251,6 +1255,8 @@ namespace TcgEngine.Gameplay
                 //Debug.Log("" + islot + icard + nowturn + player);
                 UpdateOngoingCards(); //Not UpdateOngoing() here to avoid recursive calls in UpdateOngoingKills
             }
+            //추가- 메모리 초기화
+            card.memory.Clear();
 
             cards_to_clear.Add(card); //Will be Clear() in the next UpdateOngoing, so that simultaneous damage effects work
             onCardDiscarded?.Invoke(card);
@@ -1684,7 +1690,7 @@ namespace TcgEngine.Gameplay
                         Card card = player.cards_equip[i];
                         if (card.GetHP() <= 0)
                             DiscardCard(card);
-                        Card bearer = player.GetBearerCard(card);
+                        Card bearer = player.GetBearerCard_legacy(card);
                         if (bearer == null)
                             DiscardCard(card);
                     }
@@ -1764,7 +1770,7 @@ namespace TcgEngine.Gameplay
                             if (card.CardData.IsEquipment())
                             {
                                 //Get bearer of the equipment
-                                Card target = player.GetBearerCard(card);
+                                Card target = player.GetBearerCard_legacy(card);
                                 if (target != null && ability.AreTargetConditionsMet(game_data, card, target))
                                 {
                                     ability.DoOngoingEffects(this, card, target);

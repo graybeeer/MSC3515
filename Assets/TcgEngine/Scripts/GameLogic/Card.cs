@@ -54,12 +54,11 @@ namespace TcgEngine
         [System.NonSerialized] private List<AbilityData> abilities_data = null;
 
         public bool is_playing_hand; //on play때 이 카드가 패에서 내고 있을때만 true(전투의 함성)
-        [System.NonSerialized] public int chain_count = 0; //체인된 횟수
 
         //기억정보
         //체인 어빌리티가 실행될때 해당 저장된 기억정보가 넘어가 추가된다.
         [System.NonSerialized] public CardMemory memory = new CardMemory();
-
+        [System.NonSerialized] public int chain_count = 0; //체인된 횟수
 
         public Card(string card_id, string uid, int player_id) { this.card_id = card_id; this.uid = uid; this.player_id = player_id; }
 

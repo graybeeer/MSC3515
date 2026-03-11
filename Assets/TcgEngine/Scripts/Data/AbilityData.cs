@@ -439,7 +439,7 @@ namespace TcgEngine
                 {
                     //Get bearer of the equipment
                     Player player = data.GetPlayer(caster.player_id);
-                    Card target = player.GetBearerCard(caster);
+                    Card target = player.GetBearerCard_legacy(caster);
                     if (target != null && AreTargetConditionsMet(data, caster, target))
                         targets.Add(target);
                 }

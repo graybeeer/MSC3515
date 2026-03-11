@@ -65,6 +65,11 @@ namespace TcgEngine
         {
             return GetMemory(ability).memory_turn.Contains(num);
         }
+
+        public void Clear()
+        {
+            memories.Clear();
+        }
         public AbilityMemory GetMemory(AbilityData ability) 
         {
             foreach (AbilityMemory mem in memories)

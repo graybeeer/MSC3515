@@ -177,7 +177,7 @@ namespace TcgEngine
             return null;
         }
 
-        public Card GetBearerCard(Card equipment)
+        public Card GetBearerCard_legacy(Card equipment)
         {
             foreach (Card card in cards_board)
             {
