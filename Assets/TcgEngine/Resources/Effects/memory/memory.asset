@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: memory
   m_EditorClassIdentifier: 
   referencingComponents: []
+  memory_type: 100

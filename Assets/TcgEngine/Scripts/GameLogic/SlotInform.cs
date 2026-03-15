@@ -7,34 +7,22 @@ namespace TcgEngine
     public class SlotInform
     {
         public List<SlotData> slotData = new List<SlotData>();
+
         public void AddSlotData(Slot slot, int controlPlayerID, bool deep)
         {
-            /*
-            if (ContainsSlot(slot))
+            if (CheckSlot(slot))
                 slotData.Remove(GetSlotData(slot)); //기존에 있던 슬롯 정보는 삭제. 새로운 정보로 대체됨
-
-            SlotData temp = new SlotData();
-            temp.slot_x = slot.x;
-            temp.slot_y = slot.y;
-            temp.owner_p_id = controlPlayerID;
-            temp.isDeep = deep;
-            slotData.Add(temp);
-            */
-            AddSlotData(slot.x, slot.y, controlPlayerID, deep);
+            AddSlotData(new SlotData(slot, controlPlayerID, deep));
         }
+        public void AddSlotData(SlotData temp_slotData)
+        {
+            slotData.Add(temp_slotData);
+        }
+
         public void AddSlotData(int temp_slot_x,int temp_slot_y, int controlPlayerID, bool deep)
         {
-            if (ContainsSlot(temp_slot_x,temp_slot_y))
-                slotData.Remove(GetSlotData(temp_slot_x, temp_slot_y)); //기존에 있던 슬롯 정보는 삭제. 새로운 정보로 대체됨
-
-            SlotData temp = new SlotData();
-            temp.slot.x = temp_slot_x;
-            temp.slot.y = temp_slot_y;
-            temp.owner_p_id = controlPlayerID;
-            temp.isDeep = deep;
-            slotData.Add(temp);
+            AddSlotData(Slot.Get(temp_slot_x, temp_slot_y), controlPlayerID, deep);
         }
-        
         public bool ContainsSlot(int x, int y)
         {
             foreach (var tempSlot in slotData)
@@ -73,5 +61,14 @@ namespace TcgEngine
         public Slot slot;
         public int owner_p_id;
         public bool isDeep;
+        public List<DeathCard> graveCards;
+
+        public SlotData(Slot slot, int controlPlayerID, bool deep)
+        {
+            this.slot = slot;
+            this.owner_p_id = controlPlayerID;
+            this.isDeep = deep;
+            this.graveCards = new List<DeathCard>();
+        }
     }
 }

@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: rush
   m_EditorClassIdentifier: 
   referencingComponents: []
+  exhasuted: 1

@@ -10,33 +10,33 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8ce5f81e5cc37f547af6923758602c8c, type: 3}
-  m_Name: spell_rotate_anti_clock_1
+  m_Name: chain_rush_heading_8
   m_EditorClassIdentifier: 
-  id: spell_rotate_anti_clock_1
-  trigger: 10
+  id: chain_rush_heading_8
+  trigger: 0
   conditions_trigger: []
-  target: 20
+  target: 15
   conditions_target:
-  - {fileID: 11400000, guid: 902733d12f434e94b904de5ebf4112de, type: 2}
-  - {fileID: 11400000, guid: 4a06817c1af0d5047b1a7a9f6b93cbd7, type: 2}
-  filters_target: []
+  - {fileID: 11400000, guid: 2bca51f2e6789f84e859b8e56fa8d6e0, type: 2}
+  filters_target:
+  - {fileID: 11400000, guid: 507a3373a2fe2e7419a20621a468048f, type: 2}
   effects:
-  - {fileID: 11400000, guid: ae14835b115fb474eaf3f2493ffa426c, type: 2}
+  - {fileID: 11400000, guid: ad644248a2ce2474195f7eb157f00559, type: 2}
   status: []
-  value: -1
+  value: 0
   duration: 0
   chain_abilities: []
   mana_cost: 0
   exhaust: 0
   board_fx: {fileID: 0}
   caster_fx: {fileID: 0}
-  target_fx: {fileID: 4574152529085066528, guid: 0a338e869785e474db7ea79bc0f3b554,
-    type: 3}
+  target_fx: {fileID: 0}
   projectile_fx: {fileID: 0}
   fx_time: 0
   cast_audio: {fileID: 0}
   target_audio: {fileID: 0}
   charge_target: 0
   title: 
-  desc: "\uBC18\uC2DC\uACC4\uBC29\uD5A5\uC73C\uB85C \uD68C\uC804."
-  referencingComponents: []
+  desc: 
+  referencingComponents:
+  - {fileID: 11400000, guid: 84606f9686e836e4aa3a8223ad2426c1, type: 2}

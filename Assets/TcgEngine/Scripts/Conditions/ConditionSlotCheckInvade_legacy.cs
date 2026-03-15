@@ -5,8 +5,8 @@ using TcgEngine.Client;
 using UnityEngine;
 
 
-[CreateAssetMenu(fileName = "condition", menuName = "TcgEngine/Condition/SlotCheckInvade", order = 11)]
-public class ConditionSlotCheckInvade : ConditionData
+[CreateAssetMenu(fileName = "condition", menuName = "TcgEngine/Condition/SlotCheckInvade_legacy", order = 999)]
+public class ConditionSlotCheckInvade_legacy : ConditionData
 {
 
     [Header("해당 카드가 누구 진영에 있는지 체크(체크하면 상대 진영, 체크 안하면 내 진영)")]

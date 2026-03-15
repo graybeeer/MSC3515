@@ -12,13 +12,18 @@ namespace TcgEngine
     [CreateAssetMenu(fileName = "effect", menuName = "TcgEngine/Effect/Rush", order = 3)]
     public class EffectRush : EffectData
     {
+        public bool exhasuted;
         public override void DoEffect(GameLogic logic, AbilityData ability, Card caster, Card target)
         {
-            logic.MoveOrAttackSlot(caster, target.slot);
+            logic.FMoveOrAttackSlot(caster, target.slot, true);
+            if (exhasuted)
+                caster.exhausted = true;
         }
         public override void DoEffect(GameLogic logic, AbilityData ability, Card caster, Slot target)
         {
-            logic.MoveOrAttackSlot(caster, target);
+            logic.FMoveOrAttackSlot(caster, target, true);
+            if (exhasuted)
+                caster.exhausted = true;
         }
     }
 }

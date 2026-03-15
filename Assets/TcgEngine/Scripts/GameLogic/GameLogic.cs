@@ -582,11 +582,21 @@ namespace TcgEngine.Gameplay
 
             }
         }
+        public virtual void FMoveOrAttackSlot(Card card, Slot slot, bool skip_cost = false)
+        {
+            if (game_data.CanAttackTarget(card, game_data.GetSlotCard(slot), skip_cost))
+            {
+                AttackTarget(card, game_data.GetSlotCard(slot), skip_cost);
+            }
+            else if (game_data.CanForcedMoveCard(card, slot, skip_cost))
+            {
+                ForcedMoveCard(card, slot, skip_cost);
+            }
+        }
         public virtual void MoveCard(Card card, Slot slot, bool skip_cost = false)
         {
             if (game_data.CanMoveCard(card, slot,skip_cost))
             {
-                //Debug.Log("move");
                 Player player = game_data.GetPlayer(card.player_id);
                 /*
                 card.slot = slot;
@@ -774,8 +784,7 @@ namespace TcgEngine.Gameplay
                 TriggerSecrets(AbilityTrigger.OnAfterDefend, target);
 
             onAttackEnd?.Invoke(attacker, target);
-            RefreshData();
-            CheckForWinner();
+            
 
             resolve_queue.ResolveAll(msc_time);
             //추가-공격한 뒤에

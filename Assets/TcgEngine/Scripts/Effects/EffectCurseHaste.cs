@@ -72,6 +72,8 @@ namespace TcgEngine
             if (RandomCurse) //랜덤 저주면
             {
                 curse_count = ability.value;
+                if (ability.value == 0)
+                    Debug.Log("ability.value == 0");
                 var picked = can_curse_arrow.OrderBy(x => rand.Next()).Take(curse_count).ToList(); //저주 가능한 방향키중 저주 밸류만큼 숫자 뽑기
                 foreach (int i in picked)
                 {
@@ -125,6 +127,8 @@ namespace TcgEngine
             if (RandomCurse) //랜덤 헤이스트면
             {
                 haste_count = ability.value;
+                if (ability.value == 0)
+                    Debug.Log("ability.value == 0");
                 var picked = can_haste_arrow.OrderBy(x => rand.Next()).Take(haste_count).ToList(); //저주 가능한 방향키중 저주 밸류만큼 숫자 뽑기
                 foreach (int i in picked)
                 {

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TcgEngine.Client;
 using TcgEngine.UI;
+using DG.Tweening;
 
 namespace TcgEngine.Client
 {
@@ -23,6 +24,7 @@ namespace TcgEngine.Client
         private List<HandCard> cards = new List<HandCard>();
 
         private bool is_dragging;
+        public bool is_extended;
 
         private string last_destroyed;
         private float last_destroyed_timer = 0f;
@@ -40,8 +42,8 @@ namespace TcgEngine.Client
                 return;
 
             int player_id = GameClient.Get().GetPlayerID();
-            Game data = GameClient.Get().GetCurrentGameData();
-            Player player = data.GetPlayer(player_id);
+            Game current_data = GameClient.Get().GetCurrentGameData();
+            Player player = current_data.GetPlayer(player_id);
 
             last_destroyed_timer += Time.deltaTime;
 
@@ -119,6 +121,11 @@ namespace TcgEngine.Client
 
             
             //return a.transform.localPosition.x.CompareTo(b.transform.localPosition.x);
+        }
+
+        public void ExtendHand()
+        {
+            transform.GetChild(0).transform.DOLocalMoveY(100, 0.5f);
         }
 
         public bool HasCard(string card_uid)

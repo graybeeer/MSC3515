@@ -26,6 +26,7 @@ namespace TcgEngine
             chain_ability_memory.memory_slot.AddRange(iability_memory.memory_slot);
             chain_ability_memory.memory_player.AddRange(iability_memory.memory_player);
             chain_ability_memory.memory_turn.AddRange(iability_memory.memory_turn);
+            chain_ability_memory.memory_count = iability_memory.memory_count; 
 
             //Debug.Log("iability_memory.memory_card:" + iability_memory.memory_card.Count);
             //Debug.Log("chain_ability_memory.memory_card:" + chain_ability_memory.memory_card.Count);
@@ -47,6 +48,11 @@ namespace TcgEngine
         public void Add(AbilityData ability, int turn)
         {
             GetMemory(ability).memory_turn.Add(turn);
+        }
+        public void CountAdd(AbilityData ability, int num)
+        {
+            AbilityMemory temp = GetMemory(ability);
+            temp.memory_count += num;
         }
         public bool Contains(AbilityData ability, string card_uid)
         {
@@ -96,6 +102,7 @@ namespace TcgEngine
         public List<string> memory_card;
         public List<Player> memory_player;
         public List<Slot> memory_slot;
+        public int memory_count;
         public List<int> memory_turn;
 
         public AbilityMemory(AbilityData ability)
@@ -104,6 +111,7 @@ namespace TcgEngine
             this.memory_card = new List<string>();
             this.memory_player = new List<Player>();
             this.memory_slot = new List<Slot>();
+            this.memory_count = 0;
             this.memory_turn = new List<int>();
         }
     }

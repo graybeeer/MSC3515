@@ -10,10 +10,10 @@ namespace TcgEngine
     [CreateAssetMenu(fileName = "effect", menuName = "TcgEngine/Effect/Rotate", order = 11)]
     public class EffectRotate : EffectData
     {
-        [Header("비활성화시 기본 시계방향 회전, 활성화시 반시계 방향 회전 ")]
-        public bool AntiClock; //반시계 방향으로 회전인지
-        [Header("회전 횟수 ")]
-        public int count; //회전 횟수
+        //[Header("비활성화시 기본 시계방향 회전, 활성화시 반시계 방향 회전 ")]
+        //public bool AntiClock; //반시계 방향으로 회전인지
+        //[Header("회전 횟수 ")]
+        //public int count; //회전 횟수
         public override void DoEffect(GameLogic logic, AbilityData ability, Card caster, Card target)
         {
             bool[] target_cursed = EffectCurseHaste.CheckCursed(target);
@@ -21,7 +21,10 @@ namespace TcgEngine
             bool[] target_cursed_temp = new bool[9];
             bool[] target_hasted_temp = new bool[9];
 
-            int rotate_count = AntiClock ? -count : count;
+            //int rotate_count = AntiClock ? -count : count;
+            int rotate_count = ability.value;
+            if (ability.value == 0)
+                Debug.Log("ability.value==0");
             target.card_arrow = RotateKeypad(target.card_arrow, rotate_count); //화살표 회전
 
             
